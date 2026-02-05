@@ -1,0 +1,217 @@
+[
+  {
+    "name": "High Performance",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "performance",
+      "fast"
+    ]
+  },
+  {
+    "name": "Low Latency",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "low-latency",
+      "real-time"
+    ]
+  },
+  {
+    "name": "Memory Efficient",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "memory-efficient",
+      "low-memory"
+    ]
+  },
+  {
+    "name": "Thread Safe",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "thread-safe",
+      "concurrency-safe"
+    ]
+  },
+  {
+    "name": "Type Safe",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "type-safe",
+      "strongly-typed"
+    ]
+  },
+  {
+    "name": "Secure",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "security",
+      "secure"
+    ]
+  },
+  {
+    "name": "HIPAA Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "hipaa"
+    ]
+  },
+  {
+    "name": "GDPR Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "gdpr"
+    ]
+  },
+  {
+    "name": "PCI-DSS Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "pci-dss"
+    ]
+  },
+  {
+    "name": "MISRA C Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "misra-c"
+    ]
+  },
+  {
+    "name": "Readable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "readability",
+      "clean-code"
+    ]
+  },
+  {
+    "name": "Maintainable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "maintainability"
+    ]
+  },
+  {
+    "name": "Testable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "testability"
+    ]
+  },
+  {
+    "name": "Scalable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "scalability"
+    ]
+  },
+  {
+    "name": "Portable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "portability",
+      "cross-platform"
+    ]
+  },
+  {
+    "name": "Backward Compatible",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "backward-compatibility"
+    ]
+  },
+  {
+    "name": "No External Dependencies",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "no-deps",
+      "zero-dependencies"
+    ]
+  },
+  {
+    "name": "No Dynamic Allocation",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "no-malloc",
+      "static-memory"
+    ]
+  },
+  {
+    "name": "No Recursion",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "no-recursion"
+    ]
+  },
+  {
+    "name": "Gas Optimized",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "gas-optimization"
+    ],
+    "language_scope": [
+      "solidity"
+    ]
+  },
+  {
+    "name": "Deterministic",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "deterministic"
+    ]
+  },
+  {
+    "name": "Idempotent",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "idempotent"
+    ]
+  },
+  {
+    "name": "Fault Tolerant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "fault-tolerance"
+    ]
+  },
+  {
+    "name": "Accessible",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "accessibility",
+      "a11y"
+    ]
+  },
+  {
+    "name": "Internationalized",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "i18n",
+      "internationalization"
+    ]
+  }
+]

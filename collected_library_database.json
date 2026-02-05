@@ -1,0 +1,149 @@
+[
+  {
+    "name": "SQLAlchemy",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "sqlalchemy"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Prisma",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "prisma"
+    ],
+    "language_scope": [
+      "typescript",
+      "javascript"
+    ]
+  },
+  {
+    "name": "TypeORM",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "typeorm"
+    ],
+    "language_scope": [
+      "typescript"
+    ]
+  },
+  {
+    "name": "Sequelize",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "sequelize"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Hibernate",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "hibernate"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "Diesel",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "diesel"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "GORM",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "gorm"
+    ],
+    "language_scope": [
+      "go"
+    ]
+  },
+  {
+    "name": "Mongoose",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "mongoose"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "psycopg2",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "psycopg2"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "PyMongo",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "pymongo"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Redis-py",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "redis-py"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Alembic",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "alembic"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  }
+]

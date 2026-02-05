@@ -1,0 +1,179 @@
+[
+  {
+    "name": "Code Generation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "generation",
+      "code-gen"
+    ]
+  },
+  {
+    "name": "Code Completion",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "completion",
+      "autocomplete"
+    ]
+  },
+  {
+    "name": "Code Translation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "translation",
+      "transpilation"
+    ]
+  },
+  {
+    "name": "Code Refactoring",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "refactoring",
+      "refactor"
+    ]
+  },
+  {
+    "name": "Debugging",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "debug",
+      "bug-fix"
+    ]
+  },
+  {
+    "name": "Code Review",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "review"
+    ]
+  },
+  {
+    "name": "Test Generation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "test-gen",
+      "testing"
+    ]
+  },
+  {
+    "name": "Documentation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "docs",
+      "documentation"
+    ]
+  },
+  {
+    "name": "Code Explanation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "explanation",
+      "explain"
+    ]
+  },
+  {
+    "name": "Code Optimization",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "optimization",
+      "optimize"
+    ]
+  },
+  {
+    "name": "Migration",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "migration",
+      "upgrade"
+    ]
+  },
+  {
+    "name": "API Design",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "api-design"
+    ]
+  },
+  {
+    "name": "Schema Design",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "schema-design",
+      "data-modeling"
+    ]
+  },
+  {
+    "name": "Configuration",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "config",
+      "configuration"
+    ]
+  },
+  {
+    "name": "Deployment",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "deploy",
+      "deployment"
+    ]
+  },
+  {
+    "name": "Monitoring",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "monitoring",
+      "observability"
+    ]
+  },
+  {
+    "name": "Performance Analysis",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "profiling",
+      "performance"
+    ]
+  },
+  {
+    "name": "Security Audit",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "security-audit",
+      "vulnerability-scan"
+    ]
+  },
+  {
+    "name": "Code Search",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "search",
+      "code-search"
+    ]
+  },
+  {
+    "name": "Dependency Management",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "dependencies"
+    ]
+  }
+]

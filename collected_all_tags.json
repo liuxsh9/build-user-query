@@ -1,0 +1,3116 @@
+[
+  {
+    "name": "Web Backend",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "backend",
+      "server-side"
+    ]
+  },
+  {
+    "name": "Web Frontend",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "frontend",
+      "client-side"
+    ]
+  },
+  {
+    "name": "Full Stack",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "fullstack"
+    ]
+  },
+  {
+    "name": "Mobile Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "mobile",
+      "mobile-dev"
+    ]
+  },
+  {
+    "name": "Desktop Application",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "desktop",
+      "desktop-app"
+    ]
+  },
+  {
+    "name": "CLI Tool",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "cli",
+      "command-line"
+    ]
+  },
+  {
+    "name": "Data Science",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "data-science",
+      "ds"
+    ]
+  },
+  {
+    "name": "Machine Learning",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "ml",
+      "machine-learning"
+    ]
+  },
+  {
+    "name": "Deep Learning",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "dl",
+      "deep-learning"
+    ]
+  },
+  {
+    "name": "DevOps",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "devops"
+    ]
+  },
+  {
+    "name": "Cloud Computing",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "cloud"
+    ]
+  },
+  {
+    "name": "Embedded Systems",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "embedded"
+    ]
+  },
+  {
+    "name": "IoT",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "iot",
+      "internet-of-things"
+    ]
+  },
+  {
+    "name": "Game Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "gamedev",
+      "game-dev"
+    ]
+  },
+  {
+    "name": "Blockchain",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "blockchain",
+      "web3"
+    ]
+  },
+  {
+    "name": "Smart Contracts",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "smart-contracts"
+    ]
+  },
+  {
+    "name": "Cybersecurity",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "security",
+      "infosec"
+    ]
+  },
+  {
+    "name": "Network Programming",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "networking"
+    ]
+  },
+  {
+    "name": "Systems Programming",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "systems"
+    ]
+  },
+  {
+    "name": "Compiler Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "compilers"
+    ]
+  },
+  {
+    "name": "Operating Systems",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "os"
+    ]
+  },
+  {
+    "name": "Database Administration",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "dba"
+    ]
+  },
+  {
+    "name": "ETL",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "etl",
+      "data-pipeline"
+    ]
+  },
+  {
+    "name": "API Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "api"
+    ]
+  },
+  {
+    "name": "Automation",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "automation",
+      "scripting"
+    ]
+  },
+  {
+    "name": "Scientific Computing",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "scientific"
+    ]
+  },
+  {
+    "name": "Computer Vision",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "cv",
+      "computer-vision"
+    ]
+  },
+  {
+    "name": "Natural Language Processing",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "nlp"
+    ]
+  },
+  {
+    "name": "Robotics",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "robotics"
+    ]
+  },
+  {
+    "name": "Financial Technology",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "fintech"
+    ]
+  },
+  {
+    "name": "Healthcare Technology",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "healthtech"
+    ]
+  },
+  {
+    "name": "E-commerce",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "ecommerce"
+    ]
+  },
+  {
+    "name": "Single Function",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "function",
+      "single-function"
+    ]
+  },
+  {
+    "name": "Single File",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "file",
+      "single-file"
+    ]
+  },
+  {
+    "name": "Multi-file",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "multiple-files",
+      "cross-file"
+    ]
+  },
+  {
+    "name": "Module",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "module",
+      "package"
+    ]
+  },
+  {
+    "name": "Repository",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "repo",
+      "repository-level",
+      "codebase"
+    ]
+  },
+  {
+    "name": "Monorepo",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "monorepo",
+      "multi-project"
+    ]
+  },
+  {
+    "name": "With Dependencies",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "with-deps",
+      "external-deps"
+    ]
+  },
+  {
+    "name": "Legacy Code",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "legacy",
+      "brownfield"
+    ]
+  },
+  {
+    "name": "Greenfield",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "greenfield",
+      "new-project"
+    ]
+  },
+  {
+    "name": "High Performance",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "performance",
+      "fast"
+    ]
+  },
+  {
+    "name": "Low Latency",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "low-latency",
+      "real-time"
+    ]
+  },
+  {
+    "name": "Memory Efficient",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "memory-efficient",
+      "low-memory"
+    ]
+  },
+  {
+    "name": "Thread Safe",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "thread-safe",
+      "concurrency-safe"
+    ]
+  },
+  {
+    "name": "Type Safe",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "type-safe",
+      "strongly-typed"
+    ]
+  },
+  {
+    "name": "Secure",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "security",
+      "secure"
+    ]
+  },
+  {
+    "name": "HIPAA Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "hipaa"
+    ]
+  },
+  {
+    "name": "GDPR Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "gdpr"
+    ]
+  },
+  {
+    "name": "PCI-DSS Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "pci-dss"
+    ]
+  },
+  {
+    "name": "MISRA C Compliant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "misra-c"
+    ]
+  },
+  {
+    "name": "Readable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "readability",
+      "clean-code"
+    ]
+  },
+  {
+    "name": "Maintainable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "maintainability"
+    ]
+  },
+  {
+    "name": "Testable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "testability"
+    ]
+  },
+  {
+    "name": "Scalable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "scalability"
+    ]
+  },
+  {
+    "name": "Portable",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "portability",
+      "cross-platform"
+    ]
+  },
+  {
+    "name": "Backward Compatible",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "backward-compatibility"
+    ]
+  },
+  {
+    "name": "No External Dependencies",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "no-deps",
+      "zero-dependencies"
+    ]
+  },
+  {
+    "name": "No Dynamic Allocation",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "no-malloc",
+      "static-memory"
+    ]
+  },
+  {
+    "name": "No Recursion",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "no-recursion"
+    ]
+  },
+  {
+    "name": "Gas Optimized",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "gas-optimization"
+    ],
+    "language_scope": [
+      "solidity"
+    ]
+  },
+  {
+    "name": "Deterministic",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "deterministic"
+    ]
+  },
+  {
+    "name": "Idempotent",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "idempotent"
+    ]
+  },
+  {
+    "name": "Fault Tolerant",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "fault-tolerance"
+    ]
+  },
+  {
+    "name": "Accessible",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "accessibility",
+      "a11y"
+    ]
+  },
+  {
+    "name": "Internationalized",
+    "category": "Constraint",
+    "source": "curated-list",
+    "aliases": [
+      "i18n",
+      "internationalization"
+    ]
+  },
+  {
+    "name": "Pandas",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "pandas",
+      "pd"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "NumPy",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "numpy",
+      "np"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "PyTorch",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "pytorch",
+      "torch"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "TensorFlow",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "tensorflow",
+      "tf"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Scikit-learn",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "sklearn",
+      "scikit-learn"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Matplotlib",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "matplotlib",
+      "plt"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Seaborn",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "seaborn",
+      "sns"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Plotly",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "plotly"
+    ],
+    "language_scope": [
+      "python",
+      "javascript"
+    ]
+  },
+  {
+    "name": "Polars",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "polars"
+    ],
+    "language_scope": [
+      "python",
+      "rust"
+    ]
+  },
+  {
+    "name": "Dask",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "dask"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Ray",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "ray"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Apache Spark",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "spark",
+      "pyspark"
+    ],
+    "language_scope": [
+      "python",
+      "scala",
+      "java"
+    ]
+  },
+  {
+    "name": "Hugging Face Transformers",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "transformers",
+      "huggingface"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "LangChain",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "langchain"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "OpenCV",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "opencv",
+      "cv2"
+    ],
+    "language_scope": [
+      "python",
+      "cpp"
+    ]
+  },
+  {
+    "name": "NLTK",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "nltk"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "spaCy",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "spacy"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Python",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "py",
+      "python3"
+    ]
+  },
+  {
+    "name": "JavaScript",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "js",
+      "javascript"
+    ]
+  },
+  {
+    "name": "TypeScript",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "ts",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Java",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "java"
+    ]
+  },
+  {
+    "name": "C",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "c"
+    ]
+  },
+  {
+    "name": "C++",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "cpp",
+      "c++",
+      "cxx"
+    ]
+  },
+  {
+    "name": "C#",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "csharp",
+      "c-sharp"
+    ]
+  },
+  {
+    "name": "Go",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "golang",
+      "go"
+    ]
+  },
+  {
+    "name": "Rust",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "rust",
+      "rs"
+    ]
+  },
+  {
+    "name": "Ruby",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "ruby",
+      "rb"
+    ]
+  },
+  {
+    "name": "PHP",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "php"
+    ]
+  },
+  {
+    "name": "Swift",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "swift"
+    ]
+  },
+  {
+    "name": "Kotlin",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "kotlin",
+      "kt"
+    ]
+  },
+  {
+    "name": "R",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "r",
+      "r-lang"
+    ]
+  },
+  {
+    "name": "MATLAB",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "matlab"
+    ]
+  },
+  {
+    "name": "Perl",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "perl",
+      "pl"
+    ]
+  },
+  {
+    "name": "Scala",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "scala"
+    ]
+  },
+  {
+    "name": "Haskell",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "haskell",
+      "hs"
+    ]
+  },
+  {
+    "name": "Lua",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "lua"
+    ]
+  },
+  {
+    "name": "Dart",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "dart"
+    ]
+  },
+  {
+    "name": "Elixir",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "elixir",
+      "ex"
+    ]
+  },
+  {
+    "name": "Clojure",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "clojure",
+      "clj"
+    ]
+  },
+  {
+    "name": "Erlang",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "erlang",
+      "erl"
+    ]
+  },
+  {
+    "name": "F#",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "fsharp",
+      "f-sharp"
+    ]
+  },
+  {
+    "name": "OCaml",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "ocaml",
+      "ml"
+    ]
+  },
+  {
+    "name": "Groovy",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "groovy"
+    ]
+  },
+  {
+    "name": "Julia",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "julia",
+      "jl"
+    ]
+  },
+  {
+    "name": "Zig",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "zig"
+    ]
+  },
+  {
+    "name": "Nim",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "nim"
+    ]
+  },
+  {
+    "name": "Crystal",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "crystal",
+      "cr"
+    ]
+  },
+  {
+    "name": "Objective-C",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "objc",
+      "objective-c"
+    ]
+  },
+  {
+    "name": "Shell",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "bash",
+      "sh",
+      "shell"
+    ]
+  },
+  {
+    "name": "PowerShell",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "powershell",
+      "ps1"
+    ]
+  },
+  {
+    "name": "SQL",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "sql"
+    ]
+  },
+  {
+    "name": "HTML",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "html"
+    ]
+  },
+  {
+    "name": "CSS",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "css"
+    ]
+  },
+  {
+    "name": "Solidity",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "solidity",
+      "sol"
+    ]
+  },
+  {
+    "name": "Vyper",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "vyper",
+      "vy"
+    ]
+  },
+  {
+    "name": "COBOL",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "cobol"
+    ]
+  },
+  {
+    "name": "Fortran",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "fortran"
+    ]
+  },
+  {
+    "name": "Ada",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "ada"
+    ]
+  },
+  {
+    "name": "Assembly",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "asm",
+      "assembly"
+    ]
+  },
+  {
+    "name": "Verilog",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "verilog",
+      "v"
+    ]
+  },
+  {
+    "name": "VHDL",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "vhdl"
+    ]
+  },
+  {
+    "name": "Prolog",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "prolog",
+      "pl"
+    ]
+  },
+  {
+    "name": "Lisp",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "lisp",
+      "common-lisp"
+    ]
+  },
+  {
+    "name": "Scheme",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "scheme",
+      "scm"
+    ]
+  },
+  {
+    "name": "Racket",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "racket",
+      "rkt"
+    ]
+  },
+  {
+    "name": "Smalltalk",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "smalltalk"
+    ]
+  },
+  {
+    "name": "APL",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "apl"
+    ]
+  },
+  {
+    "name": "Pytest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "pytest"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "unittest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "unittest"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Jest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "jest"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Vitest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "vitest"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Mocha",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "mocha"
+    ],
+    "language_scope": [
+      "javascript"
+    ]
+  },
+  {
+    "name": "Chai",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "chai"
+    ],
+    "language_scope": [
+      "javascript"
+    ]
+  },
+  {
+    "name": "Cypress",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "cypress"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Playwright",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "playwright"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "name": "Selenium",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "selenium"
+    ],
+    "language_scope": [
+      "python",
+      "java",
+      "javascript"
+    ]
+  },
+  {
+    "name": "JUnit",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "junit"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "TestNG",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "testng"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "RSpec",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "rspec"
+    ],
+    "language_scope": [
+      "ruby"
+    ]
+  },
+  {
+    "name": "Mockito",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "mockito"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "Mock",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "mock",
+      "unittest.mock"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Concurrency",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Parallelism",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Async/Await",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "aliases": [
+      "asynchronous"
+    ]
+  },
+  {
+    "name": "Threads",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Processes",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Coroutines",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Memory Management",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Garbage Collection",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Pointers",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "c",
+      "cpp"
+    ]
+  },
+  {
+    "name": "References",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Borrow Checker",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Lifetimes",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Ownership",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Type System",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Generics",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Type Inference",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Traits",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Interfaces",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Abstract Classes",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Metaprogramming",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Macros",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Reflection",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Decorators",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Generators",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Iterators",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Streams",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Error Handling",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Exception Handling",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Result Types",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Option Types",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "React",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "react",
+      "reactjs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Vue",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "vue",
+      "vuejs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Angular",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "angular",
+      "angularjs"
+    ],
+    "language_scope": [
+      "typescript"
+    ]
+  },
+  {
+    "name": "Svelte",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "svelte"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Next.js",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "nextjs",
+      "next"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Nuxt",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "nuxt",
+      "nuxtjs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Express",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "express",
+      "expressjs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "FastAPI",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "fastapi"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Django",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "django"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Flask",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "flask"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Spring Boot",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "spring-boot",
+      "spring"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "Ruby on Rails",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "rails",
+      "ror"
+    ],
+    "language_scope": [
+      "ruby"
+    ]
+  },
+  {
+    "name": "Laravel",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "laravel"
+    ],
+    "language_scope": [
+      "php"
+    ]
+  },
+  {
+    "name": "ASP.NET",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "aspnet",
+      "asp-net"
+    ],
+    "language_scope": [
+      "csharp"
+    ]
+  },
+  {
+    "name": "Gin",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "gin"
+    ],
+    "language_scope": [
+      "go"
+    ]
+  },
+  {
+    "name": "Echo",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "echo"
+    ],
+    "language_scope": [
+      "go"
+    ]
+  },
+  {
+    "name": "Actix",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "actix",
+      "actix-web"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Axum",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "axum"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Rocket",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "rocket"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Phoenix",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "phoenix"
+    ],
+    "language_scope": [
+      "elixir"
+    ]
+  },
+  {
+    "name": "Tailwind CSS",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "tailwind",
+      "tailwindcss"
+    ],
+    "language_scope": [
+      "css"
+    ]
+  },
+  {
+    "name": "Bootstrap",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "bootstrap"
+    ],
+    "language_scope": [
+      "css"
+    ]
+  },
+  {
+    "name": "Material-UI",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "mui",
+      "material-ui"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Ant Design",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "antd",
+      "ant-design"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "SQLAlchemy",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "sqlalchemy"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Prisma",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "prisma"
+    ],
+    "language_scope": [
+      "typescript",
+      "javascript"
+    ]
+  },
+  {
+    "name": "TypeORM",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "typeorm"
+    ],
+    "language_scope": [
+      "typescript"
+    ]
+  },
+  {
+    "name": "Sequelize",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "sequelize"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Hibernate",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "hibernate"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "Diesel",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "diesel"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "GORM",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "gorm"
+    ],
+    "language_scope": [
+      "go"
+    ]
+  },
+  {
+    "name": "Mongoose",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "mongoose"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "psycopg2",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "psycopg2"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "PyMongo",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "pymongo"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Redis-py",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "redis-py"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Alembic",
+    "category": "Library",
+    "subcategory": "Database",
+    "source": "curated-list",
+    "aliases": [
+      "alembic"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Variables",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Data Types",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Control Flow",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Loops",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Functions",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Arrays",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Strings",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Conditionals",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Input/Output",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Comments",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Operators",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Scope",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Recursion",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Object-Oriented Programming",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate",
+    "aliases": [
+      "oop"
+    ]
+  },
+  {
+    "name": "Classes",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Inheritance",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Polymorphism",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Encapsulation",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Functional Programming",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate",
+    "aliases": [
+      "fp"
+    ]
+  },
+  {
+    "name": "Lambda Functions",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Higher-Order Functions",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Closures",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Code Generation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "generation",
+      "code-gen"
+    ]
+  },
+  {
+    "name": "Code Completion",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "completion",
+      "autocomplete"
+    ]
+  },
+  {
+    "name": "Code Translation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "translation",
+      "transpilation"
+    ]
+  },
+  {
+    "name": "Code Refactoring",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "refactoring",
+      "refactor"
+    ]
+  },
+  {
+    "name": "Debugging",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "debug",
+      "bug-fix"
+    ]
+  },
+  {
+    "name": "Code Review",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "review"
+    ]
+  },
+  {
+    "name": "Test Generation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "test-gen",
+      "testing"
+    ]
+  },
+  {
+    "name": "Documentation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "docs",
+      "documentation"
+    ]
+  },
+  {
+    "name": "Code Explanation",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "explanation",
+      "explain"
+    ]
+  },
+  {
+    "name": "Code Optimization",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "optimization",
+      "optimize"
+    ]
+  },
+  {
+    "name": "Migration",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "migration",
+      "upgrade"
+    ]
+  },
+  {
+    "name": "API Design",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "api-design"
+    ]
+  },
+  {
+    "name": "Schema Design",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "schema-design",
+      "data-modeling"
+    ]
+  },
+  {
+    "name": "Configuration",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "config",
+      "configuration"
+    ]
+  },
+  {
+    "name": "Deployment",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "deploy",
+      "deployment"
+    ]
+  },
+  {
+    "name": "Monitoring",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "monitoring",
+      "observability"
+    ]
+  },
+  {
+    "name": "Performance Analysis",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "profiling",
+      "performance"
+    ]
+  },
+  {
+    "name": "Security Audit",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "security-audit",
+      "vulnerability-scan"
+    ]
+  },
+  {
+    "name": "Code Search",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "search",
+      "code-search"
+    ]
+  },
+  {
+    "name": "Dependency Management",
+    "category": "Task",
+    "source": "curated-list",
+    "aliases": [
+      "dependencies"
+    ]
+  },
+  {
+    "name": "Design Patterns",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Singleton Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Factory Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Observer Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Strategy Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Dependency Injection",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "SOLID Principles",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Testing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Unit Testing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Integration Testing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Test-Driven Development",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "aliases": [
+      "tdd"
+    ]
+  },
+  {
+    "name": "Mocking",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Code Coverage",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Refactoring",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Code Review",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Version Control",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Git",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Branching Strategies",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "CI/CD",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Documentation",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "API Design",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "REST API",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "GraphQL",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Microservices",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Monolithic Architecture",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Event-Driven Architecture",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "CQRS",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Database Design",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Normalization",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Indexing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Transactions",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "ACID Properties",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "CAP Theorem",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Security",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Authentication",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Authorization",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Encryption",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "SQL Injection",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "XSS",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "CSRF",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Performance Optimization",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Caching",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Load Balancing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Profiling",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Bash Execution",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "bash",
+      "shell",
+      "command-execution"
+    ]
+  },
+  {
+    "name": "File Read",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "read-file",
+      "file-reading"
+    ]
+  },
+  {
+    "name": "File Write",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "write-file",
+      "file-writing"
+    ]
+  },
+  {
+    "name": "File Edit",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "edit-file",
+      "file-editing"
+    ]
+  },
+  {
+    "name": "Code Search",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "search-code",
+      "grep"
+    ]
+  },
+  {
+    "name": "File Navigation",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "navigate",
+      "file-tree"
+    ]
+  },
+  {
+    "name": "Multi-step Reasoning",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "reasoning",
+      "planning"
+    ]
+  },
+  {
+    "name": "Tool Selection",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "tool-use",
+      "tool-calling"
+    ]
+  },
+  {
+    "name": "Error Recovery",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "error-handling",
+      "retry"
+    ]
+  },
+  {
+    "name": "Context Management",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "context",
+      "memory"
+    ]
+  },
+  {
+    "name": "Web Search",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "search",
+      "web-search"
+    ]
+  },
+  {
+    "name": "API Calling",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "api-call",
+      "http-request"
+    ]
+  },
+  {
+    "name": "Database Query",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "db-query",
+      "sql-execution"
+    ]
+  },
+  {
+    "name": "Code Execution",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "execute-code",
+      "run-code"
+    ]
+  },
+  {
+    "name": "Test Running",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "run-tests",
+      "test-execution"
+    ]
+  },
+  {
+    "name": "Build Execution",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "build",
+      "compile"
+    ]
+  },
+  {
+    "name": "Dependency Installation",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "install-deps",
+      "package-install"
+    ]
+  },
+  {
+    "name": "Git Operations",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "git",
+      "version-control"
+    ]
+  },
+  {
+    "name": "Multi-file Coordination",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "multi-file",
+      "cross-file"
+    ]
+  },
+  {
+    "name": "Iterative Refinement",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "iteration",
+      "refinement"
+    ]
+  },
+  {
+    "name": "Docker",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "docker"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Kubernetes",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "k8s",
+      "kubernetes"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Terraform",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "terraform",
+      "tf"
+    ],
+    "language_scope": [
+      "hcl"
+    ]
+  },
+  {
+    "name": "Ansible",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "ansible"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "Helm",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "helm"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "AWS CDK",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "cdk",
+      "aws-cdk"
+    ],
+    "language_scope": [
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "name": "Pulumi",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "pulumi"
+    ],
+    "language_scope": [
+      "typescript",
+      "python",
+      "go"
+    ]
+  },
+  {
+    "name": "GitHub Actions",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "github-actions",
+      "gha"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "GitLab CI",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "gitlab-ci"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "Jenkins",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "jenkins"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "CircleCI",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "circleci"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "Prometheus",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "prometheus"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Grafana",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "grafana"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Nginx",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "nginx"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Apache",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "apache",
+      "httpd"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Redis",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "redis"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "RabbitMQ",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "rabbitmq"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Kafka",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "kafka"
+    ],
+    "language_scope": []
+  }
+]

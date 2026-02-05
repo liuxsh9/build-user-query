@@ -1,0 +1,313 @@
+[
+  {
+    "name": "Design Patterns",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Singleton Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Factory Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Observer Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Strategy Pattern",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Dependency Injection",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "SOLID Principles",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Testing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Unit Testing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Integration Testing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Test-Driven Development",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "aliases": [
+      "tdd"
+    ]
+  },
+  {
+    "name": "Mocking",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Code Coverage",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Refactoring",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Code Review",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Version Control",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Git",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Branching Strategies",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "CI/CD",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Documentation",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "API Design",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "REST API",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "GraphQL",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Microservices",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Monolithic Architecture",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Event-Driven Architecture",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "CQRS",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Database Design",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Normalization",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Indexing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Transactions",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "ACID Properties",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "CAP Theorem",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Security",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Authentication",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Authorization",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Encryption",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "SQL Injection",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "XSS",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "CSRF",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Performance Optimization",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Caching",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Load Balancing",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Profiling",
+    "category": "Concept",
+    "subcategory": "Engineering",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  }
+]

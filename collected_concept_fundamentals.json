@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Variables",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Data Types",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Control Flow",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Loops",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Functions",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Arrays",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Strings",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Conditionals",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Input/Output",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Comments",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Operators",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Scope",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "basic"
+  },
+  {
+    "name": "Recursion",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Object-Oriented Programming",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate",
+    "aliases": [
+      "oop"
+    ]
+  },
+  {
+    "name": "Classes",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Inheritance",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Polymorphism",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Encapsulation",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Functional Programming",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate",
+    "aliases": [
+      "fp"
+    ]
+  },
+  {
+    "name": "Lambda Functions",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Higher-Order Functions",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Closures",
+    "category": "Concept",
+    "subcategory": "Fundamentals",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  }
+]

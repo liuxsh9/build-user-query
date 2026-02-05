@@ -1,0 +1,273 @@
+[
+  {
+    "name": "Web Backend",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "backend",
+      "server-side"
+    ]
+  },
+  {
+    "name": "Web Frontend",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "frontend",
+      "client-side"
+    ]
+  },
+  {
+    "name": "Full Stack",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "fullstack"
+    ]
+  },
+  {
+    "name": "Mobile Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "mobile",
+      "mobile-dev"
+    ]
+  },
+  {
+    "name": "Desktop Application",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "desktop",
+      "desktop-app"
+    ]
+  },
+  {
+    "name": "CLI Tool",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "cli",
+      "command-line"
+    ]
+  },
+  {
+    "name": "Data Science",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "data-science",
+      "ds"
+    ]
+  },
+  {
+    "name": "Machine Learning",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "ml",
+      "machine-learning"
+    ]
+  },
+  {
+    "name": "Deep Learning",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "dl",
+      "deep-learning"
+    ]
+  },
+  {
+    "name": "DevOps",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "devops"
+    ]
+  },
+  {
+    "name": "Cloud Computing",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "cloud"
+    ]
+  },
+  {
+    "name": "Embedded Systems",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "embedded"
+    ]
+  },
+  {
+    "name": "IoT",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "iot",
+      "internet-of-things"
+    ]
+  },
+  {
+    "name": "Game Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "gamedev",
+      "game-dev"
+    ]
+  },
+  {
+    "name": "Blockchain",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "blockchain",
+      "web3"
+    ]
+  },
+  {
+    "name": "Smart Contracts",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "smart-contracts"
+    ]
+  },
+  {
+    "name": "Cybersecurity",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "security",
+      "infosec"
+    ]
+  },
+  {
+    "name": "Network Programming",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "networking"
+    ]
+  },
+  {
+    "name": "Systems Programming",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "systems"
+    ]
+  },
+  {
+    "name": "Compiler Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "compilers"
+    ]
+  },
+  {
+    "name": "Operating Systems",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "os"
+    ]
+  },
+  {
+    "name": "Database Administration",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "dba"
+    ]
+  },
+  {
+    "name": "ETL",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "etl",
+      "data-pipeline"
+    ]
+  },
+  {
+    "name": "API Development",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "api"
+    ]
+  },
+  {
+    "name": "Automation",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "automation",
+      "scripting"
+    ]
+  },
+  {
+    "name": "Scientific Computing",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "scientific"
+    ]
+  },
+  {
+    "name": "Computer Vision",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "cv",
+      "computer-vision"
+    ]
+  },
+  {
+    "name": "Natural Language Processing",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "nlp"
+    ]
+  },
+  {
+    "name": "Robotics",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "robotics"
+    ]
+  },
+  {
+    "name": "Financial Technology",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "fintech"
+    ]
+  },
+  {
+    "name": "Healthcare Technology",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "healthtech"
+    ]
+  },
+  {
+    "name": "E-commerce",
+    "category": "Domain",
+    "source": "curated-list",
+    "aliases": [
+      "ecommerce"
+    ]
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Pytest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "pytest"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "unittest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "unittest"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Jest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "jest"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Vitest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "vitest"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Mocha",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "mocha"
+    ],
+    "language_scope": [
+      "javascript"
+    ]
+  },
+  {
+    "name": "Chai",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "chai"
+    ],
+    "language_scope": [
+      "javascript"
+    ]
+  },
+  {
+    "name": "Cypress",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "cypress"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Playwright",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "playwright"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "name": "Selenium",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "selenium"
+    ],
+    "language_scope": [
+      "python",
+      "java",
+      "javascript"
+    ]
+  },
+  {
+    "name": "JUnit",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "junit"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "TestNG",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "testng"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "RSpec",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "rspec"
+    ],
+    "language_scope": [
+      "ruby"
+    ]
+  },
+  {
+    "name": "Mockito",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "mockito"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "Mock",
+    "category": "Library",
+    "subcategory": "Testing",
+    "source": "curated-list",
+    "aliases": [
+      "mock",
+      "unittest.mock"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  }
+]

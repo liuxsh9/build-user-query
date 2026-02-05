@@ -1,0 +1,183 @@
+[
+  {
+    "name": "Bash Execution",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "bash",
+      "shell",
+      "command-execution"
+    ]
+  },
+  {
+    "name": "File Read",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "read-file",
+      "file-reading"
+    ]
+  },
+  {
+    "name": "File Write",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "write-file",
+      "file-writing"
+    ]
+  },
+  {
+    "name": "File Edit",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "edit-file",
+      "file-editing"
+    ]
+  },
+  {
+    "name": "Code Search",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "search-code",
+      "grep"
+    ]
+  },
+  {
+    "name": "File Navigation",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "navigate",
+      "file-tree"
+    ]
+  },
+  {
+    "name": "Multi-step Reasoning",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "reasoning",
+      "planning"
+    ]
+  },
+  {
+    "name": "Tool Selection",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "tool-use",
+      "tool-calling"
+    ]
+  },
+  {
+    "name": "Error Recovery",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "error-handling",
+      "retry"
+    ]
+  },
+  {
+    "name": "Context Management",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "context",
+      "memory"
+    ]
+  },
+  {
+    "name": "Web Search",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "search",
+      "web-search"
+    ]
+  },
+  {
+    "name": "API Calling",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "api-call",
+      "http-request"
+    ]
+  },
+  {
+    "name": "Database Query",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "db-query",
+      "sql-execution"
+    ]
+  },
+  {
+    "name": "Code Execution",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "execute-code",
+      "run-code"
+    ]
+  },
+  {
+    "name": "Test Running",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "run-tests",
+      "test-execution"
+    ]
+  },
+  {
+    "name": "Build Execution",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "build",
+      "compile"
+    ]
+  },
+  {
+    "name": "Dependency Installation",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "install-deps",
+      "package-install"
+    ]
+  },
+  {
+    "name": "Git Operations",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "git",
+      "version-control"
+    ]
+  },
+  {
+    "name": "Multi-file Coordination",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "multi-file",
+      "cross-file"
+    ]
+  },
+  {
+    "name": "Iterative Refinement",
+    "category": "Agentic",
+    "source": "curated-list",
+    "aliases": [
+      "iteration",
+      "refinement"
+    ]
+  }
+]

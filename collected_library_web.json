@@ -1,0 +1,311 @@
+[
+  {
+    "name": "React",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "react",
+      "reactjs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Vue",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "vue",
+      "vuejs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Angular",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "angular",
+      "angularjs"
+    ],
+    "language_scope": [
+      "typescript"
+    ]
+  },
+  {
+    "name": "Svelte",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "svelte"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Next.js",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "nextjs",
+      "next"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Nuxt",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "nuxt",
+      "nuxtjs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Express",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "express",
+      "expressjs"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "FastAPI",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "fastapi"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Django",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "django"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Flask",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "flask"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Spring Boot",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "spring-boot",
+      "spring"
+    ],
+    "language_scope": [
+      "java"
+    ]
+  },
+  {
+    "name": "Ruby on Rails",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "rails",
+      "ror"
+    ],
+    "language_scope": [
+      "ruby"
+    ]
+  },
+  {
+    "name": "Laravel",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "laravel"
+    ],
+    "language_scope": [
+      "php"
+    ]
+  },
+  {
+    "name": "ASP.NET",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "aspnet",
+      "asp-net"
+    ],
+    "language_scope": [
+      "csharp"
+    ]
+  },
+  {
+    "name": "Gin",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "gin"
+    ],
+    "language_scope": [
+      "go"
+    ]
+  },
+  {
+    "name": "Echo",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "echo"
+    ],
+    "language_scope": [
+      "go"
+    ]
+  },
+  {
+    "name": "Actix",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "actix",
+      "actix-web"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Axum",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "axum"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Rocket",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "rocket"
+    ],
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Phoenix",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "phoenix"
+    ],
+    "language_scope": [
+      "elixir"
+    ]
+  },
+  {
+    "name": "Tailwind CSS",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "tailwind",
+      "tailwindcss"
+    ],
+    "language_scope": [
+      "css"
+    ]
+  },
+  {
+    "name": "Bootstrap",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "bootstrap"
+    ],
+    "language_scope": [
+      "css"
+    ]
+  },
+  {
+    "name": "Material-UI",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "mui",
+      "material-ui"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Ant Design",
+    "category": "Library",
+    "subcategory": "Web",
+    "source": "curated-list",
+    "aliases": [
+      "antd",
+      "ant-design"
+    ],
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ]
+  }
+]

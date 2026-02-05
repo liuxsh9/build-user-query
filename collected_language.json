@@ -1,0 +1,434 @@
+[
+  {
+    "name": "Python",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "py",
+      "python3"
+    ]
+  },
+  {
+    "name": "JavaScript",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "js",
+      "javascript"
+    ]
+  },
+  {
+    "name": "TypeScript",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "ts",
+      "typescript"
+    ]
+  },
+  {
+    "name": "Java",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "java"
+    ]
+  },
+  {
+    "name": "C",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "c"
+    ]
+  },
+  {
+    "name": "C++",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "cpp",
+      "c++",
+      "cxx"
+    ]
+  },
+  {
+    "name": "C#",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "csharp",
+      "c-sharp"
+    ]
+  },
+  {
+    "name": "Go",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "golang",
+      "go"
+    ]
+  },
+  {
+    "name": "Rust",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "rust",
+      "rs"
+    ]
+  },
+  {
+    "name": "Ruby",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "ruby",
+      "rb"
+    ]
+  },
+  {
+    "name": "PHP",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "php"
+    ]
+  },
+  {
+    "name": "Swift",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "swift"
+    ]
+  },
+  {
+    "name": "Kotlin",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "kotlin",
+      "kt"
+    ]
+  },
+  {
+    "name": "R",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "r",
+      "r-lang"
+    ]
+  },
+  {
+    "name": "MATLAB",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "matlab"
+    ]
+  },
+  {
+    "name": "Perl",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "perl",
+      "pl"
+    ]
+  },
+  {
+    "name": "Scala",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "scala"
+    ]
+  },
+  {
+    "name": "Haskell",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "haskell",
+      "hs"
+    ]
+  },
+  {
+    "name": "Lua",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "lua"
+    ]
+  },
+  {
+    "name": "Dart",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "dart"
+    ]
+  },
+  {
+    "name": "Elixir",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "elixir",
+      "ex"
+    ]
+  },
+  {
+    "name": "Clojure",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "clojure",
+      "clj"
+    ]
+  },
+  {
+    "name": "Erlang",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "erlang",
+      "erl"
+    ]
+  },
+  {
+    "name": "F#",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "fsharp",
+      "f-sharp"
+    ]
+  },
+  {
+    "name": "OCaml",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "ocaml",
+      "ml"
+    ]
+  },
+  {
+    "name": "Groovy",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "groovy"
+    ]
+  },
+  {
+    "name": "Julia",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "julia",
+      "jl"
+    ]
+  },
+  {
+    "name": "Zig",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "zig"
+    ]
+  },
+  {
+    "name": "Nim",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "nim"
+    ]
+  },
+  {
+    "name": "Crystal",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "crystal",
+      "cr"
+    ]
+  },
+  {
+    "name": "Objective-C",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "objc",
+      "objective-c"
+    ]
+  },
+  {
+    "name": "Shell",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "bash",
+      "sh",
+      "shell"
+    ]
+  },
+  {
+    "name": "PowerShell",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "powershell",
+      "ps1"
+    ]
+  },
+  {
+    "name": "SQL",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "sql"
+    ]
+  },
+  {
+    "name": "HTML",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "html"
+    ]
+  },
+  {
+    "name": "CSS",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "css"
+    ]
+  },
+  {
+    "name": "Solidity",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "solidity",
+      "sol"
+    ]
+  },
+  {
+    "name": "Vyper",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "vyper",
+      "vy"
+    ]
+  },
+  {
+    "name": "COBOL",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "cobol"
+    ]
+  },
+  {
+    "name": "Fortran",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "fortran"
+    ]
+  },
+  {
+    "name": "Ada",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "ada"
+    ]
+  },
+  {
+    "name": "Assembly",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "asm",
+      "assembly"
+    ]
+  },
+  {
+    "name": "Verilog",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "verilog",
+      "v"
+    ]
+  },
+  {
+    "name": "VHDL",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "vhdl"
+    ]
+  },
+  {
+    "name": "Prolog",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "prolog",
+      "pl"
+    ]
+  },
+  {
+    "name": "Lisp",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "lisp",
+      "common-lisp"
+    ]
+  },
+  {
+    "name": "Scheme",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "scheme",
+      "scm"
+    ]
+  },
+  {
+    "name": "Racket",
+    "category": "Language",
+    "source": "GitHub",
+    "aliases": [
+      "racket",
+      "rkt"
+    ]
+  },
+  {
+    "name": "Smalltalk",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "smalltalk"
+    ]
+  },
+  {
+    "name": "APL",
+    "category": "Language",
+    "source": "TIOBE",
+    "aliases": [
+      "apl"
+    ]
+  }
+]

@@ -1,0 +1,221 @@
+[
+  {
+    "name": "Pandas",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "pandas",
+      "pd"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "NumPy",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "numpy",
+      "np"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "PyTorch",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "pytorch",
+      "torch"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "TensorFlow",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "tensorflow",
+      "tf"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Scikit-learn",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "sklearn",
+      "scikit-learn"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Matplotlib",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "matplotlib",
+      "plt"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Seaborn",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "seaborn",
+      "sns"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Plotly",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "plotly"
+    ],
+    "language_scope": [
+      "python",
+      "javascript"
+    ]
+  },
+  {
+    "name": "Polars",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "polars"
+    ],
+    "language_scope": [
+      "python",
+      "rust"
+    ]
+  },
+  {
+    "name": "Dask",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "dask"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Ray",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "ray"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Apache Spark",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "spark",
+      "pyspark"
+    ],
+    "language_scope": [
+      "python",
+      "scala",
+      "java"
+    ]
+  },
+  {
+    "name": "Hugging Face Transformers",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "transformers",
+      "huggingface"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "LangChain",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "langchain"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "OpenCV",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "opencv",
+      "cv2"
+    ],
+    "language_scope": [
+      "python",
+      "cpp"
+    ]
+  },
+  {
+    "name": "NLTK",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "nltk"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "spaCy",
+    "category": "Library",
+    "subcategory": "Data",
+    "source": "curated-list",
+    "aliases": [
+      "spacy"
+    ],
+    "language_scope": [
+      "python"
+    ]
+  }
+]

@@ -1,0 +1,84 @@
+[
+  {
+    "name": "Single Function",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "function",
+      "single-function"
+    ]
+  },
+  {
+    "name": "Single File",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "file",
+      "single-file"
+    ]
+  },
+  {
+    "name": "Multi-file",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "multiple-files",
+      "cross-file"
+    ]
+  },
+  {
+    "name": "Module",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "module",
+      "package"
+    ]
+  },
+  {
+    "name": "Repository",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "repo",
+      "repository-level",
+      "codebase"
+    ]
+  },
+  {
+    "name": "Monorepo",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "monorepo",
+      "multi-project"
+    ]
+  },
+  {
+    "name": "With Dependencies",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "with-deps",
+      "external-deps"
+    ]
+  },
+  {
+    "name": "Legacy Code",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "legacy",
+      "brownfield"
+    ]
+  },
+  {
+    "name": "Greenfield",
+    "category": "Context",
+    "source": "curated-list",
+    "aliases": [
+      "greenfield",
+      "new-project"
+    ]
+  }
+]

@@ -1,0 +1,234 @@
+[
+  {
+    "name": "Concurrency",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Parallelism",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Async/Await",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "aliases": [
+      "asynchronous"
+    ]
+  },
+  {
+    "name": "Threads",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Processes",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Coroutines",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Memory Management",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Garbage Collection",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Pointers",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "c",
+      "cpp"
+    ]
+  },
+  {
+    "name": "References",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Borrow Checker",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Lifetimes",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Ownership",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Type System",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Generics",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Type Inference",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Traits",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "rust"
+    ]
+  },
+  {
+    "name": "Interfaces",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Abstract Classes",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Metaprogramming",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Macros",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Reflection",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Decorators",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced",
+    "language_scope": [
+      "python"
+    ]
+  },
+  {
+    "name": "Generators",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Iterators",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Streams",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "advanced"
+  },
+  {
+    "name": "Error Handling",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Exception Handling",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Result Types",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  },
+  {
+    "name": "Option Types",
+    "category": "Concept",
+    "subcategory": "Advanced",
+    "source": "educational-sources",
+    "difficulty": "intermediate"
+  }
+]

@@ -1,0 +1,204 @@
+[
+  {
+    "name": "Docker",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "docker"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Kubernetes",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "k8s",
+      "kubernetes"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Terraform",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "terraform",
+      "tf"
+    ],
+    "language_scope": [
+      "hcl"
+    ]
+  },
+  {
+    "name": "Ansible",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "ansible"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "Helm",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "helm"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "AWS CDK",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "cdk",
+      "aws-cdk"
+    ],
+    "language_scope": [
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "name": "Pulumi",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "pulumi"
+    ],
+    "language_scope": [
+      "typescript",
+      "python",
+      "go"
+    ]
+  },
+  {
+    "name": "GitHub Actions",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "github-actions",
+      "gha"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "GitLab CI",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "gitlab-ci"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "Jenkins",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "jenkins"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "CircleCI",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "circleci"
+    ],
+    "language_scope": [
+      "yaml"
+    ]
+  },
+  {
+    "name": "Prometheus",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "prometheus"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Grafana",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "grafana"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Nginx",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "nginx"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Apache",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "apache",
+      "httpd"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Redis",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "redis"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "RabbitMQ",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "rabbitmq"
+    ],
+    "language_scope": []
+  },
+  {
+    "name": "Kafka",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "source": "curated-list",
+    "aliases": [
+      "kafka"
+    ],
+    "language_scope": []
+  }
+]
