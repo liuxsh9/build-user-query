@@ -1,3 +1,16 @@
+- id: activerecord
+  name: ActiveRecord
+  category: Library
+  subcategory: Database
+  description: ORM framework for Ruby on Rails
+  aliases:
+  - activerecord
+  - active-record
+  language_scope:
+  - ruby
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
 - id: actix
   name: Actix
   category: Library
@@ -7,6 +20,45 @@
   - actix-web
   language_scope:
   - rust
+  granularity: library
+  source: curated-list
+- id: airflow
+  name: Airflow
+  category: Library
+  subcategory: Data
+  description: Platform to programmatically author, schedule and monitor workflows
+  aliases:
+  - airflow
+  - apache-airflow
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: akka-http
+  name: Akka HTTP
+  category: Library
+  subcategory: Web
+  description: HTTP server and client for Scala
+  aliases:
+  - akka-http
+  - akka
+  language_scope:
+  - scala
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: albumentations
+  name: Albumentations
+  category: Library
+  subcategory: Data
+  description: Fast image augmentation library
+  aliases:
+  - albumentations
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: alembic
   name: Alembic
@@ -16,16 +68,55 @@
   - alembic
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: alpinejs
+  name: Alpine.js
+  category: Library
+  subcategory: Web
+  description: Lightweight JavaScript framework for composing behavior
+  aliases:
+  - alpine
+  - alpinejs
+  - alpine.js
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: altair
+  name: Altair
+  category: Library
+  subcategory: Data
+  description: Declarative statistical visualization library
+  aliases:
+  - altair
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: angular
-  name: Angular
+  name: angular
   category: Library
   subcategory: Web
   aliases:
   - angular
+  - angular.js
   - angularjs
-  language_scope:
-  - typescript
+  - ng
+  granularity: library
+  weighted_score: 0.224
+  sources:
+  - source: stackoverflow
+    weight: 0.4
+    score: 0.56
+    raw_metrics:
+      question_count: 280000
+      related_tags:
+      - angularjs
+      - angular2
+    collected_at: '2026-02-05T17:06:53.130571'
   source: curated-list
 - id: ansible
   name: Ansible
@@ -33,8 +124,8 @@
   subcategory: Infrastructure
   aliases:
   - ansible
-  language_scope:
-  - yaml
+  language_scope: []
+  granularity: library
   source: curated-list
 - id: ant-design
   name: Ant Design
@@ -46,6 +137,7 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
   source: curated-list
 - id: apache
   name: Apache
@@ -54,6 +146,37 @@
   aliases:
   - apache
   - httpd
+  granularity: library
+  source: curated-list
+- id: apache-arrow
+  name: Apache Arrow
+  category: Library
+  subcategory: Data
+  description: Cross-language development platform for in-memory data
+  aliases:
+  - arrow
+  - apache-arrow
+  - pyarrow
+  language_scope:
+  - python
+  - java
+  - cpp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: apache-flink
+  name: Apache Flink
+  category: Library
+  subcategory: Data
+  description: Stream processing framework
+  aliases:
+  - flink
+  - apache-flink
+  language_scope:
+  - java
+  - scala
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: apache-spark
   name: Apache Spark
@@ -66,6 +189,56 @@
   - python
   - scala
   - java
+  granularity: library
+  source: curated-list
+- id: apollo-client
+  name: Apollo Client
+  category: Library
+  subcategory: Web
+  description: Comprehensive state management library for GraphQL
+  aliases:
+  - apollo
+  - apollo-client
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: applitools
+  name: Applitools
+  category: Library
+  subcategory: Testing
+  description: AI-powered visual testing platform
+  aliases:
+  - applitools
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: argocd
+  name: ArgoCD
+  category: Library
+  subcategory: Infrastructure
+  description: Declarative GitOps continuous delivery for Kubernetes
+  aliases:
+  - argocd
+  - argo-cd
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: artillery
+  name: Artillery
+  category: Library
+  subcategory: Testing
+  description: Modern load testing toolkit
+  aliases:
+  - artillery
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: aspnet
   name: ASP.NET
@@ -76,17 +249,86 @@
   - asp-net
   language_scope:
   - csharp
+  granularity: library
+  source: curated-list
+- id: aspnet-core-mvc
+  name: ASP.NET Core MVC
+  category: Library
+  subcategory: Web
+  description: MVC framework for ASP.NET Core
+  aliases:
+  - aspnet-mvc
+  - asp.net-mvc
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: assertj
+  name: AssertJ
+  category: Library
+  subcategory: Testing
+  description: Fluent assertions library for Java
+  aliases:
+  - assertj
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: astro
+  name: Astro
+  category: Library
+  subcategory: Web
+  description: Modern static site builder with partial hydration
+  aliases:
+  - astro
+  - astro-build
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: ava
+  name: AVA
+  category: Library
+  subcategory: Testing
+  description: Node.js test runner with concurrency
+  aliases:
+  - ava
+  - avajs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: aws-cdk
   name: AWS CDK
   category: Library
   subcategory: Infrastructure
+  description: AWS Cloud Development Kit
   aliases:
   - cdk
   - aws-cdk
   language_scope:
   - typescript
   - python
+  granularity: library
+  source: curated-list
+- id: axios
+  name: Axios
+  category: Library
+  subcategory: Web
+  description: Promise based HTTP client for browser and node.js
+  aliases:
+  - axios
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: axum
   name: Axum
@@ -96,6 +338,132 @@
   - axum
   language_scope:
   - rust
+  granularity: library
+  source: curated-list
+- id: backbonejs
+  name: Backbone.js
+  category: Library
+  subcategory: Web
+  description: Lightweight MV* framework for structuring JavaScript applications
+  aliases:
+  - backbone
+  - backbonejs
+  - backbone.js
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: beanie
+  name: Beanie
+  category: Library
+  subcategory: Database
+  description: Async Python ODM for MongoDB
+  aliases:
+  - beanie
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: behat
+  name: Behat
+  category: Library
+  subcategory: Testing
+  description: BDD framework for PHP
+  aliases:
+  - behat
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: behave
+  name: Behave
+  category: Library
+  subcategory: Testing
+  description: BDD framework for Python
+  aliases:
+  - behave
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: bert
+  name: BERT
+  category: Library
+  subcategory: Data
+  description: Bidirectional Encoder Representations from Transformers
+  aliases:
+  - bert
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: better-sqlite3
+  name: better-sqlite3
+  category: Library
+  subcategory: Database
+  description: Fast SQLite3 binding for Node.js
+  aliases:
+  - better-sqlite3
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: blazor
+  name: Blazor
+  category: Library
+  subcategory: Web
+  description: Web UI framework using C# instead of JavaScript
+  aliases:
+  - blazor
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: bokeh
+  name: Bokeh
+  category: Library
+  subcategory: Data
+  description: Interactive visualization library for modern web browsers
+  aliases:
+  - bokeh
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: bookshelfjs
+  name: Bookshelf.js
+  category: Library
+  subcategory: Database
+  description: JavaScript ORM for Node.js
+  aliases:
+  - bookshelf
+  - bookshelfjs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: boost-test
+  name: Boost.Test
+  category: Library
+  subcategory: Testing
+  description: C++ unit testing framework from Boost
+  aliases:
+  - boost-test
+  - boost.test
+  language_scope:
+  - cpp
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: bootstrap
   name: Bootstrap
@@ -105,6 +473,130 @@
   - bootstrap
   language_scope:
   - css
+  granularity: library
+  source: curated-list
+- id: buildah
+  name: Buildah
+  category: Library
+  subcategory: Infrastructure
+  description: Tool for building OCI container images
+  aliases:
+  - buildah
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: buildkite
+  name: Buildkite
+  category: Library
+  subcategory: Infrastructure
+  description: Fast and scalable CI/CD platform
+  aliases:
+  - buildkite
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: bulma
+  name: Bulma
+  category: Library
+  subcategory: Web
+  description: Modern CSS framework based on Flexbox
+  aliases:
+  - bulma
+  language_scope:
+  - css
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: caddy
+  name: Caddy
+  category: Library
+  subcategory: Infrastructure
+  description: Fast web server with automatic HTTPS
+  aliases:
+  - caddy
+  - caddyserver
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: capybara
+  name: Capybara
+  category: Library
+  subcategory: Testing
+  description: Acceptance test framework for Ruby web applications
+  aliases:
+  - capybara
+  language_scope:
+  - ruby
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: cassandra-driver
+  name: Cassandra Driver
+  category: Library
+  subcategory: Database
+  description: DataStax driver for Apache Cassandra
+  aliases:
+  - cassandra-driver
+  language_scope:
+  - python
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: catboost
+  name: CatBoost
+  category: Library
+  subcategory: Data
+  description: Gradient boosting library with categorical features support
+  aliases:
+  - catboost
+  language_scope:
+  - python
+  - r
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: catch2
+  name: Catch2
+  category: Library
+  subcategory: Testing
+  description: Modern C++ test framework
+  aliases:
+  - catch2
+  - catch
+  language_scope:
+  - cpp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: cerberus
+  name: Cerberus
+  category: Library
+  subcategory: Data
+  description: Lightweight and extensible data validation library
+  aliases:
+  - cerberus
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: certbot
+  name: Certbot
+  category: Library
+  subcategory: Infrastructure
+  description: Tool for obtaining Let's Encrypt certificates
+  aliases:
+  - certbot
+  - letsencrypt
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: chai
   name: Chai
@@ -114,6 +606,47 @@
   - chai
   language_scope:
   - javascript
+  granularity: library
+  source: curated-list
+- id: chakra-ui
+  name: Chakra UI
+  category: Library
+  subcategory: Web
+  description: Simple, modular and accessible component library for React
+  aliases:
+  - chakra
+  - chakra-ui
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: chartjs
+  name: Chart.js
+  category: Library
+  subcategory: Data
+  description: Simple yet flexible JavaScript charting library
+  aliases:
+  - chart.js
+  - chartjs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: chromatic
+  name: Chromatic
+  category: Library
+  subcategory: Testing
+  description: Visual testing and review for Storybook
+  aliases:
+  - chromatic
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: circleci
   name: CircleCI
@@ -121,8 +654,136 @@
   subcategory: Infrastructure
   aliases:
   - circleci
+  language_scope: []
+  granularity: library
+  source: curated-list
+- id: cloudformation
+  name: CloudFormation
+  category: Library
+  subcategory: Infrastructure
+  description: AWS infrastructure as code service
+  aliases:
+  - cloudformation
+  - cfn
+  language_scope: []
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: codecept
+  name: Codecept
+  category: Library
+  subcategory: Testing
+  description: Modern end-to-end testing framework
+  aliases:
+  - codecept
+  - codeceptjs
   language_scope:
-  - yaml
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: codeception
+  name: Codeception
+  category: Library
+  subcategory: Testing
+  description: Full-stack testing framework for PHP
+  aliases:
+  - codeception
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: codeigniter
+  name: CodeIgniter
+  category: Library
+  subcategory: Web
+  description: Lightweight PHP framework
+  aliases:
+  - codeigniter
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: concourse
+  name: Concourse
+  category: Library
+  subcategory: Infrastructure
+  description: Continuous integration and deployment system
+  aliases:
+  - concourse
+  - concourse-ci
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: consul
+  name: Consul
+  category: Library
+  subcategory: Infrastructure
+  description: Service mesh and service discovery platform
+  aliases:
+  - consul
+  - hashicorp-consul
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: containerd
+  name: Containerd
+  category: Library
+  subcategory: Infrastructure
+  description: Industry-standard container runtime
+  aliases:
+  - containerd
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: cri-o
+  name: CRI-O
+  category: Library
+  subcategory: Infrastructure
+  description: Lightweight container runtime for Kubernetes
+  aliases:
+  - cri-o
+  - crio
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: crossplane
+  name: Crossplane
+  category: Library
+  subcategory: Infrastructure
+  description: Cloud native control plane framework
+  aliases:
+  - crossplane
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: cucumber
+  name: Cucumber
+  category: Library
+  subcategory: Testing
+  description: BDD testing tool
+  aliases:
+  - cucumber
+  - cucumber-js
+  language_scope:
+  - javascript
+  - ruby
+  - java
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: cypress
   name: Cypress
@@ -133,15 +794,83 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  source: curated-list
+- id: d3js
+  name: D3.js
+  category: Library
+  subcategory: Data
+  description: JavaScript library for manipulating documents based on data
+  aliases:
+  - d3
+  - d3js
+  - d3.js
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: dagster
+  name: Dagster
+  category: Library
+  subcategory: Data
+  description: Data orchestrator for machine learning, analytics, and ETL
+  aliases:
+  - dagster
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: dapper
+  name: Dapper
+  category: Library
+  subcategory: Database
+  description: Micro ORM for .NET
+  aliases:
+  - dapper
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: dask
   name: Dask
   category: Library
   subcategory: Data
+  description: Parallel computing library for analytics
   aliases:
   - dask
   language_scope:
   - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: datasets
+  name: Datasets
+  category: Library
+  subcategory: Data
+  description: Fast, efficient dataset library from Hugging Face
+  aliases:
+  - datasets
+  - huggingface-datasets
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: detectron2
+  name: Detectron2
+  category: Library
+  subcategory: Data
+  description: Facebook AI Research's object detection platform
+  aliases:
+  - detectron2
+  - detectron
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: diesel
   name: Diesel
@@ -151,6 +880,7 @@
   - diesel
   language_scope:
   - rust
+  granularity: library
   source: curated-list
 - id: django
   name: Django
@@ -160,13 +890,78 @@
   - django
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: docker
-  name: Docker
+  name: docker
   category: Library
   subcategory: Infrastructure
   aliases:
-  - docker
+  - docker-ce
+  - docker-compose
+  - docker-engine
+  granularity: library
+  weighted_score: 0.08
+  sources:
+  - source: github
+    weight: 0.2
+    score: 0.4
+    raw_metrics:
+      repo_count: 120000
+      total_stars: 95000
+    collected_at: '2026-02-05T17:09:42.144688'
+  source: curated-list
+- id: doctrine
+  name: Doctrine
+  category: Library
+  subcategory: Database
+  description: ORM and database abstraction layer for PHP
+  aliases:
+  - doctrine
+  - doctrine-orm
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: drizzle-orm
+  name: Drizzle ORM
+  category: Library
+  subcategory: Database
+  description: TypeScript ORM with SQL-like syntax
+  aliases:
+  - drizzle
+  - drizzle-orm
+  language_scope:
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: drone
+  name: Drone
+  category: Library
+  subcategory: Infrastructure
+  description: Container-native continuous delivery platform
+  aliases:
+  - drone
+  - drone-ci
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: duckdb
+  name: DuckDB
+  category: Library
+  subcategory: Data
+  description: In-process SQL OLAP database
+  aliases:
+  - duckdb
+  language_scope:
+  - python
+  - r
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: echo
   name: Echo
@@ -176,17 +971,246 @@
   - echo
   language_scope:
   - go
+  granularity: library
+  source: curated-list
+- id: ecto
+  name: Ecto
+  category: Library
+  subcategory: Database
+  description: Database wrapper and query generator for Elixir
+  aliases:
+  - ecto
+  language_scope:
+  - elixir
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: edgedb
+  name: EdgeDB
+  category: Library
+  subcategory: Database
+  description: Graph-relational database with EdgeQL
+  aliases:
+  - edgedb
+  language_scope:
+  - python
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: elasticsearch-client
+  name: Elasticsearch Client
+  category: Library
+  subcategory: Database
+  description: Official Elasticsearch client libraries
+  aliases:
+  - elasticsearch
+  - elasticsearch-py
+  language_scope:
+  - python
+  - javascript
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: eleventy
+  name: Eleventy
+  category: Library
+  subcategory: Web
+  description: Simpler static site generator
+  aliases:
+  - eleventy
+  - 11ty
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: eloquent
+  name: Eloquent
+  category: Library
+  subcategory: Database
+  description: Laravel's ORM
+  aliases:
+  - eloquent
+  - laravel-eloquent
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: emberjs
+  name: Ember.js
+  category: Library
+  subcategory: Web
+  description: Productive JavaScript framework for ambitious web applications
+  aliases:
+  - ember
+  - emberjs
+  - ember.js
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: emotion
+  name: Emotion
+  category: Library
+  subcategory: Web
+  description: CSS-in-JS library with powerful composition
+  aliases:
+  - emotion
+  - emotion-js
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: ent
+  name: Ent
+  category: Library
+  subcategory: Database
+  description: Entity framework for Go
+  aliases:
+  - ent
+  - entgo
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: entity-framework
+  name: Entity Framework
+  category: Library
+  subcategory: Database
+  description: ORM for .NET
+  aliases:
+  - entity-framework
+  - ef
+  - ef-core
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: envoy
+  name: Envoy
+  category: Library
+  subcategory: Infrastructure
+  description: Cloud-native high-performance edge/middle/service proxy
+  aliases:
+  - envoy
+  - envoy-proxy
+  language_scope:
+  - cpp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: enzyme
+  name: Enzyme
+  category: Library
+  subcategory: Testing
+  description: JavaScript testing utility for React
+  aliases:
+  - enzyme
+  - airbnb-enzyme
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: esbuild
+  name: esbuild
+  category: Library
+  subcategory: Web
+  description: Extremely fast JavaScript bundler and minifier
+  aliases:
+  - esbuild
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: express
-  name: Express
+  name: express
   category: Library
   subcategory: Web
   aliases:
   - express
+  - express.js
   - expressjs
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  weighted_score: 0.25
+  sources:
+  - source: npm
+    weight: 0.3
+    score: 0.8333333333333334
+    raw_metrics:
+      weekly_downloads: 25000000
+      version: 4.18.2
+    collected_at: '2026-02-05T17:06:53.130571'
+  source: curated-list
+- id: factory-boy
+  name: Factory Boy
+  category: Library
+  subcategory: Testing
+  description: Test fixtures replacement for Python
+  aliases:
+  - factory-boy
+  - factoryboy
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: factorybot
+  name: FactoryBot
+  category: Library
+  subcategory: Testing
+  description: Fixtures replacement for Ruby
+  aliases:
+  - factorybot
+  - factory-bot
+  language_scope:
+  - ruby
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: faker
+  name: Faker
+  category: Library
+  subcategory: Testing
+  description: Library for generating fake data
+  aliases:
+  - faker
+  - faker-js
+  language_scope:
+  - javascript
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: fast-check
+  name: fast-check
+  category: Library
+  subcategory: Testing
+  description: Property-based testing for JavaScript
+  aliases:
+  - fast-check
+  - fastcheck
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: fastapi
   name: FastAPI
@@ -196,6 +1220,34 @@
   - fastapi
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: fasttext
+  name: FastText
+  category: Library
+  subcategory: Data
+  description: Library for efficient text classification and representation learning
+  aliases:
+  - fasttext
+  language_scope:
+  - python
+  - cpp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: fetch-api
+  name: Fetch API
+  category: Library
+  subcategory: Web
+  description: Modern interface for fetching resources
+  aliases:
+  - fetch
+  - fetch-api
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: flask
   name: Flask
@@ -205,6 +1257,85 @@
   - flask
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: fluentassertions
+  name: FluentAssertions
+  category: Library
+  subcategory: Testing
+  description: Fluent assertion library for .NET
+  aliases:
+  - fluentassertions
+  - fluent-assertions
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: flux
+  name: Flux
+  category: Library
+  subcategory: Infrastructure
+  description: GitOps toolkit for Kubernetes
+  aliases:
+  - flux
+  - fluxcd
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: foundation
+  name: Foundation
+  category: Library
+  subcategory: Web
+  description: Responsive front-end framework
+  aliases:
+  - foundation
+  - zurb-foundation
+  language_scope:
+  - css
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: gatling
+  name: Gatling
+  category: Library
+  subcategory: Testing
+  description: Load testing tool for web applications
+  aliases:
+  - gatling
+  language_scope:
+  - scala
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: gatsby
+  name: Gatsby
+  category: Library
+  subcategory: Web
+  description: React-based static site generator
+  aliases:
+  - gatsby
+  - gatsbyjs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: gensim
+  name: Gensim
+  category: Library
+  subcategory: Data
+  description: Topic modeling and document similarity library
+  aliases:
+  - gensim
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: gin
   name: Gin
@@ -214,6 +1345,7 @@
   - gin
   language_scope:
   - go
+  granularity: library
   source: curated-list
 - id: github-actions
   name: GitHub Actions
@@ -222,8 +1354,8 @@
   aliases:
   - github-actions
   - gha
-  language_scope:
-  - yaml
+  language_scope: []
+  granularity: library
   source: curated-list
 - id: gitlab-ci
   name: GitLab CI
@@ -231,17 +1363,48 @@
   subcategory: Infrastructure
   aliases:
   - gitlab-ci
+  language_scope: []
+  granularity: library
+  source: curated-list
+- id: google-test
+  name: Google Test
+  category: Library
+  subcategory: Testing
+  description: C++ testing framework
+  aliases:
+  - gtest
+  - google-test
+  - googletest
   language_scope:
-  - yaml
+  - cpp
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: gorm
   name: GORM
   category: Library
   subcategory: Database
+  description: ORM library for Golang
   aliases:
   - gorm
   language_scope:
   - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: gpt
+  name: GPT
+  category: Library
+  subcategory: Data
+  description: Generative Pre-trained Transformer models
+  aliases:
+  - gpt
+  - gpt-2
+  - gpt-3
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: grafana
   name: Grafana
@@ -249,6 +1412,46 @@
   subcategory: Infrastructure
   aliases:
   - grafana
+  granularity: library
+  source: curated-list
+- id: great-expectations
+  name: Great Expectations
+  category: Library
+  subcategory: Data
+  description: Data validation and documentation framework
+  aliases:
+  - great-expectations
+  - ge
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: haproxy
+  name: HAProxy
+  category: Library
+  subcategory: Infrastructure
+  description: Reliable, high performance TCP/HTTP load balancer
+  aliases:
+  - haproxy
+  language_scope:
+  - c
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: headless-ui
+  name: Headless UI
+  category: Library
+  subcategory: Web
+  description: Unstyled, accessible UI components for React and Vue
+  aliases:
+  - headless-ui
+  - headlessui
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: helm
   name: Helm
@@ -256,6 +1459,7 @@
   subcategory: Infrastructure
   aliases:
   - helm
+  granularity: library
   source: curated-list
 - id: hibernate
   name: Hibernate
@@ -265,16 +1469,179 @@
   - hibernate
   language_scope:
   - java
+  granularity: library
+  source: curated-list
+- id: hotwire
+  name: Hotwire
+  category: Library
+  subcategory: Web
+  description: HTML over the wire framework
+  aliases:
+  - hotwire
+  - turbo
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: htmx
+  name: htmx
+  category: Library
+  subcategory: Web
+  description: High power tools for HTML
+  aliases:
+  - htmx
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: hugging-face-transformers
   name: Hugging Face Transformers
   category: Library
   subcategory: Data
+  description: State-of-the-art NLP models from Hugging Face
   aliases:
   - transformers
   - huggingface
+  - huggingface-transformers
+  - hf-transformers
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: hugo
+  name: Hugo
+  category: Library
+  subcategory: Web
+  description: Fast static site generator written in Go
+  aliases:
+  - hugo
+  - hugo-static
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: hyperopt
+  name: Hyperopt
+  category: Library
+  subcategory: Data
+  description: Distributed hyperparameter optimization library
+  aliases:
+  - hyperopt
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: hypothesis
+  name: Hypothesis
+  category: Library
+  subcategory: Testing
+  description: Property-based testing library for Python
+  aliases:
+  - hypothesis
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: imgaug
+  name: imgaug
+  category: Library
+  subcategory: Data
+  description: Image augmentation library for machine learning
+  aliases:
+  - imgaug
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: insomnia
+  name: Insomnia
+  category: Library
+  subcategory: Testing
+  description: API client and design platform
+  aliases:
+  - insomnia
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: ioredis
+  name: ioredis
+  category: Library
+  subcategory: Database
+  description: Robust Redis client for Node.js
+  aliases:
+  - ioredis
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: istio
+  name: Istio
+  category: Library
+  subcategory: Infrastructure
+  description: Service mesh for microservices
+  aliases:
+  - istio
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: jaeger
+  name: Jaeger
+  category: Library
+  subcategory: Infrastructure
+  description: Distributed tracing platform
+  aliases:
+  - jaeger
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: jasmine
+  name: Jasmine
+  category: Library
+  subcategory: Testing
+  description: Behavior-driven development framework for testing JavaScript
+  aliases:
+  - jasmine
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: jax
+  name: JAX
+  category: Library
+  subcategory: Data
+  description: Composable transformations of Python+NumPy programs
+  aliases:
+  - jax
+  - google-jax
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: jekyll
+  name: Jekyll
+  category: Library
+  subcategory: Web
+  description: Static site generator for blogs and documentation
+  aliases:
+  - jekyll
+  language_scope:
+  - ruby
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: jenkins
   name: Jenkins
@@ -282,16 +1649,66 @@
   subcategory: Infrastructure
   aliases:
   - jenkins
+  granularity: library
   source: curated-list
 - id: jest
-  name: Jest
+  name: jest
   category: Library
   subcategory: Testing
   aliases:
   - jest
+  - jestjs
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  weighted_score: 0.22
+  sources:
+  - source: npm
+    weight: 0.3
+    score: 0.7333333333333333
+    raw_metrics:
+      weekly_downloads: 22000000
+      version: 29.5.0
+    collected_at: '2026-02-05T17:09:52.515483'
+  source: curated-list
+- id: jmeter
+  name: JMeter
+  category: Library
+  subcategory: Testing
+  description: Load testing and performance measurement tool
+  aliases:
+  - jmeter
+  - apache-jmeter
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: jooq
+  name: jOOQ
+  category: Library
+  subcategory: Database
+  description: Type-safe SQL query builder for Java
+  aliases:
+  - jooq
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: jotai
+  name: Jotai
+  category: Library
+  subcategory: Web
+  description: Primitive and flexible state management for React
+  aliases:
+  - jotai
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: junit
   name: JUnit
@@ -301,6 +1718,44 @@
   - junit
   language_scope:
   - java
+  granularity: library
+  source: curated-list
+- id: k3d
+  name: k3d
+  category: Library
+  subcategory: Infrastructure
+  description: k3s in Docker
+  aliases:
+  - k3d
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: k3s
+  name: k3s
+  category: Library
+  subcategory: Infrastructure
+  description: Lightweight Kubernetes distribution
+  aliases:
+  - k3s
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: k6
+  name: k6
+  category: Library
+  subcategory: Testing
+  description: Modern load testing tool
+  aliases:
+  - k6
+  - grafana-k6
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: kafka
   name: Kafka
@@ -308,14 +1763,151 @@
   subcategory: Infrastructure
   aliases:
   - kafka
+  granularity: library
+  source: curated-list
+- id: kaniko
+  name: Kaniko
+  category: Library
+  subcategory: Infrastructure
+  description: Build container images in Kubernetes
+  aliases:
+  - kaniko
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: karma
+  name: Karma
+  category: Library
+  subcategory: Testing
+  description: Test runner for JavaScript
+  aliases:
+  - karma
+  - karma-runner
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: keras
+  name: Keras
+  category: Library
+  subcategory: Data
+  description: High-level neural networks API for TensorFlow
+  aliases:
+  - keras
+  - tf-keras
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: kind
+  name: Kind
+  category: Library
+  subcategory: Infrastructure
+  description: Kubernetes in Docker
+  aliases:
+  - kind
+  - kubernetes-in-docker
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: knexjs
+  name: Knex.js
+  category: Library
+  subcategory: Database
+  description: SQL query builder for Node.js
+  aliases:
+  - knex
+  - knexjs
+  - knex.js
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: koalas
+  name: Koalas
+  category: Library
+  subcategory: Data
+  description: Pandas API on Apache Spark
+  aliases:
+  - koalas
+  - databricks-koalas
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: kotest
+  name: Kotest
+  category: Library
+  subcategory: Testing
+  description: Testing framework for Kotlin
+  aliases:
+  - kotest
+  language_scope:
+  - kotlin
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: ktor
+  name: Ktor
+  category: Library
+  subcategory: Web
+  description: Asynchronous framework for Kotlin
+  aliases:
+  - ktor
+  language_scope:
+  - kotlin
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: kubernetes
-  name: Kubernetes
+  name: kubernetes
   category: Library
   subcategory: Infrastructure
   aliases:
   - k8s
-  - kubernetes
+  - kube
+  granularity: library
+  weighted_score: 0.057
+  sources:
+  - source: github
+    weight: 0.2
+    score: 0.2833333333333333
+    raw_metrics:
+      repo_count: 85000
+      total_stars: 105000
+    collected_at: '2026-02-05T17:09:42.144688'
+  source: curated-list
+- id: kustomize
+  name: Kustomize
+  category: Library
+  subcategory: Infrastructure
+  description: Kubernetes native configuration management
+  aliases:
+  - kustomize
+  language_scope: []
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: kysely
+  name: Kysely
+  category: Library
+  subcategory: Database
+  description: Type-safe SQL query builder for TypeScript
+  aliases:
+  - kysely
+  language_scope:
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: langchain
   name: LangChain
@@ -325,6 +1917,7 @@
   - langchain
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: laravel
   name: Laravel
@@ -334,6 +1927,137 @@
   - laravel
   language_scope:
   - php
+  granularity: library
+  source: curated-list
+- id: less
+  name: Less
+  category: Library
+  subcategory: Web
+  description: CSS preprocessor extending CSS with dynamic behavior
+  aliases:
+  - less
+  - lesscss
+  language_scope:
+  - css
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: lightgbm
+  name: LightGBM
+  category: Library
+  subcategory: Data
+  description: Fast, distributed, high performance gradient boosting framework
+  aliases:
+  - lightgbm
+  - lgbm
+  language_scope:
+  - python
+  - r
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: linkerd
+  name: Linkerd
+  category: Library
+  subcategory: Infrastructure
+  description: Ultralight service mesh for Kubernetes
+  aliases:
+  - linkerd
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: lit
+  name: Lit
+  category: Library
+  subcategory: Web
+  description: Simple library for building fast, lightweight web components
+  aliases:
+  - lit
+  - lit-element
+  - lit-html
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: llama
+  name: LLaMA
+  category: Library
+  subcategory: Data
+  description: Large Language Model Meta AI
+  aliases:
+  - llama
+  - llama2
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: locust
+  name: Locust
+  category: Library
+  subcategory: Testing
+  description: Scalable load testing tool
+  aliases:
+  - locust
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: loki
+  name: Loki
+  category: Library
+  subcategory: Infrastructure
+  description: Log aggregation system
+  aliases:
+  - loki
+  - grafana-loki
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: luigi
+  name: Luigi
+  category: Library
+  subcategory: Data
+  description: Python module for building complex pipelines of batch jobs
+  aliases:
+  - luigi
+  - spotify-luigi
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mantine
+  name: Mantine
+  category: Library
+  subcategory: Web
+  description: React components library with native dark theme support
+  aliases:
+  - mantine
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: marshmallow
+  name: Marshmallow
+  category: Library
+  subcategory: Data
+  description: Object serialization/deserialization library
+  aliases:
+  - marshmallow
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: material-ui
   name: Material-UI
@@ -345,6 +2069,7 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
   source: curated-list
 - id: matplotlib
   name: Matplotlib
@@ -355,15 +2080,129 @@
   - plt
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: meteor
+  name: Meteor
+  category: Library
+  subcategory: Web
+  description: Full-stack JavaScript platform for building web and mobile apps
+  aliases:
+  - meteor
+  - meteorjs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: micronaut
+  name: Micronaut
+  category: Library
+  subcategory: Web
+  description: Modern JVM-based framework for microservices
+  aliases:
+  - micronaut
+  language_scope:
+  - java
+  - kotlin
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mikro-orm
+  name: MikroORM
+  category: Library
+  subcategory: Database
+  description: TypeScript ORM for Node.js
+  aliases:
+  - mikro-orm
+  - mikroorm
+  language_scope:
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: minikube
+  name: Minikube
+  category: Library
+  subcategory: Infrastructure
+  description: Local Kubernetes cluster
+  aliases:
+  - minikube
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mlflow
+  name: MLflow
+  category: Library
+  subcategory: Data
+  description: Open source platform for ML lifecycle
+  aliases:
+  - mlflow
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mlnet
+  name: ML.NET
+  category: Library
+  subcategory: Data
+  description: Machine learning framework for .NET
+  aliases:
+  - mlnet
+  - ml.net
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mmdetection
+  name: MMDetection
+  category: Library
+  subcategory: Data
+  description: OpenMMLab detection toolbox and benchmark
+  aliases:
+  - mmdetection
+  - mmdet
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mobx
+  name: MobX
+  category: Library
+  subcategory: Web
+  description: Simple, scalable state management
+  aliases:
+  - mobx
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: mocha
-  name: Mocha
+  name: mocha
   category: Library
   subcategory: Testing
   aliases:
   - mocha
   language_scope:
   - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.08
+  sources:
+  - source: npm
+    weight: 0.3
+    score: 0.26666666666666666
+    raw_metrics:
+      weekly_downloads: 8000000
+      version: 10.2.0
+    collected_at: '2026-02-05T17:09:52.515483'
   source: curated-list
 - id: mock
   name: Mock
@@ -374,6 +2213,7 @@
   - unittest.mock
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: mockito
   name: Mockito
@@ -383,6 +2223,43 @@
   - mockito
   language_scope:
   - java
+  granularity: library
+  source: curated-list
+- id: mockk
+  name: MockK
+  category: Library
+  subcategory: Testing
+  description: Mocking library for Kotlin
+  aliases:
+  - mockk
+  language_scope:
+  - kotlin
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: modin
+  name: Modin
+  category: Library
+  subcategory: Data
+  description: Speed up pandas workflows by changing one line of code
+  aliases:
+  - modin
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mongoengine
+  name: MongoEngine
+  category: Library
+  subcategory: Database
+  description: Python ODM for MongoDB
+  aliases:
+  - mongoengine
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: mongoose
   name: Mongoose
@@ -393,17 +2270,88 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
   source: curated-list
-- id: nextjs
-  name: Next.js
+- id: moq
+  name: Moq
   category: Library
-  subcategory: Web
+  subcategory: Testing
+  description: Mocking library for .NET
   aliases:
-  - nextjs
-  - next
+  - moq
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: motor
+  name: Motor
+  category: Library
+  subcategory: Database
+  description: Async Python driver for MongoDB
+  aliases:
+  - motor
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: msw
+  name: MSW
+  category: Library
+  subcategory: Testing
+  description: Mock Service Worker for API mocking
+  aliases:
+  - msw
+  - mock-service-worker
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mybatis
+  name: MyBatis
+  category: Library
+  subcategory: Database
+  description: SQL mapper framework for Java
+  aliases:
+  - mybatis
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: mysql2
+  name: mysql2
+  category: Library
+  subcategory: Database
+  description: Fast MySQL driver for Node.js
+  aliases:
+  - mysql2
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: nextjs
+  name: nextjs
+  category: Library
+  subcategory: Web
+  aliases:
+  - next
+  - next.js
+  granularity: library
+  weighted_score: 0.063
+  sources:
+  - source: github
+    weight: 0.2
+    score: 0.31666666666666665
+    raw_metrics:
+      repo_count: 95000
+      total_stars: 110000
+    collected_at: '2026-02-05T17:06:53.130571'
   source: curated-list
 - id: nginx
   name: Nginx
@@ -411,6 +2359,32 @@
   subcategory: Infrastructure
   aliases:
   - nginx
+  granularity: library
+  source: curated-list
+- id: nhibernate
+  name: NHibernate
+  category: Library
+  subcategory: Database
+  description: Object-relational mapper for .NET
+  aliases:
+  - nhibernate
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: nightwatch
+  name: Nightwatch
+  category: Library
+  subcategory: Testing
+  description: End-to-end testing framework
+  aliases:
+  - nightwatch
+  - nightwatchjs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: nltk
   name: NLTK
@@ -420,16 +2394,87 @@
   - nltk
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: nock
+  name: Nock
+  category: Library
+  subcategory: Testing
+  description: HTTP server mocking and expectations library
+  aliases:
+  - nock
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: node-redis
+  name: node-redis
+  category: Library
+  subcategory: Database
+  description: Redis client for Node.js
+  aliases:
+  - node-redis
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: nomad
+  name: Nomad
+  category: Library
+  subcategory: Infrastructure
+  description: Simple and flexible workload orchestrator
+  aliases:
+  - nomad
+  - hashicorp-nomad
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: numpy
-  name: NumPy
+  name: numpy
   category: Library
   subcategory: Data
   aliases:
-  - numpy
   - np
+  - numerical-python
   language_scope:
   - python
+  granularity: library
+  weighted_score: 0.316
+  sources:
+  - source: stackoverflow
+    weight: 0.4
+    score: 0.19
+    raw_metrics:
+      question_count: 95000
+      related_tags:
+      - python
+      - array
+    collected_at: '2026-02-05T17:09:13.861726'
+  - source: pypi
+    weight: 0.3
+    score: 0.8
+    raw_metrics:
+      monthly_downloads: 80000000
+      version: 1.25.0
+    collected_at: '2026-02-05T17:09:13.861726'
+  source: curated-list
+- id: nunit
+  name: NUnit
+  category: Library
+  subcategory: Testing
+  description: Unit testing framework for .NET
+  aliases:
+  - nunit
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: nuxt
   name: Nuxt
@@ -441,6 +2486,21 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  source: curated-list
+- id: objectionjs
+  name: Objection.js
+  category: Library
+  subcategory: Database
+  description: SQL-friendly ORM for Node.js
+  aliases:
+  - objection
+  - objectionjs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: opencv
   name: OpenCV
@@ -452,16 +2512,162 @@
   language_scope:
   - python
   - cpp
+  granularity: library
+  source: curated-list
+- id: openshift
+  name: OpenShift
+  category: Library
+  subcategory: Infrastructure
+  description: Enterprise Kubernetes platform
+  aliases:
+  - openshift
+  - okd
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: opentofu
+  name: OpenTofu
+  category: Library
+  subcategory: Infrastructure
+  description: Open source Terraform alternative
+  aliases:
+  - opentofu
+  - tofu
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: optuna
+  name: Optuna
+  category: Library
+  subcategory: Data
+  description: Hyperparameter optimization framework
+  aliases:
+  - optuna
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: packer
+  name: Packer
+  category: Library
+  subcategory: Infrastructure
+  description: Tool for creating machine images
+  aliases:
+  - packer
+  - hashicorp-packer
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: pact
+  name: Pact
+  category: Library
+  subcategory: Testing
+  description: Contract testing framework
+  aliases:
+  - pact
+  language_scope:
+  - javascript
+  - python
+  - java
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: pandas
-  name: Pandas
+  name: pandas
   category: Library
   subcategory: Data
   aliases:
-  - pandas
   - pd
+  - python-data-analysis
   language_scope:
   - python
+  granularity: library
+  weighted_score: 0.231
+  sources:
+  - source: stackoverflow
+    weight: 0.4
+    score: 0.24
+    raw_metrics:
+      question_count: 120000
+      related_tags:
+      - dataframe
+      - python
+    collected_at: '2026-02-05T17:09:13.861726'
+  - source: pypi
+    weight: 0.3
+    score: 0.45
+    raw_metrics:
+      monthly_downloads: 45000000
+      version: 2.0.3
+    collected_at: '2026-02-05T17:09:13.861726'
+  source: curated-list
+- id: pandera
+  name: Pandera
+  category: Library
+  subcategory: Data
+  description: Statistical data validation library for pandas
+  aliases:
+  - pandera
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: parcel
+  name: Parcel
+  category: Library
+  subcategory: Web
+  description: Zero configuration web application bundler
+  aliases:
+  - parcel
+  - parceljs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: peewee
+  name: Peewee
+  category: Library
+  subcategory: Database
+  description: Small, expressive ORM for Python
+  aliases:
+  - peewee
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: percy
+  name: Percy
+  category: Library
+  subcategory: Testing
+  description: Visual testing and review platform
+  aliases:
+  - percy
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: pg
+  name: pg
+  category: Library
+  subcategory: Database
+  description: PostgreSQL client for Node.js
+  aliases:
+  - pg
+  - node-postgres
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: phoenix
   name: Phoenix
@@ -471,37 +2677,188 @@
   - phoenix
   language_scope:
   - elixir
+  granularity: library
+  source: curated-list
+- id: phpunit
+  name: PHPUnit
+  category: Library
+  subcategory: Testing
+  description: Unit testing framework for PHP
+  aliases:
+  - phpunit
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: pillow
+  name: Pillow
+  category: Library
+  subcategory: Data
+  description: Python Imaging Library fork
+  aliases:
+  - pillow
+  - pil
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: pinia
+  name: Pinia
+  category: Library
+  subcategory: Web
+  description: Intuitive, type safe state management for Vue
+  aliases:
+  - pinia
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: play-framework
+  name: Play Framework
+  category: Library
+  subcategory: Web
+  description: Reactive web framework for Java and Scala
+  aliases:
+  - play
+  - play-framework
+  language_scope:
+  - java
+  - scala
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: playwright
   name: Playwright
   category: Library
   subcategory: Testing
+  description: Cross-browser automation library
   aliases:
   - playwright
   language_scope:
   - javascript
   - typescript
   - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: plotly
   name: Plotly
   category: Library
   subcategory: Data
+  description: Interactive graphing library
   aliases:
   - plotly
+  - plotly.py
   language_scope:
   - python
   - javascript
+  - r
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: podman
+  name: Podman
+  category: Library
+  subcategory: Infrastructure
+  description: Daemonless container engine
+  aliases:
+  - podman
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: polars
   name: Polars
   category: Library
   subcategory: Data
+  description: Fast DataFrame library for Rust and Python
   aliases:
   - polars
   language_scope:
   - python
   - rust
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: pony-orm
+  name: Pony ORM
+  category: Library
+  subcategory: Database
+  description: Python ORM with generator expressions
+  aliases:
+  - pony
+  - pony-orm
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: postcss
+  name: PostCSS
+  category: Library
+  subcategory: Web
+  description: Tool for transforming CSS with JavaScript plugins
+  aliases:
+  - postcss
+  language_scope:
+  - javascript
+  - css
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: postman
+  name: Postman
+  category: Library
+  subcategory: Testing
+  description: API development and testing platform
+  aliases:
+  - postman
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: preact
+  name: Preact
+  category: Library
+  subcategory: Web
+  description: Fast 3kB alternative to React with the same API
+  aliases:
+  - preact
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: prefect
+  name: Prefect
+  category: Library
+  subcategory: Data
+  description: Modern workflow orchestration for data pipelines
+  aliases:
+  - prefect
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: primereact
+  name: PrimeReact
+  category: Library
+  subcategory: Web
+  description: Rich set of UI components for React
+  aliases:
+  - primereact
+  - prime-react
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: prisma
   name: Prisma
@@ -512,6 +2869,7 @@
   language_scope:
   - typescript
   - javascript
+  granularity: library
   source: curated-list
 - id: prometheus
   name: Prometheus
@@ -519,6 +2877,7 @@
   subcategory: Infrastructure
   aliases:
   - prometheus
+  granularity: library
   source: curated-list
 - id: psycopg2
   name: psycopg2
@@ -528,6 +2887,7 @@
   - psycopg2
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: pulumi
   name: Pulumi
@@ -539,6 +2899,32 @@
   - typescript
   - python
   - go
+  granularity: library
+  source: curated-list
+- id: puppeteer
+  name: Puppeteer
+  category: Library
+  subcategory: Testing
+  description: Node library for controlling headless Chrome
+  aliases:
+  - puppeteer
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: pydantic
+  name: Pydantic
+  category: Library
+  subcategory: Data
+  description: Data validation using Python type annotations
+  aliases:
+  - pydantic
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: pymongo
   name: PyMongo
@@ -548,6 +2934,7 @@
   - pymongo
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: pytest
   name: Pytest
@@ -557,6 +2944,7 @@
   - pytest
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: pytorch
   name: PyTorch
@@ -567,6 +2955,72 @@
   - torch
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: quarkus
+  name: Quarkus
+  category: Library
+  subcategory: Web
+  description: Kubernetes-native Java framework
+  aliases:
+  - quarkus
+  language_scope:
+  - java
+  - kotlin
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: quasar
+  name: Quasar
+  category: Library
+  subcategory: Web
+  description: Vue.js framework for building responsive apps
+  aliases:
+  - quasar
+  - quasar-framework
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: quick
+  name: Quick
+  category: Library
+  subcategory: Testing
+  description: BDD framework for Swift
+  aliases:
+  - quick
+  language_scope:
+  - swift
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: quickcheck
+  name: QuickCheck
+  category: Library
+  subcategory: Testing
+  description: Property-based testing library
+  aliases:
+  - quickcheck
+  language_scope:
+  - haskell
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: qwik
+  name: Qwik
+  category: Library
+  subcategory: Web
+  description: Resumable framework for instant-loading web apps
+  aliases:
+  - qwik
+  - qwik-city
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: rabbitmq
   name: RabbitMQ
@@ -574,6 +3028,33 @@
   subcategory: Infrastructure
   aliases:
   - rabbitmq
+  granularity: library
+  source: curated-list
+- id: radix-ui
+  name: Radix UI
+  category: Library
+  subcategory: Web
+  description: Unstyled, accessible components for building design systems
+  aliases:
+  - radix
+  - radix-ui
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: rancher
+  name: Rancher
+  category: Library
+  subcategory: Infrastructure
+  description: Complete container management platform
+  aliases:
+  - rancher
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: ray
   name: Ray
@@ -583,17 +3064,87 @@
   - ray
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: ray-tune
+  name: Ray Tune
+  category: Library
+  subcategory: Data
+  description: Scalable hyperparameter tuning library
+  aliases:
+  - ray-tune
+  - tune
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: react
-  name: React
+  name: react
   category: Library
   subcategory: Web
   aliases:
   - react
+  - react.js
   - reactjs
+  - rx
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  weighted_score: 0.707
+  sources:
+  - source: stackoverflow
+    weight: 0.4
+    score: 0.9
+    raw_metrics:
+      question_count: 450000
+      related_tags:
+      - reactjs
+      - react-hooks
+    collected_at: '2026-02-05T17:06:53.130571'
+  - source: npm
+    weight: 0.3
+    score: 0.6
+    raw_metrics:
+      weekly_downloads: 18000000
+      version: 18.2.0
+    collected_at: '2026-02-05T17:06:53.130571'
+  - source: github
+    weight: 0.2
+    score: 0.8333333333333334
+    raw_metrics:
+      repo_count: 250000
+      total_stars: 2100000
+    collected_at: '2026-02-05T17:06:53.130571'
+  source: curated-list
+- id: react-query
+  name: React Query
+  category: Library
+  subcategory: Web
+  description: Powerful data synchronization for React
+  aliases:
+  - react-query
+  - tanstack-query
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: recoil
+  name: Recoil
+  category: Library
+  subcategory: Web
+  description: State management library for React
+  aliases:
+  - recoil
+  - recoiljs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: redis
   name: Redis
@@ -601,15 +3152,87 @@
   subcategory: Infrastructure
   aliases:
   - redis
+  granularity: library
   source: curated-list
 - id: redis-py
   name: Redis-py
   category: Library
   subcategory: Database
+  description: Python client for Redis
   aliases:
   - redis-py
   language_scope:
   - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: redux
+  name: Redux
+  category: Library
+  subcategory: Web
+  description: Predictable state container for JavaScript apps
+  aliases:
+  - redux
+  - reduxjs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: relay
+  name: Relay
+  category: Library
+  subcategory: Web
+  description: JavaScript framework for building data-driven React applications
+  aliases:
+  - relay
+  - relay-modern
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: remix
+  name: Remix
+  category: Library
+  subcategory: Web
+  description: Full stack web framework built on React Router
+  aliases:
+  - remix
+  - remix-run
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: rest-assured
+  name: Rest Assured
+  category: Library
+  subcategory: Testing
+  description: Java DSL for testing REST services
+  aliases:
+  - rest-assured
+  - restassured
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: robot-framework
+  name: Robot Framework
+  category: Library
+  subcategory: Testing
+  description: Generic test automation framework
+  aliases:
+  - robot-framework
+  - robotframework
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: rocket
   name: Rocket
@@ -619,6 +3242,20 @@
   - rocket
   language_scope:
   - rust
+  granularity: library
+  source: curated-list
+- id: rollup
+  name: Rollup
+  category: Library
+  subcategory: Web
+  description: Module bundler for JavaScript
+  aliases:
+  - rollup
+  - rollupjs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: rspec
   name: RSpec
@@ -628,6 +3265,7 @@
   - rspec
   language_scope:
   - ruby
+  granularity: library
   source: curated-list
 - id: ruby-on-rails
   name: Ruby on Rails
@@ -638,16 +3276,77 @@
   - ror
   language_scope:
   - ruby
+  granularity: library
+  source: curated-list
+- id: sass
+  name: Sass
+  category: Library
+  subcategory: Web
+  description: CSS preprocessor with variables and mixins
+  aliases:
+  - sass
+  - scss
+  language_scope:
+  - css
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: scalatest
+  name: ScalaTest
+  category: Library
+  subcategory: Testing
+  description: Testing framework for Scala
+  aliases:
+  - scalatest
+  language_scope:
+  - scala
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: scikit-image
+  name: scikit-image
+  category: Library
+  subcategory: Data
+  description: Image processing in Python
+  aliases:
+  - scikit-image
+  - skimage
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: scikit-learn
-  name: Scikit-learn
+  name: scikit-learn
   category: Library
   subcategory: Data
   aliases:
+  - scikit
   - sklearn
-  - scikit-learn
   language_scope:
   - python
+  granularity: library
+  weighted_score: 0.105
+  sources:
+  - source: pypi
+    weight: 0.3
+    score: 0.35
+    raw_metrics:
+      monthly_downloads: 35000000
+      version: 1.3.0
+    collected_at: '2026-02-05T17:09:13.861726'
+  source: curated-list
+- id: scipy
+  name: SciPy
+  category: Library
+  subcategory: Data
+  description: Scientific computing library for Python
+  aliases:
+  - scipy
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: seaborn
   name: Seaborn
@@ -658,6 +3357,7 @@
   - sns
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: selenium
   name: Selenium
@@ -669,6 +3369,33 @@
   - python
   - java
   - javascript
+  granularity: library
+  source: curated-list
+- id: semantic-ui
+  name: Semantic UI
+  category: Library
+  subcategory: Web
+  description: UI component framework based on natural language
+  aliases:
+  - semantic
+  - semantic-ui
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: sentence-transformers
+  name: Sentence Transformers
+  category: Library
+  subcategory: Data
+  description: Framework for sentence, text and image embeddings
+  aliases:
+  - sentence-transformers
+  - sbert
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: sequelize
   name: Sequelize
@@ -679,6 +3406,128 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  source: curated-list
+- id: serde
+  name: Serde
+  category: Library
+  subcategory: Data
+  description: Serialization framework for Rust
+  aliases:
+  - serde
+  language_scope:
+  - rust
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: server-sent-events
+  name: Server-Sent Events
+  category: Library
+  subcategory: Web
+  description: Server push technology for real-time updates
+  aliases:
+  - sse
+  - server-sent-events
+  - eventsource
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: shadcn-ui
+  name: shadcn/ui
+  category: Library
+  subcategory: Web
+  description: Re-usable components built with Radix UI and Tailwind
+  aliases:
+  - shadcn
+  - shadcn-ui
+  - shadcn/ui
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: sinatra
+  name: Sinatra
+  category: Library
+  subcategory: Web
+  description: DSL for creating web applications in Ruby
+  aliases:
+  - sinatra
+  language_scope:
+  - ruby
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: sinon
+  name: Sinon
+  category: Library
+  subcategory: Testing
+  description: Standalone test spies, stubs and mocks for JavaScript
+  aliases:
+  - sinon
+  - sinonjs
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: skaffold
+  name: Skaffold
+  category: Library
+  subcategory: Infrastructure
+  description: Workflow for building and deploying Kubernetes apps
+  aliases:
+  - skaffold
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: slim
+  name: Slim
+  category: Library
+  subcategory: Web
+  description: Micro framework for PHP
+  aliases:
+  - slim
+  - slim-framework
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: socketio
+  name: Socket.IO
+  category: Library
+  subcategory: Web
+  description: Real-time bidirectional event-based communication
+  aliases:
+  - socket.io
+  - socketio
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: solidjs
+  name: SolidJS
+  category: Library
+  subcategory: Web
+  description: Reactive JavaScript library for building user interfaces
+  aliases:
+  - solid
+  - solidjs
+  - solid-js
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: spacy
   name: spaCy
@@ -688,6 +3537,31 @@
   - spacy
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: specflow
+  name: SpecFlow
+  category: Library
+  subcategory: Testing
+  description: BDD framework for .NET
+  aliases:
+  - specflow
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: spinnaker
+  name: Spinnaker
+  category: Library
+  subcategory: Infrastructure
+  description: Multi-cloud continuous delivery platform
+  aliases:
+  - spinnaker
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: spring-boot
   name: Spring Boot
@@ -698,6 +3572,7 @@
   - spring
   language_scope:
   - java
+  granularity: library
   source: curated-list
 - id: sqlalchemy
   name: SQLAlchemy
@@ -707,16 +3582,162 @@
   - sqlalchemy
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: sqlite3
+  name: sqlite3
+  category: Library
+  subcategory: Database
+  description: SQLite3 bindings for Node.js
+  aliases:
+  - sqlite3
+  - node-sqlite3
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: sqlx
+  name: sqlx
+  category: Library
+  subcategory: Database
+  description: Extensions to Go's database/sql library
+  aliases:
+  - sqlx
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: stable-diffusion
+  name: Stable Diffusion
+  category: Library
+  subcategory: Data
+  description: Text-to-image diffusion model
+  aliases:
+  - stable-diffusion
+  - sd
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: statsmodels
+  name: Statsmodels
+  category: Library
+  subcategory: Data
+  description: Statistical modeling and econometrics in Python
+  aliases:
+  - statsmodels
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: storybook
+  name: Storybook
+  category: Library
+  subcategory: Testing
+  description: UI component development and testing tool
+  aliases:
+  - storybook
+  - storybookjs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: styled-components
+  name: Styled Components
+  category: Library
+  subcategory: Web
+  description: CSS-in-JS library for React
+  aliases:
+  - styled-components
+  - styled
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: supertest
+  name: Supertest
+  category: Library
+  subcategory: Testing
+  description: HTTP assertions library for Node.js
+  aliases:
+  - supertest
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: surrealdb
+  name: SurrealDB
+  category: Library
+  subcategory: Database
+  description: Multi-model database for web, mobile, and serverless
+  aliases:
+  - surrealdb
+  - surreal
+  language_scope:
+  - rust
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: svelte
   name: Svelte
   category: Library
   subcategory: Web
+  description: Reactive JavaScript framework that compiles to vanilla JS
   aliases:
   - svelte
+  - sveltejs
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: swr
+  name: SWR
+  category: Library
+  subcategory: Web
+  description: React Hooks for data fetching
+  aliases:
+  - swr
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: symfony
+  name: Symfony
+  category: Library
+  subcategory: Web
+  description: PHP framework for web applications
+  aliases:
+  - symfony
+  language_scope:
+  - php
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: sympy
+  name: SymPy
+  category: Library
+  subcategory: Data
+  description: Symbolic mathematics library for Python
+  aliases:
+  - sympy
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: tailwind-css
   name: Tailwind CSS
@@ -727,6 +3748,57 @@
   - tailwindcss
   language_scope:
   - css
+  granularity: library
+  source: curated-list
+- id: tape
+  name: Tape
+  category: Library
+  subcategory: Testing
+  description: TAP-producing test harness for node and browsers
+  aliases:
+  - tape
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tekton
+  name: Tekton
+  category: Library
+  subcategory: Infrastructure
+  description: Cloud native CI/CD framework
+  aliases:
+  - tekton
+  - tekton-pipelines
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tempo
+  name: Tempo
+  category: Library
+  subcategory: Infrastructure
+  description: Distributed tracing backend
+  aliases:
+  - tempo
+  - grafana-tempo
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tensorboard
+  name: TensorBoard
+  category: Library
+  subcategory: Data
+  description: TensorFlow's visualization toolkit
+  aliases:
+  - tensorboard
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: tensorflow
   name: TensorFlow
@@ -737,6 +3809,7 @@
   - tf
   language_scope:
   - python
+  granularity: library
   source: curated-list
 - id: terraform
   name: Terraform
@@ -744,9 +3817,36 @@
   subcategory: Infrastructure
   aliases:
   - terraform
-  - tf
-  language_scope:
   - hcl
+  language_scope: []
+  granularity: library
+  source: curated-list
+- id: testcafe
+  name: TestCafe
+  category: Library
+  subcategory: Testing
+  description: Node.js tool for automated end-to-end web testing
+  aliases:
+  - testcafe
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: testing-library
+  name: Testing Library
+  category: Library
+  subcategory: Testing
+  description: Simple and complete testing utilities for DOM testing
+  aliases:
+  - testing-library
+  - react-testing-library
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: testng
   name: TestNG
@@ -756,6 +3856,106 @@
   - testng
   language_scope:
   - java
+  granularity: library
+  source: curated-list
+- id: textblob
+  name: TextBlob
+  category: Library
+  subcategory: Data
+  description: Simple NLP library for common text processing tasks
+  aliases:
+  - textblob
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tilt
+  name: Tilt
+  category: Library
+  subcategory: Infrastructure
+  description: Local Kubernetes development tool
+  aliases:
+  - tilt
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tokenizers
+  name: Tokenizers
+  category: Library
+  subcategory: Data
+  description: Fast tokenizers for NLP from Hugging Face
+  aliases:
+  - tokenizers
+  - huggingface-tokenizers
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tokio
+  name: Tokio
+  category: Library
+  subcategory: Infrastructure
+  description: Asynchronous runtime for Rust
+  aliases:
+  - tokio
+  language_scope:
+  - rust
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: tortoise-orm
+  name: Tortoise ORM
+  category: Library
+  subcategory: Database
+  description: Async ORM for Python
+  aliases:
+  - tortoise
+  - tortoise-orm
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: traefik
+  name: Traefik
+  category: Library
+  subcategory: Infrastructure
+  description: Modern HTTP reverse proxy and load balancer
+  aliases:
+  - traefik
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: trpc
+  name: tRPC
+  category: Library
+  subcategory: Web
+  description: End-to-end typesafe APIs made easy
+  aliases:
+  - trpc
+  language_scope:
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: turbopack
+  name: Turbopack
+  category: Library
+  subcategory: Web
+  description: Incremental bundler optimized for JavaScript and TypeScript
+  aliases:
+  - turbopack
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: typeorm
   name: TypeORM
@@ -765,6 +3965,7 @@
   - typeorm
   language_scope:
   - typescript
+  granularity: library
   source: curated-list
 - id: unittest
   name: unittest
@@ -774,6 +3975,85 @@
   - unittest
   language_scope:
   - python
+  granularity: library
+  source: curated-list
+- id: vaex
+  name: Vaex
+  category: Library
+  subcategory: Data
+  description: Out-of-core DataFrames for Python
+  aliases:
+  - vaex
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: vagrant
+  name: Vagrant
+  category: Library
+  subcategory: Infrastructure
+  description: Tool for building and managing virtual machine environments
+  aliases:
+  - vagrant
+  - hashicorp-vagrant
+  language_scope:
+  - ruby
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: vapor
+  name: Vapor
+  category: Library
+  subcategory: Web
+  description: Web framework for Swift
+  aliases:
+  - vapor
+  language_scope:
+  - swift
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: vault
+  name: Vault
+  category: Library
+  subcategory: Infrastructure
+  description: Secrets management and data protection
+  aliases:
+  - vault
+  - hashicorp-vault
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: vertx
+  name: Vert.x
+  category: Library
+  subcategory: Web
+  description: Reactive toolkit for JVM
+  aliases:
+  - vertx
+  - vert.x
+  language_scope:
+  - java
+  - kotlin
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: vite
+  name: Vite
+  category: Library
+  subcategory: Web
+  description: Next generation frontend build tool
+  aliases:
+  - vite
+  - vitejs
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list
 - id: vitest
   name: Vitest
@@ -784,15 +4064,258 @@
   language_scope:
   - javascript
   - typescript
+  granularity: library
   source: curated-list
 - id: vue
-  name: Vue
+  name: vue
   category: Library
   subcategory: Web
   aliases:
   - vue
+  - vue.js
   - vuejs
   language_scope:
   - javascript
   - typescript
+  granularity: library
+  weighted_score: 0.155
+  sources:
+  - source: npm
+    weight: 0.3
+    score: 0.11666666666666667
+    raw_metrics:
+      weekly_downloads: 3500000
+      version: 3.3.4
+    collected_at: '2026-02-05T17:06:53.130571'
+  - source: github
+    weight: 0.2
+    score: 0.6
+    raw_metrics:
+      repo_count: 180000
+      total_stars: 450000
+    collected_at: '2026-02-05T17:06:53.130571'
+  source: curated-list
+- id: vue-js
+  name: vue.js
+  category: Library
+  subcategory: Web
+  granularity: library
+  weighted_score: 0.068
+  sources:
+  - source: stackoverflow
+    weight: 0.4
+    score: 0.17
+    raw_metrics:
+      question_count: 85000
+      related_tags:
+      - vuejs
+      - vue
+    collected_at: '2026-02-05T17:06:53.130571'
+- id: vuetify
+  name: Vuetify
+  category: Library
+  subcategory: Web
+  description: Material Design component framework for Vue.js
+  aliases:
+  - vuetify
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: vuex
+  name: Vuex
+  category: Library
+  subcategory: Web
+  description: State management pattern and library for Vue.js
+  aliases:
+  - vuex
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: wandb
+  name: Weights & Biases
+  category: Library
+  subcategory: Data
+  description: ML experiment tracking and visualization
+  aliases:
+  - wandb
+  - weights-and-biases
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: waterline
+  name: Waterline
+  category: Library
+  subcategory: Database
+  description: Datastore-agnostic ORM for Node.js
+  aliases:
+  - waterline
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: webdriverio
+  name: WebdriverIO
+  category: Library
+  subcategory: Testing
+  description: Next-gen browser and mobile automation framework
+  aliases:
+  - webdriverio
+  - wdio
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: webpack
+  name: Webpack
+  category: Library
+  subcategory: Web
+  description: Module bundler for JavaScript applications
+  aliases:
+  - webpack
+  language_scope:
+  - javascript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: websockets
+  name: WebSockets
+  category: Library
+  subcategory: Web
+  description: Protocol for full-duplex communication channels
+  aliases:
+  - websocket
+  - websockets
+  - ws
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: wiremock
+  name: WireMock
+  category: Library
+  subcategory: Testing
+  description: HTTP mocking library for Java
+  aliases:
+  - wiremock
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: woodpecker
+  name: Woodpecker
+  category: Library
+  subcategory: Infrastructure
+  description: Community fork of Drone CI
+  aliases:
+  - woodpecker
+  - woodpecker-ci
+  language_scope:
+  - go
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: word2vec
+  name: Word2Vec
+  category: Library
+  subcategory: Data
+  description: Word embedding technique for NLP
+  aliases:
+  - word2vec
+  - w2v
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: xctest
+  name: XCTest
+  category: Library
+  subcategory: Testing
+  description: Testing framework for Swift and Objective-C
+  aliases:
+  - xctest
+  language_scope:
+  - swift
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: xgboost
+  name: XGBoost
+  category: Library
+  subcategory: Data
+  description: Optimized distributed gradient boosting library
+  aliases:
+  - xgboost
+  - xgb
+  language_scope:
+  - python
+  - r
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: xunit
+  name: xUnit
+  category: Library
+  subcategory: Testing
+  description: Unit testing tool for .NET
+  aliases:
+  - xunit
+  - xunit.net
+  language_scope:
+  - csharp
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: yolo
+  name: YOLO
+  category: Library
+  subcategory: Data
+  description: Real-time object detection system
+  aliases:
+  - yolo
+  - yolov5
+  - yolov8
+  language_scope:
+  - python
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: zipkin
+  name: Zipkin
+  category: Library
+  subcategory: Infrastructure
+  description: Distributed tracing system
+  aliases:
+  - zipkin
+  language_scope:
+  - java
+  granularity: library
+  weighted_score: 0.5
+  source: curated-list
+- id: zustand
+  name: Zustand
+  category: Library
+  subcategory: Web
+  description: Small, fast state management solution
+  aliases:
+  - zustand
+  language_scope:
+  - javascript
+  - typescript
+  granularity: library
+  weighted_score: 0.5
   source: curated-list

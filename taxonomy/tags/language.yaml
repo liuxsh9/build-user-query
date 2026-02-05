@@ -187,7 +187,6 @@
   category: Language
   aliases:
   - ocaml
-  - ml
   source: GitHub
 - id: perl
   name: Perl
@@ -214,7 +213,6 @@
   category: Language
   aliases:
   - prolog
-  - pl
   source: TIOBE
 - id: python
   name: Python

@@ -16,6 +16,7 @@
 #   difficulty: enum?    # basic | intermediate | advanced
 #   examples: string[]?  # Example query snippets
 #   related_tags: string[]? # Related tag IDs
+#   granularity: enum?   # library | module | component (for Library tags)
 
 version: "1.0"
 

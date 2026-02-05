@@ -1,207 +1,425 @@
+# Domain Tags - Application domains and scenarios
+# Total: 50 tags
+
+- id: accessibility-domain
+  name: Accessibility Development
+  category: Domain
+  description: Building inclusive software for users with disabilities
+  aliases:
+  - accessibility-dev
+  - inclusive-design
+
 - id: api-development
   name: API Development
   category: Domain
+  description: Designing and building APIs for software integration
   aliases:
-  - api
-  source: curated-list
+  - api-dev
+  - api-building
+
 - id: automation
   name: Automation
   category: Domain
+  description: Automating repetitive tasks and workflows
   aliases:
   - automation
   - scripting
-  source: curated-list
+
 - id: blockchain
   name: Blockchain
   category: Domain
+  description: Distributed ledger technology and decentralized applications
   aliases:
   - blockchain
   - web3
-  source: curated-list
+  - dapp
+
 - id: cli-tool
   name: CLI Tool
   category: Domain
+  description: Command-line interface tools and utilities
   aliases:
   - cli
   - command-line
-  source: curated-list
+
 - id: cloud-computing
   name: Cloud Computing
   category: Domain
+  description: Building and deploying applications on cloud platforms
   aliases:
   - cloud
-  source: curated-list
+  - cloud-native
+
 - id: compiler-development
   name: Compiler Development
   category: Domain
+  description: Building compilers, interpreters, and language tooling
   aliases:
-  - compilers
-  source: curated-list
+  - compiler
+  - language-tooling
+  - interpreter
+
 - id: computer-vision
   name: Computer Vision
   category: Domain
+  description: Image and video analysis using machine learning
   aliases:
   - cv
-  - computer-vision
-  source: curated-list
+  - image-processing
+  - vision
+
 - id: cybersecurity
   name: Cybersecurity
   category: Domain
+  description: Protecting systems and data from security threats
   aliases:
-  - security
+  - cybersec
   - infosec
-  source: curated-list
+  - appsec
+
+- id: data-engineering
+  name: Data Engineering
+  category: Domain
+  description: Building data pipelines and infrastructure for data processing
+  aliases:
+  - data-eng
+  - data-infrastructure
+
 - id: data-science
   name: Data Science
   category: Domain
+  description: Extracting insights from data using statistical methods
   aliases:
   - data-science
   - ds
-  source: curated-list
+  - analytics
+
 - id: database-administration
   name: Database Administration
   category: Domain
+  description: Managing and optimizing database systems
   aliases:
   - dba
-  source: curated-list
+  - database-admin
+
+- id: dataops
+  name: DataOps
+  category: Domain
+  description: Applying DevOps practices to data analytics workflows
+  aliases:
+  - dataops
+  - data-ops
+
 - id: deep-learning
   name: Deep Learning
   category: Domain
+  description: Neural network-based machine learning approaches
   aliases:
   - dl
   - deep-learning
-  source: curated-list
+  - neural-networks
+
 - id: desktop-application
   name: Desktop Application
   category: Domain
+  description: Building native applications for desktop operating systems
   aliases:
   - desktop
   - desktop-app
-  source: curated-list
+  - gui-app
+
 - id: devops
   name: DevOps
   category: Domain
+  description: Practices combining software development and IT operations
   aliases:
   - devops
-  source: curated-list
+  - dev-ops
+
+- id: distributed-systems
+  name: Distributed Systems
+  category: Domain
+  description: Designing systems that run across multiple networked computers
+  aliases:
+  - distributed
+  - distributed-computing
+
 - id: e-commerce
   name: E-commerce
   category: Domain
+  description: Building online shopping and payment systems
   aliases:
   - ecommerce
-  source: curated-list
+  - online-store
+  - shopping
+
+- id: edge-computing
+  name: Edge Computing
+  category: Domain
+  description: Processing data near the source rather than in centralized data centers
+  aliases:
+  - edge
+  - edge-computing
+
 - id: embedded-systems
   name: Embedded Systems
   category: Domain
+  description: Programming hardware devices with dedicated functions
   aliases:
   - embedded
-  source: curated-list
+  - firmware
+
 - id: etl
   name: ETL
   category: Domain
+  description: Extract, Transform, Load processes for data integration
   aliases:
   - etl
   - data-pipeline
-  source: curated-list
+  - data-integration
+
 - id: financial-technology
   name: Financial Technology
   category: Domain
+  description: Technology solutions for financial services
   aliases:
   - fintech
-  source: curated-list
+  - finance
+
+- id: finops
+  name: FinOps
+  category: Domain
+  description: Cloud financial management and cost optimization
+  aliases:
+  - finops
+  - cloud-cost
+
 - id: full-stack
   name: Full Stack
   category: Domain
+  description: Development spanning both frontend and backend systems
   aliases:
   - fullstack
-  source: curated-list
+  - full-stack-dev
+
 - id: game-development
   name: Game Development
   category: Domain
+  description: Creating video games and interactive entertainment
   aliases:
   - gamedev
   - game-dev
-  source: curated-list
+  - gaming
+
+- id: graphics-programming
+  name: Graphics Programming
+  category: Domain
+  description: Rendering and visual computing for games and applications
+  aliases:
+  - graphics
+  - rendering
+  - gpu-programming
+
 - id: healthcare-technology
   name: Healthcare Technology
   category: Domain
+  description: Technology solutions for healthcare and medical applications
   aliases:
   - healthtech
-  source: curated-list
+  - medtech
+  - health-it
+
 - id: iot
   name: IoT
   category: Domain
+  description: Internet of Things devices and connectivity
   aliases:
   - iot
   - internet-of-things
-  source: curated-list
+  - connected-devices
+
+- id: llm-application
+  name: LLM Application
+  category: Domain
+  description: Building applications powered by large language models
+  aliases:
+  - llm-app
+  - ai-application
+  - genai
+
 - id: machine-learning
   name: Machine Learning
   category: Domain
+  description: Building systems that learn from data
   aliases:
   - ml
   - machine-learning
-  source: curated-list
+
+- id: mlops
+  name: MLOps
+  category: Domain
+  description: Operationalizing machine learning models in production
+  aliases:
+  - mlops
+  - ml-ops
+  - ml-engineering
+
 - id: mobile-development
   name: Mobile Development
   category: Domain
+  description: Building applications for mobile devices
   aliases:
   - mobile
   - mobile-dev
-  source: curated-list
+  - mobile-app
+
 - id: natural-language-processing
   name: Natural Language Processing
   category: Domain
+  description: Processing and understanding human language with computers
   aliases:
   - nlp
-  source: curated-list
+  - text-processing
+  - language-ai
+
 - id: network-programming
   name: Network Programming
   category: Domain
+  description: Building software that communicates over networks
   aliases:
   - networking
-  source: curated-list
+  - network-dev
+  - socket-programming
+
+- id: observability
+  name: Observability
+  category: Domain
+  description: Monitoring, logging, and tracing distributed systems
+  aliases:
+  - o11y
+  - observability-engineering
+  - telemetry
+
 - id: operating-systems
   name: Operating Systems
   category: Domain
+  description: Developing operating system components and kernels
   aliases:
   - os
-  source: curated-list
+  - kernel
+  - os-dev
+
+- id: platform-engineering
+  name: Platform Engineering
+  category: Domain
+  description: Building internal developer platforms and tooling
+  aliases:
+  - platform-eng
+  - internal-platform
+  - developer-platform
+
+- id: real-time-systems
+  name: Real-time Systems
+  category: Domain
+  description: Systems with strict timing constraints and guarantees
+  aliases:
+  - realtime
+  - rtos
+  - hard-real-time
+
 - id: robotics
   name: Robotics
   category: Domain
+  description: Programming robots and autonomous systems
   aliases:
   - robotics
-  source: curated-list
+  - robot
+  - ros
+
 - id: scientific-computing
   name: Scientific Computing
   category: Domain
+  description: Computational methods for scientific research
   aliases:
   - scientific
-  source: curated-list
+  - hpc
+  - numerical-computing
+
+- id: search-engineering
+  name: Search Engineering
+  category: Domain
+  description: Building search engines and information retrieval systems
+  aliases:
+  - search-eng
+  - information-retrieval
+  - search-systems
+
+- id: site-reliability-engineering
+  name: Site Reliability Engineering
+  category: Domain
+  description: Ensuring reliability and uptime of production systems
+  aliases:
+  - sre
+  - reliability
+
 - id: smart-contracts
   name: Smart Contracts
   category: Domain
+  description: Self-executing contracts on blockchain platforms
   aliases:
-  - smart-contracts
-  source: curated-list
+  - smart-contract
+  - blockchain-contracts
+  - web3-contracts
+
+- id: streaming
+  name: Streaming
+  category: Domain
+  description: Real-time data streaming and event processing
+  aliases:
+  - stream-processing
+  - event-streaming
+  - real-time-data
+
 - id: systems-programming
   name: Systems Programming
   category: Domain
+  description: Low-level programming for system software
   aliases:
   - systems
-  source: curated-list
+  - low-level
+  - system-dev
+
+- id: testing-engineering
+  name: Testing Engineering
+  category: Domain
+  description: Quality assurance and software testing practices
+  aliases:
+  - qa
+  - quality-assurance
+  - test-engineering
+
+- id: video-streaming
+  name: Video Streaming
+  category: Domain
+  description: Building video delivery and streaming platforms
+  aliases:
+  - video
+  - media-streaming
+  - ott
+
 - id: web-backend
   name: Web Backend
   category: Domain
+  description: Server-side web application development
   aliases:
   - backend
   - server-side
-  source: curated-list
+
 - id: web-frontend
   name: Web Frontend
   category: Domain
+  description: Client-side web application development
   aliases:
   - frontend
   - client-side
-  source: curated-list
+  - ui-development

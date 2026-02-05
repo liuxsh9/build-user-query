@@ -155,6 +155,7 @@ def validate_schema_compliance(tags: List[Dict[str, Any]], taxonomy: Dict[str, A
 
     required_fields = ["id", "name", "category"]
     valid_difficulties = ["basic", "intermediate", "advanced"]
+    valid_granularities = ["library", "module", "component"]
 
     # Get hierarchical categories
     hierarchical_categories = set()
@@ -175,8 +176,15 @@ def validate_schema_compliance(tags: List[Dict[str, Any]], taxonomy: Dict[str, A
             if tag["difficulty"] not in valid_difficulties:
                 report.add_error(f"Tag '{tag_id}' has invalid difficulty: {tag['difficulty']}")
 
-        # Check hierarchical categories have subcategory
+        # Check granularity enum (required for Library tags)
         category = tag.get("category")
+        if category == "Library":
+            if "granularity" not in tag:
+                report.add_error(f"Library tag '{tag_id}' missing required granularity field")
+            elif tag["granularity"] not in valid_granularities:
+                report.add_error(f"Tag '{tag_id}' has invalid granularity: {tag['granularity']}")
+
+        # Check hierarchical categories have subcategory
         if category in hierarchical_categories:
             if "subcategory" not in tag:
                 report.add_error(f"Tag '{tag_id}' in hierarchical category '{category}' missing subcategory")
