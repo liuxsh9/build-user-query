@@ -1,0 +1,65 @@
+# Alias Blocklist
+#
+# This file contains aliases that should NOT be automatically added to tags.
+# Common reasons for blocklisting:
+# - Too generic (e.g., "test", "data", "web")
+# - Ambiguous across multiple libraries
+# - Single letters (too short)
+# - Common words that aren't specific to the library
+
+# Too generic
+test
+data
+web
+api
+db
+server
+client
+app
+framework
+library
+tool
+utils
+util
+helper
+core
+base
+common
+
+# Single letters (too ambiguous)
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+
+# Common programming terms
+code
+dev
+prod
+config
+setup
+init
+main
+index

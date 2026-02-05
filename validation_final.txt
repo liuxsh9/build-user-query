@@ -1,0 +1,42 @@
+Loading taxonomy from taxonomy.yaml...
+Loading tags from taxonomy/tags...
+Loaded 587 tags
+
+Validating category orthogonality...
+Validating tag uniqueness...
+Validating schema compliance...
+Validating referential integrity...
+Validating metadata quality...
+Validating distribution...
+
+======================================================================
+TAXONOMY VALIDATION REPORT
+======================================================================
+
+✓ No errors found
+
+⚠️  WARNINGS (9):
+  - Alias 'ml' used by multiple tags: ['machine-learning', 'ocaml']
+  - Alias 'pl' used by multiple tags: ['perl', 'prolog']
+  - Alias 'bash' used by multiple tags: ['bash-execution', 'shell']
+  - Alias 'shell' used by multiple tags: ['bash-execution', 'shell']
+  - Alias 'security' used by multiple tags: ['cybersecurity', 'secure']
+  - Alias 'search' used by multiple tags: ['code-search', 'web-search']
+  - Alias 'performance' used by multiple tags: ['high-performance', 'performance-analysis']
+  - Alias 'cross-file' used by multiple tags: ['multi-file', 'multi-file-coordination']
+  - Alias 'tf' used by multiple tags: ['tensorflow', 'terraform']
+
+📊 STATISTICS:
+  Total tags: 587
+    Agentic: 19
+    Concept: 93
+    Constraint: 25
+    Context: 9
+    Domain: 32
+    Language: 50
+    Library: 339
+    Task: 20
+
+======================================================================
+
+✅ Validation passed
