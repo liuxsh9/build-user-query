@@ -1,0 +1,282 @@
+[
+  {
+    "name": "Drizzle ORM",
+    "id": "drizzle-orm",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "TypeScript ORM with SQL-like syntax",
+    "aliases": ["drizzle", "drizzle-orm"],
+    "language_scope": ["typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Kysely",
+    "id": "kysely",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Type-safe SQL query builder for TypeScript",
+    "aliases": ["kysely"],
+    "language_scope": ["typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Knex.js",
+    "id": "knexjs",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "SQL query builder for Node.js",
+    "aliases": ["knex", "knexjs", "knex.js"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Bookshelf.js",
+    "id": "bookshelfjs",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "JavaScript ORM for Node.js",
+    "aliases": ["bookshelf", "bookshelfjs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Objection.js",
+    "id": "objectionjs",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "SQL-friendly ORM for Node.js",
+    "aliases": ["objection", "objectionjs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "MikroORM",
+    "id": "mikro-orm",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "TypeScript ORM for Node.js",
+    "aliases": ["mikro-orm", "mikroorm"],
+    "language_scope": ["typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Waterline",
+    "id": "waterline",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Datastore-agnostic ORM for Node.js",
+    "aliases": ["waterline"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Peewee",
+    "id": "peewee",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Small, expressive ORM for Python",
+    "aliases": ["peewee"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tortoise ORM",
+    "id": "tortoise-orm",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Async ORM for Python",
+    "aliases": ["tortoise", "tortoise-orm"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Pony ORM",
+    "id": "pony-orm",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Python ORM with generator expressions",
+    "aliases": ["pony", "pony-orm"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Beanie",
+    "id": "beanie",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Async Python ODM for MongoDB",
+    "aliases": ["beanie"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Motor",
+    "id": "motor",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Async Python driver for MongoDB",
+    "aliases": ["motor"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "MongoEngine",
+    "id": "mongoengine",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Python ODM for MongoDB",
+    "aliases": ["mongoengine"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Redis-py",
+    "id": "redis-py",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Python client for Redis",
+    "aliases": ["redis-py", "redis"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "ioredis",
+    "id": "ioredis",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Robust Redis client for Node.js",
+    "aliases": ["ioredis"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "node-redis",
+    "id": "node-redis",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Redis client for Node.js",
+    "aliases": ["node-redis", "redis"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Cassandra Driver",
+    "id": "cassandra-driver",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "DataStax driver for Apache Cassandra",
+    "aliases": ["cassandra-driver"],
+    "language_scope": ["python", "java"],
+    "granularity": "library"
+  },
+  {
+    "name": "Elasticsearch Client",
+    "id": "elasticsearch-client",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Official Elasticsearch client libraries",
+    "aliases": ["elasticsearch", "elasticsearch-py"],
+    "language_scope": ["python", "javascript", "java"],
+    "granularity": "library"
+  },
+  {
+    "name": "pg",
+    "id": "pg",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "PostgreSQL client for Node.js",
+    "aliases": ["pg", "node-postgres"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "mysql2",
+    "id": "mysql2",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Fast MySQL driver for Node.js",
+    "aliases": ["mysql2"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "better-sqlite3",
+    "id": "better-sqlite3",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Fast SQLite3 binding for Node.js",
+    "aliases": ["better-sqlite3"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "sqlite3",
+    "id": "sqlite3",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "SQLite3 bindings for Node.js",
+    "aliases": ["sqlite3", "node-sqlite3"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "GORM",
+    "id": "gorm",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "ORM library for Golang",
+    "aliases": ["gorm"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "sqlx",
+    "id": "sqlx",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Extensions to Go's database/sql library",
+    "aliases": ["sqlx"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Ent",
+    "id": "ent",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Entity framework for Go",
+    "aliases": ["ent", "entgo"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "ActiveRecord",
+    "id": "activerecord",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "ORM framework for Ruby on Rails",
+    "aliases": ["activerecord", "active-record"],
+    "language_scope": ["ruby"],
+    "granularity": "library"
+  },
+  {
+    "name": "Entity Framework",
+    "id": "entity-framework",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "ORM for .NET",
+    "aliases": ["entity-framework", "ef", "ef-core"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "Dapper",
+    "id": "dapper",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Micro ORM for .NET",
+    "aliases": ["dapper"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  }
+]

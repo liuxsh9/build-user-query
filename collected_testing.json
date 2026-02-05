@@ -1,0 +1,50 @@
+[
+  {
+    "name": "jest",
+    "id": "jest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "weighted_score": 0.21999999999999997,
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "npm",
+        "weight": 0.3,
+        "score": 0.7333333333333333,
+        "raw_metrics": {
+          "weekly_downloads": 22000000,
+          "version": "29.5.0"
+        },
+        "collected_at": "2026-02-05T17:09:52.515483"
+      }
+    ]
+  },
+  {
+    "name": "mocha",
+    "id": "mocha",
+    "category": "Library",
+    "subcategory": "Testing",
+    "weighted_score": 0.08,
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "npm",
+        "weight": 0.3,
+        "score": 0.26666666666666666,
+        "raw_metrics": {
+          "weekly_downloads": 8000000,
+          "version": "10.2.0"
+        },
+        "collected_at": "2026-02-05T17:09:52.515483"
+      }
+    ]
+  }
+]

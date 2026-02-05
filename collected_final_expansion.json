@@ -1,0 +1,72 @@
+[
+  {
+    "name": "htmx",
+    "id": "htmx",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "High power tools for HTML",
+    "aliases": ["htmx"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Hotwire",
+    "id": "hotwire",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "HTML over the wire framework",
+    "aliases": ["hotwire", "turbo"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Polars",
+    "id": "polars",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Fast DataFrame library for Rust and Python",
+    "aliases": ["polars"],
+    "language_scope": ["python", "rust"],
+    "granularity": "library"
+  },
+  {
+    "name": "DuckDB",
+    "id": "duckdb",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "In-process SQL OLAP database",
+    "aliases": ["duckdb"],
+    "language_scope": ["python", "r"],
+    "granularity": "library"
+  },
+  {
+    "name": "Supertest",
+    "id": "supertest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "HTTP assertions library for Node.js",
+    "aliases": ["supertest"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "EdgeDB",
+    "id": "edgedb",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Graph-relational database with EdgeQL",
+    "aliases": ["edgedb"],
+    "language_scope": ["python", "javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "SurrealDB",
+    "id": "surrealdb",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Multi-model database for web, mobile, and serverless",
+    "aliases": ["surrealdb", "surreal"],
+    "language_scope": ["rust"],
+    "granularity": "library"
+  }
+]

@@ -1,0 +1,432 @@
+[
+  {
+    "name": "Micronaut",
+    "id": "micronaut",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Modern JVM-based framework for microservices",
+    "aliases": ["micronaut"],
+    "language_scope": ["java", "kotlin"],
+    "granularity": "library"
+  },
+  {
+    "name": "Quarkus",
+    "id": "quarkus",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Kubernetes-native Java framework",
+    "aliases": ["quarkus"],
+    "language_scope": ["java", "kotlin"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vert.x",
+    "id": "vertx",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Reactive toolkit for JVM",
+    "aliases": ["vertx", "vert.x"],
+    "language_scope": ["java", "kotlin"],
+    "granularity": "library"
+  },
+  {
+    "name": "Play Framework",
+    "id": "play-framework",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Reactive web framework for Java and Scala",
+    "aliases": ["play", "play-framework"],
+    "language_scope": ["java", "scala"],
+    "granularity": "library"
+  },
+  {
+    "name": "Apache Flink",
+    "id": "apache-flink",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Stream processing framework",
+    "aliases": ["flink", "apache-flink"],
+    "language_scope": ["java", "scala"],
+    "granularity": "library"
+  },
+  {
+    "name": "AssertJ",
+    "id": "assertj",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Fluent assertions library for Java",
+    "aliases": ["assertj"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "Rest Assured",
+    "id": "rest-assured",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Java DSL for testing REST services",
+    "aliases": ["rest-assured", "restassured"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "WireMock",
+    "id": "wiremock",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "HTTP mocking library for Java",
+    "aliases": ["wiremock"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "jOOQ",
+    "id": "jooq",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Type-safe SQL query builder for Java",
+    "aliases": ["jooq"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "MyBatis",
+    "id": "mybatis",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "SQL mapper framework for Java",
+    "aliases": ["mybatis"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "Blazor",
+    "id": "blazor",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Web UI framework using C# instead of JavaScript",
+    "aliases": ["blazor"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "ASP.NET Core MVC",
+    "id": "aspnet-core-mvc",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "MVC framework for ASP.NET Core",
+    "aliases": ["aspnet-mvc", "asp.net-mvc"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "ML.NET",
+    "id": "mlnet",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Machine learning framework for .NET",
+    "aliases": ["mlnet", "ml.net"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "NUnit",
+    "id": "nunit",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Unit testing framework for .NET",
+    "aliases": ["nunit"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "xUnit",
+    "id": "xunit",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Unit testing tool for .NET",
+    "aliases": ["xunit", "xunit.net"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "Moq",
+    "id": "moq",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Mocking library for .NET",
+    "aliases": ["moq"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "FluentAssertions",
+    "id": "fluentassertions",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Fluent assertion library for .NET",
+    "aliases": ["fluentassertions", "fluent-assertions"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "NHibernate",
+    "id": "nhibernate",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Object-relational mapper for .NET",
+    "aliases": ["nhibernate"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "Symfony",
+    "id": "symfony",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "PHP framework for web applications",
+    "aliases": ["symfony"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "CodeIgniter",
+    "id": "codeigniter",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Lightweight PHP framework",
+    "aliases": ["codeigniter"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "Slim",
+    "id": "slim",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Micro framework for PHP",
+    "aliases": ["slim", "slim-framework"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "PHPUnit",
+    "id": "phpunit",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Unit testing framework for PHP",
+    "aliases": ["phpunit"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "Behat",
+    "id": "behat",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "BDD framework for PHP",
+    "aliases": ["behat"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "Codeception",
+    "id": "codeception",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Full-stack testing framework for PHP",
+    "aliases": ["codeception"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "Doctrine",
+    "id": "doctrine",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "ORM and database abstraction layer for PHP",
+    "aliases": ["doctrine", "doctrine-orm"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "Eloquent",
+    "id": "eloquent",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Laravel's ORM",
+    "aliases": ["eloquent", "laravel-eloquent"],
+    "language_scope": ["php"],
+    "granularity": "library"
+  },
+  {
+    "name": "Ktor",
+    "id": "ktor",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Asynchronous framework for Kotlin",
+    "aliases": ["ktor"],
+    "language_scope": ["kotlin"],
+    "granularity": "library"
+  },
+  {
+    "name": "Kotest",
+    "id": "kotest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Testing framework for Kotlin",
+    "aliases": ["kotest"],
+    "language_scope": ["kotlin"],
+    "granularity": "library"
+  },
+  {
+    "name": "MockK",
+    "id": "mockk",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Mocking library for Kotlin",
+    "aliases": ["mockk"],
+    "language_scope": ["kotlin"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vapor",
+    "id": "vapor",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Web framework for Swift",
+    "aliases": ["vapor"],
+    "language_scope": ["swift"],
+    "granularity": "library"
+  },
+  {
+    "name": "XCTest",
+    "id": "xctest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Testing framework for Swift and Objective-C",
+    "aliases": ["xctest"],
+    "language_scope": ["swift"],
+    "granularity": "library"
+  },
+  {
+    "name": "Quick",
+    "id": "quick",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "BDD framework for Swift",
+    "aliases": ["quick"],
+    "language_scope": ["swift"],
+    "granularity": "library"
+  },
+  {
+    "name": "Akka HTTP",
+    "id": "akka-http",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "HTTP server and client for Scala",
+    "aliases": ["akka-http", "akka"],
+    "language_scope": ["scala"],
+    "granularity": "library"
+  },
+  {
+    "name": "ScalaTest",
+    "id": "scalatest",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Testing framework for Scala",
+    "aliases": ["scalatest"],
+    "language_scope": ["scala"],
+    "granularity": "library"
+  },
+  {
+    "name": "Sinatra",
+    "id": "sinatra",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "DSL for creating web applications in Ruby",
+    "aliases": ["sinatra"],
+    "language_scope": ["ruby"],
+    "granularity": "library"
+  },
+  {
+    "name": "Capybara",
+    "id": "capybara",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Acceptance test framework for Ruby web applications",
+    "aliases": ["capybara"],
+    "language_scope": ["ruby"],
+    "granularity": "library"
+  },
+  {
+    "name": "FactoryBot",
+    "id": "factorybot",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Fixtures replacement for Ruby",
+    "aliases": ["factorybot", "factory-bot"],
+    "language_scope": ["ruby"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tokio",
+    "id": "tokio",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Asynchronous runtime for Rust",
+    "aliases": ["tokio"],
+    "language_scope": ["rust"],
+    "granularity": "library"
+  },
+  {
+    "name": "Serde",
+    "id": "serde",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Serialization framework for Rust",
+    "aliases": ["serde"],
+    "language_scope": ["rust"],
+    "granularity": "library"
+  },
+  {
+    "name": "Ecto",
+    "id": "ecto",
+    "category": "Library",
+    "subcategory": "Database",
+    "description": "Database wrapper and query generator for Elixir",
+    "aliases": ["ecto"],
+    "language_scope": ["elixir"],
+    "granularity": "library"
+  },
+  {
+    "name": "Google Test",
+    "id": "google-test",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "C++ testing framework",
+    "aliases": ["gtest", "google-test", "googletest"],
+    "language_scope": ["c++"],
+    "granularity": "library"
+  },
+  {
+    "name": "Catch2",
+    "id": "catch2",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Modern C++ test framework",
+    "aliases": ["catch2", "catch"],
+    "language_scope": ["c++"],
+    "granularity": "library"
+  },
+  {
+    "name": "Boost.Test",
+    "id": "boost-test",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "C++ unit testing framework from Boost",
+    "aliases": ["boost-test", "boost.test"],
+    "language_scope": ["c++"],
+    "granularity": "library"
+  }
+]

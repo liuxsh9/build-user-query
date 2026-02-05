@@ -1,0 +1,131 @@
+[
+  {
+    "name": "react",
+    "id": "react",
+    "category": "Library",
+    "subcategory": "Web",
+    "weighted_score": 0.7066666666666668,
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "stackoverflow",
+        "weight": 0.4,
+        "score": 0.9,
+        "raw_metrics": {
+          "question_count": 450000,
+          "related_tags": [
+            "reactjs",
+            "react-hooks"
+          ]
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      },
+      {
+        "source": "npm",
+        "weight": 0.3,
+        "score": 0.6,
+        "raw_metrics": {
+          "weekly_downloads": 18000000,
+          "version": "18.2.0"
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      },
+      {
+        "source": "github",
+        "weight": 0.2,
+        "score": 0.8333333333333334,
+        "raw_metrics": {
+          "repo_count": 250000,
+          "total_stars": 2100000
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      }
+    ]
+  },
+  {
+    "name": "express",
+    "id": "express",
+    "category": "Library",
+    "subcategory": "Web",
+    "weighted_score": 0.25,
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "npm",
+        "weight": 0.3,
+        "score": 0.8333333333333334,
+        "raw_metrics": {
+          "weekly_downloads": 25000000,
+          "version": "4.18.2"
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      }
+    ]
+  },
+  {
+    "name": "angular",
+    "id": "angular",
+    "category": "Library",
+    "subcategory": "Web",
+    "weighted_score": 0.22400000000000003,
+    "language_scope": [],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "stackoverflow",
+        "weight": 0.4,
+        "score": 0.56,
+        "raw_metrics": {
+          "question_count": 280000,
+          "related_tags": [
+            "angularjs",
+            "angular2"
+          ]
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      }
+    ]
+  },
+  {
+    "name": "vue",
+    "id": "vue",
+    "category": "Library",
+    "subcategory": "Web",
+    "weighted_score": 0.155,
+    "language_scope": [
+      "javascript",
+      "typescript"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "npm",
+        "weight": 0.3,
+        "score": 0.11666666666666667,
+        "raw_metrics": {
+          "weekly_downloads": 3500000,
+          "version": "3.3.4"
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      },
+      {
+        "source": "github",
+        "weight": 0.2,
+        "score": 0.6,
+        "raw_metrics": {
+          "repo_count": 180000,
+          "total_stars": 450000
+        },
+        "collected_at": "2026-02-05T16:58:15.102474"
+      }
+    ]
+  }
+]

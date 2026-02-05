@@ -1,0 +1,552 @@
+[
+  {
+    "name": "Svelte",
+    "id": "svelte",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Reactive JavaScript framework that compiles to vanilla JS",
+    "aliases": ["svelte", "sveltejs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Remix",
+    "id": "remix",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Full stack web framework built on React Router",
+    "aliases": ["remix", "remix-run"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Astro",
+    "id": "astro",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Modern static site builder with partial hydration",
+    "aliases": ["astro", "astro-build"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "SolidJS",
+    "id": "solidjs",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Reactive JavaScript library for building user interfaces",
+    "aliases": ["solid", "solidjs", "solid-js"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Qwik",
+    "id": "qwik",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Resumable framework for instant-loading web apps",
+    "aliases": ["qwik", "qwik-city"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Preact",
+    "id": "preact",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Fast 3kB alternative to React with the same API",
+    "aliases": ["preact"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Alpine.js",
+    "id": "alpinejs",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Lightweight JavaScript framework for composing behavior",
+    "aliases": ["alpine", "alpinejs", "alpine.js"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Lit",
+    "id": "lit",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Simple library for building fast, lightweight web components",
+    "aliases": ["lit", "lit-element", "lit-html"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Ember.js",
+    "id": "emberjs",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Productive JavaScript framework for ambitious web applications",
+    "aliases": ["ember", "emberjs", "ember.js"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Backbone.js",
+    "id": "backbonejs",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Lightweight MV* framework for structuring JavaScript applications",
+    "aliases": ["backbone", "backbonejs", "backbone.js"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Meteor",
+    "id": "meteor",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Full-stack JavaScript platform for building web and mobile apps",
+    "aliases": ["meteor", "meteorjs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Gatsby",
+    "id": "gatsby",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "React-based static site generator",
+    "aliases": ["gatsby", "gatsbyjs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Eleventy",
+    "id": "eleventy",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Simpler static site generator",
+    "aliases": ["eleventy", "11ty"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Hugo",
+    "id": "hugo",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Fast static site generator written in Go",
+    "aliases": ["hugo", "hugo-static"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Jekyll",
+    "id": "jekyll",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Static site generator for blogs and documentation",
+    "aliases": ["jekyll"],
+    "language_scope": ["ruby"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vite",
+    "id": "vite",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Next generation frontend build tool",
+    "aliases": ["vite", "vitejs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Webpack",
+    "id": "webpack",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Module bundler for JavaScript applications",
+    "aliases": ["webpack"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Parcel",
+    "id": "parcel",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Zero configuration web application bundler",
+    "aliases": ["parcel", "parceljs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Rollup",
+    "id": "rollup",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Module bundler for JavaScript",
+    "aliases": ["rollup", "rollupjs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "esbuild",
+    "id": "esbuild",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Extremely fast JavaScript bundler and minifier",
+    "aliases": ["esbuild"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Turbopack",
+    "id": "turbopack",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Incremental bundler optimized for JavaScript and TypeScript",
+    "aliases": ["turbopack"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Redux",
+    "id": "redux",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Predictable state container for JavaScript apps",
+    "aliases": ["redux", "reduxjs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "MobX",
+    "id": "mobx",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Simple, scalable state management",
+    "aliases": ["mobx"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Zustand",
+    "id": "zustand",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Small, fast state management solution",
+    "aliases": ["zustand"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Jotai",
+    "id": "jotai",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Primitive and flexible state management for React",
+    "aliases": ["jotai"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Recoil",
+    "id": "recoil",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "State management library for React",
+    "aliases": ["recoil", "recoiljs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Pinia",
+    "id": "pinia",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Intuitive, type safe state management for Vue",
+    "aliases": ["pinia"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vuex",
+    "id": "vuex",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "State management pattern and library for Vue.js",
+    "aliases": ["vuex"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "React Query",
+    "id": "react-query",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Powerful data synchronization for React",
+    "aliases": ["react-query", "tanstack-query"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "SWR",
+    "id": "swr",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "React Hooks for data fetching",
+    "aliases": ["swr"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Apollo Client",
+    "id": "apollo-client",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Comprehensive state management library for GraphQL",
+    "aliases": ["apollo", "apollo-client"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Relay",
+    "id": "relay",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "JavaScript framework for building data-driven React applications",
+    "aliases": ["relay", "relay-modern"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "tRPC",
+    "id": "trpc",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "End-to-end typesafe APIs made easy",
+    "aliases": ["trpc"],
+    "language_scope": ["typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "GraphQL",
+    "id": "graphql",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Query language for APIs",
+    "aliases": ["graphql", "gql"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Axios",
+    "id": "axios",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Promise based HTTP client for browser and node.js",
+    "aliases": ["axios"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Fetch API",
+    "id": "fetch-api",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Modern interface for fetching resources",
+    "aliases": ["fetch", "fetch-api"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Socket.IO",
+    "id": "socketio",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Real-time bidirectional event-based communication",
+    "aliases": ["socket.io", "socketio"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "WebSockets",
+    "id": "websockets",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Protocol for full-duplex communication channels",
+    "aliases": ["websocket", "websockets", "ws"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Server-Sent Events",
+    "id": "server-sent-events",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Server push technology for real-time updates",
+    "aliases": ["sse", "server-sent-events", "eventsource"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Styled Components",
+    "id": "styled-components",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "CSS-in-JS library for React",
+    "aliases": ["styled-components", "styled"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Emotion",
+    "id": "emotion",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "CSS-in-JS library with powerful composition",
+    "aliases": ["emotion", "emotion-js"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Sass",
+    "id": "sass",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "CSS preprocessor with variables and mixins",
+    "aliases": ["sass", "scss"],
+    "language_scope": ["css"],
+    "granularity": "library"
+  },
+  {
+    "name": "Less",
+    "id": "less",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "CSS preprocessor extending CSS with dynamic behavior",
+    "aliases": ["less", "lesscss"],
+    "language_scope": ["css"],
+    "granularity": "library"
+  },
+  {
+    "name": "PostCSS",
+    "id": "postcss",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Tool for transforming CSS with JavaScript plugins",
+    "aliases": ["postcss"],
+    "language_scope": ["javascript", "css"],
+    "granularity": "library"
+  },
+  {
+    "name": "Chakra UI",
+    "id": "chakra-ui",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Simple, modular and accessible component library for React",
+    "aliases": ["chakra", "chakra-ui"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Mantine",
+    "id": "mantine",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "React components library with native dark theme support",
+    "aliases": ["mantine"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Radix UI",
+    "id": "radix-ui",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Unstyled, accessible components for building design systems",
+    "aliases": ["radix", "radix-ui"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Headless UI",
+    "id": "headless-ui",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Unstyled, accessible UI components for React and Vue",
+    "aliases": ["headless-ui", "headlessui"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "shadcn/ui",
+    "id": "shadcn-ui",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Re-usable components built with Radix UI and Tailwind",
+    "aliases": ["shadcn", "shadcn-ui", "shadcn/ui"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vuetify",
+    "id": "vuetify",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Material Design component framework for Vue.js",
+    "aliases": ["vuetify"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Quasar",
+    "id": "quasar",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Vue.js framework for building responsive apps",
+    "aliases": ["quasar", "quasar-framework"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "PrimeReact",
+    "id": "primereact",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Rich set of UI components for React",
+    "aliases": ["primereact", "prime-react"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Semantic UI",
+    "id": "semantic-ui",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "UI component framework based on natural language",
+    "aliases": ["semantic", "semantic-ui"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Bulma",
+    "id": "bulma",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Modern CSS framework based on Flexbox",
+    "aliases": ["bulma"],
+    "language_scope": ["css"],
+    "granularity": "library"
+  },
+  {
+    "name": "Foundation",
+    "id": "foundation",
+    "category": "Library",
+    "subcategory": "Web",
+    "description": "Responsive front-end framework",
+    "aliases": ["foundation", "zurb-foundation"],
+    "language_scope": ["css", "javascript"],
+    "granularity": "library"
+  }
+]

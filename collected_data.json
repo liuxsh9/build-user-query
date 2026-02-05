@@ -1,0 +1,97 @@
+[
+  {
+    "name": "numpy",
+    "id": "numpy",
+    "category": "Library",
+    "subcategory": "Data",
+    "weighted_score": 0.316,
+    "language_scope": [
+      "python"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "stackoverflow",
+        "weight": 0.4,
+        "score": 0.19,
+        "raw_metrics": {
+          "question_count": 95000,
+          "related_tags": [
+            "python",
+            "array"
+          ]
+        },
+        "collected_at": "2026-02-05T17:09:13.861726"
+      },
+      {
+        "source": "pypi",
+        "weight": 0.3,
+        "score": 0.8,
+        "raw_metrics": {
+          "monthly_downloads": 80000000,
+          "version": "1.25.0"
+        },
+        "collected_at": "2026-02-05T17:09:13.861726"
+      }
+    ]
+  },
+  {
+    "name": "pandas",
+    "id": "pandas",
+    "category": "Library",
+    "subcategory": "Data",
+    "weighted_score": 0.231,
+    "language_scope": [
+      "python"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "stackoverflow",
+        "weight": 0.4,
+        "score": 0.24,
+        "raw_metrics": {
+          "question_count": 120000,
+          "related_tags": [
+            "dataframe",
+            "python"
+          ]
+        },
+        "collected_at": "2026-02-05T17:09:13.861726"
+      },
+      {
+        "source": "pypi",
+        "weight": 0.3,
+        "score": 0.45,
+        "raw_metrics": {
+          "monthly_downloads": 45000000,
+          "version": "2.0.3"
+        },
+        "collected_at": "2026-02-05T17:09:13.861726"
+      }
+    ]
+  },
+  {
+    "name": "scikit-learn",
+    "id": "scikit-learn",
+    "category": "Library",
+    "subcategory": "Data",
+    "weighted_score": 0.105,
+    "language_scope": [
+      "python"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "pypi",
+        "weight": 0.3,
+        "score": 0.35,
+        "raw_metrics": {
+          "monthly_downloads": 35000000,
+          "version": "1.3.0"
+        },
+        "collected_at": "2026-02-05T17:09:13.861726"
+      }
+    ]
+  }
+]

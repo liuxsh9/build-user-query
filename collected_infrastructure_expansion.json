@@ -1,0 +1,422 @@
+[
+  {
+    "name": "Nomad",
+    "id": "nomad",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Simple and flexible workload orchestrator",
+    "aliases": ["nomad", "hashicorp-nomad"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Consul",
+    "id": "consul",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Service mesh and service discovery platform",
+    "aliases": ["consul", "hashicorp-consul"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vault",
+    "id": "vault",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Secrets management and data protection",
+    "aliases": ["vault", "hashicorp-vault"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Packer",
+    "id": "packer",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Tool for creating machine images",
+    "aliases": ["packer", "hashicorp-packer"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vagrant",
+    "id": "vagrant",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Tool for building and managing virtual machine environments",
+    "aliases": ["vagrant", "hashicorp-vagrant"],
+    "language_scope": ["ruby"],
+    "granularity": "library"
+  },
+  {
+    "name": "Istio",
+    "id": "istio",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Service mesh for microservices",
+    "aliases": ["istio"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Linkerd",
+    "id": "linkerd",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Ultralight service mesh for Kubernetes",
+    "aliases": ["linkerd"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Envoy",
+    "id": "envoy",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Cloud-native high-performance edge/middle/service proxy",
+    "aliases": ["envoy", "envoy-proxy"],
+    "language_scope": ["c++"],
+    "granularity": "library"
+  },
+  {
+    "name": "Traefik",
+    "id": "traefik",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Modern HTTP reverse proxy and load balancer",
+    "aliases": ["traefik"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "HAProxy",
+    "id": "haproxy",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Reliable, high performance TCP/HTTP load balancer",
+    "aliases": ["haproxy"],
+    "language_scope": ["c"],
+    "granularity": "library"
+  },
+  {
+    "name": "Caddy",
+    "id": "caddy",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Fast web server with automatic HTTPS",
+    "aliases": ["caddy", "caddyserver"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Certbot",
+    "id": "certbot",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Tool for obtaining Let's Encrypt certificates",
+    "aliases": ["certbot", "letsencrypt"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "OpenTofu",
+    "id": "opentofu",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Open source Terraform alternative",
+    "aliases": ["opentofu", "tofu"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "CloudFormation",
+    "id": "cloudformation",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "AWS infrastructure as code service",
+    "aliases": ["cloudformation", "cfn"],
+    "language_scope": ["yaml", "json"],
+    "granularity": "library"
+  },
+  {
+    "name": "CDK",
+    "id": "cdk",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "AWS Cloud Development Kit",
+    "aliases": ["cdk", "aws-cdk"],
+    "language_scope": ["typescript", "python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Crossplane",
+    "id": "crossplane",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Cloud native control plane framework",
+    "aliases": ["crossplane"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "ArgoCD",
+    "id": "argocd",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Declarative GitOps continuous delivery for Kubernetes",
+    "aliases": ["argocd", "argo-cd"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Flux",
+    "id": "flux",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "GitOps toolkit for Kubernetes",
+    "aliases": ["flux", "fluxcd"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Spinnaker",
+    "id": "spinnaker",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Multi-cloud continuous delivery platform",
+    "aliases": ["spinnaker"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tekton",
+    "id": "tekton",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Cloud native CI/CD framework",
+    "aliases": ["tekton", "tekton-pipelines"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Buildkite",
+    "id": "buildkite",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Fast and scalable CI/CD platform",
+    "aliases": ["buildkite"],
+    "language_scope": [],
+    "granularity": "library"
+  },
+  {
+    "name": "Drone",
+    "id": "drone",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Container-native continuous delivery platform",
+    "aliases": ["drone", "drone-ci"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Concourse",
+    "id": "concourse",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Continuous integration and deployment system",
+    "aliases": ["concourse", "concourse-ci"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Woodpecker",
+    "id": "woodpecker",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Community fork of Drone CI",
+    "aliases": ["woodpecker", "woodpecker-ci"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Kustomize",
+    "id": "kustomize",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Kubernetes native configuration management",
+    "aliases": ["kustomize"],
+    "language_scope": ["yaml"],
+    "granularity": "library"
+  },
+  {
+    "name": "Skaffold",
+    "id": "skaffold",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Workflow for building and deploying Kubernetes apps",
+    "aliases": ["skaffold"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tilt",
+    "id": "tilt",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Local Kubernetes development tool",
+    "aliases": ["tilt"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Minikube",
+    "id": "minikube",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Local Kubernetes cluster",
+    "aliases": ["minikube"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Kind",
+    "id": "kind",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Kubernetes in Docker",
+    "aliases": ["kind", "kubernetes-in-docker"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "k3s",
+    "id": "k3s",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Lightweight Kubernetes distribution",
+    "aliases": ["k3s"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "k3d",
+    "id": "k3d",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "k3s in Docker",
+    "aliases": ["k3d"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Rancher",
+    "id": "rancher",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Complete container management platform",
+    "aliases": ["rancher"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "OpenShift",
+    "id": "openshift",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Enterprise Kubernetes platform",
+    "aliases": ["openshift", "okd"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Podman",
+    "id": "podman",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Daemonless container engine",
+    "aliases": ["podman"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Containerd",
+    "id": "containerd",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Industry-standard container runtime",
+    "aliases": ["containerd"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "CRI-O",
+    "id": "cri-o",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Lightweight container runtime for Kubernetes",
+    "aliases": ["cri-o", "crio"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Buildah",
+    "id": "buildah",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Tool for building OCI container images",
+    "aliases": ["buildah"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Kaniko",
+    "id": "kaniko",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Build container images in Kubernetes",
+    "aliases": ["kaniko"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Loki",
+    "id": "loki",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Log aggregation system",
+    "aliases": ["loki", "grafana-loki"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tempo",
+    "id": "tempo",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Distributed tracing backend",
+    "aliases": ["tempo", "grafana-tempo"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Jaeger",
+    "id": "jaeger",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Distributed tracing platform",
+    "aliases": ["jaeger"],
+    "language_scope": ["go"],
+    "granularity": "library"
+  },
+  {
+    "name": "Zipkin",
+    "id": "zipkin",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "description": "Distributed tracing system",
+    "aliases": ["zipkin"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  }
+]

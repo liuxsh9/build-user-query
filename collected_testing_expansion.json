@@ -1,0 +1,362 @@
+[
+  {
+    "name": "Testing Library",
+    "id": "testing-library",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Simple and complete testing utilities for DOM testing",
+    "aliases": ["testing-library", "react-testing-library"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Enzyme",
+    "id": "enzyme",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "JavaScript testing utility for React",
+    "aliases": ["enzyme", "airbnb-enzyme"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Jasmine",
+    "id": "jasmine",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Behavior-driven development framework for testing JavaScript",
+    "aliases": ["jasmine"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Karma",
+    "id": "karma",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Test runner for JavaScript",
+    "aliases": ["karma", "karma-runner"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "AVA",
+    "id": "ava",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Node.js test runner with concurrency",
+    "aliases": ["ava", "avajs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tape",
+    "id": "tape",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "TAP-producing test harness for node and browsers",
+    "aliases": ["tape"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Sinon",
+    "id": "sinon",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Standalone test spies, stubs and mocks for JavaScript",
+    "aliases": ["sinon", "sinonjs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Nock",
+    "id": "nock",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "HTTP server mocking and expectations library",
+    "aliases": ["nock"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "MSW",
+    "id": "msw",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Mock Service Worker for API mocking",
+    "aliases": ["msw", "mock-service-worker"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Storybook",
+    "id": "storybook",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "UI component development and testing tool",
+    "aliases": ["storybook", "storybookjs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Chromatic",
+    "id": "chromatic",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Visual testing and review for Storybook",
+    "aliases": ["chromatic"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Percy",
+    "id": "percy",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Visual testing and review platform",
+    "aliases": ["percy"],
+    "language_scope": [],
+    "granularity": "library"
+  },
+  {
+    "name": "Applitools",
+    "id": "applitools",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "AI-powered visual testing platform",
+    "aliases": ["applitools"],
+    "language_scope": [],
+    "granularity": "library"
+  },
+  {
+    "name": "Puppeteer",
+    "id": "puppeteer",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Node library for controlling headless Chrome",
+    "aliases": ["puppeteer"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Playwright",
+    "id": "playwright",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Cross-browser automation library",
+    "aliases": ["playwright"],
+    "language_scope": ["javascript", "typescript", "python"],
+    "granularity": "library"
+  },
+  {
+    "name": "WebdriverIO",
+    "id": "webdriverio",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Next-gen browser and mobile automation framework",
+    "aliases": ["webdriverio", "wdio"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Nightwatch",
+    "id": "nightwatch",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "End-to-end testing framework",
+    "aliases": ["nightwatch", "nightwatchjs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "TestCafe",
+    "id": "testcafe",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Node.js tool for automated end-to-end web testing",
+    "aliases": ["testcafe"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Codecept",
+    "id": "codecept",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Modern end-to-end testing framework",
+    "aliases": ["codecept", "codeceptjs"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Robot Framework",
+    "id": "robot-framework",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Generic test automation framework",
+    "aliases": ["robot-framework", "robotframework"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Behave",
+    "id": "behave",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "BDD framework for Python",
+    "aliases": ["behave"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Cucumber",
+    "id": "cucumber",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "BDD testing tool",
+    "aliases": ["cucumber", "cucumber-js"],
+    "language_scope": ["javascript", "ruby", "java"],
+    "granularity": "library"
+  },
+  {
+    "name": "SpecFlow",
+    "id": "specflow",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "BDD framework for .NET",
+    "aliases": ["specflow"],
+    "language_scope": ["csharp"],
+    "granularity": "library"
+  },
+  {
+    "name": "Hypothesis",
+    "id": "hypothesis",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Property-based testing library for Python",
+    "aliases": ["hypothesis"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "QuickCheck",
+    "id": "quickcheck",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Property-based testing library",
+    "aliases": ["quickcheck"],
+    "language_scope": ["haskell"],
+    "granularity": "library"
+  },
+  {
+    "name": "fast-check",
+    "id": "fast-check",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Property-based testing for JavaScript",
+    "aliases": ["fast-check", "fastcheck"],
+    "language_scope": ["javascript", "typescript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Faker",
+    "id": "faker",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Library for generating fake data",
+    "aliases": ["faker", "faker-js"],
+    "language_scope": ["javascript", "python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Factory Boy",
+    "id": "factory-boy",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Test fixtures replacement for Python",
+    "aliases": ["factory-boy", "factoryboy"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Locust",
+    "id": "locust",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Scalable load testing tool",
+    "aliases": ["locust"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "k6",
+    "id": "k6",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Modern load testing tool",
+    "aliases": ["k6", "grafana-k6"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "JMeter",
+    "id": "jmeter",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Load testing and performance measurement tool",
+    "aliases": ["jmeter", "apache-jmeter"],
+    "language_scope": ["java"],
+    "granularity": "library"
+  },
+  {
+    "name": "Gatling",
+    "id": "gatling",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Load testing tool for web applications",
+    "aliases": ["gatling"],
+    "language_scope": ["scala"],
+    "granularity": "library"
+  },
+  {
+    "name": "Artillery",
+    "id": "artillery",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Modern load testing toolkit",
+    "aliases": ["artillery"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Postman",
+    "id": "postman",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "API development and testing platform",
+    "aliases": ["postman"],
+    "language_scope": [],
+    "granularity": "library"
+  },
+  {
+    "name": "Insomnia",
+    "id": "insomnia",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "API client and design platform",
+    "aliases": ["insomnia"],
+    "language_scope": [],
+    "granularity": "library"
+  },
+  {
+    "name": "Pact",
+    "id": "pact",
+    "category": "Library",
+    "subcategory": "Testing",
+    "description": "Contract testing framework",
+    "aliases": ["pact"],
+    "language_scope": ["javascript", "python", "java"],
+    "granularity": "library"
+  }
+]

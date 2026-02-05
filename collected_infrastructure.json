@@ -1,0 +1,44 @@
+[
+  {
+    "name": "docker",
+    "id": "docker",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "weighted_score": 0.08000000000000002,
+    "language_scope": [],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "github",
+        "weight": 0.2,
+        "score": 0.4,
+        "raw_metrics": {
+          "repo_count": 120000,
+          "total_stars": 95000
+        },
+        "collected_at": "2026-02-05T17:09:42.144688"
+      }
+    ]
+  },
+  {
+    "name": "kubernetes",
+    "id": "kubernetes",
+    "category": "Library",
+    "subcategory": "Infrastructure",
+    "weighted_score": 0.05666666666666667,
+    "language_scope": [],
+    "aliases": [],
+    "sources": [
+      {
+        "source": "github",
+        "weight": 0.2,
+        "score": 0.2833333333333333,
+        "raw_metrics": {
+          "repo_count": 85000,
+          "total_stars": 105000
+        },
+        "collected_at": "2026-02-05T17:09:42.144688"
+      }
+    ]
+  }
+]

@@ -1,0 +1,532 @@
+[
+  {
+    "name": "Keras",
+    "id": "keras",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "High-level neural networks API for TensorFlow",
+    "aliases": ["keras", "tf-keras"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "JAX",
+    "id": "jax",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Composable transformations of Python+NumPy programs",
+    "aliases": ["jax", "google-jax"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "XGBoost",
+    "id": "xgboost",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Optimized distributed gradient boosting library",
+    "aliases": ["xgboost", "xgb"],
+    "language_scope": ["python", "r"],
+    "granularity": "library"
+  },
+  {
+    "name": "LightGBM",
+    "id": "lightgbm",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Fast, distributed, high performance gradient boosting framework",
+    "aliases": ["lightgbm", "lgbm"],
+    "language_scope": ["python", "r"],
+    "granularity": "library"
+  },
+  {
+    "name": "CatBoost",
+    "id": "catboost",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Gradient boosting library with categorical features support",
+    "aliases": ["catboost"],
+    "language_scope": ["python", "r"],
+    "granularity": "library"
+  },
+  {
+    "name": "Statsmodels",
+    "id": "statsmodels",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Statistical modeling and econometrics in Python",
+    "aliases": ["statsmodels"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "SciPy",
+    "id": "scipy",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Scientific computing library for Python",
+    "aliases": ["scipy"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "SymPy",
+    "id": "sympy",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Symbolic mathematics library for Python",
+    "aliases": ["sympy"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Plotly",
+    "id": "plotly",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Interactive graphing library",
+    "aliases": ["plotly", "plotly.py"],
+    "language_scope": ["python", "javascript", "r"],
+    "granularity": "library"
+  },
+  {
+    "name": "Bokeh",
+    "id": "bokeh",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Interactive visualization library for modern web browsers",
+    "aliases": ["bokeh"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Altair",
+    "id": "altair",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Declarative statistical visualization library",
+    "aliases": ["altair"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "D3.js",
+    "id": "d3js",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "JavaScript library for manipulating documents based on data",
+    "aliases": ["d3", "d3js", "d3.js"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Chart.js",
+    "id": "chartjs",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Simple yet flexible JavaScript charting library",
+    "aliases": ["chart.js", "chartjs"],
+    "language_scope": ["javascript"],
+    "granularity": "library"
+  },
+  {
+    "name": "Apache Arrow",
+    "id": "apache-arrow",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Cross-language development platform for in-memory data",
+    "aliases": ["arrow", "apache-arrow", "pyarrow"],
+    "language_scope": ["python", "java", "c++"],
+    "granularity": "library"
+  },
+  {
+    "name": "Vaex",
+    "id": "vaex",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Out-of-core DataFrames for Python",
+    "aliases": ["vaex"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Modin",
+    "id": "modin",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Speed up pandas workflows by changing one line of code",
+    "aliases": ["modin"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Dask",
+    "id": "dask",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Parallel computing library for analytics",
+    "aliases": ["dask"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "PySpark",
+    "id": "pyspark",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Python API for Apache Spark",
+    "aliases": ["pyspark", "spark"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Koalas",
+    "id": "koalas",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Pandas API on Apache Spark",
+    "aliases": ["koalas", "databricks-koalas"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Prefect",
+    "id": "prefect",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Modern workflow orchestration for data pipelines",
+    "aliases": ["prefect"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Airflow",
+    "id": "airflow",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Platform to programmatically author, schedule and monitor workflows",
+    "aliases": ["airflow", "apache-airflow"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Luigi",
+    "id": "luigi",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Python module for building complex pipelines of batch jobs",
+    "aliases": ["luigi", "spotify-luigi"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Dagster",
+    "id": "dagster",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Data orchestrator for machine learning, analytics, and ETL",
+    "aliases": ["dagster"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Great Expectations",
+    "id": "great-expectations",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Data validation and documentation framework",
+    "aliases": ["great-expectations", "ge"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Pandera",
+    "id": "pandera",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Statistical data validation library for pandas",
+    "aliases": ["pandera"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Pydantic",
+    "id": "pydantic",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Data validation using Python type annotations",
+    "aliases": ["pydantic"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Marshmallow",
+    "id": "marshmallow",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Object serialization/deserialization library",
+    "aliases": ["marshmallow"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Cerberus",
+    "id": "cerberus",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Lightweight and extensible data validation library",
+    "aliases": ["cerberus"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Gensim",
+    "id": "gensim",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Topic modeling and document similarity library",
+    "aliases": ["gensim"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "TextBlob",
+    "id": "textblob",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Simple NLP library for common text processing tasks",
+    "aliases": ["textblob"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Transformers",
+    "id": "transformers",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "State-of-the-art NLP models from Hugging Face",
+    "aliases": ["transformers", "huggingface-transformers", "hf-transformers"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Datasets",
+    "id": "datasets",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Fast, efficient dataset library from Hugging Face",
+    "aliases": ["datasets", "huggingface-datasets"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Tokenizers",
+    "id": "tokenizers",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Fast tokenizers for NLP from Hugging Face",
+    "aliases": ["tokenizers", "huggingface-tokenizers"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Sentence Transformers",
+    "id": "sentence-transformers",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Framework for sentence, text and image embeddings",
+    "aliases": ["sentence-transformers", "sbert"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "FastText",
+    "id": "fasttext",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Library for efficient text classification and representation learning",
+    "aliases": ["fasttext"],
+    "language_scope": ["python", "c++"],
+    "granularity": "library"
+  },
+  {
+    "name": "Word2Vec",
+    "id": "word2vec",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Word embedding technique for NLP",
+    "aliases": ["word2vec", "w2v"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "BERT",
+    "id": "bert",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Bidirectional Encoder Representations from Transformers",
+    "aliases": ["bert"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "GPT",
+    "id": "gpt",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Generative Pre-trained Transformer models",
+    "aliases": ["gpt", "gpt-2", "gpt-3"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "LLaMA",
+    "id": "llama",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Large Language Model Meta AI",
+    "aliases": ["llama", "llama2"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Stable Diffusion",
+    "id": "stable-diffusion",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Text-to-image diffusion model",
+    "aliases": ["stable-diffusion", "sd"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "YOLO",
+    "id": "yolo",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Real-time object detection system",
+    "aliases": ["yolo", "yolov5", "yolov8"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Detectron2",
+    "id": "detectron2",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Facebook AI Research's object detection platform",
+    "aliases": ["detectron2", "detectron"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "MMDetection",
+    "id": "mmdetection",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "OpenMMLab detection toolbox and benchmark",
+    "aliases": ["mmdetection", "mmdet"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Albumentations",
+    "id": "albumentations",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Fast image augmentation library",
+    "aliases": ["albumentations"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "imgaug",
+    "id": "imgaug",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Image augmentation library for machine learning",
+    "aliases": ["imgaug"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Pillow",
+    "id": "pillow",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Python Imaging Library fork",
+    "aliases": ["pillow", "pil"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "scikit-image",
+    "id": "scikit-image",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Image processing in Python",
+    "aliases": ["scikit-image", "skimage"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Optuna",
+    "id": "optuna",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Hyperparameter optimization framework",
+    "aliases": ["optuna"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Hyperopt",
+    "id": "hyperopt",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Distributed hyperparameter optimization library",
+    "aliases": ["hyperopt"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Ray Tune",
+    "id": "ray-tune",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Scalable hyperparameter tuning library",
+    "aliases": ["ray-tune", "tune"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "Weights & Biases",
+    "id": "wandb",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "ML experiment tracking and visualization",
+    "aliases": ["wandb", "weights-and-biases"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "MLflow",
+    "id": "mlflow",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "Open source platform for ML lifecycle",
+    "aliases": ["mlflow"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  },
+  {
+    "name": "TensorBoard",
+    "id": "tensorboard",
+    "category": "Library",
+    "subcategory": "Data",
+    "description": "TensorFlow's visualization toolkit",
+    "aliases": ["tensorboard"],
+    "language_scope": ["python"],
+    "granularity": "library"
+  }
+]

@@ -1,0 +1,177 @@
+[
+  {
+    "name": "MLOps",
+    "id": "mlops",
+    "category": "Domain",
+    "description": "Machine learning operations focusing on deployment, monitoring, and versioning of ML models in production",
+    "aliases": ["mlops", "ml-ops", "machine-learning-operations"]
+  },
+  {
+    "name": "DataOps",
+    "id": "dataops",
+    "category": "Domain",
+    "description": "Data operations focusing on automation, quality, and collaboration in data pipeline development",
+    "aliases": ["dataops", "data-ops"]
+  },
+  {
+    "name": "Edge Computing",
+    "id": "edge-computing",
+    "category": "Domain",
+    "description": "Distributed computing paradigm bringing computation and data storage closer to data sources at network edge",
+    "aliases": ["edge-computing", "edge", "fog-computing"]
+  },
+  {
+    "name": "Serverless Computing",
+    "id": "serverless",
+    "category": "Domain",
+    "description": "Cloud computing model where applications run in stateless compute containers managed by cloud providers",
+    "aliases": ["serverless", "faas", "function-as-a-service"]
+  },
+  {
+    "name": "Platform Engineering",
+    "id": "platform-engineering",
+    "category": "Domain",
+    "description": "Building and maintaining internal developer platforms to improve developer experience and productivity",
+    "aliases": ["platform-engineering", "internal-developer-platform", "idp"]
+  },
+  {
+    "name": "Site Reliability Engineering",
+    "id": "site-reliability-engineering",
+    "category": "Domain",
+    "description": "Engineering discipline applying software engineering to infrastructure and operations with focus on reliability",
+    "aliases": ["sre", "site-reliability-engineering", "reliability-engineering"]
+  },
+  {
+    "name": "FinOps",
+    "id": "finops",
+    "category": "Domain",
+    "description": "Cloud financial operations focusing on cost optimization, budgeting, and financial accountability",
+    "aliases": ["finops", "cloud-financial-management"]
+  },
+  {
+    "name": "Low-Code Development",
+    "id": "low-code",
+    "category": "Domain",
+    "description": "Application development using visual interfaces and configuration instead of traditional programming",
+    "aliases": ["low-code", "no-code", "visual-development"]
+  },
+  {
+    "name": "Bioinformatics",
+    "id": "bioinformatics",
+    "category": "Domain",
+    "description": "Application of computational methods to biological data analysis including genomics and proteomics",
+    "aliases": ["bioinformatics", "computational-biology"]
+  },
+  {
+    "name": "Geospatial",
+    "id": "geospatial",
+    "category": "Domain",
+    "description": "Geographic information systems and spatial data analysis for mapping and location-based applications",
+    "aliases": ["geospatial", "gis", "geographic-information-systems"]
+  },
+  {
+    "name": "Audio Processing",
+    "id": "audio-processing",
+    "category": "Domain",
+    "description": "Digital signal processing for audio including synthesis, effects, compression, and real-time processing",
+    "aliases": ["audio-processing", "audio-engineering", "sound-processing"]
+  },
+  {
+    "name": "Video Processing",
+    "id": "video-processing",
+    "category": "Domain",
+    "description": "Video encoding, transcoding, streaming, and manipulation for media applications",
+    "aliases": ["video-processing", "video-encoding", "video-streaming"]
+  },
+  {
+    "name": "Quantum Computing",
+    "id": "quantum-computing",
+    "category": "Domain",
+    "description": "Computing using quantum-mechanical phenomena like superposition and entanglement",
+    "aliases": ["quantum-computing", "quantum", "qc"]
+  },
+  {
+    "name": "Augmented Reality",
+    "id": "augmented-reality",
+    "category": "Domain",
+    "description": "Interactive experiences overlaying digital content on real-world environments",
+    "aliases": ["ar", "augmented-reality", "mixed-reality"]
+  },
+  {
+    "name": "Virtual Reality",
+    "id": "virtual-reality",
+    "category": "Domain",
+    "description": "Immersive computer-generated 3D environments for simulation, gaming, and training",
+    "aliases": ["vr", "virtual-reality"]
+  },
+  {
+    "name": "Computer Graphics",
+    "id": "computer-graphics",
+    "category": "Domain",
+    "description": "Generation and manipulation of visual content including rendering, shaders, and 3D graphics",
+    "aliases": ["computer-graphics", "graphics", "3d-graphics"]
+  },
+  {
+    "name": "Simulation",
+    "id": "simulation",
+    "category": "Domain",
+    "description": "Creating virtual environments and physics-based models for testing, training, and research",
+    "aliases": ["simulation", "sim"]
+  },
+  {
+    "name": "Data Engineering",
+    "id": "data-engineering",
+    "category": "Domain",
+    "description": "Building and maintaining data pipelines, warehouses, and infrastructure for data processing",
+    "aliases": ["data-engineering", "data-pipelines"]
+  },
+  {
+    "name": "Accessibility",
+    "id": "accessibility",
+    "category": "Domain",
+    "description": "Designing and developing applications usable by people with disabilities following WCAG standards",
+    "aliases": ["accessibility", "a11y", "inclusive-design"]
+  },
+  {
+    "name": "Internationalization",
+    "id": "internationalization",
+    "category": "Domain",
+    "description": "Designing applications to support multiple languages, locales, and cultural conventions",
+    "aliases": ["internationalization", "i18n", "localization", "l10n"]
+  },
+  {
+    "name": "Real-time Systems",
+    "id": "real-time-systems",
+    "category": "Domain",
+    "description": "Systems with strict timing constraints requiring deterministic response times",
+    "aliases": ["real-time-systems", "rtos", "real-time"]
+  },
+  {
+    "name": "Observability",
+    "id": "observability",
+    "category": "Domain",
+    "description": "Understanding system internal states through metrics, logs, and distributed tracing",
+    "aliases": ["observability", "o11y"]
+  },
+  {
+    "name": "Performance Engineering",
+    "id": "performance-engineering",
+    "category": "Domain",
+    "description": "Optimizing application performance through profiling, load testing, and bottleneck analysis",
+    "aliases": ["performance-engineering", "performance-optimization", "perf"]
+  },
+  {
+    "name": "Compliance",
+    "id": "compliance",
+    "category": "Domain",
+    "description": "Ensuring applications meet regulatory requirements like GDPR, HIPAA, and SOC 2",
+    "aliases": ["compliance", "regulatory", "governance"]
+  },
+  {
+    "name": "Search Engineering",
+    "id": "search-engineering",
+    "category": "Domain",
+    "description": "Building and optimizing search systems including indexing, relevance tuning, and query processing",
+    "aliases": ["search-engineering", "search", "information-retrieval"]
+  }
+]
