@@ -1,0 +1,22 @@
+{
+  "react": [
+    {
+      "alias": "rx",
+      "confidence": 0.85,
+      "source": "known-abbreviation",
+      "evidence": "Well-known abbreviation for React"
+    },
+    {
+      "alias": "react.js",
+      "confidence": 0.85,
+      "source": "documentation",
+      "evidence": "Common alias found in official documentation"
+    },
+    {
+      "alias": "react-native",
+      "confidence": 0.75,
+      "source": "stackoverflow",
+      "evidence": "Common term used in Stack Overflow discussions"
+    }
+  ]
+}
