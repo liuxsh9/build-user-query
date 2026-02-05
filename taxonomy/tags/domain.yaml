@@ -1,0 +1,207 @@
+- id: api-development
+  name: API Development
+  category: Domain
+  aliases:
+  - api
+  source: curated-list
+- id: automation
+  name: Automation
+  category: Domain
+  aliases:
+  - automation
+  - scripting
+  source: curated-list
+- id: blockchain
+  name: Blockchain
+  category: Domain
+  aliases:
+  - blockchain
+  - web3
+  source: curated-list
+- id: cli-tool
+  name: CLI Tool
+  category: Domain
+  aliases:
+  - cli
+  - command-line
+  source: curated-list
+- id: cloud-computing
+  name: Cloud Computing
+  category: Domain
+  aliases:
+  - cloud
+  source: curated-list
+- id: compiler-development
+  name: Compiler Development
+  category: Domain
+  aliases:
+  - compilers
+  source: curated-list
+- id: computer-vision
+  name: Computer Vision
+  category: Domain
+  aliases:
+  - cv
+  - computer-vision
+  source: curated-list
+- id: cybersecurity
+  name: Cybersecurity
+  category: Domain
+  aliases:
+  - security
+  - infosec
+  source: curated-list
+- id: data-science
+  name: Data Science
+  category: Domain
+  aliases:
+  - data-science
+  - ds
+  source: curated-list
+- id: database-administration
+  name: Database Administration
+  category: Domain
+  aliases:
+  - dba
+  source: curated-list
+- id: deep-learning
+  name: Deep Learning
+  category: Domain
+  aliases:
+  - dl
+  - deep-learning
+  source: curated-list
+- id: desktop-application
+  name: Desktop Application
+  category: Domain
+  aliases:
+  - desktop
+  - desktop-app
+  source: curated-list
+- id: devops
+  name: DevOps
+  category: Domain
+  aliases:
+  - devops
+  source: curated-list
+- id: e-commerce
+  name: E-commerce
+  category: Domain
+  aliases:
+  - ecommerce
+  source: curated-list
+- id: embedded-systems
+  name: Embedded Systems
+  category: Domain
+  aliases:
+  - embedded
+  source: curated-list
+- id: etl
+  name: ETL
+  category: Domain
+  aliases:
+  - etl
+  - data-pipeline
+  source: curated-list
+- id: financial-technology
+  name: Financial Technology
+  category: Domain
+  aliases:
+  - fintech
+  source: curated-list
+- id: full-stack
+  name: Full Stack
+  category: Domain
+  aliases:
+  - fullstack
+  source: curated-list
+- id: game-development
+  name: Game Development
+  category: Domain
+  aliases:
+  - gamedev
+  - game-dev
+  source: curated-list
+- id: healthcare-technology
+  name: Healthcare Technology
+  category: Domain
+  aliases:
+  - healthtech
+  source: curated-list
+- id: iot
+  name: IoT
+  category: Domain
+  aliases:
+  - iot
+  - internet-of-things
+  source: curated-list
+- id: machine-learning
+  name: Machine Learning
+  category: Domain
+  aliases:
+  - ml
+  - machine-learning
+  source: curated-list
+- id: mobile-development
+  name: Mobile Development
+  category: Domain
+  aliases:
+  - mobile
+  - mobile-dev
+  source: curated-list
+- id: natural-language-processing
+  name: Natural Language Processing
+  category: Domain
+  aliases:
+  - nlp
+  source: curated-list
+- id: network-programming
+  name: Network Programming
+  category: Domain
+  aliases:
+  - networking
+  source: curated-list
+- id: operating-systems
+  name: Operating Systems
+  category: Domain
+  aliases:
+  - os
+  source: curated-list
+- id: robotics
+  name: Robotics
+  category: Domain
+  aliases:
+  - robotics
+  source: curated-list
+- id: scientific-computing
+  name: Scientific Computing
+  category: Domain
+  aliases:
+  - scientific
+  source: curated-list
+- id: smart-contracts
+  name: Smart Contracts
+  category: Domain
+  aliases:
+  - smart-contracts
+  source: curated-list
+- id: systems-programming
+  name: Systems Programming
+  category: Domain
+  aliases:
+  - systems
+  source: curated-list
+- id: web-backend
+  name: Web Backend
+  category: Domain
+  aliases:
+  - backend
+  - server-side
+  source: curated-list
+- id: web-frontend
+  name: Web Frontend
+  category: Domain
+  aliases:
+  - frontend
+  - client-side
+  source: curated-list

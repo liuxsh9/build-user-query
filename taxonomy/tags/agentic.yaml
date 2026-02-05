@@ -1,0 +1,134 @@
+- id: api-calling
+  name: API Calling
+  category: Agentic
+  aliases:
+  - api-call
+  - http-request
+  source: curated-list
+- id: bash-execution
+  name: Bash Execution
+  category: Agentic
+  aliases:
+  - bash
+  - shell
+  - command-execution
+  source: curated-list
+- id: build-execution
+  name: Build Execution
+  category: Agentic
+  aliases:
+  - build
+  - compile
+  source: curated-list
+- id: code-execution
+  name: Code Execution
+  category: Agentic
+  aliases:
+  - execute-code
+  - run-code
+  source: curated-list
+- id: context-management
+  name: Context Management
+  category: Agentic
+  aliases:
+  - context
+  - memory
+  source: curated-list
+- id: database-query
+  name: Database Query
+  category: Agentic
+  aliases:
+  - db-query
+  - sql-execution
+  source: curated-list
+- id: dependency-installation
+  name: Dependency Installation
+  category: Agentic
+  aliases:
+  - install-deps
+  - package-install
+  source: curated-list
+- id: error-recovery
+  name: Error Recovery
+  category: Agentic
+  aliases:
+  - error-handling
+  - retry
+  source: curated-list
+- id: file-edit
+  name: File Edit
+  category: Agentic
+  aliases:
+  - edit-file
+  - file-editing
+  source: curated-list
+- id: file-navigation
+  name: File Navigation
+  category: Agentic
+  aliases:
+  - navigate
+  - file-tree
+  source: curated-list
+- id: file-read
+  name: File Read
+  category: Agentic
+  aliases:
+  - read-file
+  - file-reading
+  source: curated-list
+- id: file-write
+  name: File Write
+  category: Agentic
+  aliases:
+  - write-file
+  - file-writing
+  source: curated-list
+- id: git-operations
+  name: Git Operations
+  category: Agentic
+  aliases:
+  - git
+  - version-control
+  source: curated-list
+- id: iterative-refinement
+  name: Iterative Refinement
+  category: Agentic
+  aliases:
+  - iteration
+  - refinement
+  source: curated-list
+- id: multi-file-coordination
+  name: Multi-file Coordination
+  category: Agentic
+  aliases:
+  - multi-file
+  - cross-file
+  source: curated-list
+- id: multi-step-reasoning
+  name: Multi-step Reasoning
+  category: Agentic
+  aliases:
+  - reasoning
+  - planning
+  source: curated-list
+- id: test-running
+  name: Test Running
+  category: Agentic
+  aliases:
+  - run-tests
+  - test-execution
+  source: curated-list
+- id: tool-selection
+  name: Tool Selection
+  category: Agentic
+  aliases:
+  - tool-use
+  - tool-calling
+  source: curated-list
+- id: web-search
+  name: Web Search
+  category: Agentic
+  aliases:
+  - search
+  - web-search
+  source: curated-list

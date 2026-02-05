@@ -1,0 +1,332 @@
+- id: ada
+  name: Ada
+  category: Language
+  aliases:
+  - ada
+  source: TIOBE
+- id: apl
+  name: APL
+  category: Language
+  aliases:
+  - apl
+  source: TIOBE
+- id: assembly
+  name: Assembly
+  category: Language
+  aliases:
+  - asm
+  - assembly
+  source: TIOBE
+- id: c
+  name: C
+  category: Language
+  aliases:
+  - c
+  source: TIOBE
+- id: clojure
+  name: Clojure
+  category: Language
+  aliases:
+  - clojure
+  - clj
+  source: GitHub
+- id: cobol
+  name: COBOL
+  category: Language
+  aliases:
+  - cobol
+  source: TIOBE
+- id: cpp
+  name: C++
+  category: Language
+  aliases:
+  - cpp
+  - c++
+  - cxx
+  source: TIOBE
+- id: crystal
+  name: Crystal
+  category: Language
+  aliases:
+  - crystal
+  - cr
+  source: GitHub
+- id: csharp
+  name: C#
+  category: Language
+  aliases:
+  - csharp
+  - c-sharp
+  source: TIOBE
+- id: css
+  name: CSS
+  category: Language
+  aliases:
+  - css
+  source: GitHub
+- id: dart
+  name: Dart
+  category: Language
+  aliases:
+  - dart
+  source: GitHub
+- id: elixir
+  name: Elixir
+  category: Language
+  aliases:
+  - elixir
+  - ex
+  source: GitHub
+- id: erlang
+  name: Erlang
+  category: Language
+  aliases:
+  - erlang
+  - erl
+  source: TIOBE
+- id: fortran
+  name: Fortran
+  category: Language
+  aliases:
+  - fortran
+  source: TIOBE
+- id: fsharp
+  name: F#
+  category: Language
+  aliases:
+  - fsharp
+  - f-sharp
+  source: GitHub
+- id: go
+  name: Go
+  category: Language
+  aliases:
+  - golang
+  - go
+  source: TIOBE
+- id: groovy
+  name: Groovy
+  category: Language
+  aliases:
+  - groovy
+  source: TIOBE
+- id: haskell
+  name: Haskell
+  category: Language
+  aliases:
+  - haskell
+  - hs
+  source: GitHub
+- id: html
+  name: HTML
+  category: Language
+  aliases:
+  - html
+  source: GitHub
+- id: java
+  name: Java
+  category: Language
+  aliases:
+  - java
+  source: TIOBE
+- id: javascript
+  name: JavaScript
+  category: Language
+  aliases:
+  - js
+  - javascript
+  source: TIOBE
+- id: julia
+  name: Julia
+  category: Language
+  aliases:
+  - julia
+  - jl
+  source: GitHub
+- id: kotlin
+  name: Kotlin
+  category: Language
+  aliases:
+  - kotlin
+  - kt
+  source: TIOBE
+- id: lisp
+  name: Lisp
+  category: Language
+  aliases:
+  - lisp
+  - common-lisp
+  source: TIOBE
+- id: lua
+  name: Lua
+  category: Language
+  aliases:
+  - lua
+  source: TIOBE
+- id: matlab
+  name: MATLAB
+  category: Language
+  aliases:
+  - matlab
+  source: TIOBE
+- id: nim
+  name: Nim
+  category: Language
+  aliases:
+  - nim
+  source: GitHub
+- id: objective-c
+  name: Objective-C
+  category: Language
+  aliases:
+  - objc
+  - objective-c
+  source: TIOBE
+- id: ocaml
+  name: OCaml
+  category: Language
+  aliases:
+  - ocaml
+  - ml
+  source: GitHub
+- id: perl
+  name: Perl
+  category: Language
+  aliases:
+  - perl
+  - pl
+  source: TIOBE
+- id: php
+  name: PHP
+  category: Language
+  aliases:
+  - php
+  source: TIOBE
+- id: powershell
+  name: PowerShell
+  category: Language
+  aliases:
+  - powershell
+  - ps1
+  source: GitHub
+- id: prolog
+  name: Prolog
+  category: Language
+  aliases:
+  - prolog
+  - pl
+  source: TIOBE
+- id: python
+  name: Python
+  category: Language
+  aliases:
+  - py
+  - python3
+  source: TIOBE
+- id: r
+  name: R
+  category: Language
+  aliases:
+  - r
+  - r-lang
+  source: TIOBE
+- id: racket
+  name: Racket
+  category: Language
+  aliases:
+  - racket
+  - rkt
+  source: GitHub
+- id: ruby
+  name: Ruby
+  category: Language
+  aliases:
+  - ruby
+  - rb
+  source: TIOBE
+- id: rust
+  name: Rust
+  category: Language
+  aliases:
+  - rust
+  - rs
+  source: GitHub
+- id: scala
+  name: Scala
+  category: Language
+  aliases:
+  - scala
+  source: TIOBE
+- id: scheme
+  name: Scheme
+  category: Language
+  aliases:
+  - scheme
+  - scm
+  source: GitHub
+- id: shell
+  name: Shell
+  category: Language
+  aliases:
+  - bash
+  - sh
+  - shell
+  source: GitHub
+- id: smalltalk
+  name: Smalltalk
+  category: Language
+  aliases:
+  - smalltalk
+  source: TIOBE
+- id: solidity
+  name: Solidity
+  category: Language
+  aliases:
+  - solidity
+  - sol
+  source: GitHub
+- id: sql
+  name: SQL
+  category: Language
+  aliases:
+  - sql
+  source: TIOBE
+- id: swift
+  name: Swift
+  category: Language
+  aliases:
+  - swift
+  source: TIOBE
+- id: typescript
+  name: TypeScript
+  category: Language
+  aliases:
+  - ts
+  - typescript
+  source: GitHub
+- id: verilog
+  name: Verilog
+  category: Language
+  aliases:
+  - verilog
+  - v
+  source: GitHub
+- id: vhdl
+  name: VHDL
+  category: Language
+  aliases:
+  - vhdl
+  source: GitHub
+- id: vyper
+  name: Vyper
+  category: Language
+  aliases:
+  - vyper
+  - vy
+  source: GitHub
+- id: zig
+  name: Zig
+  category: Language
+  aliases:
+  - zig
+  source: GitHub

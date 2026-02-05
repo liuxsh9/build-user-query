@@ -1,0 +1,164 @@
+- id: accessible
+  name: Accessible
+  category: Constraint
+  aliases:
+  - accessibility
+  - a11y
+  source: curated-list
+- id: backward-compatible
+  name: Backward Compatible
+  category: Constraint
+  aliases:
+  - backward-compatibility
+  source: curated-list
+- id: deterministic
+  name: Deterministic
+  category: Constraint
+  aliases:
+  - deterministic
+  source: curated-list
+- id: fault-tolerant
+  name: Fault Tolerant
+  category: Constraint
+  aliases:
+  - fault-tolerance
+  source: curated-list
+- id: gas-optimized
+  name: Gas Optimized
+  category: Constraint
+  aliases:
+  - gas-optimization
+  language_scope:
+  - solidity
+  source: curated-list
+- id: gdpr-compliant
+  name: GDPR Compliant
+  category: Constraint
+  aliases:
+  - gdpr
+  source: curated-list
+- id: high-performance
+  name: High Performance
+  category: Constraint
+  aliases:
+  - performance
+  - fast
+  source: curated-list
+- id: hipaa-compliant
+  name: HIPAA Compliant
+  category: Constraint
+  aliases:
+  - hipaa
+  source: curated-list
+- id: idempotent
+  name: Idempotent
+  category: Constraint
+  aliases:
+  - idempotent
+  source: curated-list
+- id: internationalized
+  name: Internationalized
+  category: Constraint
+  aliases:
+  - i18n
+  - internationalization
+  source: curated-list
+- id: low-latency
+  name: Low Latency
+  category: Constraint
+  aliases:
+  - low-latency
+  - real-time
+  source: curated-list
+- id: maintainable
+  name: Maintainable
+  category: Constraint
+  aliases:
+  - maintainability
+  source: curated-list
+- id: memory-efficient
+  name: Memory Efficient
+  category: Constraint
+  aliases:
+  - memory-efficient
+  - low-memory
+  source: curated-list
+- id: misra-c-compliant
+  name: MISRA C Compliant
+  category: Constraint
+  aliases:
+  - misra-c
+  source: curated-list
+- id: no-dynamic-allocation
+  name: No Dynamic Allocation
+  category: Constraint
+  aliases:
+  - no-malloc
+  - static-memory
+  source: curated-list
+- id: no-external-dependencies
+  name: No External Dependencies
+  category: Constraint
+  aliases:
+  - no-deps
+  - zero-dependencies
+  source: curated-list
+- id: no-recursion
+  name: No Recursion
+  category: Constraint
+  aliases:
+  - no-recursion
+  source: curated-list
+- id: pci-dss-compliant
+  name: PCI-DSS Compliant
+  category: Constraint
+  aliases:
+  - pci-dss
+  source: curated-list
+- id: portable
+  name: Portable
+  category: Constraint
+  aliases:
+  - portability
+  - cross-platform
+  source: curated-list
+- id: readable
+  name: Readable
+  category: Constraint
+  aliases:
+  - readability
+  - clean-code
+  source: curated-list
+- id: scalable
+  name: Scalable
+  category: Constraint
+  aliases:
+  - scalability
+  source: curated-list
+- id: secure
+  name: Secure
+  category: Constraint
+  aliases:
+  - security
+  - secure
+  source: curated-list
+- id: testable
+  name: Testable
+  category: Constraint
+  aliases:
+  - testability
+  source: curated-list
+- id: thread-safe
+  name: Thread Safe
+  category: Constraint
+  aliases:
+  - thread-safe
+  - concurrency-safe
+  source: curated-list
+- id: type-safe
+  name: Type Safe
+  category: Constraint
+  aliases:
+  - type-safe
+  - strongly-typed
+  source: curated-list

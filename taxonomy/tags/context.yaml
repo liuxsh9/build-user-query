@@ -1,0 +1,64 @@
+- id: greenfield
+  name: Greenfield
+  category: Context
+  aliases:
+  - greenfield
+  - new-project
+  source: curated-list
+- id: legacy-code
+  name: Legacy Code
+  category: Context
+  aliases:
+  - legacy
+  - brownfield
+  source: curated-list
+- id: module
+  name: Module
+  category: Context
+  aliases:
+  - module
+  - package
+  source: curated-list
+- id: monorepo
+  name: Monorepo
+  category: Context
+  aliases:
+  - monorepo
+  - multi-project
+  source: curated-list
+- id: multi-file
+  name: Multi-file
+  category: Context
+  aliases:
+  - multiple-files
+  - cross-file
+  source: curated-list
+- id: repository
+  name: Repository
+  category: Context
+  aliases:
+  - repo
+  - repository-level
+  - codebase
+  source: curated-list
+- id: single-file
+  name: Single File
+  category: Context
+  aliases:
+  - file
+  - single-file
+  source: curated-list
+- id: single-function
+  name: Single Function
+  category: Context
+  aliases:
+  - function
+  - single-function
+  source: curated-list
+- id: with-dependencies
+  name: With Dependencies
+  category: Context
+  aliases:
+  - with-deps
+  - external-deps
+  source: curated-list

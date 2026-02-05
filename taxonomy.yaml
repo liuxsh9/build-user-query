@@ -1,0 +1,71 @@
+# Capability Taxonomy Schema
+# Version: 1.0
+#
+# This file defines the structure of the capability taxonomy used for
+# labeling SFT training data. The taxonomy consists of 8 orthogonal
+# categories, each containing tags that describe specific capabilities.
+#
+# Tag Schema:
+#   id: string           # Unique identifier (kebab-case)
+#   name: string         # Display name
+#   category: string     # Category this tag belongs to
+#   subcategory: string? # Subcategory (for hierarchical categories)
+#   description: string? # Brief description
+#   aliases: string[]?   # Alternative names for matching
+#   language_scope: string[]? # Applicable languages (for Concept tags)
+#   difficulty: enum?    # basic | intermediate | advanced
+#   examples: string[]?  # Example query snippets
+#   related_tags: string[]? # Related tag IDs
+
+version: "1.0"
+
+categories:
+  - name: Language
+    description: Programming languages
+    hierarchical: false
+
+  - name: Library
+    description: Libraries, frameworks, and tools
+    hierarchical: true
+    subcategories:
+      - name: Web
+        description: Web development frameworks and libraries
+      - name: Data
+        description: Data processing and scientific computing
+      - name: Infrastructure
+        description: DevOps, cloud, and infrastructure tools
+      - name: Testing
+        description: Testing frameworks and tools
+      - name: Database
+        description: Database drivers and ORMs
+
+  - name: Domain
+    description: Application domains and scenarios
+    hierarchical: false
+
+  - name: Concept
+    description: Programming concepts and knowledge areas
+    hierarchical: true
+    subcategories:
+      - name: Fundamentals
+        description: Basic programming concepts
+      - name: Advanced
+        description: Advanced programming concepts
+      - name: Engineering
+        description: Software engineering practices
+
+  - name: Task
+    description: Types of programming tasks
+    hierarchical: false
+
+  - name: Constraint
+    description: Non-functional requirements and constraints
+    hierarchical: false
+
+  - name: Agentic
+    description: Agent capabilities and tool usage
+    hierarchical: false
+
+  - name: Context
+    description: Context complexity levels
+    hierarchical: false

@@ -1,0 +1,798 @@
+- id: actix
+  name: Actix
+  category: Library
+  subcategory: Web
+  aliases:
+  - actix
+  - actix-web
+  language_scope:
+  - rust
+  source: curated-list
+- id: alembic
+  name: Alembic
+  category: Library
+  subcategory: Database
+  aliases:
+  - alembic
+  language_scope:
+  - python
+  source: curated-list
+- id: angular
+  name: Angular
+  category: Library
+  subcategory: Web
+  aliases:
+  - angular
+  - angularjs
+  language_scope:
+  - typescript
+  source: curated-list
+- id: ansible
+  name: Ansible
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - ansible
+  language_scope:
+  - yaml
+  source: curated-list
+- id: ant-design
+  name: Ant Design
+  category: Library
+  subcategory: Web
+  aliases:
+  - antd
+  - ant-design
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: apache
+  name: Apache
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - apache
+  - httpd
+  source: curated-list
+- id: apache-spark
+  name: Apache Spark
+  category: Library
+  subcategory: Data
+  aliases:
+  - spark
+  - pyspark
+  language_scope:
+  - python
+  - scala
+  - java
+  source: curated-list
+- id: aspnet
+  name: ASP.NET
+  category: Library
+  subcategory: Web
+  aliases:
+  - aspnet
+  - asp-net
+  language_scope:
+  - csharp
+  source: curated-list
+- id: aws-cdk
+  name: AWS CDK
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - cdk
+  - aws-cdk
+  language_scope:
+  - typescript
+  - python
+  source: curated-list
+- id: axum
+  name: Axum
+  category: Library
+  subcategory: Web
+  aliases:
+  - axum
+  language_scope:
+  - rust
+  source: curated-list
+- id: bootstrap
+  name: Bootstrap
+  category: Library
+  subcategory: Web
+  aliases:
+  - bootstrap
+  language_scope:
+  - css
+  source: curated-list
+- id: chai
+  name: Chai
+  category: Library
+  subcategory: Testing
+  aliases:
+  - chai
+  language_scope:
+  - javascript
+  source: curated-list
+- id: circleci
+  name: CircleCI
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - circleci
+  language_scope:
+  - yaml
+  source: curated-list
+- id: cypress
+  name: Cypress
+  category: Library
+  subcategory: Testing
+  aliases:
+  - cypress
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: dask
+  name: Dask
+  category: Library
+  subcategory: Data
+  aliases:
+  - dask
+  language_scope:
+  - python
+  source: curated-list
+- id: diesel
+  name: Diesel
+  category: Library
+  subcategory: Database
+  aliases:
+  - diesel
+  language_scope:
+  - rust
+  source: curated-list
+- id: django
+  name: Django
+  category: Library
+  subcategory: Web
+  aliases:
+  - django
+  language_scope:
+  - python
+  source: curated-list
+- id: docker
+  name: Docker
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - docker
+  source: curated-list
+- id: echo
+  name: Echo
+  category: Library
+  subcategory: Web
+  aliases:
+  - echo
+  language_scope:
+  - go
+  source: curated-list
+- id: express
+  name: Express
+  category: Library
+  subcategory: Web
+  aliases:
+  - express
+  - expressjs
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: fastapi
+  name: FastAPI
+  category: Library
+  subcategory: Web
+  aliases:
+  - fastapi
+  language_scope:
+  - python
+  source: curated-list
+- id: flask
+  name: Flask
+  category: Library
+  subcategory: Web
+  aliases:
+  - flask
+  language_scope:
+  - python
+  source: curated-list
+- id: gin
+  name: Gin
+  category: Library
+  subcategory: Web
+  aliases:
+  - gin
+  language_scope:
+  - go
+  source: curated-list
+- id: github-actions
+  name: GitHub Actions
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - github-actions
+  - gha
+  language_scope:
+  - yaml
+  source: curated-list
+- id: gitlab-ci
+  name: GitLab CI
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - gitlab-ci
+  language_scope:
+  - yaml
+  source: curated-list
+- id: gorm
+  name: GORM
+  category: Library
+  subcategory: Database
+  aliases:
+  - gorm
+  language_scope:
+  - go
+  source: curated-list
+- id: grafana
+  name: Grafana
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - grafana
+  source: curated-list
+- id: helm
+  name: Helm
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - helm
+  source: curated-list
+- id: hibernate
+  name: Hibernate
+  category: Library
+  subcategory: Database
+  aliases:
+  - hibernate
+  language_scope:
+  - java
+  source: curated-list
+- id: hugging-face-transformers
+  name: Hugging Face Transformers
+  category: Library
+  subcategory: Data
+  aliases:
+  - transformers
+  - huggingface
+  language_scope:
+  - python
+  source: curated-list
+- id: jenkins
+  name: Jenkins
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - jenkins
+  source: curated-list
+- id: jest
+  name: Jest
+  category: Library
+  subcategory: Testing
+  aliases:
+  - jest
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: junit
+  name: JUnit
+  category: Library
+  subcategory: Testing
+  aliases:
+  - junit
+  language_scope:
+  - java
+  source: curated-list
+- id: kafka
+  name: Kafka
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - kafka
+  source: curated-list
+- id: kubernetes
+  name: Kubernetes
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - k8s
+  - kubernetes
+  source: curated-list
+- id: langchain
+  name: LangChain
+  category: Library
+  subcategory: Data
+  aliases:
+  - langchain
+  language_scope:
+  - python
+  source: curated-list
+- id: laravel
+  name: Laravel
+  category: Library
+  subcategory: Web
+  aliases:
+  - laravel
+  language_scope:
+  - php
+  source: curated-list
+- id: material-ui
+  name: Material-UI
+  category: Library
+  subcategory: Web
+  aliases:
+  - mui
+  - material-ui
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: matplotlib
+  name: Matplotlib
+  category: Library
+  subcategory: Data
+  aliases:
+  - matplotlib
+  - plt
+  language_scope:
+  - python
+  source: curated-list
+- id: mocha
+  name: Mocha
+  category: Library
+  subcategory: Testing
+  aliases:
+  - mocha
+  language_scope:
+  - javascript
+  source: curated-list
+- id: mock
+  name: Mock
+  category: Library
+  subcategory: Testing
+  aliases:
+  - mock
+  - unittest.mock
+  language_scope:
+  - python
+  source: curated-list
+- id: mockito
+  name: Mockito
+  category: Library
+  subcategory: Testing
+  aliases:
+  - mockito
+  language_scope:
+  - java
+  source: curated-list
+- id: mongoose
+  name: Mongoose
+  category: Library
+  subcategory: Database
+  aliases:
+  - mongoose
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: nextjs
+  name: Next.js
+  category: Library
+  subcategory: Web
+  aliases:
+  - nextjs
+  - next
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: nginx
+  name: Nginx
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - nginx
+  source: curated-list
+- id: nltk
+  name: NLTK
+  category: Library
+  subcategory: Data
+  aliases:
+  - nltk
+  language_scope:
+  - python
+  source: curated-list
+- id: numpy
+  name: NumPy
+  category: Library
+  subcategory: Data
+  aliases:
+  - numpy
+  - np
+  language_scope:
+  - python
+  source: curated-list
+- id: nuxt
+  name: Nuxt
+  category: Library
+  subcategory: Web
+  aliases:
+  - nuxt
+  - nuxtjs
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: opencv
+  name: OpenCV
+  category: Library
+  subcategory: Data
+  aliases:
+  - opencv
+  - cv2
+  language_scope:
+  - python
+  - cpp
+  source: curated-list
+- id: pandas
+  name: Pandas
+  category: Library
+  subcategory: Data
+  aliases:
+  - pandas
+  - pd
+  language_scope:
+  - python
+  source: curated-list
+- id: phoenix
+  name: Phoenix
+  category: Library
+  subcategory: Web
+  aliases:
+  - phoenix
+  language_scope:
+  - elixir
+  source: curated-list
+- id: playwright
+  name: Playwright
+  category: Library
+  subcategory: Testing
+  aliases:
+  - playwright
+  language_scope:
+  - javascript
+  - typescript
+  - python
+  source: curated-list
+- id: plotly
+  name: Plotly
+  category: Library
+  subcategory: Data
+  aliases:
+  - plotly
+  language_scope:
+  - python
+  - javascript
+  source: curated-list
+- id: polars
+  name: Polars
+  category: Library
+  subcategory: Data
+  aliases:
+  - polars
+  language_scope:
+  - python
+  - rust
+  source: curated-list
+- id: prisma
+  name: Prisma
+  category: Library
+  subcategory: Database
+  aliases:
+  - prisma
+  language_scope:
+  - typescript
+  - javascript
+  source: curated-list
+- id: prometheus
+  name: Prometheus
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - prometheus
+  source: curated-list
+- id: psycopg2
+  name: psycopg2
+  category: Library
+  subcategory: Database
+  aliases:
+  - psycopg2
+  language_scope:
+  - python
+  source: curated-list
+- id: pulumi
+  name: Pulumi
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - pulumi
+  language_scope:
+  - typescript
+  - python
+  - go
+  source: curated-list
+- id: pymongo
+  name: PyMongo
+  category: Library
+  subcategory: Database
+  aliases:
+  - pymongo
+  language_scope:
+  - python
+  source: curated-list
+- id: pytest
+  name: Pytest
+  category: Library
+  subcategory: Testing
+  aliases:
+  - pytest
+  language_scope:
+  - python
+  source: curated-list
+- id: pytorch
+  name: PyTorch
+  category: Library
+  subcategory: Data
+  aliases:
+  - pytorch
+  - torch
+  language_scope:
+  - python
+  source: curated-list
+- id: rabbitmq
+  name: RabbitMQ
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - rabbitmq
+  source: curated-list
+- id: ray
+  name: Ray
+  category: Library
+  subcategory: Data
+  aliases:
+  - ray
+  language_scope:
+  - python
+  source: curated-list
+- id: react
+  name: React
+  category: Library
+  subcategory: Web
+  aliases:
+  - react
+  - reactjs
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: redis
+  name: Redis
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - redis
+  source: curated-list
+- id: redis-py
+  name: Redis-py
+  category: Library
+  subcategory: Database
+  aliases:
+  - redis-py
+  language_scope:
+  - python
+  source: curated-list
+- id: rocket
+  name: Rocket
+  category: Library
+  subcategory: Web
+  aliases:
+  - rocket
+  language_scope:
+  - rust
+  source: curated-list
+- id: rspec
+  name: RSpec
+  category: Library
+  subcategory: Testing
+  aliases:
+  - rspec
+  language_scope:
+  - ruby
+  source: curated-list
+- id: ruby-on-rails
+  name: Ruby on Rails
+  category: Library
+  subcategory: Web
+  aliases:
+  - rails
+  - ror
+  language_scope:
+  - ruby
+  source: curated-list
+- id: scikit-learn
+  name: Scikit-learn
+  category: Library
+  subcategory: Data
+  aliases:
+  - sklearn
+  - scikit-learn
+  language_scope:
+  - python
+  source: curated-list
+- id: seaborn
+  name: Seaborn
+  category: Library
+  subcategory: Data
+  aliases:
+  - seaborn
+  - sns
+  language_scope:
+  - python
+  source: curated-list
+- id: selenium
+  name: Selenium
+  category: Library
+  subcategory: Testing
+  aliases:
+  - selenium
+  language_scope:
+  - python
+  - java
+  - javascript
+  source: curated-list
+- id: sequelize
+  name: Sequelize
+  category: Library
+  subcategory: Database
+  aliases:
+  - sequelize
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: spacy
+  name: spaCy
+  category: Library
+  subcategory: Data
+  aliases:
+  - spacy
+  language_scope:
+  - python
+  source: curated-list
+- id: spring-boot
+  name: Spring Boot
+  category: Library
+  subcategory: Web
+  aliases:
+  - spring-boot
+  - spring
+  language_scope:
+  - java
+  source: curated-list
+- id: sqlalchemy
+  name: SQLAlchemy
+  category: Library
+  subcategory: Database
+  aliases:
+  - sqlalchemy
+  language_scope:
+  - python
+  source: curated-list
+- id: svelte
+  name: Svelte
+  category: Library
+  subcategory: Web
+  aliases:
+  - svelte
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: tailwind-css
+  name: Tailwind CSS
+  category: Library
+  subcategory: Web
+  aliases:
+  - tailwind
+  - tailwindcss
+  language_scope:
+  - css
+  source: curated-list
+- id: tensorflow
+  name: TensorFlow
+  category: Library
+  subcategory: Data
+  aliases:
+  - tensorflow
+  - tf
+  language_scope:
+  - python
+  source: curated-list
+- id: terraform
+  name: Terraform
+  category: Library
+  subcategory: Infrastructure
+  aliases:
+  - terraform
+  - tf
+  language_scope:
+  - hcl
+  source: curated-list
+- id: testng
+  name: TestNG
+  category: Library
+  subcategory: Testing
+  aliases:
+  - testng
+  language_scope:
+  - java
+  source: curated-list
+- id: typeorm
+  name: TypeORM
+  category: Library
+  subcategory: Database
+  aliases:
+  - typeorm
+  language_scope:
+  - typescript
+  source: curated-list
+- id: unittest
+  name: unittest
+  category: Library
+  subcategory: Testing
+  aliases:
+  - unittest
+  language_scope:
+  - python
+  source: curated-list
+- id: vitest
+  name: Vitest
+  category: Library
+  subcategory: Testing
+  aliases:
+  - vitest
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list
+- id: vue
+  name: Vue
+  category: Library
+  subcategory: Web
+  aliases:
+  - vue
+  - vuejs
+  language_scope:
+  - javascript
+  - typescript
+  source: curated-list

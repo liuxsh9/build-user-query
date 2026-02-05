@@ -1,0 +1,139 @@
+- id: api-design
+  name: API Design
+  category: Task
+  aliases:
+  - api-design
+  source: curated-list, educational-sources
+- id: code-completion
+  name: Code Completion
+  category: Task
+  aliases:
+  - completion
+  - autocomplete
+  source: curated-list
+- id: code-explanation
+  name: Code Explanation
+  category: Task
+  aliases:
+  - explanation
+  - explain
+  source: curated-list
+- id: code-generation
+  name: Code Generation
+  category: Task
+  aliases:
+  - generation
+  - code-gen
+  source: curated-list
+- id: code-optimization
+  name: Code Optimization
+  category: Task
+  aliases:
+  - optimization
+  - optimize
+  source: curated-list
+- id: code-refactoring
+  name: Code Refactoring
+  category: Task
+  aliases:
+  - refactoring
+  - refactor
+  source: curated-list
+- id: code-review
+  name: Code Review
+  category: Task
+  aliases:
+  - review
+  source: curated-list, educational-sources
+- id: code-search
+  name: Code Search
+  category: Task
+  aliases:
+  - code-search
+  - grep
+  - search
+  - search-code
+  source: curated-list
+- id: code-translation
+  name: Code Translation
+  category: Task
+  aliases:
+  - translation
+  - transpilation
+  source: curated-list
+- id: configuration
+  name: Configuration
+  category: Task
+  aliases:
+  - config
+  - configuration
+  source: curated-list
+- id: debugging
+  name: Debugging
+  category: Task
+  aliases:
+  - debug
+  - bug-fix
+  source: curated-list
+- id: dependency-management
+  name: Dependency Management
+  category: Task
+  aliases:
+  - dependencies
+  source: curated-list
+- id: deployment
+  name: Deployment
+  category: Task
+  aliases:
+  - deploy
+  - deployment
+  source: curated-list
+- id: documentation
+  name: Documentation
+  category: Task
+  aliases:
+  - docs
+  - documentation
+  source: curated-list, educational-sources
+- id: migration
+  name: Migration
+  category: Task
+  aliases:
+  - migration
+  - upgrade
+  source: curated-list
+- id: monitoring
+  name: Monitoring
+  category: Task
+  aliases:
+  - monitoring
+  - observability
+  source: curated-list
+- id: performance-analysis
+  name: Performance Analysis
+  category: Task
+  aliases:
+  - profiling
+  - performance
+  source: curated-list
+- id: schema-design
+  name: Schema Design
+  category: Task
+  aliases:
+  - schema-design
+  - data-modeling
+  source: curated-list
+- id: security-audit
+  name: Security Audit
+  category: Task
+  aliases:
+  - security-audit
+  - vulnerability-scan
+  source: curated-list
+- id: test-generation
+  name: Test Generation
+  category: Task
+  aliases:
+  - test-gen
+  - testing
+  source: curated-list
