@@ -5,6 +5,15 @@
   - accessibility
   - a11y
   source: curated-list
+- id: async
+  name: Async
+  category: Constraint
+  aliases:
+  - async
+  - asynchronous
+  description: Uses async/await, Promises, coroutines, or async frameworks (detectable
+    via static analysis)
+  source: constraint-optimization
 - id: backward-compatible
   name: Backward Compatible
   category: Constraint
@@ -37,13 +46,6 @@
   aliases:
   - gdpr
   source: curated-list
-- id: high-performance
-  name: High Performance
-  category: Constraint
-  aliases:
-  - performance
-  - fast
-  source: curated-list
 - id: hipaa-compliant
   name: HIPAA Compliant
   category: Constraint
@@ -56,6 +58,15 @@
   aliases:
   - idempotent
   source: curated-list
+- id: immutable
+  name: Immutable
+  category: Constraint
+  aliases:
+  - immutable
+  - immutability
+  description: No mutation operations, uses immutable data structures (detectable
+    via static analysis)
+  source: constraint-optimization
 - id: internationalized
   name: Internationalized
   category: Constraint
@@ -63,26 +74,14 @@
   - i18n
   - internationalization
   source: curated-list
-- id: low-latency
-  name: Low Latency
+- id: lock-free
+  name: Lock Free
   category: Constraint
   aliases:
-  - low-latency
-  - real-time
-  source: curated-list
-- id: maintainable
-  name: Maintainable
-  category: Constraint
-  aliases:
-  - maintainability
-  source: curated-list
-- id: memory-efficient
-  name: Memory Efficient
-  category: Constraint
-  aliases:
-  - memory-efficient
-  - low-memory
-  source: curated-list
+  - lock-free
+  - lockless
+  description: No mutex, lock, or semaphore primitives (detectable via static analysis)
+  source: constraint-optimization
 - id: misra-c-compliant
   name: MISRA C Compliant
   category: Constraint
@@ -109,12 +108,34 @@
   aliases:
   - no-recursion
   source: curated-list
+- id: observable
+  name: Observable
+  category: Constraint
+  aliases:
+  - observable
+  - instrumented
+  - observability
+  description: Uses logging frameworks, implements metrics/monitoring, has distributed
+    tracing, or uses structured logging (detectable via library imports)
+  source: constraint-optimization
 - id: pci-dss-compliant
   name: PCI-DSS Compliant
   category: Constraint
   aliases:
   - pci-dss
   source: curated-list
+- id: performance-optimized
+  name: Performance Optimized
+  category: Constraint
+  aliases:
+  - high-performance
+  - low-latency
+  - memory-efficient
+  - optimized
+  - performance
+  description: Uses profiling/benchmarking tools, applies algorithmic optimizations,
+    uses efficient data structures, or has documented performance characteristics
+  source: constraint-optimization
 - id: portable
   name: Portable
   category: Constraint
@@ -122,32 +143,21 @@
   - portability
   - cross-platform
   source: curated-list
-- id: readable
-  name: Readable
-  category: Constraint
-  aliases:
-  - readability
-  - clean-code
-  source: curated-list
 - id: scalable
   name: Scalable
   category: Constraint
   aliases:
   - scalability
   source: curated-list
-- id: secure
-  name: Secure
+- id: stateless
+  name: Stateless
   category: Constraint
   aliases:
-  - security
-  - secure
-  source: curated-list
-- id: testable
-  name: Testable
-  category: Constraint
-  aliases:
-  - testability
-  source: curated-list
+  - stateless
+  - no-state
+  description: No global variables, no persistent state between function calls (detectable
+    via static analysis)
+  source: constraint-optimization
 - id: thread-safe
   name: Thread Safe
   category: Constraint
