@@ -84,6 +84,63 @@ def update_html_embedded_data(html_path, tags_data):
     return True
 
 
+def update_wiki_versions(tags_data):
+    """更新所有Wiki版本的HTML文件"""
+    wiki_dir = Path('visualization/wiki-versions')
+    if not wiki_dir.exists():
+        return []
+
+    updated_files = []
+
+    # 查找所有Wiki版本HTML文件
+    for html_file in wiki_dir.glob('tag-visualization-wiki-*.html'):
+        try:
+            with open(html_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            # 替换数据占位符
+            data_json = json.dumps(tags_data, ensure_ascii=False, separators=(',', ':'))
+
+            # 查找并替换 {TAGS_DATA_PLACEHOLDER} 或已有的数据
+            if '{TAGS_DATA_PLACEHOLDER}' in content:
+                new_content = content.replace('{TAGS_DATA_PLACEHOLDER}', data_json)
+            else:
+                # 查找已有的内嵌数据
+                start_marker = "let tagsData = "
+                end_marker_variants = [
+                    ";\n    let searchTerm",  # compact版本
+                    ";\n    let currentFilter"  # embed版本
+                ]
+
+                updated = False
+                for end_marker in end_marker_variants:
+                    start_idx = content.find(start_marker)
+                    end_idx = content.find(end_marker)
+
+                    if start_idx != -1 and end_idx != -1:
+                        new_content = (
+                            content[:start_idx + len(start_marker)] +
+                            data_json +
+                            content[end_idx:]
+                        )
+                        updated = True
+                        break
+
+                if not updated:
+                    continue
+
+            # 写回文件
+            with open(html_file, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+
+            updated_files.append(html_file.name)
+
+        except Exception as e:
+            print(f"⚠️  更新 {html_file.name} 失败: {e}")
+
+    return updated_files
+
+
 def main():
     parser = argparse.ArgumentParser(description='生成标签可视化数据')
     parser.add_argument(
@@ -123,6 +180,16 @@ def main():
         action='store_true',
         help='显示统计信息'
     )
+    parser.add_argument(
+        '--update-wiki',
+        action='store_true',
+        help='同时更新Wiki版本的HTML文件'
+    )
+    parser.add_argument(
+        '--wiki-only',
+        action='store_true',
+        help='仅更新Wiki版本，不更新主HTML文件'
+    )
 
     args = parser.parse_args()
 
@@ -155,7 +222,7 @@ def main():
     print(f"  包含 {stats['total_tags']} 个标签，{stats['total_categories']} 个类别")
 
     # 更新HTML文件中的内嵌数据
-    if args.update_html:
+    if args.update_html and not args.wiki_only:
         html_path = Path(args.html)
         if html_path.exists():
             if update_html_embedded_data(html_path, all_tags):
@@ -164,6 +231,16 @@ def main():
                 print(f"\n⚠️  未能更新 {html_path}（可能数据格式已改变）")
         else:
             print(f"\n⚠️  HTML文件不存在: {html_path}")
+
+    # 更新Wiki版本
+    if args.update_wiki or args.wiki_only:
+        updated_files = update_wiki_versions(all_tags)
+        if updated_files:
+            print(f"\n✓ 成功更新 {len(updated_files)} 个Wiki版本:")
+            for filename in updated_files:
+                print(f"  - {filename}")
+        else:
+            print("\n⚠️  未找到Wiki版本文件")
 
 
 if __name__ == '__main__':
