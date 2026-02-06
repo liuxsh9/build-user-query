@@ -13,10 +13,20 @@
 #   description: string? # Brief description
 #   aliases: string[]?   # Alternative names for matching
 #   language_scope: string[]? # Applicable languages (for Concept tags)
-#   difficulty: enum?    # basic | intermediate | advanced
+#   difficulty: enum?    # basic | intermediate | advanced (for Concept tags)
 #   examples: string[]?  # Example query snippets
 #   related_tags: string[]? # Related tag IDs
 #   granularity: enum?   # library | module | component (for Library tags)
+#   paradigm: string[]?  # Programming paradigms (for Language tags)
+#                        #   Values: imperative, functional, object-oriented, declarative,
+#                        #           logic, procedural, concurrent, event-driven
+#   typing: string?      # Type system (for Language tags)
+#                        #   Values: static, dynamic, gradual, duck, strong-static, weak-dynamic
+#   runtime: string?     # Execution model (for Language tags)
+#                        #   Values: compiled, interpreted, jit, transpiled, hybrid
+#   use_cases: string[]? # Primary use cases (for Language tags)
+#                        #   Values: web, systems, data-science, mobile, embedded, scripting,
+#                        #           devops, scientific, game-dev, blockchain, markup, config, build
 
 version: "1.0"
 

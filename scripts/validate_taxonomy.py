@@ -157,6 +157,18 @@ def validate_schema_compliance(tags: List[Dict[str, Any]], taxonomy: Dict[str, A
     valid_difficulties = ["basic", "intermediate", "advanced"]
     valid_granularities = ["library", "module", "component"]
 
+    # Language metadata controlled vocabularies
+    valid_paradigms = [
+        "imperative", "functional", "object-oriented", "declarative",
+        "logic", "procedural", "concurrent", "event-driven"
+    ]
+    valid_typings = ["static", "dynamic", "gradual", "duck", "strong-static", "weak-dynamic"]
+    valid_runtimes = ["compiled", "interpreted", "jit", "transpiled", "hybrid"]
+    valid_use_cases = [
+        "web", "systems", "data-science", "mobile", "embedded", "scripting",
+        "devops", "scientific", "game-dev", "blockchain", "markup", "config", "build"
+    ]
+
     # Get hierarchical categories
     hierarchical_categories = set()
     for cat in taxonomy.get("categories", []):
@@ -183,6 +195,40 @@ def validate_schema_compliance(tags: List[Dict[str, Any]], taxonomy: Dict[str, A
                 report.add_error(f"Library tag '{tag_id}' missing required granularity field")
             elif tag["granularity"] not in valid_granularities:
                 report.add_error(f"Tag '{tag_id}' has invalid granularity: {tag['granularity']}")
+
+        # Check Language metadata fields
+        if category == "Language":
+            # Validate paradigm (optional, multi-value)
+            if "paradigm" in tag:
+                paradigms = tag["paradigm"]
+                if not isinstance(paradigms, list):
+                    report.add_error(f"Language tag '{tag_id}' paradigm must be a list")
+                else:
+                    for p in paradigms:
+                        if p not in valid_paradigms:
+                            report.add_error(f"Language tag '{tag_id}' has invalid paradigm: {p}")
+
+            # Validate typing (optional, single value)
+            if "typing" in tag:
+                typing = tag["typing"]
+                if typing not in valid_typings:
+                    report.add_error(f"Language tag '{tag_id}' has invalid typing: {typing}")
+
+            # Validate runtime (optional, single value)
+            if "runtime" in tag:
+                runtime = tag["runtime"]
+                if runtime not in valid_runtimes:
+                    report.add_error(f"Language tag '{tag_id}' has invalid runtime: {runtime}")
+
+            # Validate use_cases (optional, multi-value)
+            if "use_cases" in tag:
+                use_cases = tag["use_cases"]
+                if not isinstance(use_cases, list):
+                    report.add_error(f"Language tag '{tag_id}' use_cases must be a list")
+                else:
+                    for uc in use_cases:
+                        if uc not in valid_use_cases:
+                            report.add_error(f"Language tag '{tag_id}' has invalid use_case: {uc}")
 
         # Check hierarchical categories have subcategory
         if category in hierarchical_categories:

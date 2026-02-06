@@ -4,12 +4,27 @@
   aliases:
   - ada
   source: TIOBE
+  paradigm:
+  - imperative
+  - object-oriented
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - embedded
 - id: apl
   name: APL
   category: Language
   aliases:
   - apl
   source: TIOBE
+  paradigm:
+  - functional
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scientific
+  - data-science
 - id: assembly
   name: Assembly
   category: Language
@@ -17,12 +32,27 @@
   - asm
   - assembly
   source: TIOBE
+  paradigm:
+  - imperative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - embedded
 - id: c
   name: C
   category: Language
   aliases:
   - c
   source: TIOBE
+  paradigm:
+  - procedural
+  - imperative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - embedded
 - id: clojure
   name: Clojure
   category: Language
@@ -30,12 +60,26 @@
   - clojure
   - clj
   source: GitHub
+  paradigm:
+  - functional
+  typing: dynamic
+  runtime: jit
+  use_cases:
+  - web
+  - data-science
 - id: cobol
   name: COBOL
   category: Language
   aliases:
   - cobol
   source: TIOBE
+  paradigm:
+  - procedural
+  - imperative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
 - id: cpp
   name: C++
   category: Language
@@ -44,6 +88,16 @@
   - c++
   - cxx
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - procedural
+  - functional
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - game-dev
+  - embedded
 - id: crystal
   name: Crystal
   category: Language
@@ -51,6 +105,13 @@
   - crystal
   - cr
   source: GitHub
+  paradigm:
+  - object-oriented
+  typing: static
+  runtime: compiled
+  use_cases:
+  - web
+  - systems
 - id: csharp
   name: C#
   category: Language
@@ -58,18 +119,41 @@
   - csharp
   - c-sharp
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - functional
+  typing: static
+  runtime: jit
+  use_cases:
+  - web
+  - game-dev
+  - mobile
 - id: css
   name: CSS
   category: Language
   aliases:
   - css
   source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
+  - markup
 - id: dart
   name: Dart
   category: Language
   aliases:
   - dart
   source: GitHub
+  paradigm:
+  - object-oriented
+  typing: strong-static
+  runtime: jit
+  use_cases:
+  - mobile
+  - web
 - id: elixir
   name: Elixir
   category: Language
@@ -77,6 +161,14 @@
   - elixir
   - ex
   source: GitHub
+  paradigm:
+  - functional
+  - concurrent
+  typing: dynamic
+  runtime: jit
+  use_cases:
+  - web
+  - systems
 - id: erlang
   name: Erlang
   category: Language
@@ -84,12 +176,28 @@
   - erlang
   - erl
   source: TIOBE
+  paradigm:
+  - functional
+  - concurrent
+  typing: dynamic
+  runtime: jit
+  use_cases:
+  - systems
+  - web
 - id: fortran
   name: Fortran
   category: Language
   aliases:
   - fortran
   source: TIOBE
+  paradigm:
+  - procedural
+  - imperative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - scientific
+  - data-science
 - id: fsharp
   name: F#
   category: Language
@@ -97,6 +205,14 @@
   - fsharp
   - f-sharp
   source: GitHub
+  paradigm:
+  - functional
+  - object-oriented
+  typing: static
+  runtime: jit
+  use_cases:
+  - web
+  - data-science
 - id: go
   name: Go
   category: Language
@@ -104,12 +220,30 @@
   - golang
   - go
   source: TIOBE
+  paradigm:
+  - procedural
+  - concurrent
+  typing: strong-static
+  runtime: compiled
+  use_cases:
+  - systems
+  - web
+  - devops
 - id: groovy
   name: Groovy
   category: Language
   aliases:
   - groovy
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - functional
+  typing: dynamic
+  runtime: jit
+  use_cases:
+  - web
+  - scripting
+  - build
 - id: haskell
   name: Haskell
   category: Language
@@ -117,18 +251,40 @@
   - haskell
   - hs
   source: GitHub
+  paradigm:
+  - functional
+  typing: static
+  runtime: compiled
+  use_cases:
+  - web
+  - data-science
 - id: html
   name: HTML
   category: Language
   aliases:
   - html
   source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
+  - markup
 - id: java
   name: Java
   category: Language
   aliases:
   - java
   source: TIOBE
+  paradigm:
+  - object-oriented
+  typing: static
+  runtime: jit
+  use_cases:
+  - web
+  - mobile
+  - systems
 - id: javascript
   name: JavaScript
   category: Language
@@ -136,6 +292,16 @@
   - js
   - javascript
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - functional
+  - event-driven
+  typing: dynamic
+  runtime: hybrid
+  use_cases:
+  - web
+  - mobile
+  - scripting
 - id: julia
   name: Julia
   category: Language
@@ -143,6 +309,14 @@
   - julia
   - jl
   source: GitHub
+  paradigm:
+  - functional
+  - procedural
+  typing: dynamic
+  runtime: jit
+  use_cases:
+  - scientific
+  - data-science
 - id: kotlin
   name: Kotlin
   category: Language
@@ -150,6 +324,14 @@
   - kotlin
   - kt
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - functional
+  typing: static
+  runtime: jit
+  use_cases:
+  - mobile
+  - web
 - id: lisp
   name: Lisp
   category: Language
@@ -157,24 +339,55 @@
   - lisp
   - common-lisp
   source: TIOBE
+  paradigm:
+  - functional
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - data-science
 - id: lua
   name: Lua
   category: Language
   aliases:
   - lua
   source: TIOBE
+  paradigm:
+  - procedural
+  - object-oriented
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - game-dev
+  - embedded
 - id: matlab
   name: MATLAB
   category: Language
   aliases:
   - matlab
   source: TIOBE
+  paradigm:
+  - procedural
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scientific
+  - data-science
 - id: nim
   name: Nim
   category: Language
   aliases:
   - nim
   source: GitHub
+  paradigm:
+  - imperative
+  - functional
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - web
 - id: objective-c
   name: Objective-C
   category: Language
@@ -182,12 +395,26 @@
   - objc
   - objective-c
   source: TIOBE
+  paradigm:
+  - object-oriented
+  typing: static
+  runtime: compiled
+  use_cases:
+  - mobile
 - id: ocaml
   name: OCaml
   category: Language
   aliases:
   - ocaml
   source: GitHub
+  paradigm:
+  - functional
+  - object-oriented
+  typing: static
+  runtime: compiled
+  use_cases:
+  - web
+  - systems
 - id: perl
   name: Perl
   category: Language
@@ -195,12 +422,27 @@
   - perl
   - pl
   source: TIOBE
+  paradigm:
+  - procedural
+  - object-oriented
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - web
 - id: php
   name: PHP
   category: Language
   aliases:
   - php
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - procedural
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
 - id: powershell
   name: PowerShell
   category: Language
@@ -208,12 +450,26 @@
   - powershell
   - ps1
   source: GitHub
+  paradigm:
+  - object-oriented
+  - procedural
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - devops
 - id: prolog
   name: Prolog
   category: Language
   aliases:
   - prolog
   source: TIOBE
+  paradigm:
+  - logic
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scientific
 - id: python
   name: Python
   category: Language
@@ -221,6 +477,16 @@
   - py
   - python3
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - procedural
+  - functional
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - data-science
+  - web
+  - scripting
 - id: r
   name: R
   category: Language
@@ -228,6 +494,14 @@
   - r
   - r-lang
   source: TIOBE
+  paradigm:
+  - functional
+  - procedural
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - data-science
+  - scientific
 - id: racket
   name: Racket
   category: Language
@@ -235,6 +509,13 @@
   - racket
   - rkt
   source: GitHub
+  paradigm:
+  - functional
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - scientific
 - id: ruby
   name: Ruby
   category: Language
@@ -242,6 +523,13 @@
   - ruby
   - rb
   source: TIOBE
+  paradigm:
+  - object-oriented
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
+  - scripting
 - id: rust
   name: Rust
   category: Language
@@ -249,12 +537,29 @@
   - rust
   - rs
   source: GitHub
+  paradigm:
+  - functional
+  - procedural
+  typing: strong-static
+  runtime: compiled
+  use_cases:
+  - systems
+  - web
+  - embedded
 - id: scala
   name: Scala
   category: Language
   aliases:
   - scala
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - functional
+  typing: static
+  runtime: jit
+  use_cases:
+  - web
+  - data-science
 - id: scheme
   name: Scheme
   category: Language
@@ -262,6 +567,13 @@
   - scheme
   - scm
   source: GitHub
+  paradigm:
+  - functional
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - scientific
 - id: shell
   name: Shell
   category: Language
@@ -270,12 +582,25 @@
   - sh
   - shell
   source: GitHub
+  paradigm:
+  - procedural
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
+  - devops
 - id: smalltalk
   name: Smalltalk
   category: Language
   aliases:
   - smalltalk
   source: TIOBE
+  paradigm:
+  - object-oriented
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - scripting
 - id: solidity
   name: Solidity
   category: Language
@@ -283,18 +608,38 @@
   - solidity
   - sol
   source: GitHub
+  paradigm:
+  - object-oriented
+  typing: static
+  runtime: compiled
+  use_cases:
+  - blockchain
 - id: sql
   name: SQL
   category: Language
   aliases:
   - sql
   source: TIOBE
+  paradigm:
+  - declarative
+  typing: static
+  runtime: interpreted
+  use_cases:
+  - data-science
+  - web
 - id: swift
   name: Swift
   category: Language
   aliases:
   - swift
   source: TIOBE
+  paradigm:
+  - object-oriented
+  - functional
+  typing: static
+  runtime: compiled
+  use_cases:
+  - mobile
 - id: typescript
   name: TypeScript
   category: Language
@@ -302,6 +647,14 @@
   - ts
   - typescript
   source: GitHub
+  paradigm:
+  - object-oriented
+  - functional
+  typing: gradual
+  runtime: transpiled
+  use_cases:
+  - web
+  - mobile
 - id: verilog
   name: Verilog
   category: Language
@@ -309,12 +662,26 @@
   - verilog
   - v
   source: GitHub
+  paradigm:
+  - declarative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - embedded
+  - systems
 - id: vhdl
   name: VHDL
   category: Language
   aliases:
   - vhdl
   source: GitHub
+  paradigm:
+  - declarative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - embedded
+  - systems
 - id: vyper
   name: Vyper
   category: Language
@@ -322,9 +689,22 @@
   - vyper
   - vy
   source: GitHub
+  paradigm:
+  - object-oriented
+  typing: static
+  runtime: compiled
+  use_cases:
+  - blockchain
 - id: zig
   name: Zig
   category: Language
   aliases:
   - zig
   source: GitHub
+  paradigm:
+  - imperative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - embedded
