@@ -140,6 +140,16 @@
   subcategory: Engineering
   difficulty: intermediate
   source: educational-sources
+- name: Deadlock
+  id: deadlock
+  category: Concept
+  subcategory: Advanced
+  description: Situation where processes wait indefinitely for resources
+  aliases:
+  - deadlock
+  - livelock
+  difficulty: intermediate
+  source: curated-list
 - id: decorators
   name: Decorators
   category: Concept
@@ -160,6 +170,17 @@
   subcategory: Engineering
   difficulty: advanced
   source: educational-sources
+- name: Dynamic Programming
+  id: dynamic-programming
+  category: Concept
+  subcategory: Advanced
+  description: Optimization technique breaking problems into overlapping subproblems
+  aliases:
+  - dynamic-programming
+  - dp
+  - memoization
+  difficulty: advanced
+  source: curated-list
 - id: encapsulation
   name: Encapsulation
   category: Concept
@@ -240,6 +261,27 @@
   subcategory: Engineering
   difficulty: advanced
   source: educational-sources
+- name: Greedy Algorithms
+  id: greedy-algorithms
+  category: Concept
+  subcategory: Advanced
+  description: Algorithms making locally optimal choices at each step
+  aliases:
+  - greedy
+  - greedy-algorithm
+  difficulty: intermediate
+  source: curated-list
+- name: Hash Tables
+  id: hash-tables
+  category: Concept
+  subcategory: Fundamentals
+  description: Data structure using hash functions for fast key-value lookups
+  aliases:
+  - hash-table
+  - hash-map
+  - dictionary
+  difficulty: basic
+  source: curated-list
 - id: higher-order-functions
   name: Higher-Order Functions
   category: Concept
@@ -296,6 +338,16 @@
   - rust
   difficulty: advanced
   source: educational-sources
+- name: Linked Lists
+  id: linked-lists
+  category: Concept
+  subcategory: Fundamentals
+  description: Linear data structure with nodes containing data and references
+  aliases:
+  - linked-list
+  - list
+  difficulty: basic
+  source: curated-list
 - id: load-balancing
   name: Load Balancing
   category: Concept
@@ -344,6 +396,17 @@
   subcategory: Engineering
   difficulty: intermediate
   source: educational-sources
+- name: Mutex
+  id: mutex
+  category: Concept
+  subcategory: Advanced
+  description: Mutual exclusion lock for protecting shared resources
+  aliases:
+  - mutex
+  - mutual-exclusion
+  - lock
+  difficulty: intermediate
+  source: curated-list
 - id: normalization
   name: Normalization
   category: Concept
@@ -423,6 +486,26 @@
   subcategory: Engineering
   difficulty: intermediate
   source: educational-sources
+- name: Queues
+  id: queues
+  category: Concept
+  subcategory: Fundamentals
+  description: FIFO data structure for sequential processing
+  aliases:
+  - queue
+  - fifo
+  difficulty: basic
+  source: curated-list
+- name: Race Conditions
+  id: race-conditions
+  category: Concept
+  subcategory: Advanced
+  description: Bugs occurring when timing affects program correctness
+  aliases:
+  - race-condition
+  - data-race
+  difficulty: intermediate
+  source: curated-list
 - id: recursion
   name: Recursion
   category: Concept
@@ -465,12 +548,31 @@
   subcategory: Fundamentals
   difficulty: basic
   source: educational-sources
+- name: Searching Algorithms
+  id: searching
+  category: Concept
+  subcategory: Advanced
+  description: Algorithms for finding elements in data structures
+  aliases:
+  - searching
+  - search
+  difficulty: intermediate
+  source: curated-list
 - id: security
   name: Security
   category: Concept
   subcategory: Engineering
   difficulty: advanced
   source: educational-sources
+- name: Semaphores
+  id: semaphores
+  category: Concept
+  subcategory: Advanced
+  description: Synchronization primitive for controlling access to resources
+  aliases:
+  - semaphore
+  difficulty: intermediate
+  source: curated-list
 - id: singleton-pattern
   name: Singleton Pattern
   category: Concept
@@ -483,12 +585,32 @@
   subcategory: Engineering
   difficulty: advanced
   source: educational-sources
+- name: Sorting Algorithms
+  id: sorting
+  category: Concept
+  subcategory: Advanced
+  description: Algorithms for ordering elements in a collection
+  aliases:
+  - sorting
+  - sort
+  difficulty: intermediate
+  source: curated-list
 - id: sql-injection
   name: SQL Injection
   category: Concept
   subcategory: Engineering
   difficulty: intermediate
   source: educational-sources
+- name: Stacks
+  id: stacks
+  category: Concept
+  subcategory: Fundamentals
+  description: LIFO data structure for last-in-first-out operations
+  aliases:
+  - stack
+  - lifo
+  difficulty: basic
+  source: curated-list
 - id: strategy-pattern
   name: Strategy Pattern
   category: Concept
@@ -521,6 +643,16 @@
   subcategory: Engineering
   difficulty: intermediate
   source: educational-sources
+- name: Thread Pools
+  id: thread-pools
+  category: Concept
+  subcategory: Advanced
+  description: Collection of worker threads for executing tasks
+  aliases:
+  - thread-pool
+  - worker-pool
+  difficulty: intermediate
+  source: curated-list
 - id: threads
   name: Threads
   category: Concept
@@ -541,6 +673,17 @@
   subcategory: Engineering
   difficulty: intermediate
   source: educational-sources
+- name: Trees
+  id: trees
+  category: Concept
+  subcategory: Fundamentals
+  description: Hierarchical data structure with nodes connected by edges
+  aliases:
+  - tree
+  - binary-tree
+  - tree-structure
+  difficulty: basic
+  source: curated-list
 - id: type-inference
   name: Type Inference
   category: Concept

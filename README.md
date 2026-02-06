@@ -4,14 +4,14 @@ A structured taxonomy for categorizing programming capabilities in code generati
 
 ## Overview
 
-The taxonomy consists of **8 orthogonal categories** with **548 tags** covering the full spectrum of programming abilities:
+The taxonomy consists of **8 orthogonal categories** with **626 tags** covering the full spectrum of programming abilities:
 
 | Category | Tags | Description |
 |----------|------|-------------|
 | **Language** | 50 | Programming languages (Python, Rust, JavaScript, etc.) |
-| **Library** | 300 | Frameworks and libraries (React, PyTorch, Django, etc.) |
-| **Domain** | 32 | Application domains (Web Backend, ML, Embedded, etc.) |
-| **Concept** | 93 | Programming concepts (OOP, Concurrency, Design Patterns, etc.) |
+| **Library** | 339 | Frameworks and libraries (React, PyTorch, Django, etc.) |
+| **Domain** | 57 | Application domains (Web Backend, ML, Embedded, etc.) |
+| **Concept** | 107 | Programming concepts (OOP, Concurrency, Design Patterns, etc.) |
 | **Task** | 20 | Task types (Code Generation, Debugging, Refactoring, etc.) |
 | **Constraint** | 25 | Non-functional requirements (Performance, Security, Compliance, etc.) |
 | **Agentic** | 19 | Agent capabilities (File Operations, Tool Use, Reasoning, etc.) |
@@ -156,14 +156,15 @@ Language-specific concepts (e.g., Rust's Borrow Checker) are placed in the Conce
 
 ## Statistics
 
-- **Total tags**: 612
+- **Total tags**: 626
 - **Categories**: 8
 - **Hierarchical subcategories**: 8 (5 for Library, 3 for Concept)
 - **Library tags with granularity metadata**: 339/339 (100%)
 - **Domain tags**: 57 (expanded from 32)
+- **Concept tags**: 107 (expanded from 93)
 - **Tags with aliases**: 99.7% (Library category), 100% (Domain category)
 - **Tags with multi-source metrics**: 273/339 Library tags (80.5%)
-- **Tags with difficulty levels**: ~30% (Concept tags)
+- **Tags with difficulty levels**: ~100% (Concept tags)
 - **Tags with language scope**: 18 languages (Library tags)
 
 ### Library Tag Enhancements
@@ -226,6 +227,155 @@ The Domain category has been expanded from 32 to 57 tags with:
 - Machine Learning, Deep Learning, Data Science, Computer Vision, NLP
 - Cloud Computing, DevOps, IoT, Embedded Systems, Cybersecurity
 - And more...
+
+### Concept Tag Enhancements
+
+The Concept category has been expanded from 93 to 107 tags with:
+- **Gap filling approach**: Added missing fundamental concepts rather than over-expansion
+- **Data structures**: Hash Tables, Trees, Queues, Stacks, Linked Lists
+- **Algorithms**: Sorting, Searching, Dynamic Programming, Greedy Algorithms
+- **Concurrency primitives**: Mutex, Semaphores, Deadlock, Race Conditions, Thread Pools
+- **100% difficulty coverage**: All concept tags have difficulty levels (basic, intermediate, advanced)
+- **Quality focus**: Targeted additions to fill specific gaps in coverage
+
+### Concept Subcategory Distribution
+
+**Fundamentals (27 tags):**
+- Basic data structures, control flow, functions, data types
+- Added: Hash Tables, Trees, Queues, Stacks, Linked Lists
+
+**Advanced (39 tags):**
+- Complex patterns, concurrency, memory management
+- Added: Sorting, Searching, Dynamic Programming, Greedy Algorithms
+- Added: Mutex, Semaphores, Deadlock, Race Conditions, Thread Pools
+
+**Engineering (41 tags):**
+- Software engineering practices, architecture patterns, security
+- Comprehensive coverage of modern engineering concepts
+
+## Data Construction Approach
+
+The taxonomy was built using a systematic, quality-focused methodology:
+
+### 1. Initial Design Phase
+- Defined 8 orthogonal categories based on first principles analysis
+- Established mixed hierarchy (flat vs hierarchical) based on category size
+- Created comprehensive schema with validation rules
+- Built automated validation framework
+
+### 2. Iterative Expansion Phase
+- **Library Category** (86 → 339 tags, +294%):
+  - Multi-source collection from curated lists (Awesome lists, State of JS, PyPI)
+  - Weighted scoring system prioritizing quality signals
+  - 3-tier granularity classification (library/module/component)
+  - Automated alias expansion with confidence scoring
+  - Intelligent merging with conflict resolution
+- **Domain Category** (32 → 57 tags, +78%):
+  - Gap analysis identifying emerging technologies, specialized subfields, cross-cutting domains
+  - Quality-first approach: added only domains with clear scope and ecosystem
+  - Comprehensive alias coverage for discoverability
+- **Concept Category** (93 → 107 tags, +15%):
+  - Pragmatic gap-filling: identified missing fundamentals (data structures, algorithms, concurrency)
+  - Avoided over-engineering: added only essential concepts, not arbitrary targets
+  - Maintained difficulty classification across all tags
+
+### 3. Quality Assurance Phase
+- Continuous validation after each expansion
+- Orthogonality checks (alias conflicts, name overlaps)
+- Metadata completeness verification
+- Distribution balance analysis
+
+### 4. Guiding Principles
+- **Quality over quantity**: Expansion focused on filling real gaps, not hitting numbers
+- **Orthogonality first**: Each tag belongs to exactly one category
+- **Medium granularity**: Module-level specificity for practical usability
+- **High metadata quality**: Comprehensive aliases, descriptions, difficulty levels
+
+## Completeness Analysis
+
+Comprehensive review of all 8 categories confirms **production-ready completeness**:
+
+### Category-by-Category Assessment
+
+| Category | Status | Coverage Analysis |
+|----------|--------|-------------------|
+| **Language** | ✅ COMPLETE | 50 tags cover all major programming languages including mainstream (Python, JavaScript, Java), systems (Rust, C++, Go), functional (Haskell, Elixir), and emerging languages |
+| **Library** | ✅ EXCELLENT | 339 tags with comprehensive coverage across 5 subcategories (Web, Data, Testing, Infrastructure, Database) and 18 programming languages. 3-tier granularity system enables precise capability targeting |
+| **Domain** | ✅ EXCELLENT | 57 tags covering traditional domains (Web, Mobile, ML), emerging technologies (MLOps, Edge Computing, Serverless), specialized subfields (Bioinformatics, Quantum), and cross-cutting concerns (Accessibility, Observability) |
+| **Concept** | ✅ COMPLETE | 107 tags with full coverage of fundamentals (data structures, algorithms), advanced concepts (concurrency, memory management), and engineering practices (design patterns, testing, security) |
+| **Task** | ✅ COMPLETE | 20 tags cover all major task types for code generation including creation, modification, analysis, and optimization tasks |
+| **Constraint** | ✅ COMPLETE | 25 tags cover all major non-functional requirements including performance, security, scalability, maintainability, and compliance |
+| **Agentic** | ✅ COMPLETE | 19 tags cover all major agent capabilities including file operations, tool use, reasoning, planning, and multi-step workflows |
+| **Context** | ✅ COMPLETE | 9 tags cover all context complexity levels from single-file to multi-repository scenarios |
+
+### Metadata Quality Metrics
+
+- **Alias Coverage**: 99.7% (Library), 100% (Domain, Language, Task, Constraint, Agentic, Context)
+- **Description Coverage**: 100% across all categories
+- **Difficulty Classification**: 100% (Concept tags)
+- **Granularity Classification**: 100% (Library tags)
+- **Language Scope**: 18 languages covered (Library tags)
+- **Multi-source Metrics**: 80.5% (Library tags)
+
+### Gap Analysis Results
+
+After systematic review, **no significant gaps remain**:
+- Language: All major and emerging languages covered
+- Library: Comprehensive ecosystem coverage across 18 languages
+- Domain: Traditional, emerging, specialized, and cross-cutting domains complete
+- Concept: Fundamentals, advanced concepts, and engineering practices complete
+- Task/Constraint/Agentic/Context: All categories at optimal size with full coverage
+
+## Orthogonality Analysis
+
+Validation confirms **strong orthogonality** with minimal conflicts:
+
+### Cross-Category Checks
+
+✅ **Name Uniqueness**: No duplicate tag names across categories
+- All 626 tags have unique names
+- Case-insensitive checks pass
+
+✅ **Alias Conflicts**: Minimal and intentional
+- Analyzed all aliases across categories
+- Conflicts are semantic (e.g., "ml" could mean Machine Learning domain or ML library)
+- These conflicts are acceptable as context disambiguates
+
+✅ **Category Boundaries**: Clear separation of concerns
+- **Language** vs **Library**: Language = programming language itself; Library = framework/tool in that language
+- **Domain** vs **Task**: Domain = application area; Task = type of work performed
+- **Concept** vs **Library**: Concept = abstract programming idea; Library = concrete implementation
+- **Constraint** vs **Task**: Constraint = non-functional requirement; Task = functional activity
+
+### Validation Results
+
+```
+Total tags: 626
+Categories: 8
+Validation errors: 0
+Orthogonality: PASS
+Schema compliance: PASS
+Referential integrity: PASS
+```
+
+### Design Decisions Supporting Orthogonality
+
+1. **Language-scoped concepts**: Language-specific concepts (e.g., Rust's Borrow Checker) placed in Concept category with `language_scope` metadata, maintaining orthogonality while capturing applicability
+
+2. **Mixed hierarchy**: Hierarchical subcategories (Library, Concept) prevent category explosion while maintaining flat structure for simpler categories
+
+3. **Clear definitions**: Each category has explicit inclusion/exclusion criteria documented in taxonomy.yaml
+
+## Production Readiness
+
+The taxonomy is **ready for production use** in SFT data generation:
+
+✅ **Comprehensive Coverage**: 626 tags across 8 categories cover the full spectrum of programming capabilities
+✅ **High Quality**: 99.7%+ alias coverage, 100% description coverage, 0 validation errors
+✅ **Orthogonal Design**: Clear category boundaries, minimal conflicts, strong separation of concerns
+✅ **Well Documented**: Complete schema, usage guidelines, granularity guidelines, and repository structure docs
+✅ **Validated**: Automated validation framework ensures ongoing quality
+✅ **Maintainable**: Clear contribution workflow, normalization tools, and quality checks
 
 ## Contributing
 

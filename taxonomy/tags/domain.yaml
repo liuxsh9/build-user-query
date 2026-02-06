@@ -1,14 +1,13 @@
-# Domain Tags - Application domains and scenarios
-# Total: 50 tags
-
-- id: accessibility-domain
-  name: Accessibility Development
+- name: Accessibility
+  id: accessibility
   category: Domain
-  description: Building inclusive software for users with disabilities
+  description: Designing and developing applications usable by people with disabilities
+    following WCAG standards
   aliases:
-  - accessibility-dev
+  - accessibility
+  - a11y
   - inclusive-design
-
+  source: curated-list
 - id: api-development
   name: API Development
   category: Domain
@@ -16,7 +15,25 @@
   aliases:
   - api-dev
   - api-building
-
+- name: Audio Processing
+  id: audio-processing
+  category: Domain
+  description: Digital signal processing for audio including synthesis, effects, compression,
+    and real-time processing
+  aliases:
+  - audio-processing
+  - audio-engineering
+  - sound-processing
+  source: curated-list
+- name: Augmented Reality
+  id: augmented-reality
+  category: Domain
+  description: Interactive experiences overlaying digital content on real-world environments
+  aliases:
+  - ar
+  - augmented-reality
+  - mixed-reality
+  source: curated-list
 - id: automation
   name: Automation
   category: Domain
@@ -24,7 +41,15 @@
   aliases:
   - automation
   - scripting
-
+- name: Bioinformatics
+  id: bioinformatics
+  category: Domain
+  description: Application of computational methods to biological data analysis including
+    genomics and proteomics
+  aliases:
+  - bioinformatics
+  - computational-biology
+  source: curated-list
 - id: blockchain
   name: Blockchain
   category: Domain
@@ -33,7 +58,6 @@
   - blockchain
   - web3
   - dapp
-
 - id: cli-tool
   name: CLI Tool
   category: Domain
@@ -41,7 +65,6 @@
   aliases:
   - cli
   - command-line
-
 - id: cloud-computing
   name: Cloud Computing
   category: Domain
@@ -49,7 +72,6 @@
   aliases:
   - cloud
   - cloud-native
-
 - id: compiler-development
   name: Compiler Development
   category: Domain
@@ -58,7 +80,26 @@
   - compiler
   - language-tooling
   - interpreter
-
+- name: Compliance
+  id: compliance
+  category: Domain
+  description: Ensuring applications meet regulatory requirements like GDPR, HIPAA,
+    and SOC 2
+  aliases:
+  - compliance
+  - regulatory
+  - governance
+  source: curated-list
+- name: Computer Graphics
+  id: computer-graphics
+  category: Domain
+  description: Generation and manipulation of visual content including rendering,
+    shaders, and 3D graphics
+  aliases:
+  - computer-graphics
+  - graphics
+  - 3d-graphics
+  source: curated-list
 - id: computer-vision
   name: Computer Vision
   category: Domain
@@ -67,7 +108,6 @@
   - cv
   - image-processing
   - vision
-
 - id: cybersecurity
   name: Cybersecurity
   category: Domain
@@ -76,15 +116,15 @@
   - cybersec
   - infosec
   - appsec
-
-- id: data-engineering
-  name: Data Engineering
+- name: Data Engineering
+  id: data-engineering
   category: Domain
-  description: Building data pipelines and infrastructure for data processing
+  description: Building and maintaining data pipelines, warehouses, and infrastructure
+    for data processing
   aliases:
-  - data-eng
-  - data-infrastructure
-
+  - data-engineering
+  - data-pipelines
+  source: curated-list
 - id: data-science
   name: Data Science
   category: Domain
@@ -93,7 +133,6 @@
   - data-science
   - ds
   - analytics
-
 - id: database-administration
   name: Database Administration
   category: Domain
@@ -101,15 +140,15 @@
   aliases:
   - dba
   - database-admin
-
-- id: dataops
-  name: DataOps
+- name: DataOps
+  id: dataops
   category: Domain
-  description: Applying DevOps practices to data analytics workflows
+  description: Data operations focusing on automation, quality, and collaboration
+    in data pipeline development
   aliases:
   - dataops
   - data-ops
-
+  source: curated-list
 - id: deep-learning
   name: Deep Learning
   category: Domain
@@ -118,7 +157,6 @@
   - dl
   - deep-learning
   - neural-networks
-
 - id: desktop-application
   name: Desktop Application
   category: Domain
@@ -127,7 +165,6 @@
   - desktop
   - desktop-app
   - gui-app
-
 - id: devops
   name: DevOps
   category: Domain
@@ -135,15 +172,6 @@
   aliases:
   - devops
   - dev-ops
-
-- id: distributed-systems
-  name: Distributed Systems
-  category: Domain
-  description: Designing systems that run across multiple networked computers
-  aliases:
-  - distributed
-  - distributed-computing
-
 - id: e-commerce
   name: E-commerce
   category: Domain
@@ -152,15 +180,16 @@
   - ecommerce
   - online-store
   - shopping
-
-- id: edge-computing
-  name: Edge Computing
+- name: Edge Computing
+  id: edge-computing
   category: Domain
-  description: Processing data near the source rather than in centralized data centers
+  description: Distributed computing paradigm bringing computation and data storage
+    closer to data sources at network edge
   aliases:
-  - edge
   - edge-computing
-
+  - edge
+  - fog-computing
+  source: curated-list
 - id: embedded-systems
   name: Embedded Systems
   category: Domain
@@ -168,7 +197,6 @@
   aliases:
   - embedded
   - firmware
-
 - id: etl
   name: ETL
   category: Domain
@@ -177,7 +205,6 @@
   - etl
   - data-pipeline
   - data-integration
-
 - id: financial-technology
   name: Financial Technology
   category: Domain
@@ -185,15 +212,15 @@
   aliases:
   - fintech
   - finance
-
-- id: finops
-  name: FinOps
+- name: FinOps
+  id: finops
   category: Domain
-  description: Cloud financial management and cost optimization
+  description: Cloud financial operations focusing on cost optimization, budgeting,
+    and financial accountability
   aliases:
   - finops
-  - cloud-cost
-
+  - cloud-financial-management
+  source: curated-list
 - id: full-stack
   name: Full Stack
   category: Domain
@@ -201,7 +228,6 @@
   aliases:
   - fullstack
   - full-stack-dev
-
 - id: game-development
   name: Game Development
   category: Domain
@@ -210,16 +236,16 @@
   - gamedev
   - game-dev
   - gaming
-
-- id: graphics-programming
-  name: Graphics Programming
+- name: Geospatial
+  id: geospatial
   category: Domain
-  description: Rendering and visual computing for games and applications
+  description: Geographic information systems and spatial data analysis for mapping
+    and location-based applications
   aliases:
-  - graphics
-  - rendering
-  - gpu-programming
-
+  - geospatial
+  - gis
+  - geographic-information-systems
+  source: curated-list
 - id: healthcare-technology
   name: Healthcare Technology
   category: Domain
@@ -228,7 +254,17 @@
   - healthtech
   - medtech
   - health-it
-
+- name: Internationalization
+  id: internationalization
+  category: Domain
+  description: Designing applications to support multiple languages, locales, and
+    cultural conventions
+  aliases:
+  - internationalization
+  - i18n
+  - localization
+  - l10n
+  source: curated-list
 - id: iot
   name: IoT
   category: Domain
@@ -237,16 +273,16 @@
   - iot
   - internet-of-things
   - connected-devices
-
-- id: llm-application
-  name: LLM Application
+- name: Low-Code Development
+  id: low-code
   category: Domain
-  description: Building applications powered by large language models
+  description: Application development using visual interfaces and configuration instead
+    of traditional programming
   aliases:
-  - llm-app
-  - ai-application
-  - genai
-
+  - low-code
+  - no-code
+  - visual-development
+  source: curated-list
 - id: machine-learning
   name: Machine Learning
   category: Domain
@@ -254,16 +290,16 @@
   aliases:
   - ml
   - machine-learning
-
-- id: mlops
-  name: MLOps
+- name: MLOps
+  id: mlops
   category: Domain
-  description: Operationalizing machine learning models in production
+  description: Machine learning operations focusing on deployment, monitoring, and
+    versioning of ML models in production
   aliases:
   - mlops
   - ml-ops
-  - ml-engineering
-
+  - machine-learning-operations
+  source: curated-list
 - id: mobile-development
   name: Mobile Development
   category: Domain
@@ -272,7 +308,6 @@
   - mobile
   - mobile-dev
   - mobile-app
-
 - id: natural-language-processing
   name: Natural Language Processing
   category: Domain
@@ -281,7 +316,6 @@
   - nlp
   - text-processing
   - language-ai
-
 - id: network-programming
   name: Network Programming
   category: Domain
@@ -290,16 +324,15 @@
   - networking
   - network-dev
   - socket-programming
-
-- id: observability
-  name: Observability
+- name: Observability
+  id: observability
   category: Domain
-  description: Monitoring, logging, and tracing distributed systems
+  description: Understanding system internal states through metrics, logs, and distributed
+    tracing
   aliases:
+  - observability
   - o11y
-  - observability-engineering
-  - telemetry
-
+  source: curated-list
 - id: operating-systems
   name: Operating Systems
   category: Domain
@@ -308,25 +341,46 @@
   - os
   - kernel
   - os-dev
-
-- id: platform-engineering
-  name: Platform Engineering
+- name: Performance Engineering
+  id: performance-engineering
   category: Domain
-  description: Building internal developer platforms and tooling
+  description: Optimizing application performance through profiling, load testing,
+    and bottleneck analysis
   aliases:
-  - platform-eng
-  - internal-platform
-  - developer-platform
-
-- id: real-time-systems
-  name: Real-time Systems
+  - performance-engineering
+  - performance-optimization
+  - perf
+  source: curated-list
+- name: Platform Engineering
+  id: platform-engineering
   category: Domain
-  description: Systems with strict timing constraints and guarantees
+  description: Building and maintaining internal developer platforms to improve developer
+    experience and productivity
   aliases:
-  - realtime
+  - platform-engineering
+  - internal-developer-platform
+  - idp
+  source: curated-list
+- name: Quantum Computing
+  id: quantum-computing
+  category: Domain
+  description: Computing using quantum-mechanical phenomena like superposition and
+    entanglement
+  aliases:
+  - quantum-computing
+  - quantum
+  - qc
+  source: curated-list
+- name: Real-time Systems
+  id: real-time-systems
+  category: Domain
+  description: Systems with strict timing constraints requiring deterministic response
+    times
+  aliases:
+  - real-time-systems
   - rtos
-  - hard-real-time
-
+  - real-time
+  source: curated-list
 - id: robotics
   name: Robotics
   category: Domain
@@ -335,7 +389,6 @@
   - robotics
   - robot
   - ros
-
 - id: scientific-computing
   name: Scientific Computing
   category: Domain
@@ -344,24 +397,45 @@
   - scientific
   - hpc
   - numerical-computing
-
-- id: search-engineering
-  name: Search Engineering
+- name: Search Engineering
+  id: search-engineering
   category: Domain
-  description: Building search engines and information retrieval systems
+  description: Building and optimizing search systems including indexing, relevance
+    tuning, and query processing
   aliases:
-  - search-eng
+  - search-engineering
+  - search
   - information-retrieval
-  - search-systems
-
-- id: site-reliability-engineering
-  name: Site Reliability Engineering
+  source: curated-list
+- name: Serverless Computing
+  id: serverless
   category: Domain
-  description: Ensuring reliability and uptime of production systems
+  description: Cloud computing model where applications run in stateless compute containers
+    managed by cloud providers
+  aliases:
+  - serverless
+  - faas
+  - function-as-a-service
+  source: curated-list
+- name: Simulation
+  id: simulation
+  category: Domain
+  description: Creating virtual environments and physics-based models for testing,
+    training, and research
+  aliases:
+  - simulation
+  - sim
+  source: curated-list
+- name: Site Reliability Engineering
+  id: site-reliability-engineering
+  category: Domain
+  description: Engineering discipline applying software engineering to infrastructure
+    and operations with focus on reliability
   aliases:
   - sre
-  - reliability
-
+  - site-reliability-engineering
+  - reliability-engineering
+  source: curated-list
 - id: smart-contracts
   name: Smart Contracts
   category: Domain
@@ -370,16 +444,6 @@
   - smart-contract
   - blockchain-contracts
   - web3-contracts
-
-- id: streaming
-  name: Streaming
-  category: Domain
-  description: Real-time data streaming and event processing
-  aliases:
-  - stream-processing
-  - event-streaming
-  - real-time-data
-
 - id: systems-programming
   name: Systems Programming
   category: Domain
@@ -388,25 +452,25 @@
   - systems
   - low-level
   - system-dev
-
-- id: testing-engineering
-  name: Testing Engineering
+- name: Video Processing
+  id: video-processing
   category: Domain
-  description: Quality assurance and software testing practices
+  description: Video encoding, transcoding, streaming, and manipulation for media
+    applications
   aliases:
-  - qa
-  - quality-assurance
-  - test-engineering
-
-- id: video-streaming
-  name: Video Streaming
+  - video-processing
+  - video-encoding
+  - video-streaming
+  source: curated-list
+- name: Virtual Reality
+  id: virtual-reality
   category: Domain
-  description: Building video delivery and streaming platforms
+  description: Immersive computer-generated 3D environments for simulation, gaming,
+    and training
   aliases:
-  - video
-  - media-streaming
-  - ott
-
+  - vr
+  - virtual-reality
+  source: curated-list
 - id: web-backend
   name: Web Backend
   category: Domain
@@ -414,7 +478,6 @@
   aliases:
   - backend
   - server-side
-
 - id: web-frontend
   name: Web Frontend
   category: Domain
