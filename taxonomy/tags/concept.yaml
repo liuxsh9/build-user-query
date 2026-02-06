@@ -512,12 +512,6 @@
   subcategory: Fundamentals
   difficulty: intermediate
   source: educational-sources
-- id: refactoring
-  name: Refactoring
-  category: Concept
-  subcategory: Engineering
-  difficulty: intermediate
-  source: educational-sources
 - id: references
   name: References
   category: Concept

@@ -20,6 +20,14 @@
   - build
   - compile
   source: curated-list
+- id: code-analysis
+  name: Code Analysis
+  category: Agentic
+  aliases:
+  - ast-analysis
+  - code-understanding
+  - dependency-analysis
+  source: curated-list
 - id: code-execution
   name: Code Execution
   category: Agentic
@@ -27,6 +35,30 @@
   - execute-code
   - run-code
   source: curated-list
+- id: code-generation
+  name: Code Generation
+  category: Agentic
+  aliases:
+  - code-gen
+  - scaffolding
+  - boilerplate
+  source: curated-list
+- id: code-review
+  name: Code Review
+  category: Agentic
+  aliases:
+  - pr-review
+  - code-quality
+  - style-check
+  source: curated-list
+- id: code-search
+  name: Code Search
+  category: Agentic
+  aliases:
+  - grep
+  - content-search
+  - text-search
+  source: Claude Code
 - id: context-management
   name: Context Management
   category: Agentic
@@ -41,12 +73,43 @@
   - db-query
   - sql-execution
   source: curated-list
+- id: debugging
+  name: Debugging
+  category: Agentic
+  aliases:
+  - debug
+  - log-analysis
+  - diagnostics
+  source: curated-list
 - id: dependency-installation
   name: Dependency Installation
   category: Agentic
   aliases:
   - install-deps
   - package-install
+  source: curated-list
+- id: design-to-code
+  name: Design to Code
+  category: Agentic
+  aliases:
+  - figma-to-code
+  - sketch-to-html
+  source: curated-list
+- id: diagram-generation
+  name: Diagram Generation
+  category: Agentic
+  aliases:
+  - diagram-gen
+  - mermaid
+  - plantuml
+  source: curated-list
+- id: documentation-generation
+  name: Documentation Generation
+  category: Agentic
+  aliases:
+  - doc-gen
+  - api-docs
+  - comments
   source: curated-list
 - id: error-recovery
   name: Error Recovery
@@ -76,6 +139,14 @@
   - read-file
   - file-reading
   source: curated-list
+- id: file-search
+  name: File Search
+  category: Agentic
+  aliases:
+  - glob
+  - find
+  - path-search
+  source: Claude Code
 - id: file-write
   name: File Write
   category: Agentic
@@ -111,6 +182,66 @@
   - reasoning
   - planning
   source: curated-list
+- id: parallel-execution
+  name: Parallel Execution
+  category: Agentic
+  aliases:
+  - concurrent
+  - parallel-tasks
+  source: curated-list
+- id: planning
+  name: Planning
+  category: Agentic
+  aliases:
+  - task-planning
+  - design
+  - architecture
+  source: Claude Code
+- id: refactoring
+  name: Refactoring
+  category: Agentic
+  aliases:
+  - code-refactor
+  - restructure
+  source: curated-list
+- id: skill-execution
+  name: Skill Execution
+  category: Agentic
+  aliases:
+  - plugin
+  - command
+  - mcp
+  source: Claude Code
+- id: static-analysis
+  name: Static Analysis
+  category: Agentic
+  aliases:
+  - linting
+  - type-check
+  - security-scan
+  source: curated-list
+- id: subagent-management
+  name: Subagent Management
+  category: Agentic
+  aliases:
+  - spawn-agent
+  - delegate-task
+  - agent-coordination
+  source: Claude Code
+- id: task-tracking
+  name: Task Tracking
+  category: Agentic
+  aliases:
+  - todo-management
+  - progress-tracking
+  source: Claude Code
+- id: test-generation
+  name: Test Generation
+  category: Agentic
+  aliases:
+  - test-gen
+  - unit-test-gen
+  source: curated-list
 - id: test-running
   name: Test Running
   category: Agentic
@@ -124,6 +255,38 @@
   aliases:
   - tool-use
   - tool-calling
+  source: curated-list
+- id: ui-automation
+  name: UI Automation
+  category: Agentic
+  aliases:
+  - browser-automation
+  - gui-testing
+  - e2e-testing
+  source: curated-list
+- id: user-interaction
+  name: User Interaction
+  category: Agentic
+  aliases:
+  - ask-user
+  - user-input
+  - confirmation
+  source: Claude Code
+- id: visual-debugging
+  name: Visual Debugging
+  category: Agentic
+  aliases:
+  - visual-regression
+  - ui-diff
+  - layout-debugging
+  source: curated-list
+- id: visual-understanding
+  name: Visual Understanding
+  category: Agentic
+  aliases:
+  - screenshot-analysis
+  - diagram-reading
+  - image-understanding
   source: curated-list
 - id: web-search
   name: Web Search

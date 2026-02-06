@@ -18,13 +18,6 @@
   - explanation
   - explain
   source: curated-list
-- id: code-generation
-  name: Code Generation
-  category: Task
-  aliases:
-  - generation
-  - code-gen
-  source: curated-list
 - id: code-optimization
   name: Code Optimization
   category: Task
@@ -39,21 +32,6 @@
   - refactoring
   - refactor
   source: curated-list
-- id: code-review
-  name: Code Review
-  category: Task
-  aliases:
-  - review
-  source: curated-list, educational-sources
-- id: code-search
-  name: Code Search
-  category: Task
-  aliases:
-  - code-search
-  - grep
-  - search
-  - search-code
-  source: curated-list
 - id: code-translation
   name: Code Translation
   category: Task
@@ -67,13 +45,6 @@
   aliases:
   - config
   - configuration
-  source: curated-list
-- id: debugging
-  name: Debugging
-  category: Task
-  aliases:
-  - debug
-  - bug-fix
   source: curated-list
 - id: dependency-management
   name: Dependency Management
@@ -129,11 +100,4 @@
   aliases:
   - security-audit
   - vulnerability-scan
-  source: curated-list
-- id: test-generation
-  name: Test Generation
-  category: Task
-  aliases:
-  - test-gen
-  - testing
   source: curated-list
