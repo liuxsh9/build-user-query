@@ -7,6 +7,7 @@
 
 import yaml
 import json
+import re
 import argparse
 from pathlib import Path
 
@@ -50,6 +51,39 @@ def generate_stats(all_tags):
     }
 
 
+def update_html_embedded_data(html_path, tags_data):
+    """更新HTML文件中的内嵌数据"""
+    with open(html_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    # 生成新的数据（压缩格式以减小文件大小）
+    new_data_json = json.dumps(tags_data, ensure_ascii=False, separators=(',', ':'))
+
+    # 查找并替换内嵌数据
+    # 匹配 "let tagsData = {任何内容};" 这一整行
+    start_marker = "let tagsData = "
+    end_marker = ";\n        let currentFilter"
+
+    start_idx = html_content.find(start_marker)
+    end_idx = html_content.find(end_marker)
+
+    if start_idx == -1 or end_idx == -1:
+        return False
+
+    # 构建新的内容
+    new_html_content = (
+        html_content[:start_idx + len(start_marker)] +
+        new_data_json +
+        html_content[end_idx:]
+    )
+
+    # 写回文件
+    with open(html_path, 'w', encoding='utf-8') as f:
+        f.write(new_html_content)
+
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description='生成标签可视化数据')
     parser.add_argument(
@@ -61,6 +95,23 @@ def main():
         '--output',
         default='visualization/tags_data.json',
         help='输出JSON文件路径 (默认: visualization/tags_data.json)'
+    )
+    parser.add_argument(
+        '--html',
+        default='visualization/tag-visualization.html',
+        help='HTML可视化文件路径，将更新其中的内嵌数据 (默认: visualization/tag-visualization.html)'
+    )
+    parser.add_argument(
+        '--update-html',
+        action='store_true',
+        default=True,
+        help='自动更新HTML文件中的内嵌数据 (默认: True)'
+    )
+    parser.add_argument(
+        '--no-update-html',
+        action='store_false',
+        dest='update_html',
+        help='不更新HTML文件'
     )
     parser.add_argument(
         '--pretty',
@@ -102,6 +153,17 @@ def main():
 
     print(f"\n✓ 成功生成 {output_path}")
     print(f"  包含 {stats['total_tags']} 个标签，{stats['total_categories']} 个类别")
+
+    # 更新HTML文件中的内嵌数据
+    if args.update_html:
+        html_path = Path(args.html)
+        if html_path.exists():
+            if update_html_embedded_data(html_path, all_tags):
+                print(f"\n✓ 成功更新 {html_path} 中的内嵌数据")
+            else:
+                print(f"\n⚠️  未能更新 {html_path}（可能数据格式已改变）")
+        else:
+            print(f"\n⚠️  HTML文件不存在: {html_path}")
 
 
 if __name__ == '__main__':
