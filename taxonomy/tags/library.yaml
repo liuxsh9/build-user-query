@@ -3817,7 +3817,6 @@
   subcategory: Infrastructure
   aliases:
   - terraform
-  - hcl
   language_scope: []
   granularity: library
   source: curated-list

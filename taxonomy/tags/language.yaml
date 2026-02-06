@@ -25,6 +25,34 @@
   use_cases:
   - scientific
   - data-science
+- id: arkts
+  name: ArkTS
+  category: Language
+  aliases:
+  - arkts
+  - ark-ts
+  source: Business
+  paradigm:
+  - object-oriented
+  - functional
+  typing: static
+  runtime: jit
+  use_cases:
+  - mobile
+- id: ascendc
+  name: AscendC
+  category: Language
+  aliases:
+  - ascendc
+  - ascend-c
+  source: Business
+  paradigm:
+  - imperative
+  typing: static
+  runtime: compiled
+  use_cases:
+  - systems
+  - scientific
 - id: assembly
   name: Assembly
   category: Language
@@ -39,6 +67,20 @@
   use_cases:
   - systems
   - embedded
+- id: bazel
+  name: Bazel
+  category: Language
+  aliases:
+  - bazel
+  - starlark
+  source: GitHub
+  paradigm:
+  - declarative
+  - functional
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - build
 - id: c
   name: C
   category: Language
@@ -67,6 +109,18 @@
   use_cases:
   - web
   - data-science
+- id: cmake
+  name: CMake
+  category: Language
+  aliases:
+  - cmake
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - build
 - id: cobol
   name: COBOL
   category: Language
@@ -154,6 +208,46 @@
   use_cases:
   - mobile
   - web
+- id: dockerfile
+  name: Dockerfile
+  category: Language
+  aliases:
+  - dockerfile
+  - docker
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - devops
+  - config
+- id: dotenv
+  name: Dotenv
+  category: Language
+  aliases:
+  - dotenv
+  - env
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - config
+- id: ejs
+  name: EJS
+  category: Language
+  aliases:
+  - ejs
+  - embedded-js
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
 - id: elixir
   name: Elixir
   category: Language
@@ -169,6 +263,19 @@
   use_cases:
   - web
   - systems
+- id: erb
+  name: ERB
+  category: Language
+  aliases:
+  - erb
+  - embedded-ruby
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
 - id: erlang
   name: Erlang
   category: Language
@@ -229,6 +336,21 @@
   - systems
   - web
   - devops
+- id: gradle
+  name: Gradle
+  category: Language
+  aliases:
+  - gradle
+  - groovy-dsl
+  - kotlin-dsl
+  source: GitHub
+  paradigm:
+  - declarative
+  - imperative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - build
 - id: groovy
   name: Groovy
   category: Language
@@ -244,6 +366,19 @@
   - web
   - scripting
   - build
+- id: handlebars
+  name: Handlebars
+  category: Language
+  aliases:
+  - handlebars
+  - hbs
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
 - id: haskell
   name: Haskell
   category: Language
@@ -258,6 +393,19 @@
   use_cases:
   - web
   - data-science
+- id: hcl
+  name: HCL
+  category: Language
+  aliases:
+  - hcl
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - devops
+  - config
 - id: html
   name: HTML
   category: Language
@@ -271,6 +419,20 @@
   use_cases:
   - web
   - markup
+- id: ini
+  name: INI
+  category: Language
+  aliases:
+  - ini
+  - cfg
+  - conf
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - config
 - id: java
   name: Java
   category: Language
@@ -302,6 +464,33 @@
   - web
   - mobile
   - scripting
+- id: jinja
+  name: Jinja
+  category: Language
+  aliases:
+  - jinja
+  - jinja2
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
+  - scripting
+- id: json
+  name: JSON
+  category: Language
+  aliases:
+  - json
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: static
+  runtime: interpreted
+  use_cases:
+  - config
+  - web
 - id: julia
   name: Julia
   category: Language
@@ -332,6 +521,32 @@
   use_cases:
   - mobile
   - web
+- id: latex
+  name: LaTeX
+  category: Language
+  aliases:
+  - latex
+  - tex
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: compiled
+  use_cases:
+  - markup
+  - scientific
+- id: liquid
+  name: Liquid
+  category: Language
+  aliases:
+  - liquid
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - web
 - id: lisp
   name: Lisp
   category: Language
@@ -361,6 +576,34 @@
   - scripting
   - game-dev
   - embedded
+- id: makefile
+  name: Makefile
+  category: Language
+  aliases:
+  - makefile
+  - make
+  - gnumake
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - build
+  - devops
+- id: markdown
+  name: Markdown
+  category: Language
+  aliases:
+  - markdown
+  - md
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - markup
 - id: matlab
   name: MATLAB
   category: Language
@@ -374,6 +617,33 @@
   use_cases:
   - scientific
   - data-science
+- id: maven
+  name: Maven
+  category: Language
+  aliases:
+  - maven
+  - pom
+  - pom.xml
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: static
+  runtime: interpreted
+  use_cases:
+  - build
+- id: nginx-config
+  name: Nginx Config
+  category: Language
+  aliases:
+  - nginx-conf
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - config
+  - devops
 - id: nim
   name: Nim
   category: Language
@@ -470,6 +740,19 @@
   runtime: interpreted
   use_cases:
   - scientific
+- id: properties
+  name: Properties
+  category: Language
+  aliases:
+  - properties
+  - props
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - config
 - id: python
   name: Python
   category: Language
@@ -516,6 +799,20 @@
   use_cases:
   - scripting
   - scientific
+- id: restructuredtext
+  name: reStructuredText
+  category: Language
+  aliases:
+  - restructuredtext
+  - rst
+  - rest
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - markup
 - id: ruby
   name: Ruby
   category: Language
@@ -640,6 +937,18 @@
   runtime: compiled
   use_cases:
   - mobile
+- id: toml
+  name: TOML
+  category: Language
+  aliases:
+  - toml
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: static
+  runtime: interpreted
+  use_cases:
+  - config
 - id: typescript
   name: TypeScript
   category: Language
@@ -695,6 +1004,33 @@
   runtime: compiled
   use_cases:
   - blockchain
+- id: xml
+  name: XML
+  category: Language
+  aliases:
+  - xml
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: static
+  runtime: interpreted
+  use_cases:
+  - config
+  - markup
+- id: yaml
+  name: YAML
+  category: Language
+  aliases:
+  - yaml
+  - yml
+  source: GitHub
+  paradigm:
+  - declarative
+  typing: dynamic
+  runtime: interpreted
+  use_cases:
+  - config
+  - devops
 - id: zig
   name: Zig
   category: Language
