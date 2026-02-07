@@ -70,4 +70,4 @@
 - [x] 7.2 Confirm net change is 15 → 21 tags
 - [x] 7.3 Verify Task vs Agentic distinction is clear
 - [x] 7.4 Spot check: verify 3-5 random tags have clear, useful descriptions
-- [ ] 7.5 Commit changes with descriptive message
+- [x] 7.5 Commit changes with descriptive message
