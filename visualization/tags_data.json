@@ -1,5 +1,5 @@
 {
-  "tags": [
+  "Agentic": [
     {
       "aliases": [
         "api-call",
@@ -416,7 +416,9 @@
       "name": "Web Search",
       "category": "Agentic",
       "source": "curated-list"
-    },
+    }
+  ],
+  "Concept": [
     {
       "aliases": [],
       "id": "abstract-classes",
@@ -1145,7 +1147,9 @@
       "name": "XSS",
       "category": "Concept",
       "source": "educational-sources"
-    },
+    }
+  ],
+  "Constraint": [
     {
       "aliases": [
         "accessibility",
@@ -1387,7 +1391,9 @@
       "name": "Type Safe",
       "category": "Constraint",
       "source": "curated-list"
-    },
+    }
+  ],
+  "Context": [
     {
       "aliases": [
         "greenfield",
@@ -1500,7 +1506,9 @@
       "category": "Context",
       "description": "Code that uses external dependencies or third-party libraries. Requires package management and dependency resolution.",
       "source": "curated-list"
-    },
+    }
+  ],
+  "Domain": [
     {
       "aliases": [
         "api-dev",
@@ -1946,7 +1954,9 @@
       "name": "Web Frontend",
       "category": "Domain",
       "description": "Client-side web application development"
-    },
+    }
+  ],
+  "Language": [
     {
       "aliases": [
         "ada",
@@ -2917,7 +2927,9 @@
       "name": "Zig",
       "category": "Language",
       "source": "GitHub"
-    },
+    }
+  ],
+  "Library": [
     {
       "aliases": [
         "activerecord",
@@ -7492,7 +7504,9 @@
         "typescript"
       ],
       "source": "curated-list"
-    },
+    }
+  ],
+  "Task": [
     {
       "aliases": [
         "api-design"
@@ -7729,20 +7743,5 @@
       "description": "Write tests for code. Create unit tests, integration tests, or end-to-end tests.",
       "source": "task-expansion"
     }
-  ],
-  "stats": {
-    "total": 633,
-    "by_category": {
-      "agentic": 40,
-      "concept": 92,
-      "constraint": 24,
-      "context": 10,
-      "domain": 32,
-      "language": 75,
-      "library": 339,
-      "task": 21
-    }
-  },
-  "generated_at": "2026-02-07",
-  "version": "1.0"
+  ]
 }

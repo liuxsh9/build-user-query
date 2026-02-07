@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Update tags_data.json from YAML files without requiring PyYAML.
+Update tags_data.json and tag-visualization.html from YAML files without requiring PyYAML.
 Uses simple YAML parsing for our specific tag structure.
 """
 
@@ -65,57 +65,99 @@ def parse_yaml_list(content):
     return tags
 
 def load_all_tags():
-    """Load all tags from YAML files."""
+    """Load all tags from YAML files, grouped by category."""
     tags_dir = Path('taxonomy/tags')
-    all_tags = []
+    tags_by_category = {}
     stats = defaultdict(int)
 
     for yaml_file in sorted(tags_dir.glob('*.yaml')):
-        category = yaml_file.stem
         content = yaml_file.read_text()
         tags = parse_yaml_list(content)
 
-        # Add to all tags
-        all_tags.extend(tags)
-        stats[category] = len(tags)
+        # Group by category
+        for tag in tags:
+            category = tag.get('category', 'Unknown')
+            if category not in tags_by_category:
+                tags_by_category[category] = []
+            tags_by_category[category].append(tag)
+            stats[category] += 1
 
-        print(f"  {category}: {len(tags)} tags")
+    return tags_by_category, dict(stats)
 
-    return all_tags, dict(stats)
+def update_html_embedded_data(html_path, tags_data):
+    """Update embedded data in HTML file."""
+    with open(html_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    # Generate new data (compressed format to reduce file size)
+    new_data_json = json.dumps(tags_data, ensure_ascii=False, separators=(',', ':'))
+
+    # Find and replace embedded data
+    # Match "let tagsData = {...};"
+    start_marker = "let tagsData = "
+    end_marker = ";\n        let currentFilter"
+
+    start_idx = html_content.find(start_marker)
+    end_idx = html_content.find(end_marker)
+
+    if start_idx == -1 or end_idx == -1:
+        print(f"  ⚠️  Could not find data markers in {html_path}")
+        return False
+
+    # Build new content
+    new_html_content = (
+        html_content[:start_idx + len(start_marker)] +
+        new_data_json +
+        html_content[end_idx:]
+    )
+
+    # Write back
+    with open(html_path, 'w', encoding='utf-8') as f:
+        f.write(new_html_content)
+
+    return True
 
 def main():
-    print("Generating tags_data.json from YAML files...")
+    print("Generating tags_data.json and updating HTML from YAML files...")
     print()
 
-    # Load tags
-    all_tags, stats = load_all_tags()
+    # Load tags grouped by category
+    tags_by_category, stats = load_all_tags()
 
-    # Create output structure
-    output = {
-        'tags': all_tags,
-        'stats': {
-            'total': len(all_tags),
-            'by_category': stats
-        },
-        'generated_at': '2026-02-07',
-        'version': '1.0'
-    }
+    # Calculate totals
+    total_tags = sum(stats.values())
 
-    # Write JSON
-    output_file = Path('visualization/tags_data.json')
-    with open(output_file, 'w') as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
-
-    print()
-    print(f"✓ Generated {output_file}")
-    print(f"  Total tags: {len(all_tags)}")
-    print(f"  Categories: {len(stats)}")
-
-    # Summary by category
-    print()
-    print("Summary by category:")
+    # Print stats
+    print("Tags loaded:")
     for cat, count in sorted(stats.items()):
-        print(f"  - {cat}: {count}")
+        print(f"  {cat}: {count} tags")
+    print()
+
+    # Write JSON file (按 category 分组的格式，与 HTML 兼容)
+    output_file = Path('visualization/tags_data.json')
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(tags_by_category, f, indent=2, ensure_ascii=False)
+
+    print(f"✓ Generated {output_file}")
+    print(f"  Total tags: {total_tags}")
+    print(f"  Categories: {len(stats)}")
+    print()
+
+    # Update HTML embedded data
+    html_file = Path('visualization/tag-visualization.html')
+    if html_file.exists():
+        if update_html_embedded_data(html_file, tags_by_category):
+            print(f"✓ Updated embedded data in {html_file}")
+        else:
+            print(f"✗ Failed to update {html_file}")
+    else:
+        print(f"⚠️  HTML file not found: {html_file}")
+
+    print()
+    print("Summary:")
+    print(f"  - Total tags: {total_tags}")
+    print(f"  - Categories: {len(stats)}")
+    print(f"  - Format: Grouped by category (HTML compatible)")
 
 if __name__ == '__main__':
     main()
