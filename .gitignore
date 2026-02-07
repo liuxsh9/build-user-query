@@ -23,9 +23,6 @@ test_output/
 .DS_Store
 Thumbs.db
 
-# Generated files
-visualization/tags_data.json
-
 # Archive (optional - uncomment if you want to regenerate)
 # archive/collections/*.json
 
