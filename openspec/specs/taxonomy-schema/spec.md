@@ -23,7 +23,7 @@ The system SHALL define a tag schema with required and optional fields.
 
 #### Scenario: Tag supports optional metadata
 - **WHEN** a tag is defined
-- **THEN** it MAY have description, aliases, language_scope, difficulty, examples, and related_tags fields
+- **THEN** it MAY have description, aliases, language_scope, difficulty, examples, related_tags, subcategory, granularity, weighted_score, paradigm, typing, runtime, use_cases, and source fields
 
 #### Scenario: Tag ID is unique across taxonomy
 - **WHEN** multiple tags are defined
@@ -58,4 +58,15 @@ The system SHALL define a structure for storing capability labels on data items.
 #### Scenario: Labeled item includes metadata
 - **WHEN** a data item is labeled
 - **THEN** it MUST include source, labeled_by, and labeled_at metadata
+
+### Requirement: Define category selection mode
+The system SHALL define whether each category uses single-select or multi-select labeling.
+
+#### Scenario: Context category is single-select
+- **WHEN** the Context category is used for labeling
+- **THEN** exactly one tag SHALL be assigned per record
+
+#### Scenario: All other categories are multi-select
+- **WHEN** Language, Library, Domain, Concept, Task, Constraint, or Agentic categories are used for labeling
+- **THEN** zero or more tags MAY be assigned per record
 
