@@ -1,0 +1,47 @@
+{
+  "n_annotators": 3,
+  "n_samples": 5,
+  "category_kappas": {
+    "context": 1.0,
+    "difficulty": 1.0,
+    "intent": 0.8051948051948054,
+    "language": 0.7321428571428568,
+    "domain": 0.6590909090909095,
+    "concept": 0.3642857142857139,
+    "task": 0.9107142857142856,
+    "constraint": null,
+    "agentic": -0.07142857142857283
+  },
+  "overall_kappa": 0.6749999999999997,
+  "per_tag_kappas": {
+    "language": {
+      "css": -0.07142857142857283,
+      "html": 1.0,
+      "javascript": 1.0,
+      "python": 1.0
+    },
+    "domain": {
+      "web-frontend": 0.6590909090909095
+    },
+    "concept": {
+      "control-flow": 0.7000000000000003,
+      "data-structures": -0.07142857142857283,
+      "data-types": 0.4642857142857142
+    },
+    "task": {
+      "bug-fixing": 1.0,
+      "code-explanation": 1.0,
+      "feature-implementation": 0.732142857142857
+    },
+    "constraint": {},
+    "agentic": {
+      "file-operations": -0.07142857142857283
+    }
+  },
+  "passing": false,
+  "failing_categories": [
+    "domain",
+    "concept",
+    "agentic"
+  ]
+}

@@ -1,297 +1,225 @@
+# Agentic tags - Agent capabilities and tool usage
+# Reorganized: removed task-like tags (belong in Task category),
+# split into Tool Actions and Behavioral Patterns subcategories
+# Consolidated from 40 → 24 tags
+
+# === Tool Actions (primitive tool invocations) ===
+
 - id: api-calling
   name: API Calling
   category: Agentic
+  subcategory: Tool Actions
+  description: Making HTTP requests to external APIs
   aliases:
   - api-call
   - http-request
-  source: curated-list
+
 - id: bash-execution
   name: Bash Execution
   category: Agentic
+  subcategory: Tool Actions
+  description: Executing shell commands and scripts
   aliases:
-  - bash
-  - shell
+  - shell-execution
   - command-execution
-  source: curated-list
+
 - id: build-execution
   name: Build Execution
   category: Agentic
+  subcategory: Tool Actions
+  description: Running build tools and compilers
   aliases:
   - build
   - compile
-  source: curated-list
-- id: code-analysis
-  name: Code Analysis
-  category: Agentic
-  aliases:
-  - ast-analysis
-  - code-understanding
-  - dependency-analysis
-  source: curated-list
+
 - id: code-execution
   name: Code Execution
   category: Agentic
+  subcategory: Tool Actions
+  description: Running code snippets for testing or validation
   aliases:
   - execute-code
   - run-code
-  source: curated-list
-- id: code-generation
-  name: Code Generation
-  category: Agentic
-  aliases:
-  - code-gen
-  - scaffolding
-  - boilerplate
-  source: curated-list
-- id: code-review
-  name: Code Review
-  category: Agentic
-  aliases:
-  - pr-review
-  - code-quality
-  - style-check
-  source: curated-list
-- id: code-search
-  name: Code Search
-  category: Agentic
-  aliases:
-  - grep
-  - content-search
-  - text-search
-  source: Claude Code
-- id: context-management
-  name: Context Management
-  category: Agentic
-  aliases:
-  - context
-  - memory
-  source: curated-list
+
 - id: database-query
   name: Database Query
   category: Agentic
+  subcategory: Tool Actions
+  description: Executing database queries
   aliases:
   - db-query
   - sql-execution
-  source: curated-list
-- id: debugging
-  name: Debugging
-  category: Agentic
-  aliases:
-  - debug
-  - log-analysis
-  - diagnostics
-  source: curated-list
+
 - id: dependency-installation
   name: Dependency Installation
   category: Agentic
+  subcategory: Tool Actions
+  description: Installing packages and dependencies
   aliases:
   - install-deps
   - package-install
-  source: curated-list
-- id: design-to-code
-  name: Design to Code
+
+- id: file-operations
+  name: File Operations
   category: Agentic
+  subcategory: Tool Actions
+  description: Reading, writing, editing, and searching files
   aliases:
-  - figma-to-code
-  - sketch-to-html
-  source: curated-list
-- id: diagram-generation
-  name: Diagram Generation
-  category: Agentic
-  aliases:
-  - diagram-gen
-  - mermaid
-  - plantuml
-  source: curated-list
-- id: documentation-generation
-  name: Documentation Generation
-  category: Agentic
-  aliases:
-  - doc-gen
-  - api-docs
-  - comments
-  source: curated-list
-- id: error-recovery
-  name: Error Recovery
-  category: Agentic
-  aliases:
-  - error-handling
-  - retry
-  source: curated-list
-- id: file-edit
-  name: File Edit
-  category: Agentic
-  aliases:
-  - edit-file
-  - file-editing
-  source: curated-list
-- id: file-navigation
-  name: File Navigation
-  category: Agentic
-  aliases:
-  - navigate
-  - file-tree
-  source: curated-list
-- id: file-read
-  name: File Read
-  category: Agentic
-  aliases:
-  - read-file
-  - file-reading
-  source: curated-list
-- id: file-search
-  name: File Search
-  category: Agentic
-  aliases:
+  - file-read
+  - file-write
+  - file-edit
+  - file-search
+  - file-navigation
   - glob
-  - find
-  - path-search
-  source: Claude Code
-- id: file-write
-  name: File Write
-  category: Agentic
-  aliases:
-  - write-file
-  - file-writing
-  source: curated-list
+  - grep
+
 - id: git-operations
   name: Git Operations
   category: Agentic
+  subcategory: Tool Actions
+  description: Version control operations (commit, push, branch, etc.)
   aliases:
   - git
-  - version-control
-  source: curated-list
-- id: iterative-refinement
-  name: Iterative Refinement
-  category: Agentic
-  aliases:
-  - iteration
-  - refinement
-  source: curated-list
-- id: multi-file-coordination
-  name: Multi-file Coordination
-  category: Agentic
-  aliases:
-  - multi-file
-  - cross-file
-  source: curated-list
-- id: multi-step-reasoning
-  name: Multi-step Reasoning
-  category: Agentic
-  aliases:
-  - reasoning
-  - planning
-  source: curated-list
-- id: parallel-execution
-  name: Parallel Execution
-  category: Agentic
-  aliases:
-  - concurrent
-  - parallel-tasks
-  source: curated-list
-- id: planning
-  name: Planning
-  category: Agentic
-  aliases:
-  - task-planning
-  - design
-  - architecture
-  source: Claude Code
-- id: refactoring
-  name: Refactoring
-  category: Agentic
-  aliases:
-  - code-refactor
-  - restructure
-  source: curated-list
-- id: skill-execution
-  name: Skill Execution
-  category: Agentic
-  aliases:
-  - plugin
-  - command
-  - mcp
-  source: Claude Code
+  - version-control-ops
+
 - id: static-analysis
   name: Static Analysis
   category: Agentic
+  subcategory: Tool Actions
+  description: Running linters, type checkers, and security scanners
   aliases:
   - linting
   - type-check
   - security-scan
-  source: curated-list
-- id: subagent-management
-  name: Subagent Management
-  category: Agentic
-  aliases:
-  - spawn-agent
-  - delegate-task
-  - agent-coordination
-  source: Claude Code
-- id: task-tracking
-  name: Task Tracking
-  category: Agentic
-  aliases:
-  - todo-management
-  - progress-tracking
-  source: Claude Code
-- id: test-generation
-  name: Test Generation
-  category: Agentic
-  aliases:
-  - test-gen
-  - unit-test-gen
-  source: curated-list
+
 - id: test-running
   name: Test Running
   category: Agentic
+  subcategory: Tool Actions
+  description: Executing test suites
   aliases:
   - run-tests
   - test-execution
-  source: curated-list
-- id: tool-selection
-  name: Tool Selection
-  category: Agentic
-  aliases:
-  - tool-use
-  - tool-calling
-  source: curated-list
+
 - id: ui-automation
   name: UI Automation
   category: Agentic
+  subcategory: Tool Actions
+  description: Browser and GUI automation for testing
   aliases:
   - browser-automation
   - gui-testing
   - e2e-testing
-  source: curated-list
+
+- id: web-search
+  name: Web Search
+  category: Agentic
+  subcategory: Tool Actions
+  description: Searching the web for information
+  aliases:
+  - web-search
+  - internet-search
+
+# === Behavioral Patterns (cognitive/coordination strategies) ===
+
+- id: context-management
+  name: Context Management
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Managing conversation context, memory, and relevant information
+  aliases:
+  - context
+  - memory
+
+- id: error-recovery
+  name: Error Recovery
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Recovering from errors and retrying with different approaches
+  aliases:
+  - retry
+  - fallback
+
+- id: iterative-refinement
+  name: Iterative Refinement
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Progressively improving output through multiple iterations
+  aliases:
+  - iteration
+  - refinement
+
+- id: multi-file-coordination
+  name: Multi-file Coordination
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Coordinating changes across multiple files consistently
+  aliases:
+  - cross-file-changes
+  - multi-file-changes
+
+- id: multi-step-reasoning
+  name: Multi-step Reasoning
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Breaking complex problems into sequential reasoning steps
+  aliases:
+  - reasoning
+  - chain-of-thought
+
+- id: parallel-execution
+  name: Parallel Execution
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Running multiple tasks or tool calls concurrently
+  aliases:
+  - concurrent-tasks
+  - parallel-tasks
+
+- id: planning
+  name: Planning
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Creating and following execution plans for complex tasks
+  aliases:
+  - task-planning
+  - design
+
+- id: subagent-management
+  name: Subagent Management
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Delegating subtasks to specialized agents
+  aliases:
+  - spawn-agent
+  - delegate-task
+  - agent-coordination
+
+- id: tool-selection
+  name: Tool Selection
+  category: Agentic
+  subcategory: Behavioral Patterns
+  description: Choosing the right tool for each subtask
+  aliases:
+  - tool-use
+  - tool-calling
+
 - id: user-interaction
   name: User Interaction
   category: Agentic
+  subcategory: Behavioral Patterns
+  description: Asking clarifying questions and confirming decisions with the user
   aliases:
   - ask-user
   - user-input
   - confirmation
-  source: Claude Code
-- id: visual-debugging
-  name: Visual Debugging
-  category: Agentic
-  aliases:
-  - visual-regression
-  - ui-diff
-  - layout-debugging
-  source: curated-list
+
 - id: visual-understanding
   name: Visual Understanding
   category: Agentic
+  subcategory: Behavioral Patterns
+  description: Understanding screenshots, diagrams, and visual content
   aliases:
   - screenshot-analysis
   - diagram-reading
   - image-understanding
-  source: curated-list
-- id: web-search
-  name: Web Search
-  category: Agentic
-  aliases:
-  - search
-  - web-search
-  source: curated-list

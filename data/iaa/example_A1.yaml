@@ -1,0 +1,62 @@
+# Example annotation - Annotator A1
+# This is a demo file with annotations for 5 samples to test the pipeline.
+# In production, all 50 samples would be annotated.
+
+annotator_id: "A1"
+annotation_date: "2026-02-14"
+
+annotations:
+  - sample_id: S01
+    language: [python]
+    domain: []
+    concept: [control-flow, data-types]
+    task: [code-explanation]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: learn
+
+  - sample_id: S02
+    language: [javascript]
+    domain: []
+    concept: [control-flow, data-types]
+    task: [feature-implementation]
+    constraint: []
+    agentic: []
+    context: single-function
+    difficulty: beginner
+    intent: build
+
+  - sample_id: S03
+    language: [python]
+    domain: []
+    concept: [control-flow]
+    task: [bug-fixing]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: debug
+
+  - sample_id: S04
+    language: [javascript]
+    domain: []
+    concept: [data-types]
+    task: [code-explanation]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: learn
+
+  - sample_id: S05
+    language: [html]
+    domain: [web-frontend]
+    concept: []
+    task: [feature-implementation]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: build

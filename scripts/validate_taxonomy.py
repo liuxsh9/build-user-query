@@ -154,9 +154,6 @@ def validate_schema_compliance(tags: List[Dict[str, Any]], taxonomy: Dict[str, A
     print("Validating schema compliance...")
 
     required_fields = ["id", "name", "category"]
-    valid_difficulties = ["basic", "intermediate", "advanced"]
-    valid_granularities = ["library", "module", "component"]
-
     # Language metadata controlled vocabularies
     valid_paradigms = [
         "imperative", "functional", "object-oriented", "declarative",
@@ -183,20 +180,8 @@ def validate_schema_compliance(tags: List[Dict[str, Any]], taxonomy: Dict[str, A
             if field not in tag:
                 report.add_error(f"Tag '{tag_id}' missing required field: {field}")
 
-        # Check difficulty enum
-        if "difficulty" in tag:
-            if tag["difficulty"] not in valid_difficulties:
-                report.add_error(f"Tag '{tag_id}' has invalid difficulty: {tag['difficulty']}")
-
-        # Check granularity enum (required for Library tags)
-        category = tag.get("category")
-        if category == "Library":
-            if "granularity" not in tag:
-                report.add_error(f"Library tag '{tag_id}' missing required granularity field")
-            elif tag["granularity"] not in valid_granularities:
-                report.add_error(f"Tag '{tag_id}' has invalid granularity: {tag['granularity']}")
-
         # Check Language metadata fields
+        category = tag.get("category")
         if category == "Language":
             # Validate paradigm (optional, multi-value)
             if "paradigm" in tag:

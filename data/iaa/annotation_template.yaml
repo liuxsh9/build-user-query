@@ -1,0 +1,619 @@
+# IAA Annotation Template
+# ─────────────────────────────────────────────────────────
+# Instructions for annotators:
+#
+# 1. Read docs/annotation_guidelines.md BEFORE starting.
+# 2. For each sample, fill in all 9 categories independently.
+# 3. Multi-select categories: provide a list of tag IDs (e.g., [python, javascript]).
+#    If no tag applies, use an empty list [].
+# 4. Single-select categories: provide exactly one tag ID.
+# 5. Do NOT look at other annotators' results.
+# 6. If unsure, see the annotation guidelines' boundary cases section.
+#
+# Valid tag IDs for each category — see taxonomy/tags/*.yaml for full list.
+# ─────────────────────────────────────────────────────────
+
+annotator_id: ""       # Fill in: A1, A2, or A3
+annotation_date: ""    # Fill in: YYYY-MM-DD
+
+annotations:
+
+  - sample_id: S01
+    query: "Python 里怎么读取一个 CSV 文件并打印每一行？"
+    language: []           # multi-select from taxonomy/tags/language.yaml
+    domain: []             # multi-select from taxonomy/tags/domain.yaml
+    concept: []            # multi-select from taxonomy/tags/concept.yaml
+    task: []               # multi-select from taxonomy/tags/task.yaml
+    constraint: []         # multi-select from taxonomy/tags/constraint.yaml
+    agentic: []            # multi-select from taxonomy/tags/agentic.yaml
+    context: ""            # single-select from taxonomy/tags/context.yaml
+    difficulty: ""         # single-select: beginner | intermediate | advanced | expert
+    intent: ""             # single-select: learn | build | debug | review | decide
+
+  - sample_id: S02
+    query: "Write a JavaScript function that checks if a string is a palindrome."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S03
+    query: "I wrote this code but it gives me an error:\n```python\nfor i in range(10)\n    print(i)\n```\nWhat's wrong?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S04
+    query: "let 和 const 在 JavaScript 里有什么区别？什么时候该用哪个？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S05
+    query: "帮我写一个 HTML 表单，有用户名、密码和提交按钮。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S06
+    query: "How do I create a list of squares from 1 to 100 in Python using list comprehension?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S07
+    query: "This code returns None instead of the sum:\n```python\ndef add(a, b):\n    result = a + b\n\nprint(add(3, 5))\n```"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S08
+    query: "用 Go 写一个 Hello World 的 HTTP server，监听 8080 端口。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S09
+    query: "Java 的 ArrayList 和 LinkedList 有什么区别？应该怎么选？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S10
+    query: "帮我看看这段 CSS 有什么问题，按钮文字不居中：\n```css\n.btn {\n  width: 200px;\n  height: 50px;\n}\n```"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S11
+    query: "用 React 写一个带搜索过滤功能的 Todo List 组件，要用 TypeScript 和 hooks。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S12
+    query: "Explain how JavaScript Promises work, including the microtask queue. I understand callbacks already."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S13
+    query: "我的 Express API 返回 CORS 错误：\nAccess to XMLHttpRequest at 'http://localhost:3000/api/users' from origin 'http://localhost:5173' has been blocked by CORS policy\n前端用的 Vite + React，后端 Express。怎么修？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S14
+    query: "帮我用 FastAPI 写一个用户注册和登录的 REST API，要有密码哈希和 JWT 认证。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S15
+    query: "Write unit tests for this TypeScript service using Jest and mocking:\nexport class UserService {\n  constructor(private db: Database) {}\n  async getUser(id: string) { ... }\n}"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S16
+    query: "PostgreSQL 和 MongoDB 对于一个社交媒体 app 的后端，哪个更合适？用户有帖子、评论、关注关系。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S17
+    query: "帮我 review 一下这个 Python 函数：\ndef process_data(data): ...\n有什么可以改进的地方？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S18
+    query: "Set up a GitHub Actions CI pipeline for a Node.js project that runs lint, tests, and builds on every PR."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S19
+    query: "Docker Compose 和 Kubernetes 的适用场景分别是什么？我的项目现在是 3 个微服务，团队 5 个人。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S20
+    query: "What's the difference between composition and inheritance in OOP? When should I prefer one over the other?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S21
+    query: "我的 Django model 保存后 post_save signal 被触发了两次。怎么调试这个问题？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S22
+    query: "帮我看看这个 React 组件的性能问题，列表有 10000 条数据时很卡"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S23
+    query: "Explain how Express middleware works. What's the execution order when you have multiple app.use() calls, error handlers, and router-level middleware?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S24
+    query: "How does the Python GIL work and why does it matter for multithreaded programs?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S25
+    query: "帮我 review 下这个 CommonJS → ES Modules 迁移的 PR，有些动态 require 不确定怎么处理。这个迁移方案有什么遗漏或风险吗？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S26
+    query: "这个 SQL 查询在生产环境要跑 15 秒，表里有 500 万条记录。帮我优化。目前 orders 表只有 primary key 索引。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S27
+    query: "Design a rate limiter for a REST API: per-user limits, per-endpoint limits, distributed across 4 instances, burst traffic handling."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S28
+    query: "我的 Go 服务跑了 3 天后内存从 200MB 涨到 2GB，pprof heap profile 显示大量 goroutine 在等待 channel。handleOrder 里会调用外部 API，有时候超时。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S29
+    query: "Implement a Solidity ERC-20 token with owner-only minting, 2% burn on transfer, reentrancy protection, and gas optimization."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S30
+    query: "帮我 review 这个 Rust async 服务的架构和错误处理方案，这个架构有什么隐患？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S31
+    query: "设计一个 event-driven 订单处理系统，saga pattern，最终一致性，TypeScript + Kafka。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S32
+    query: "Explain how B+ trees work in database indexes and why they're preferred over hash indexes for range queries. Include the disk I/O analysis."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S33
+    query: "Our Spark pipeline breaks when upstream schema changes. Comparing: Schema Registry vs schema-on-read vs Delta Lake schema evolution. 50+ upstream sources, Parquet on S3. Which approach is best?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S34
+    query: "帮我设计一个 WebSocket 实时协作编辑系统的架构，类似 Google Docs。多人同时编辑，CRDT，离线同步，TypeScript。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S35
+    query: "Redis 和 Memcached 在高并发缓存场景下各有什么优劣？10万 QPS 读，1万 QPS 写，1-10KB 数据。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S36
+    query: "这段 C++ ConnectionPool 代码有时候会 segfault，但不是每次都复现。(code with mutex in acquire but not in release)"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S37
+    query: "Review this Kubernetes Deployment YAML for production readiness. What's missing or could be improved?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S38
+    query: "Monorepo (Turborepo) vs polyrepo for 20 developers, 5 microservices + 2 frontend apps + shared libraries?"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S39
+    query: "帮我 review 这个重试 decorator 的实现，特别关注异步场景下的问题。(retry decorator with sync/async wrapper code)"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S40
+    query: "How do you properly implement database migrations in a zero-downtime deployment scenario? PostgreSQL + Kubernetes rolling updates."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S41
+    query: "用 CUDA 实现并行 matrix multiplication kernel，shared memory tiling，处理 bank conflict，性能接近 cuBLAS 80%。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S42
+    query: "我在实现 lock-free concurrent hash map (Rust)，CAS 循环有 ABA 问题。怎么解决又不牺牲太多性能？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S43
+    query: "Design a distributed transaction coordinator (2PC) across PostgreSQL, MongoDB, Redis. Exactly-once, partition handling, crash recovery."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S44
+    query: "Explain V8 internals: parsing through TurboFan's sea-of-nodes IR to machine code. Focus on speculative optimization and deoptimization."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S45
+    query: "Review this custom memory allocator for ARM Cortex-M4 embedded system. Consider fragmentation, alignment, and thread safety. (C code)"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S46
+    query: "Implement Raft consensus in Go: leader election, log replication, snapshot, membership changes."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S47
+    query: "用 Rust 写一个编程语言解释器：变量、if/else、while、函数、基本类型。从 lexer 开始设计架构。"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S48
+    query: "Kafka consumer rebalance 风暴：50 partition，20 instance，P99 处理时间 5s 偶尔 30s+。怎么诊断和修复？"
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S49
+    query: "eBPF observability (Pixie, Cilium) vs OpenTelemetry for 200+ K8s microservices. Compare overhead, coverage, implementation effort."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""
+
+  - sample_id: S50
+    query: "Review this Rust real-time audio processing pipeline causing buffer underruns at 48kHz. calculate_filter_coeffs does trig in the audio thread."
+    language: []
+    domain: []
+    concept: []
+    task: []
+    constraint: []
+    agentic: []
+    context: ""
+    difficulty: ""
+    intent: ""

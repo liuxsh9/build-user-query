@@ -1,0 +1,59 @@
+# Example annotation - Annotator A2
+annotator_id: "A2"
+annotation_date: "2026-02-14"
+
+annotations:
+  - sample_id: S01
+    language: [python]
+    domain: []
+    concept: [control-flow]
+    task: [code-explanation]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: learn
+
+  - sample_id: S02
+    language: [javascript]
+    domain: []
+    concept: [control-flow, data-structures]
+    task: [feature-implementation]
+    constraint: []
+    agentic: []
+    context: single-function
+    difficulty: beginner
+    intent: build
+
+  - sample_id: S03
+    language: [python]
+    domain: []
+    concept: [control-flow]
+    task: [bug-fixing]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: debug
+
+  - sample_id: S04
+    language: [javascript]
+    domain: []
+    concept: [data-types, control-flow]
+    task: [code-explanation]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: decide
+
+  - sample_id: S05
+    language: [html, css]
+    domain: [web-frontend]
+    concept: []
+    task: [feature-implementation]
+    constraint: []
+    agentic: []
+    context: snippet
+    difficulty: beginner
+    intent: build

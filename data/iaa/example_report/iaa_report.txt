@@ -1,0 +1,91 @@
+======================================================================
+INTER-ANNOTATOR AGREEMENT (IAA) REPORT
+Taxonomy v2.0 | 3 annotators | 5 samples
+======================================================================
+
+## Category-Level Kappa Summary
+
+Category        Type                   κ Status             Details
+--------------------------------------------------------------------------------
+context         single-select      1.000 excellent          n=5 samples
+difficulty      single-select      1.000 excellent          n=5 samples
+intent          single-select      0.805 excellent          n=5 samples
+language        multi-select       0.732 acceptable         avg over 4 tags
+domain          multi-select       0.659 needs_improvement  avg over 1 tags
+concept         multi-select       0.364 unacceptable       avg over 3 tags
+task            multi-select       0.911 excellent          avg over 3 tags
+constraint      multi-select         N/A undefined          avg over 0 tags
+agentic         multi-select      -0.071 unacceptable       avg over 1 tags
+
+Overall average κ: 0.675
+Pass threshold: κ ≥ 0.7 for all categories
+
+⚠️  FAILING categories (κ < 0.7): domain, concept, agentic
+
+======================================================================
+## Confusion Analysis (Single-Select Categories)
+
+### Context
+  Agreement: 15/15 pairs (100.0%)
+
+### Difficulty
+  Agreement: 15/15 pairs (100.0%)
+
+### Intent
+  Agreement: 13/15 pairs (86.7%)
+  Most confused pairs:
+    decide ↔ learn: 2 disagreements
+
+======================================================================
+## Per-Tag Kappa Details (Multi-Select Categories)
+
+### Language
+  ⚠️ css                                 κ=-0.071  (unacceptable)
+     html                                κ=1.000  (excellent)
+     javascript                          κ=1.000  (excellent)
+     python                              κ=1.000  (excellent)
+
+### Domain
+  ⚠️ web-frontend                        κ=0.659  (needs_improvement)
+
+### Concept
+  ⚠️ data-structures                     κ=-0.071  (unacceptable)
+  ⚠️ data-types                          κ=0.464  (unacceptable)
+     control-flow                        κ=0.700  (acceptable)
+
+### Task
+     feature-implementation              κ=0.732  (acceptable)
+     bug-fixing                          κ=1.000  (excellent)
+     code-explanation                    κ=1.000  (excellent)
+
+### Agentic
+  ⚠️ file-operations                     κ=-0.071  (unacceptable)
+
+======================================================================
+## Difficulty-Stratified Kappa
+
+### beginner (n=5)
+  context         κ=1.000
+  difficulty      κ=1.000
+  intent          κ=0.805
+  language        κ=0.732
+  domain          κ=0.659
+  concept         κ=0.364
+  task            κ=0.911
+  constraint      κ=N/A
+  agentic         κ=-0.071
+
+### intermediate (n=0)
+  Too few samples for reliable κ
+
+### advanced (n=0)
+  Too few samples for reliable κ
+
+### expert (n=0)
+  Too few samples for reliable κ
+
+======================================================================
+## Disagreement Samples (for guideline updates)
+
+### Intent (1 disagreements)
+  S04: A1=learn, A2=decide, A3=learn

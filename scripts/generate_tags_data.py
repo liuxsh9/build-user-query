@@ -59,27 +59,34 @@ def update_html_embedded_data(html_path, tags_data):
     # 生成新的数据（压缩格式以减小文件大小）
     new_data_json = json.dumps(tags_data, ensure_ascii=False, separators=(',', ':'))
 
-    # 查找并替换内嵌数据
-    # 匹配 "let tagsData = {任何内容};" 这一整行
-    start_marker = "let tagsData = "
-    end_marker = ";\n        let currentFilter"
+    # Strategy 1: Replace TAGS_DATA_PLACEHOLDER token
+    if 'TAGS_DATA_PLACEHOLDER' in html_content:
+        new_html_content = html_content.replace('TAGS_DATA_PLACEHOLDER', new_data_json)
+        with open(html_path, 'w', encoding='utf-8') as f:
+            f.write(new_html_content)
+        return True
 
-    start_idx = html_content.find(start_marker)
-    end_idx = html_content.find(end_marker)
+    # Strategy 2: Replace existing embedded data using regex
+    pattern = r'let tagsData = .+?;\s*\n(\s*)let current'
+    match = re.search(pattern, html_content, re.DOTALL)
+    if match:
+        indent = match.group(1)
+        start_marker = "let tagsData = "
+        start_idx = html_content.find(start_marker)
+        # Find the semicolon + newline before "let current"
+        end_str = ";\n" + indent + "let current"
+        end_idx = html_content.find(end_str, start_idx)
+        if start_idx != -1 and end_idx != -1:
+            new_html_content = (
+                html_content[:start_idx + len(start_marker)] +
+                new_data_json +
+                html_content[end_idx:]
+            )
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(new_html_content)
+            return True
 
-    if start_idx == -1 or end_idx == -1:
-        return False
-
-    # 构建新的内容
-    new_html_content = (
-        html_content[:start_idx + len(start_marker)] +
-        new_data_json +
-        html_content[end_idx:]
-    )
-
-    # 写回文件
-    with open(html_path, 'w', encoding='utf-8') as f:
-        f.write(new_html_content)
+    return False
 
     return True
 
