@@ -16,10 +16,10 @@
         .header {
             background: linear-gradient(135deg, #1d1d1f 0%, #2d3748 100%);
             color: white;
-            padding: 40px 32px 32px;
+            padding: 24px 32px 20px;
         }
-        .header h1 { font-size: 1.8em; font-weight: 700; margin-bottom: 6px; }
-        .header .subtitle { font-size: 0.95em; color: #a1a1aa; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5em; font-weight: 700; margin-bottom: 4px; }
+        .header .subtitle { font-size: 0.85em; color: #a1a1aa; margin-bottom: 12px; }
         .header .version-badge {
             display: inline-block;
             background: rgba(255,255,255,0.12);
@@ -32,26 +32,28 @@
 
         /* Overview stats */
         .overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 12px;
-            padding: 24px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
             background: white;
             border-bottom: 1px solid #e5e5e5;
         }
         .overview-card {
             text-align: center;
-            padding: 16px 8px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
             border: 2px solid transparent;
+            min-width: 80px;
         }
-        .overview-card:hover { transform: translateY(-2px); }
-        .overview-card.active { border-color: currentColor; }
-        .overview-card .num { font-size: 1.6em; font-weight: 700; }
-        .overview-card .label { font-size: 0.75em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-        .overview-card .select-mode { font-size: 0.65em; color: #86868b; margin-top: 2px; }
+        .overview-card:hover { background: #f9f9fb; }
+        .overview-card.active { border-color: currentColor; background: #f9f9fb; }
+        .overview-card .num { font-size: 1.3em; font-weight: 700; }
+        .overview-card .label { font-size: 0.7em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .overview-card .select-mode { font-size: 0.6em; color: #86868b; margin-top: 1px; }
 
         /* Controls */
         .controls {
@@ -91,19 +93,19 @@
         .view-toggle button:not(:last-child) { border-right: 1px solid #d1d1d6; }
 
         /* Content */
-        .content { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+        .content { padding: 24px 32px; }
 
         /* Category sections */
-        .category-section { margin-bottom: 40px; }
+        .category-section { margin-bottom: 32px; }
         .category-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
             border-bottom: 3px solid;
         }
-        .category-title { font-size: 1.4em; font-weight: 700; }
+        .category-title { font-size: 1.25em; font-weight: 700; }
         .category-badge {
             padding: 3px 10px;
             border-radius: 12px;
@@ -120,22 +122,22 @@
             border-radius: 6px;
         }
         .category-desc {
-            font-size: 0.85em;
+            font-size: 0.82em;
             color: #6e6e73;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         /* Tag grid view */
         .tags-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 10px;
         }
         .tag-card {
             background: white;
             border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 16px;
+            border-radius: 10px;
+            padding: 14px;
             transition: all 0.2s;
             border-left: 4px solid;
         }
@@ -143,9 +145,9 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             transform: translateY(-1px);
         }
-        .tag-name { font-size: 1.05em; font-weight: 600; margin-bottom: 4px; }
-        .tag-id { font-size: 0.8em; color: #86868b; font-family: 'SF Mono', 'Menlo', monospace; margin-bottom: 8px; }
-        .tag-description { font-size: 0.85em; color: #515154; line-height: 1.5; margin-bottom: 8px; }
+        .tag-name { font-size: 1em; font-weight: 600; margin-bottom: 2px; }
+        .tag-id { font-size: 0.75em; color: #86868b; font-family: 'SF Mono', 'Menlo', monospace; margin-bottom: 6px; }
+        .tag-description { font-size: 0.82em; color: #515154; line-height: 1.45; margin-bottom: 6px; }
         .tag-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
         .meta-badge {
             padding: 2px 8px;
@@ -212,11 +214,27 @@
             --c-intent: #ffd60a;
         }
 
+        /* Responsive */
+        @media (min-width: 1800px) {
+            .tags-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
+        @media (max-width: 1024px) {
+            .header, .overview, .controls, .content { padding-left: 20px; padding-right: 20px; }
+            .tags-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+        }
         @media (max-width: 768px) {
             .header { padding: 24px 16px; }
             .overview, .controls, .content { padding-left: 16px; padding-right: 16px; }
+            .tags-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+            .overview { gap: 6px; }
+            .overview-card { min-width: 60px; padding: 8px 10px; }
+            .overview-card .num { font-size: 1.1em; }
+            .controls { flex-wrap: wrap; }
+            .search-input { min-width: 0; }
+        }
+        @media (max-width: 480px) {
             .tags-grid { grid-template-columns: 1fr; }
-            .overview { grid-template-columns: repeat(3, 1fr); }
+            .overview-card .select-mode { display: none; }
         }
     </style>
 </head>
