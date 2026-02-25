@@ -52,34 +52,38 @@ def _strip_pangu_tokens(text):
     return text.strip()
 
 
-def _expand_pseudo_multiturn(content):
-    """Expand Pangu pseudo multi-turn (compressed in single user message) into turns."""
-    # Split on [unused10][unused9] separator
-    parts = re.split(r'\[unused10\]\[unused9\]', content)
-    if len(parts) <= 1:
-        return None  # Not pseudo multi-turn
+def slice_multiturn(conversations):
+    """Slice multi-turn conversations into training-aligned samples.
 
-    turns = []
-    for part in parts:
-        part = part.strip()
-        if not part:
-            continue
-        # Detect role prefix: "助手：..." or "用户：..."
-        if part.startswith("助手：") or part.startswith("助手:"):
-            turns.append({"from": "gpt", "value": _strip_pangu_tokens(part[3:])})
-        elif part.startswith("用户：") or part.startswith("用户:"):
-            turns.append({"from": "human", "value": _strip_pangu_tokens(part[3:])})
-        else:
-            # First part is always user (no prefix)
-            turns.append({"from": "human", "value": _strip_pangu_tokens(part)})
-    return turns
+    Each assistant reply becomes one sample, with full preceding context.
+    Mirrors how SFT training expands multi-turn into pyramid-shaped samples:
+      [H1] → A1
+      [H1, A1, H2] → A2
+      [H1, A1, H2, A2, H3] → A3
+
+    Single-turn (1 human + 1 gpt) returns as-is in a list.
+    """
+    # Find all assistant reply indices
+    reply_indices = [i for i, t in enumerate(conversations) if t["from"] == "gpt"]
+
+    if len(reply_indices) <= 1:
+        return [conversations]
+
+    slices = []
+    for idx in reply_indices:
+        # Context = everything up to and including this assistant reply
+        slices.append(conversations[:idx + 1])
+
+    return slices
 
 
 def normalize_pangu(sample):
     """Convert Pangu format sample to internal ShareGPT format.
 
-    Returns a new sample dict with 'conversations' in ShareGPT format,
-    plus extracted Pangu-specific metadata.
+    - Strips training tokens ([unused*], /no_think)
+    - Maps roles (user→human, assistant→gpt)
+    - Detects pseudo multi-turn (already a single training sample)
+    - Preserves meta_prompt and tools in metadata
     """
     data = sample.get("data", [])
     conversations = []
@@ -89,13 +93,9 @@ def normalize_pangu(sample):
         role = PANGU_ROLE_MAP.get(turn.get("role", ""), turn.get("role", ""))
         content = turn.get("content", "")
 
-        # Check for pseudo multi-turn in user message
+        # Detect pseudo multi-turn (don't expand, just strip tokens)
         if role == "human" and "[unused10]" in content:
-            expanded = _expand_pseudo_multiturn(content)
-            if expanded:
-                is_pseudo_multiturn = True
-                conversations.extend(expanded)
-                continue
+            is_pseudo_multiturn = True
 
         conversations.append({
             "from": role,
@@ -122,12 +122,56 @@ def normalize_pangu(sample):
     return normalized
 
 
+def normalize_and_slice(sample):
+    """Auto-detect format, normalize, and slice multi-turn into training samples.
+
+    Returns a list of samples. Single-turn and pseudo multi-turn return [1 sample].
+    True multi-turn returns [N samples], one per assistant reply.
+    Each slice has id suffixed with turn number (e.g. "id_t1", "id_t2").
+    """
+    fmt = detect_format(sample)
+    if fmt == "pangu":
+        normalized = normalize_pangu(sample)
+    else:
+        normalized = dict(sample)
+
+    conversations = normalized.get("conversations", [])
+    is_pseudo = normalized.get("metadata", {}).get("is_pseudo_multiturn", False)
+
+    # Pseudo multi-turn: already one training sample, don't slice
+    if is_pseudo:
+        return [normalized]
+
+    slices = slice_multiturn(conversations)
+
+    if len(slices) == 1:
+        return [normalized]
+
+    # Build one sample per slice
+    results = []
+    base_id = normalized.get("id", "")
+    for i, conv_slice in enumerate(slices):
+        s = {
+            "id": f"{base_id}_t{i+1}",
+            "conversations": conv_slice,
+            "metadata": {
+                **normalized.get("metadata", {}),
+                "source_id": base_id,
+                "turn_index": i + 1,
+                "total_turns": len(slices),
+            },
+        }
+        results.append(s)
+
+    return results
+
+
+# Keep backward-compatible alias
 def normalize_sample(sample):
-    """Auto-detect format and normalize to internal ShareGPT format."""
+    """Normalize without slicing (for tools that don't need multi-turn expansion)."""
     fmt = detect_format(sample)
     if fmt == "pangu":
         return normalize_pangu(sample)
-    # ShareGPT — return as-is
     return sample
 
 

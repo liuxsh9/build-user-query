@@ -28,7 +28,7 @@ from prompts import (
     CALL1_SYSTEM, CALL1_FEWSHOT, CALL2_SYSTEM, CALL2_FEWSHOT,
     TAG_POOLS, SINGLE_SELECT, MULTI_SELECT
 )
-from preprocessing import preprocess, format_signals_for_prompt, normalize_sample
+from preprocessing import preprocess, format_signals_for_prompt, normalize_and_slice
 from config import (
     LITELLM_BASE, LITELLM_KEY, CONFIDENCE_THRESHOLD, CONSISTENCY_RULES,
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
@@ -422,8 +422,11 @@ async def run_pipeline(args):
         else:
             samples = json.load(f)
 
-    # Normalize all samples to internal ShareGPT format
-    samples = [normalize_sample(s) for s in samples]
+    # Normalize and slice multi-turn into training-aligned samples
+    raw_samples = samples
+    samples = []
+    for s in raw_samples:
+        samples.extend(normalize_and_slice(s))
     # Assign IDs if missing
     for i, s in enumerate(samples):
         if not s.get("id"):
@@ -441,7 +444,8 @@ async def run_pipeline(args):
     print(f"{'='*80}")
     print(f"SFT Auto-Labeling Pipeline (Concurrent)")
     print(f"{'='*80}")
-    print(f"Input:       {input_path} ({total} samples)")
+    n_raw = len(raw_samples)
+    print(f"Input:       {input_path} ({n_raw} conversations → {total} samples)")
     print(f"Model:       {args.model}")
     print(f"Run dir:     {run_dir}")
     print(f"Concurrency: {concurrency}")
