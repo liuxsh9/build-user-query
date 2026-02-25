@@ -5,6 +5,10 @@ Extracts structural signals from SFT conversations before LLM labeling.
 These signals are embedded into the prompt to help the LLM focus on semantic
 judgment rather than basic information extraction.
 
+Supports two input formats:
+  - ShareGPT: {"conversations": [{"from": "human/gpt/tool", "value": "..."}]}
+  - Pangu:    {"data": [{"role": "user/assistant/tool", "content": "..."}]}
+
 Signals extracted:
   - Language detection from code blocks
   - Tool role detection (agentic signals)
@@ -17,6 +21,114 @@ Signals extracted:
 
 import re
 import json
+
+
+# ─────────────────────────────────────────────────────────
+# Format normalization
+# ─────────────────────────────────────────────────────────
+
+# Pangu special tokens to strip for labeling
+_PANGU_TOKENS_RE = re.compile(
+    r'\[unused(?:9|10|11|12|13|14|15|16|17)\]'
+)
+_NO_THINK_RE = re.compile(r'\s*/no_think')
+
+PANGU_ROLE_MAP = {"user": "human", "assistant": "gpt", "tool": "tool"}
+
+
+def detect_format(sample):
+    """Detect whether sample is ShareGPT or Pangu format."""
+    if "conversations" in sample:
+        return "sharegpt"
+    if "data" in sample:
+        return "pangu"
+    return "unknown"
+
+
+def _strip_pangu_tokens(text):
+    """Remove Pangu training tokens, preserving semantic content."""
+    text = _NO_THINK_RE.sub('', text)
+    text = _PANGU_TOKENS_RE.sub('', text)
+    return text.strip()
+
+
+def _expand_pseudo_multiturn(content):
+    """Expand Pangu pseudo multi-turn (compressed in single user message) into turns."""
+    # Split on [unused10][unused9] separator
+    parts = re.split(r'\[unused10\]\[unused9\]', content)
+    if len(parts) <= 1:
+        return None  # Not pseudo multi-turn
+
+    turns = []
+    for part in parts:
+        part = part.strip()
+        if not part:
+            continue
+        # Detect role prefix: "助手：..." or "用户：..."
+        if part.startswith("助手：") or part.startswith("助手:"):
+            turns.append({"from": "gpt", "value": _strip_pangu_tokens(part[3:])})
+        elif part.startswith("用户：") or part.startswith("用户:"):
+            turns.append({"from": "human", "value": _strip_pangu_tokens(part[3:])})
+        else:
+            # First part is always user (no prefix)
+            turns.append({"from": "human", "value": _strip_pangu_tokens(part)})
+    return turns
+
+
+def normalize_pangu(sample):
+    """Convert Pangu format sample to internal ShareGPT format.
+
+    Returns a new sample dict with 'conversations' in ShareGPT format,
+    plus extracted Pangu-specific metadata.
+    """
+    data = sample.get("data", [])
+    conversations = []
+    is_pseudo_multiturn = False
+
+    for turn in data:
+        role = PANGU_ROLE_MAP.get(turn.get("role", ""), turn.get("role", ""))
+        content = turn.get("content", "")
+
+        # Check for pseudo multi-turn in user message
+        if role == "human" and "[unused10]" in content:
+            expanded = _expand_pseudo_multiturn(content)
+            if expanded:
+                is_pseudo_multiturn = True
+                conversations.extend(expanded)
+                continue
+
+        conversations.append({
+            "from": role,
+            "value": _strip_pangu_tokens(content),
+        })
+
+    # Build normalized sample
+    normalized = {
+        "id": sample.get("id", ""),
+        "conversations": conversations,
+        "metadata": sample.get("metadata", {}),
+    }
+
+    # Preserve Pangu-specific info in metadata
+    pangu_meta = {}
+    if sample.get("meta_prompt"):
+        pangu_meta["system_prompt"] = sample["meta_prompt"]
+    if sample.get("tools"):
+        pangu_meta["tool_definitions"] = sample["tools"]
+    pangu_meta["is_pseudo_multiturn"] = is_pseudo_multiturn
+    pangu_meta["original_format"] = "pangu"
+    normalized["metadata"] = {**normalized["metadata"], **pangu_meta}
+
+    return normalized
+
+
+def normalize_sample(sample):
+    """Auto-detect format and normalize to internal ShareGPT format."""
+    fmt = detect_format(sample)
+    if fmt == "pangu":
+        return normalize_pangu(sample)
+    # ShareGPT — return as-is
+    return sample
 
 
 # ─────────────────────────────────────────────────────────
@@ -324,11 +436,12 @@ def preprocess(sample):
     Full preprocessing pipeline for one SFT sample.
 
     Args:
-        sample: dict with "conversations" key in ShareGPT format
+        sample: dict in ShareGPT or Pangu format (auto-detected)
 
     Returns:
         dict with all extracted signals
     """
+    sample = normalize_sample(sample)
     conversations = sample.get("conversations", [])
     full_text = " ".join(t.get("value", "") for t in conversations)
 

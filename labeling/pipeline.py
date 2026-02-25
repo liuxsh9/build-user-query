@@ -28,7 +28,7 @@ from prompts import (
     CALL1_SYSTEM, CALL1_FEWSHOT, CALL2_SYSTEM, CALL2_FEWSHOT,
     TAG_POOLS, SINGLE_SELECT, MULTI_SELECT
 )
-from preprocessing import preprocess, format_signals_for_prompt
+from preprocessing import preprocess, format_signals_for_prompt, normalize_sample
 from config import (
     LITELLM_BASE, LITELLM_KEY, CONFIDENCE_THRESHOLD, CONSISTENCY_RULES,
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
@@ -415,8 +415,19 @@ async def run_pipeline(args):
     stats_path = run_dir / "stats.json"
     monitor_path = run_dir / "monitor.jsonl"
 
+    # Load input (JSON array or JSONL)
     with open(input_path, "r", encoding="utf-8") as f:
-        samples = json.load(f)
+        if input_path.suffix == ".jsonl":
+            samples = [json.loads(line) for line in f if line.strip()]
+        else:
+            samples = json.load(f)
+
+    # Normalize all samples to internal ShareGPT format
+    samples = [normalize_sample(s) for s in samples]
+    # Assign IDs if missing
+    for i, s in enumerate(samples):
+        if not s.get("id"):
+            s["id"] = f"sample-{i:04d}"
 
     if args.shuffle:
         random.shuffle(samples)
