@@ -4,6 +4,7 @@ Labeling Pipeline Configuration
 All production settings extracted here for easy tuning.
 """
 
+import os
 from pathlib import Path
 
 # ─── Paths ───────────────────────────────────────────────
@@ -14,8 +15,8 @@ DEFAULT_INPUT = DATA_DIR / "raw_samples.json"
 DEFAULT_OUTPUT = DATA_DIR / "labeled_samples.json"
 
 # ─── LLM API ────────────────────────────────────────────
-LITELLM_BASE = "http://101.47.36.53:4000/v1"
-LITELLM_KEY = "***REDACTED***"
+LITELLM_BASE = os.environ.get("LITELLM_BASE", "http://localhost:4000/v1")
+LITELLM_KEY = os.environ.get("LITELLM_KEY", "")
 
 # ─── Pipeline Defaults ──────────────────────────────────
 DEFAULT_MODEL = "deepseek-v3.2"
