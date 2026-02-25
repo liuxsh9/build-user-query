@@ -66,6 +66,38 @@ All production settings are in `config.py`:
 | Mid | claude-sonnet-4.6, deepseek-v3.2, qwen3-235b | Production labeling |
 | Light | gpt-4o-mini, deepseek-v3.1 | Cost-sensitive batches |
 
+## Input Format
+
+Pipeline accepts a JSON array of ShareGPT-format conversations:
+
+```json
+[
+  {
+    "id": "gen-0000",
+    "conversations": [
+      { "from": "human", "value": "Python 列表推导式和生成器表达式的区别？" },
+      { "from": "gpt", "value": "列表推导式和生成器表达式都是..." }
+    ],
+    "metadata": {                    // optional, used by preprocessing
+      "source": "generated",
+      "est_tokens": 687,
+      "num_turns": 2,
+      "is_multi_turn": false,
+      "has_tool_calls": false,
+      "has_code": true
+    }
+  }
+]
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `id` | yes | Unique sample identifier |
+| `conversations` | yes | Array of `{from, value}` turns. `from` is `"human"` or `"gpt"` |
+| `metadata` | no | Preprocessing hints (auto-detected if absent) |
+
+Conversations can be single-turn (1 human + 1 gpt) or multi-turn. The pipeline extracts structural signals (languages, code blocks, tool calls) from all turns during preprocessing.
+
 ## Quick Start
 
 ```bash
