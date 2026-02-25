@@ -39,7 +39,7 @@ def compute_viz_data(samples, stats):
     # Confidence per dimension per sample (for heatmap)
     conf_matrix = []
     for s in samples:
-        labels = s.get("labels", {})
+        labels = s.get("labels") or {}
         conf = labels.get("confidence", {})
         conf_matrix.append({
             "id": s.get("id", "?"),
@@ -61,7 +61,7 @@ def compute_viz_data(samples, stats):
     # Cross-dimension: intent × difficulty matrix
     cross = Counter()
     for s in samples:
-        labels = s.get("labels", {})
+        labels = s.get("labels") or {}
         intent = labels.get("intent", "?")
         diff = labels.get("difficulty", "?")
         cross[(intent, diff)] += 1

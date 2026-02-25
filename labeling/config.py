@@ -23,6 +23,7 @@ DEFAULT_MODEL = "deepseek-v3.2"
 DEFAULT_CONCURRENCY = 30
 CONFIDENCE_THRESHOLD = 0.65
 MAX_RETRIES = 3
+SAMPLE_MAX_RETRIES = 2             # sample-level retry on call failure
 REQUEST_TIMEOUT = 180          # seconds per LLM call
 HTTP_CLIENT_TIMEOUT = 120      # httpx client timeout
 

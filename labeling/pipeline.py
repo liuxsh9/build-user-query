@@ -32,7 +32,7 @@ from preprocessing import preprocess, format_signals_for_prompt, normalize_and_s
 from config import (
     LITELLM_BASE, LITELLM_KEY, CONFIDENCE_THRESHOLD, CONSISTENCY_RULES,
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
-    DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, REQUEST_TIMEOUT,
+    DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, SAMPLE_MAX_RETRIES, REQUEST_TIMEOUT,
 )
 
 
@@ -223,115 +223,133 @@ def find_low_confidence_dims(labels, threshold=CONFIDENCE_THRESHOLD):
 # ─────────────────────────────────────────────────────────
 
 async def label_one(http_client, sample, model, sample_idx, total, sem, enable_arbitration=True):
-    """Label a single sample — runs Call 1, then Call 2 sequentially (Call 2 depends on Call 1)."""
-    async with sem:
-        start = time.time()
-        monitor = {
-            "sample_id": sample.get("id", f"sample-{sample_idx}"),
-            "index": sample_idx,
-            "llm_calls": 0,
-            "total_prompt_tokens": 0,
-            "total_completion_tokens": 0,
-            "validation_issues": [],
-            "consistency_warnings": [],
-            "low_confidence_dims": [],
-            "arbitrated": False,
-            "status": "success",
-        }
+    """Label a single sample with sample-level retry on failure."""
+    start = time.time()
 
-        try:
-            # Preprocess
-            signals = preprocess(sample)
-            signals_str = format_signals_for_prompt(signals)
-            conversations_json = json.dumps(sample["conversations"], ensure_ascii=False)
+    for sample_attempt in range(SAMPLE_MAX_RETRIES + 1):
+        if sample_attempt > 0:
+            # Back off before retry, outside semaphore so we don't block others
+            await asyncio.sleep(2 ** sample_attempt * 2)
 
-            # Call 1
-            msgs1 = build_call1_messages(conversations_json, signals_str)
-            call1_result, _, usage1 = await async_llm_call(http_client, msgs1, model)
-            monitor["llm_calls"] += 1
-            monitor["total_prompt_tokens"] += usage1["prompt_tokens"]
-            monitor["total_completion_tokens"] += usage1["completion_tokens"]
+        async with sem:
+            monitor = {
+                "sample_id": sample.get("id", f"sample-{sample_idx}"),
+                "index": sample_idx,
+                "llm_calls": 0,
+                "total_prompt_tokens": 0,
+                "total_completion_tokens": 0,
+                "validation_issues": [],
+                "consistency_warnings": [],
+                "low_confidence_dims": [],
+                "arbitrated": False,
+                "sample_attempt": sample_attempt,
+                "status": "success",
+            }
 
-            if call1_result is None:
-                monitor["status"] = "call1_failed"
-                monitor["error"] = usage1.get("error", "unknown")
+            try:
+                # Preprocess
+                signals = preprocess(sample)
+                signals_str = format_signals_for_prompt(signals)
+                conversations_json = json.dumps(sample["conversations"], ensure_ascii=False)
+
+                # Call 1
+                msgs1 = build_call1_messages(conversations_json, signals_str)
+                call1_result, _, usage1 = await async_llm_call(http_client, msgs1, model)
+                monitor["llm_calls"] += 1
+                monitor["total_prompt_tokens"] += usage1["prompt_tokens"]
+                monitor["total_completion_tokens"] += usage1["completion_tokens"]
+
+                if call1_result is None:
+                    monitor["status"] = "call1_failed"
+                    monitor["error"] = usage1.get("error", "unknown")
+                    if sample_attempt < SAMPLE_MAX_RETRIES:
+                        continue
+                    return sample_idx, None, monitor
+
+                call1_cleaned, call1_issues = validate_tags(call1_result, "call1")
+                monitor["validation_issues"].extend(call1_issues)
+
+                # Call 2 (depends on Call 1)
+                call1_context = {d: call1_cleaned[d] for d in ["intent", "language", "domain", "task", "difficulty"] if d in call1_cleaned}
+                msgs2 = build_call2_messages(conversations_json, signals_str, call1_context)
+                call2_result, _, usage2 = await async_llm_call(http_client, msgs2, model)
+                monitor["llm_calls"] += 1
+                monitor["total_prompt_tokens"] += usage2["prompt_tokens"]
+                monitor["total_completion_tokens"] += usage2["completion_tokens"]
+
+                if call2_result is None:
+                    monitor["status"] = "call2_failed"
+                    monitor["error"] = usage2.get("error", "unknown")
+                    if sample_attempt < SAMPLE_MAX_RETRIES:
+                        continue
+                    # Final attempt: return partial results from Call 1
+                    labels = {d: call1_cleaned.get(d) for d in ["intent", "language", "domain", "task", "difficulty"]}
+                    labels["confidence"] = call1_cleaned.get("confidence", {})
+                    labels["unmapped"] = call1_cleaned.get("unmapped", [])
+                    return sample_idx, labels, monitor
+
+                call2_cleaned, call2_issues = validate_tags(call2_result, "call2")
+                monitor["validation_issues"].extend(call2_issues)
+
+                # Merge
+                labels = {}
+                for d in ["intent", "language", "domain", "task", "difficulty"]:
+                    labels[d] = call1_cleaned.get(d, [] if d in MULTI_SELECT else "")
+                for d in ["concept", "agentic", "constraint", "context"]:
+                    labels[d] = call2_cleaned.get(d, [] if d in MULTI_SELECT else "")
+                labels["confidence"] = {**call1_cleaned.get("confidence", {}), **call2_cleaned.get("confidence", {})}
+                labels["unmapped"] = call1_cleaned.get("unmapped", []) + call2_cleaned.get("unmapped", [])
+
+                # Consistency
+                warnings = check_consistency(labels)
+                monitor["consistency_warnings"] = warnings
+
+                # Arbitration
+                low_conf = find_low_confidence_dims(labels)
+                monitor["low_confidence_dims"] = [{"dim": d, "conf": s} for d, s in low_conf]
+
+                if low_conf and enable_arbitration:
+                    monitor["arbitrated"] = True
+                    # Re-run relevant call(s)
+                    call1_dims = {"intent", "language", "domain", "task", "difficulty"}
+                    call2_dims = {"concept", "agentic", "constraint", "context"}
+
+                    if any(d in call1_dims for d, _ in low_conf):
+                        re1, _, u1 = await async_llm_call(http_client, msgs1, model, temperature=0.3)
+                        monitor["llm_calls"] += 1
+                        monitor["total_prompt_tokens"] += u1["prompt_tokens"]
+                        monitor["total_completion_tokens"] += u1["completion_tokens"]
+                        if re1:
+                            re1_clean, _ = validate_tags(re1, "call1")
+                            for d, _ in low_conf:
+                                if d in call1_dims and d in re1_clean:
+                                    labels[d] = re1_clean[d]
+                                    labels["confidence"][d] = re1_clean.get("confidence", {}).get(d, 0)
+
+                    if any(d in call2_dims for d, _ in low_conf):
+                        re2, _, u2 = await async_llm_call(http_client, msgs2, model, temperature=0.3)
+                        monitor["llm_calls"] += 1
+                        monitor["total_prompt_tokens"] += u2["prompt_tokens"]
+                        monitor["total_completion_tokens"] += u2["completion_tokens"]
+                        if re2:
+                            re2_clean, _ = validate_tags(re2, "call2")
+                            for d, _ in low_conf:
+                                if d in call2_dims and d in re2_clean:
+                                    labels[d] = re2_clean[d]
+                                    labels["confidence"][d] = re2_clean.get("confidence", {}).get(d, 0)
+
+            except Exception as e:
+                monitor["status"] = f"error: {str(e)[:100]}"
+                if sample_attempt < SAMPLE_MAX_RETRIES:
+                    continue
                 return sample_idx, None, monitor
 
-            call1_cleaned, call1_issues = validate_tags(call1_result, "call1")
-            monitor["validation_issues"].extend(call1_issues)
+            monitor["elapsed_seconds"] = round(time.time() - start, 2)
+            return sample_idx, labels, monitor
 
-            # Call 2 (depends on Call 1)
-            call1_context = {d: call1_cleaned[d] for d in ["intent", "language", "domain", "task", "difficulty"] if d in call1_cleaned}
-            msgs2 = build_call2_messages(conversations_json, signals_str, call1_context)
-            call2_result, _, usage2 = await async_llm_call(http_client, msgs2, model)
-            monitor["llm_calls"] += 1
-            monitor["total_prompt_tokens"] += usage2["prompt_tokens"]
-            monitor["total_completion_tokens"] += usage2["completion_tokens"]
-
-            if call2_result is None:
-                monitor["status"] = "call2_failed"
-                monitor["error"] = usage2.get("error", "unknown")
-                labels = {d: call1_cleaned.get(d) for d in ["intent", "language", "domain", "task", "difficulty"]}
-                labels["confidence"] = call1_cleaned.get("confidence", {})
-                labels["unmapped"] = call1_cleaned.get("unmapped", [])
-                return sample_idx, labels, monitor
-
-            call2_cleaned, call2_issues = validate_tags(call2_result, "call2")
-            monitor["validation_issues"].extend(call2_issues)
-
-            # Merge
-            labels = {}
-            for d in ["intent", "language", "domain", "task", "difficulty"]:
-                labels[d] = call1_cleaned.get(d, [] if d in MULTI_SELECT else "")
-            for d in ["concept", "agentic", "constraint", "context"]:
-                labels[d] = call2_cleaned.get(d, [] if d in MULTI_SELECT else "")
-            labels["confidence"] = {**call1_cleaned.get("confidence", {}), **call2_cleaned.get("confidence", {})}
-            labels["unmapped"] = call1_cleaned.get("unmapped", []) + call2_cleaned.get("unmapped", [])
-
-            # Consistency
-            warnings = check_consistency(labels)
-            monitor["consistency_warnings"] = warnings
-
-            # Arbitration
-            low_conf = find_low_confidence_dims(labels)
-            monitor["low_confidence_dims"] = [{"dim": d, "conf": s} for d, s in low_conf]
-
-            if low_conf and enable_arbitration:
-                monitor["arbitrated"] = True
-                # Re-run relevant call(s)
-                call1_dims = {"intent", "language", "domain", "task", "difficulty"}
-                call2_dims = {"concept", "agentic", "constraint", "context"}
-
-                if any(d in call1_dims for d, _ in low_conf):
-                    re1, _, u1 = await async_llm_call(http_client, msgs1, model, temperature=0.3)
-                    monitor["llm_calls"] += 1
-                    monitor["total_prompt_tokens"] += u1["prompt_tokens"]
-                    monitor["total_completion_tokens"] += u1["completion_tokens"]
-                    if re1:
-                        re1_clean, _ = validate_tags(re1, "call1")
-                        for d, _ in low_conf:
-                            if d in call1_dims and d in re1_clean:
-                                labels[d] = re1_clean[d]
-                                labels["confidence"][d] = re1_clean.get("confidence", {}).get(d, 0)
-
-                if any(d in call2_dims for d, _ in low_conf):
-                    re2, _, u2 = await async_llm_call(http_client, msgs2, model, temperature=0.3)
-                    monitor["llm_calls"] += 1
-                    monitor["total_prompt_tokens"] += u2["prompt_tokens"]
-                    monitor["total_completion_tokens"] += u2["completion_tokens"]
-                    if re2:
-                        re2_clean, _ = validate_tags(re2, "call2")
-                        for d, _ in low_conf:
-                            if d in call2_dims and d in re2_clean:
-                                labels[d] = re2_clean[d]
-                                labels["confidence"][d] = re2_clean.get("confidence", {}).get(d, 0)
-
-        except Exception as e:
-            monitor["status"] = f"error: {str(e)[:100]}"
-            return sample_idx, None, monitor
-
+        # Should not reach here, but just in case
         monitor["elapsed_seconds"] = round(time.time() - start, 2)
-        return sample_idx, labels, monitor
+        return sample_idx, None, monitor
 
 
 def compute_stats(all_monitors, all_labels):
@@ -460,7 +478,14 @@ async def run_pipeline(args):
     all_labels = [None] * total
     all_monitors = [None] * total
 
-    async with httpx.AsyncClient(proxy=None, timeout=REQUEST_TIMEOUT) as http_client:
+    async with httpx.AsyncClient(
+        proxy=None,
+        timeout=REQUEST_TIMEOUT,
+        limits=httpx.Limits(
+            max_connections=concurrency + 10,
+            max_keepalive_connections=concurrency,
+        ),
+    ) as http_client:
         tasks = []
         for idx, sample in enumerate(samples):
             tasks.append(label_one(
