@@ -27,11 +27,11 @@ import json
 # Format normalization
 # ─────────────────────────────────────────────────────────
 
-# Pangu special tokens to strip for labeling
-_PANGU_TOKENS_RE = re.compile(
-    r'\[unused(?:9|10|11|12|13|14|15|16|17)\]'
-)
+# CoT / thinking block patterns
+_PANGU_COT_RE = re.compile(r'\[unused16\].*?\[unused17\]', re.DOTALL)
+_PANGU_TOKENS_RE = re.compile(r'\[unused(?:9|10|11|12|13|14|15|16|17)\]')
 _NO_THINK_RE = re.compile(r'\s*/no_think')
+_SHAREGPT_COT_RE = re.compile(r'<(?:think|thinking)>.*?</(?:think|thinking)>', re.DOTALL)
 
 PANGU_ROLE_MAP = {"user": "human", "assistant": "gpt", "tool": "tool"}
 
@@ -45,8 +45,18 @@ def detect_format(sample):
     return "unknown"
 
 
+def strip_cot(text):
+    """Remove CoT/thinking blocks from text. Handles both Pangu and ShareGPT patterns."""
+    # Pangu: [unused16]thinking content[unused17] → remove entire block
+    text = _PANGU_COT_RE.sub('', text)
+    # ShareGPT: <think>...</think> or <thinking>...</thinking>
+    text = _SHAREGPT_COT_RE.sub('', text)
+    return text.strip()
+
+
 def _strip_pangu_tokens(text):
-    """Remove Pangu training tokens, preserving semantic content."""
+    """Remove Pangu training tokens and CoT content."""
+    text = strip_cot(text)
     text = _NO_THINK_RE.sub('', text)
     text = _PANGU_TOKENS_RE.sub('', text)
     return text.strip()
@@ -134,6 +144,11 @@ def normalize_and_slice(sample):
         normalized = normalize_pangu(sample)
     else:
         normalized = dict(sample)
+        # Strip CoT from ShareGPT conversations
+        if "conversations" in normalized:
+            for turn in normalized["conversations"]:
+                if turn.get("from") == "gpt" and turn.get("value"):
+                    turn["value"] = strip_cot(turn["value"])
 
     conversations = normalized.get("conversations", [])
     is_pseudo = normalized.get("metadata", {}).get("is_pseudo_multiturn", False)
