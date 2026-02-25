@@ -1,0 +1,169 @@
+{
+  "total_samples": 20,
+  "success": 19,
+  "failed": 1,
+  "success_rate": 0.95,
+  "total_llm_calls": 39,
+  "avg_calls_per_sample": 1.95,
+  "total_prompt_tokens": 232041,
+  "total_completion_tokens": 3838,
+  "total_tokens": 235879,
+  "arbitrated_count": 0,
+  "arbitrated_rate": 0.0,
+  "validation_issue_count": 0,
+  "consistency_warning_count": 4,
+  "unmapped_tags": {},
+  "unmapped_unique_count": 0,
+  "confidence_stats": {
+    "intent": {
+      "mean": 0.978,
+      "min": 0.95,
+      "max": 0.99,
+      "below_threshold": 0
+    },
+    "language": {
+      "mean": 0.971,
+      "min": 0.9,
+      "max": 0.99,
+      "below_threshold": 0
+    },
+    "domain": {
+      "mean": 0.904,
+      "min": 0.7,
+      "max": 0.98,
+      "below_threshold": 0
+    },
+    "task": {
+      "mean": 0.935,
+      "min": 0.85,
+      "max": 0.98,
+      "below_threshold": 0
+    },
+    "difficulty": {
+      "mean": 0.866,
+      "min": 0.8,
+      "max": 0.95,
+      "below_threshold": 0
+    },
+    "concept": {
+      "mean": 0.936,
+      "min": 0.85,
+      "max": 0.99,
+      "below_threshold": 0
+    },
+    "agentic": {
+      "mean": 0.981,
+      "min": 0.95,
+      "max": 0.99,
+      "below_threshold": 0
+    },
+    "constraint": {
+      "mean": 0.971,
+      "min": 0.8,
+      "max": 0.99,
+      "below_threshold": 0
+    },
+    "context": {
+      "mean": 0.913,
+      "min": 0.85,
+      "max": 0.95,
+      "below_threshold": 0
+    }
+  },
+  "low_confidence_frequency": {},
+  "tag_distributions": {
+    "intent": {
+      "build": 12,
+      "learn": 3,
+      "debug": 2,
+      "decide": 2
+    },
+    "language": {
+      "python": 5,
+      "rust": 4,
+      "javascript": 4,
+      "typescript": 3,
+      "c": 3,
+      "sql": 2,
+      "shell": 2,
+      "json": 1,
+      "cmake": 1,
+      "yaml": 1,
+      "java": 1
+    },
+    "domain": {
+      "systems-programming": 6,
+      "web-frontend": 4,
+      "database-administration": 2,
+      "compiler-development": 2,
+      "machine-learning": 1,
+      "data-engineering": 1,
+      "cli-tool": 1,
+      "devops": 1,
+      "cloud-computing": 1,
+      "web-backend": 1,
+      "api-development": 1,
+      "scientific-computing": 1,
+      "graphics-and-xr": 1
+    },
+    "concept": {
+      "concurrency": 6,
+      "data-structures": 6,
+      "database-concepts": 3,
+      "algorithms": 3,
+      "memory-management": 3,
+      "ownership": 2,
+      "type-system": 2,
+      "api-protocols": 2,
+      "functions": 2,
+      "security": 1
+    },
+    "task": {
+      "feature-implementation": 8,
+      "code-explanation": 6,
+      "configuration": 4,
+      "bug-fixing": 2,
+      "code-optimization": 2,
+      "dependency-management": 1,
+      "deployment": 1,
+      "monitoring": 1,
+      "code-translation": 1,
+      "api-design": 1,
+      "performance-analysis": 1,
+      "schema-design": 1
+    },
+    "agentic": {
+      "bash-execution": 3,
+      "file-operations": 3,
+      "multi-file-coordination": 3,
+      "planning": 3,
+      "dependency-installation": 2,
+      "git-operations": 1,
+      "multi-step-reasoning": 1
+    },
+    "constraint": {
+      "performance-optimized": 2,
+      "portable": 1,
+      "lock-free": 1,
+      "thread-safe": 1
+    },
+    "context": {
+      "single-file": 8,
+      "snippet": 7,
+      "repository": 2,
+      "greenfield": 1,
+      "multi-file": 1
+    },
+    "difficulty": {
+      "intermediate": 10,
+      "advanced": 5,
+      "expert": 2,
+      "beginner": 2
+    }
+  },
+  "model": "deepseek-v3.2",
+  "concurrency": 50,
+  "total_elapsed_seconds": 747.2,
+  "timestamp": "2026-02-25T14:57:50.793184",
+  "input_file": "data/gold_set/raw_samples.json"
+}
