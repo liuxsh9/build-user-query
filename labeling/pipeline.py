@@ -498,10 +498,16 @@ async def run_pipeline(args):
                 "consistency_warnings": all_monitors[idx]["consistency_warnings"],
             }
 
-    # Save
+    # Save labeled JSON
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(samples, f, ensure_ascii=False, indent=2)
+
+    # Save labeled JSONL (one sample per line, original structure + labels)
+    jsonl_path = output_path.with_suffix(".jsonl")
+    with open(jsonl_path, "w", encoding="utf-8") as f:
+        for sample in samples:
+            f.write(json.dumps(sample, ensure_ascii=False) + "\n")
 
     # Save monitor log
     with open(monitor_path, "w", encoding="utf-8") as f:
@@ -550,6 +556,7 @@ async def run_pipeline(args):
             print(f"  {tag}: {count}")
 
     print(f"\nOutput:  {output_path}")
+    print(f"JSONL:   {jsonl_path}")
     print(f"Stats:   {stats_path}")
     print(f"Monitor: {monitor_path}")
 
