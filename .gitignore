@@ -29,3 +29,6 @@ Thumbs.db
 # Temporary outputs
 *.output
 /private/
+
+# Labeling run outputs (auto-generated, large)
+labeling/data/runs/
