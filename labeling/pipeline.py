@@ -8,8 +8,12 @@ Processes SFT data through the labeling pipeline with high concurrency:
   4. Validation — local, instant
   5. Optional arbitration for low-confidence labels — concurrent LLM
 
+Supports single file or directory input. Directory mode processes files serially
+(samples within each file run concurrently) with checkpoint-based resume.
+
 Usage:
-  python3 labeling/pipeline.py [--input FILE] [--output FILE] [--model MODEL] [--concurrency N]
+  python3 labeling/pipeline.py [--input FILE_OR_DIR] [--model MODEL] [--concurrency N]
+  python3 labeling/pipeline.py --resume labeling/data/runs/<run_dir>/
 """
 
 import json
@@ -34,6 +38,116 @@ from config import (
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
     DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, SAMPLE_MAX_RETRIES, REQUEST_TIMEOUT,
 )
+
+
+# ─────────────────────────────────────────────────────────
+# Directory discovery & checkpoint
+# ─────────────────────────────────────────────────────────
+
+def discover_input_files(input_path):
+    """Discover input files. Returns [(abs_path, rel_path_or_None)].
+
+    - File → [(path, None)]  (single-file mode, no relative path)
+    - Directory → [(abs, rel), ...] sorted by relative path
+    """
+    p = Path(input_path)
+    if p.is_file():
+        return [(p.resolve(), None)]
+
+    files = sorted(
+        f.resolve()
+        for ext in ("*.json", "*.jsonl")
+        for f in p.rglob(ext)
+        if f.is_file()
+    )
+    base = p.resolve()
+    return [(f, f.relative_to(base)) for f in files]
+
+
+def load_checkpoint(checkpoint_path):
+    """Load existing checkpoint or return None."""
+    if checkpoint_path.exists():
+        with open(checkpoint_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return None
+
+
+def create_checkpoint(checkpoint_path, files):
+    """Create a fresh checkpoint for a batch run."""
+    ckpt = {
+        "status": "in_progress",
+        "completed": [],
+        "failed": {},
+        "total_files": len(files),
+    }
+    _write_checkpoint(checkpoint_path, ckpt)
+    return ckpt
+
+
+def update_checkpoint(checkpoint_path, rel_path_str, success=True, error_msg=None):
+    """Mark a file as completed or failed in the checkpoint."""
+    ckpt = load_checkpoint(checkpoint_path) or {}
+    if success:
+        if rel_path_str not in ckpt.get("completed", []):
+            ckpt.setdefault("completed", []).append(rel_path_str)
+        ckpt.get("failed", {}).pop(rel_path_str, None)
+    else:
+        ckpt.setdefault("failed", {})[rel_path_str] = error_msg or "unknown"
+    done = len(ckpt.get("completed", [])) + len(ckpt.get("failed", {}))
+    if done >= ckpt.get("total_files", 0):
+        ckpt["status"] = "done"
+    _write_checkpoint(checkpoint_path, ckpt)
+    return ckpt
+
+
+def _write_checkpoint(checkpoint_path, ckpt):
+    with open(checkpoint_path, "w", encoding="utf-8") as f:
+        json.dump(ckpt, f, ensure_ascii=False, indent=2)
+
+
+def merge_stats(all_file_stats):
+    """Merge per-file stats into a global summary."""
+    merged = {
+        "total_samples": 0, "success": 0, "failed": 0,
+        "total_llm_calls": 0, "total_prompt_tokens": 0,
+        "total_completion_tokens": 0, "total_tokens": 0,
+        "arbitrated_count": 0,
+        "validation_issue_count": 0, "consistency_warning_count": 0,
+        "unmapped_unique_count": 0,
+        "total_elapsed_seconds": 0,
+        "tag_distributions": {},
+        "confidence_stats": {},
+        "unmapped_tags": {},
+        "files_processed": len(all_file_stats),
+    }
+    for st in all_file_stats:
+        for k in ("total_samples", "success", "failed", "total_llm_calls",
+                   "total_prompt_tokens", "total_completion_tokens", "total_tokens",
+                   "arbitrated_count", "validation_issue_count", "consistency_warning_count"):
+            merged[k] += st.get(k, 0)
+        merged["total_elapsed_seconds"] += st.get("total_elapsed_seconds", 0)
+        # Merge tag distributions
+        for dim, dist in st.get("tag_distributions", {}).items():
+            if dim not in merged["tag_distributions"]:
+                merged["tag_distributions"][dim] = {}
+            for tag, count in dist.items():
+                merged["tag_distributions"][dim][tag] = merged["tag_distributions"][dim].get(tag, 0) + count
+        # Merge unmapped
+        for tag, count in st.get("unmapped_tags", {}).items():
+            merged["unmapped_tags"][tag] = merged["unmapped_tags"].get(tag, 0) + count
+
+    # Sort distributions and unmapped
+    for dim in merged["tag_distributions"]:
+        merged["tag_distributions"][dim] = dict(sorted(merged["tag_distributions"][dim].items(), key=lambda x: -x[1]))
+    merged["unmapped_tags"] = dict(sorted(merged["unmapped_tags"].items(), key=lambda x: -x[1]))
+    merged["unmapped_unique_count"] = len(merged["unmapped_tags"])
+
+    total = merged["total_samples"]
+    merged["success_rate"] = round(merged["success"] / max(total, 1), 4)
+    merged["avg_calls_per_sample"] = round(merged["total_llm_calls"] / max(total, 1), 2)
+    merged["arbitrated_rate"] = round(merged["arbitrated_count"] / max(total, 1), 4)
+
+    return merged
 
 
 # ─────────────────────────────────────────────────────────
@@ -419,107 +533,72 @@ def compute_stats(all_monitors, all_labels):
     }
 
 
-async def run_pipeline(args):
-    input_path = Path(args.input)
-
-    # Create run directory: labeling/data/runs/<timestamp>_<model>/
-    run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    model_short = args.model.replace("/", "-")
-    run_dir = DATA_DIR / "runs" / f"{run_ts}_{model_short}"
-    run_dir.mkdir(parents=True, exist_ok=True)
-
-    output_path = run_dir / "labeled.json"
-    jsonl_path = run_dir / "labeled.jsonl"
-    stats_path = run_dir / "stats.json"
-    monitor_path = run_dir / "monitor.jsonl"
-
-    # Load input (JSON array or JSONL)
+async def run_one_file(input_path, output_dir, http_client, sem, model,
+                       enable_arbitration=True, limit=0, shuffle=False):
+    """Label a single file. Writes outputs to output_dir. Returns stats dict."""
+    # Load input
     with open(input_path, "r", encoding="utf-8") as f:
-        if input_path.suffix == ".jsonl":
-            samples = [json.loads(line) for line in f if line.strip()]
+        if str(input_path).endswith(".jsonl"):
+            raw_samples = [json.loads(line) for line in f if line.strip()]
         else:
-            samples = json.load(f)
+            raw_samples = json.load(f)
 
-    # Normalize and slice multi-turn into training-aligned samples
-    raw_samples = samples
+    # Normalize and slice
     samples = []
     for s in raw_samples:
         samples.extend(normalize_and_slice(s))
-    # Assign IDs if missing
     for i, s in enumerate(samples):
         if not s.get("id"):
             s["id"] = f"sample-{i:04d}"
 
-    if args.shuffle:
+    if shuffle:
         random.shuffle(samples)
-
-    if args.limit > 0:
-        samples = samples[:args.limit]
+    if limit > 0:
+        samples = samples[:limit]
 
     total = len(samples)
-    concurrency = args.concurrency
-
-    print(f"{'='*80}")
-    print(f"SFT Auto-Labeling Pipeline (Concurrent)")
-    print(f"{'='*80}")
     n_raw = len(raw_samples)
-    print(f"Input:       {input_path} ({n_raw} conversations → {total} samples)")
-    print(f"Model:       {args.model}")
-    print(f"Run dir:     {run_dir}")
-    print(f"Concurrency: {concurrency}")
-    print(f"Arbitration: {'disabled' if args.no_arbitration else f'enabled (threshold={CONFIDENCE_THRESHOLD})'}")
-    print(f"Started:     {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{'='*80}\n")
-
-    sem = asyncio.Semaphore(concurrency)
-    start_time = time.time()
+    print(f"  ({n_raw} conversations → {total} samples)")
 
     # Pre-allocate result slots
     all_labels = [None] * total
     all_monitors = [None] * total
 
-    async with httpx.AsyncClient(
-        proxy=None,
-        timeout=REQUEST_TIMEOUT,
-        limits=httpx.Limits(
-            max_connections=concurrency + 10,
-            max_keepalive_connections=concurrency,
-        ),
-    ) as http_client:
-        tasks = []
-        for idx, sample in enumerate(samples):
-            tasks.append(label_one(
-                http_client, sample, args.model, idx, total, sem,
-                enable_arbitration=not args.no_arbitration
-            ))
+    tasks = []
+    for idx, sample in enumerate(samples):
+        tasks.append(label_one(
+            http_client, sample, model, idx, total, sem,
+            enable_arbitration=enable_arbitration
+        ))
 
-        done_count = 0
-        for coro in asyncio.as_completed(tasks):
-            sample_idx, labels, monitor = await coro
-            all_labels[sample_idx] = labels
-            all_monitors[sample_idx] = monitor
-            done_count += 1
+    done_count = 0
+    file_start = time.time()
+    for coro in asyncio.as_completed(tasks):
+        sample_idx, labels, monitor = await coro
+        all_labels[sample_idx] = labels
+        all_monitors[sample_idx] = monitor
+        done_count += 1
 
-            # Print progress
-            sid = monitor["sample_id"]
-            calls = monitor["llm_calls"]
-            elapsed = monitor.get("elapsed_seconds", 0)
-            status = monitor["status"]
+        # Print progress
+        sid = monitor["sample_id"]
+        calls = monitor["llm_calls"]
+        elapsed = monitor.get("elapsed_seconds", 0)
+        status = monitor["status"]
 
-            if labels:
-                intent = labels.get("intent", "?")
-                diff = labels.get("difficulty", "?")
-                langs = ",".join(labels.get("language", [])[:3])
-                n_tags = sum(
-                    (len(labels[d]) if isinstance(labels.get(d), list) else (1 if labels.get(d) else 0))
-                    for d in ["intent", "language", "domain", "concept", "task", "constraint", "agentic", "context", "difficulty"]
-                )
-                arb = " [ARB]" if monitor["arbitrated"] else ""
-                print(f"[{done_count:4d}/{total}] {sid:20s} | {calls} calls {elapsed:5.1f}s | {intent:6s} {diff:12s} | {langs:20s} | {n_tags:2d} tags{arb}")
-            else:
-                print(f"[{done_count:4d}/{total}] {sid:20s} | {calls} calls {elapsed:5.1f}s | FAILED: {status}")
+        if labels:
+            intent = labels.get("intent", "?")
+            diff = labels.get("difficulty", "?")
+            langs = ",".join(labels.get("language", [])[:3])
+            n_tags = sum(
+                (len(labels[d]) if isinstance(labels.get(d), list) else (1 if labels.get(d) else 0))
+                for d in ["intent", "language", "domain", "concept", "task", "constraint", "agentic", "context", "difficulty"]
+            )
+            arb = " [ARB]" if monitor["arbitrated"] else ""
+            print(f"  [{done_count:4d}/{total}] {sid:20s} | {calls} calls {elapsed:5.1f}s | {intent:6s} {diff:12s} | {langs:20s} | {n_tags:2d} tags{arb}")
+        else:
+            print(f"  [{done_count:4d}/{total}] {sid:20s} | {calls} calls {elapsed:5.1f}s | FAILED: {status}")
 
-    total_elapsed = time.time() - start_time
+    file_elapsed = time.time() - file_start
 
     # Attach labels to samples
     for idx, sample in enumerate(samples):
@@ -532,44 +611,61 @@ async def run_pipeline(args):
                 "consistency_warnings": all_monitors[idx]["consistency_warnings"],
             }
 
-    # Save labeled JSON
-    with open(output_path, "w", encoding="utf-8") as f:
+    # Write outputs
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    with open(output_dir / "labeled.json", "w", encoding="utf-8") as f:
         json.dump(samples, f, ensure_ascii=False, indent=2)
 
-    # Save labeled JSONL (one sample per line, original structure + labels)
-    with open(jsonl_path, "w", encoding="utf-8") as f:
+    with open(output_dir / "labeled.jsonl", "w", encoding="utf-8") as f:
         for sample in samples:
             f.write(json.dumps(sample, ensure_ascii=False) + "\n")
 
-    # Save monitor log
-    with open(monitor_path, "w", encoding="utf-8") as f:
+    with open(output_dir / "monitor.jsonl", "w", encoding="utf-8") as f:
         for m in all_monitors:
             if m:
                 f.write(json.dumps(m, ensure_ascii=False) + "\n")
 
-    # Stats
+    # Compute and write stats
     valid_monitors = [m for m in all_monitors if m is not None]
     stats = compute_stats(valid_monitors, all_labels)
-    stats["model"] = args.model
-    stats["concurrency"] = concurrency
-    stats["total_elapsed_seconds"] = round(total_elapsed, 1)
-    stats["timestamp"] = datetime.now().isoformat()
+    stats["total_elapsed_seconds"] = round(file_elapsed, 1)
     stats["input_file"] = str(input_path)
-    stats["run_dir"] = str(run_dir)
 
-    with open(stats_path, "w", encoding="utf-8") as f:
+    with open(output_dir / "stats.json", "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
 
-    # Print summary
+    # Per-file dashboard
+    try:
+        from tools.visualize_labels import generate_dashboard
+        generate_dashboard(output_dir)
+    except Exception:
+        pass
+
+    success = stats["success"]
+    total_tokens = stats["total_tokens"]
+    print(f"  ✓ {success}/{total} success, {file_elapsed:.1f}s, {total_tokens:,} tokens")
+
+    return stats
+
+
+def print_summary(stats, run_dir, is_batch=False):
+    """Print final summary to stdout."""
     print(f"\n{'='*80}")
-    print(f"LABELING COMPLETE in {total_elapsed:.1f}s ({total_elapsed/60:.1f} min)")
+    label = "BATCH LABELING COMPLETE" if is_batch else "LABELING COMPLETE"
+    elapsed = stats.get('total_elapsed_seconds', 0)
+    print(f"{label} in {elapsed:.1f}s ({elapsed/60:.1f} min)")
     print(f"{'='*80}")
-    print(f"Success:     {stats['success']}/{stats['total_samples']} ({stats['success_rate']*100:.1f}%)")
-    print(f"LLM calls:   {stats['total_llm_calls']} total, {stats['avg_calls_per_sample']:.1f} avg/sample")
+    if is_batch:
+        print(f"Files:       {stats.get('files_processed', '?')}")
+    print(f"Success:     {stats['success']}/{stats['total_samples']} ({stats.get('success_rate', 0)*100:.1f}%)")
+    print(f"LLM calls:   {stats['total_llm_calls']} total, {stats.get('avg_calls_per_sample', 0):.1f} avg/sample")
     print(f"Tokens:      {stats['total_tokens']:,}")
-    print(f"Arbitrated:  {stats['arbitrated_count']} ({stats['arbitrated_rate']*100:.1f}%)")
-    print(f"Unmapped:    {stats['unmapped_unique_count']} unique out-of-pool tags")
-    print(f"Throughput:  {total / total_elapsed:.1f} samples/sec")
+    print(f"Arbitrated:  {stats['arbitrated_count']} ({stats.get('arbitrated_rate', 0)*100:.1f}%)")
+    print(f"Unmapped:    {stats.get('unmapped_unique_count', 0)} unique out-of-pool tags")
+    total_samples = stats.get('total_samples', 0)
+    if elapsed > 0 and total_samples > 0:
+        print(f"Throughput:  {total_samples / elapsed:.1f} samples/sec")
 
     print(f"\nConfidence (mean):")
     for dim, cs in stats.get("confidence_stats", {}).items():
@@ -578,7 +674,7 @@ async def run_pipeline(args):
 
     print(f"\nTop distributions:")
     for dim in ["intent", "difficulty", "domain", "concept"]:
-        dist = stats["tag_distributions"].get(dim, {})
+        dist = stats.get("tag_distributions", {}).get(dim, {})
         top5 = list(dist.items())[:5]
         top_str = ", ".join(f"{k}({v})" for k, v in top5)
         print(f"  {dim:15s} {top_str}")
@@ -588,24 +684,254 @@ async def run_pipeline(args):
         for tag, count in list(stats["unmapped_tags"].items())[:10]:
             print(f"  {tag}: {count}")
 
-    # Generate dashboard
-    try:
-        from tools.visualize_labels import generate_dashboard
-        dashboard_path = generate_dashboard(run_dir)
-        print(f"\nDashboard generated: {dashboard_path}")
-    except Exception as e:
-        print(f"\nDashboard generation skipped: {e}")
-
     print(f"\nRun dir: {run_dir}")
-    print(f"Output:  {output_path}")
-    print(f"JSONL:   {jsonl_path}")
-    print(f"Stats:   {stats_path}")
-    print(f"Monitor: {monitor_path}")
+
+
+async def run_pipeline(args):
+    # ── Resume mode ──────────────────────────────────────
+    if args.resume:
+        run_dir = Path(args.resume)
+        if not run_dir.is_dir():
+            print(f"Error: --resume path does not exist: {run_dir}")
+            sys.exit(1)
+        checkpoint_path = run_dir / "checkpoint.json"
+        ckpt = load_checkpoint(checkpoint_path)
+        if ckpt is None:
+            print(f"Error: no checkpoint.json in {run_dir}")
+            sys.exit(1)
+        if ckpt.get("status") == "done":
+            print(f"All files already completed in {run_dir}")
+            return
+
+        # Recover settings from summary_stats or checkpoint
+        summary_path = run_dir / "summary_stats.json"
+        if summary_path.exists():
+            with open(summary_path, "r", encoding="utf-8") as f:
+                prev_summary = json.load(f)
+            input_path = Path(prev_summary.get("input_path", args.input))
+            model = prev_summary.get("model", args.model)
+        else:
+            input_path = Path(args.input)
+            model = args.model
+
+        files = discover_input_files(input_path)
+        # Filter to directory-mode files only (those with rel_path)
+        dir_files = [(a, r) for a, r in files if r is not None]
+        if not dir_files:
+            print("Error: --resume only works with directory-mode runs")
+            sys.exit(1)
+
+        completed = set(ckpt.get("completed", []))
+        concurrency = args.concurrency
+
+        print(f"{'='*80}")
+        print(f"SFT Auto-Labeling Pipeline — RESUME")
+        print(f"{'='*80}")
+        print(f"Run dir:     {run_dir}")
+        print(f"Model:       {model}")
+        print(f"Completed:   {len(completed)}/{len(dir_files)} files")
+        print(f"Concurrency: {concurrency}")
+        print(f"{'='*80}\n")
+
+        all_file_stats = []
+        batch_start = time.time()
+
+        async with httpx.AsyncClient(
+            proxy=None,
+            timeout=REQUEST_TIMEOUT,
+            limits=httpx.Limits(
+                max_connections=concurrency + 10,
+                max_keepalive_connections=concurrency,
+            ),
+        ) as http_client:
+            sem = asyncio.Semaphore(concurrency)
+            n = len(dir_files)
+            for i, (abs_path, rel_path) in enumerate(dir_files):
+                rel_str = str(rel_path)
+                if rel_str in completed:
+                    print(f"[File {i+1:3d}/{n}] {rel_str} — SKIPPED (completed)")
+                    # Load existing stats for summary
+                    file_out_dir = run_dir / rel_path.with_suffix("")
+                    existing_stats = file_out_dir / "stats.json"
+                    if existing_stats.exists():
+                        with open(existing_stats, "r", encoding="utf-8") as f:
+                            all_file_stats.append(json.load(f))
+                    continue
+
+                file_out_dir = run_dir / rel_path.with_suffix("")
+                print(f"[File {i+1:3d}/{n}] {rel_str}")
+                try:
+                    stats = await run_one_file(
+                        abs_path, file_out_dir, http_client, sem, model,
+                        enable_arbitration=not args.no_arbitration,
+                        limit=args.limit, shuffle=args.shuffle,
+                    )
+                    all_file_stats.append(stats)
+                    update_checkpoint(checkpoint_path, rel_str, success=True)
+                except Exception as e:
+                    print(f"  ✗ FAILED: {e}")
+                    update_checkpoint(checkpoint_path, rel_str, success=False, error_msg=str(e)[:200])
+
+        # Write global summary
+        if all_file_stats:
+            summary = merge_stats(all_file_stats)
+            summary["model"] = model
+            summary["concurrency"] = concurrency
+            summary["total_elapsed_seconds"] = round(time.time() - batch_start, 1)
+            summary["timestamp"] = datetime.now().isoformat()
+            summary["input_path"] = str(input_path)
+            summary["run_dir"] = str(run_dir)
+            with open(run_dir / "summary_stats.json", "w", encoding="utf-8") as f:
+                json.dump(summary, f, ensure_ascii=False, indent=2)
+            try:
+                from tools.visualize_labels import generate_dashboard
+                generate_dashboard(run_dir, stats_file="summary_stats.json")
+            except Exception:
+                try:
+                    from tools.visualize_labels import generate_dashboard
+                    generate_dashboard(run_dir)
+                except Exception:
+                    pass
+            print_summary(summary, run_dir, is_batch=True)
+        return
+
+    # ── Normal mode ──────────────────────────────────────
+    input_path = Path(args.input)
+    files = discover_input_files(input_path)
+    is_directory = input_path.is_dir()
+
+    # Create run directory
+    run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    model_short = args.model.replace("/", "-")
+    run_dir = DATA_DIR / "runs" / f"{run_ts}_{model_short}"
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    concurrency = args.concurrency
+
+    print(f"{'='*80}")
+    print(f"SFT Auto-Labeling Pipeline (Concurrent)")
+    print(f"{'='*80}")
+    print(f"Input:       {input_path} ({'directory, ' + str(len(files)) + ' files' if is_directory else 'single file'})")
+    print(f"Model:       {args.model}")
+    print(f"Run dir:     {run_dir}")
+    print(f"Concurrency: {concurrency}")
+    print(f"Arbitration: {'disabled' if args.no_arbitration else f'enabled (threshold={CONFIDENCE_THRESHOLD})'}")
+    print(f"Started:     {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"{'='*80}\n")
+
+    if is_directory:
+        # ── Directory mode: file-serial, sample-concurrent ──
+        dir_files = [(a, r) for a, r in files if r is not None]
+        if not dir_files:
+            print("No .json/.jsonl files found in directory")
+            sys.exit(1)
+
+        checkpoint_path = run_dir / "checkpoint.json"
+        ckpt = create_checkpoint(checkpoint_path, dir_files)
+        all_file_stats = []
+        batch_start = time.time()
+
+        async with httpx.AsyncClient(
+            proxy=None,
+            timeout=REQUEST_TIMEOUT,
+            limits=httpx.Limits(
+                max_connections=concurrency + 10,
+                max_keepalive_connections=concurrency,
+            ),
+        ) as http_client:
+            sem = asyncio.Semaphore(concurrency)
+            n = len(dir_files)
+            for i, (abs_path, rel_path) in enumerate(dir_files):
+                rel_str = str(rel_path)
+                file_out_dir = run_dir / rel_path.with_suffix("")
+                print(f"[File {i+1:3d}/{n}] {rel_str}")
+                try:
+                    stats = await run_one_file(
+                        abs_path, file_out_dir, http_client, sem, args.model,
+                        enable_arbitration=not args.no_arbitration,
+                        limit=args.limit, shuffle=args.shuffle,
+                    )
+                    all_file_stats.append(stats)
+                    update_checkpoint(checkpoint_path, rel_str, success=True)
+                except Exception as e:
+                    print(f"  ✗ FAILED: {e}")
+                    update_checkpoint(checkpoint_path, rel_str, success=False, error_msg=str(e)[:200])
+
+        # Write global summary
+        batch_elapsed = time.time() - batch_start
+        summary = merge_stats(all_file_stats) if all_file_stats else {
+            "total_samples": 0, "success": 0, "failed": 0, "success_rate": 0,
+            "total_llm_calls": 0, "total_tokens": 0, "arbitrated_count": 0,
+            "unmapped_unique_count": 0, "tag_distributions": {}, "unmapped_tags": {},
+            "files_processed": 0,
+        }
+        summary["model"] = args.model
+        summary["concurrency"] = concurrency
+        summary["total_elapsed_seconds"] = round(batch_elapsed, 1)
+        summary["timestamp"] = datetime.now().isoformat()
+        summary["input_path"] = str(input_path)
+        summary["run_dir"] = str(run_dir)
+
+        with open(run_dir / "summary_stats.json", "w", encoding="utf-8") as f:
+            json.dump(summary, f, ensure_ascii=False, indent=2)
+
+        # Global dashboard — try with summary_stats, fall back to default
+        try:
+            from tools.visualize_labels import generate_dashboard
+            generate_dashboard(run_dir, stats_file="summary_stats.json")
+            print(f"\nGlobal dashboard generated: {run_dir / 'dashboard.html'}")
+        except TypeError:
+            # generate_dashboard doesn't accept stats_file kwarg — use default
+            try:
+                from tools.visualize_labels import generate_dashboard
+                generate_dashboard(run_dir)
+                print(f"\nGlobal dashboard generated: {run_dir / 'dashboard.html'}")
+            except Exception as e:
+                print(f"\nGlobal dashboard generation skipped: {e}")
+        except Exception as e:
+            print(f"\nGlobal dashboard generation skipped: {e}")
+
+        print_summary(summary, run_dir, is_batch=True)
+
+    else:
+        # ── Single-file mode: backward compatible ────────
+        batch_start = time.time()
+        async with httpx.AsyncClient(
+            proxy=None,
+            timeout=REQUEST_TIMEOUT,
+            limits=httpx.Limits(
+                max_connections=concurrency + 10,
+                max_keepalive_connections=concurrency,
+            ),
+        ) as http_client:
+            sem = asyncio.Semaphore(concurrency)
+            stats = await run_one_file(
+                input_path, run_dir, http_client, sem, args.model,
+                enable_arbitration=not args.no_arbitration,
+                limit=args.limit, shuffle=args.shuffle,
+            )
+
+        stats["model"] = args.model
+        stats["concurrency"] = concurrency
+        stats["timestamp"] = datetime.now().isoformat()
+        stats["run_dir"] = str(run_dir)
+
+        # Overwrite stats with enriched version
+        with open(run_dir / "stats.json", "w", encoding="utf-8") as f:
+            json.dump(stats, f, ensure_ascii=False, indent=2)
+
+        print_summary(stats, run_dir)
+        print(f"Output:  {run_dir / 'labeled.json'}")
+        print(f"JSONL:   {run_dir / 'labeled.jsonl'}")
+        print(f"Stats:   {run_dir / 'stats.json'}")
+        print(f"Monitor: {run_dir / 'monitor.jsonl'}")
 
 
 def main():
     parser = argparse.ArgumentParser(description="SFT Auto-Labeling Pipeline (Concurrent)")
     parser.add_argument("--input", type=str, default=str(DEFAULT_INPUT))
+    parser.add_argument("--resume", type=str, default=None,
+                        help="Resume from an existing run directory (reads checkpoint.json)")
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL)
     parser.add_argument("--concurrency", type=int, default=DEFAULT_CONCURRENCY)
     parser.add_argument("--limit", type=int, default=0)
