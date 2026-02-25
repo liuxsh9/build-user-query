@@ -4,12 +4,16 @@ Automated labeling pipeline for SFT code-generation training data, using a struc
 
 ## Architecture
 
-Two-call pipeline with optional arbitration:
-
 ```
-Input (ShareGPT JSON)
+Input (ShareGPT JSON / Pangu JSONL)
   │
-  ├─ Preprocessing: extract structural signals (languages, tool roles, code blocks)
+  ├─ Format detection: auto-detect ShareGPT vs Pangu (preprocessing.py)
+  │
+  ├─ Normalization: strip training tokens, unify to ShareGPT internal format
+  │
+  ├─ Multi-turn slicing: true multi-turn → N per-reply samples (pyramid expansion)
+  │     • Pseudo multi-turn: preserved as-is (already one training sample)
+  │     • True multi-turn: each assistant reply → one sample with full preceding context
   │
   ├─ Call 1 (LLM): Intent, Language, Domain, Task, Difficulty
   │
@@ -19,39 +23,46 @@ Input (ShareGPT JSON)
   │
   ├─ Arbitration (optional): re-run low-confidence dimensions at higher temperature
   │
-  └─ Output: labeled JSON/JSONL + stats + monitor log
+  └─ Output: run directory with labeled JSON/JSONL + stats + monitor + dashboard
 ```
 
 ## Directory Structure
 
 ```
 labeling/
-  config.py              # Production settings (API, model, concurrency, thresholds)
+  config.py              # Production settings (env vars, model, concurrency, thresholds)
   pipeline.py            # Main concurrent labeling pipeline
   prompts.py             # Call 1 & Call 2 prompts, tag pools, few-shot examples
-  preprocessing.py       # Structural signal extraction
+  preprocessing.py       # Format detection, normalization, multi-turn slicing
   tools/
+    visualize_labels.py  # Standalone HTML dashboard from labeled results
     export_review.py     # Labeled JSON → review CSV for human audit
     analyze_unmapped.py  # Unmapped tag frequency analysis for pool iteration
     compare_models.py    # Multi-model comparison report
     generate_report.py   # Labeling summary report
     collect_gold_set.py  # Gold set conversation generator
   data/
-    raw_samples.json     # 108 source conversations (97 single-turn + 11 agentic)
+    raw_samples.json     # 108 ShareGPT source conversations (97 single-turn + 11 agentic)
+    pangu_test_samples.jsonl  # 12 Pangu format test samples (all variants)
     baselines/           # Frozen v4 baselines (deepseek + sonnet)
     reports/             # Analysis documents
-    runs/                # Per-run output (auto-created by pipeline)
+    runs/                # Per-run output (auto-created, gitignored)
   README.md
 ```
 
 ## Configuration
 
-All production settings are in `config.py`:
+Settings in `config.py`, API credentials via environment variables:
+
+```bash
+export LITELLM_BASE="http://your-litellm-proxy:4000/v1"
+export LITELLM_KEY="sk-your-key"
+```
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `LITELLM_BASE` | `http://101.47.36.53:4000/v1` | LiteLLM proxy endpoint |
-| `LITELLM_KEY` | `sk-...` | API key |
+| `LITELLM_BASE` | env `LITELLM_BASE` | LiteLLM proxy endpoint |
+| `LITELLM_KEY` | env `LITELLM_KEY` | API key |
 | `DEFAULT_MODEL` | `deepseek-v3.2` | Production labeling model |
 | `DEFAULT_CONCURRENCY` | `30` | Concurrent LLM requests |
 | `CONFIDENCE_THRESHOLD` | `0.65` | Below this triggers arbitration |
@@ -66,9 +77,11 @@ All production settings are in `config.py`:
 | Mid | claude-sonnet-4.6, deepseek-v3.2, qwen3-235b | Production labeling |
 | Light | gpt-4o-mini, deepseek-v3.1 | Cost-sensitive batches |
 
-## Input Format
+## Input Formats
 
-Pipeline accepts a JSON array of ShareGPT-format conversations:
+Pipeline auto-detects format from input file structure. Supports JSON arrays and JSONL.
+
+### ShareGPT Format
 
 ```json
 [
@@ -78,50 +91,78 @@ Pipeline accepts a JSON array of ShareGPT-format conversations:
       { "from": "human", "value": "Python 列表推导式和生成器表达式的区别？" },
       { "from": "gpt", "value": "列表推导式和生成器表达式都是..." }
     ],
-    "metadata": {                    // optional, used by preprocessing
-      "source": "generated",
-      "est_tokens": 687,
-      "num_turns": 2,
-      "is_multi_turn": false,
-      "has_tool_calls": false,
-      "has_code": true
-    }
+    "metadata": { "source": "generated", "has_code": true }
   }
 ]
 ```
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `id` | yes | Unique sample identifier |
-| `conversations` | yes | Array of `{from, value}` turns. `from` is `"human"` or `"gpt"` |
-| `metadata` | no | Preprocessing hints (auto-detected if absent) |
+### Pangu Format
 
-Conversations can be single-turn (1 human + 1 gpt) or multi-turn. The pipeline extracts structural signals (languages, code blocks, tool calls) from all turns during preprocessing.
+Pangu 是内部 SFT 训练数据格式，包含特殊训练标记。Pipeline 自动剥离这些标记后进行标注。
+
+```jsonl
+{"meta_prompt":["你是一个有用的助手"],"data":[{"role":"user","content":"解释快速排序"},{"role":"assistant","content":"[unused16]思考过程...[unused17]快速排序是..."}]}
+```
+
+支持的 Pangu 变体：
+
+| 变体 | 说明 | 标注处理 |
+|------|------|----------|
+| 单轮快思考 | `/no_think` + `[unused16][unused17]` 空标记 | 剥离标记，标注 1 条 |
+| 单轮慢思考 | `[unused16]{思考}[unused17]` | 剥离标记，标注 1 条 |
+| 伪多轮 | `[unused10][unused9]` 分隔历史轮次 | 保持原样，标注 1 条 |
+| 真多轮 | `data` 数组含多组 user/assistant | 切片为 N 条（金字塔展开），每条独立标注 |
+| 工具调用 | `[unused11-16]` 嵌入式 / `role: tool` 独立节点 | 剥离标记，保留语义 |
+| 无标记 | 纯 role/content，无特殊标记 | 直接标注 |
+
+详细格式规范见 `docs/pangu_data_format.md`。
+
+### Multi-turn Slicing
+
+真多轮数据在训练时按轮次展开（金字塔形状），每个 assistant 回复对应一条训练样本。Pipeline 自动执行相同的切片：
+
+```
+原始 3 轮对话 → 3 条标注样本：
+  sample_t1: [user₁, assistant₁]
+  sample_t2: [user₁, assistant₁, user₂, assistant₂]
+  sample_t3: [user₁, assistant₁, user₂, assistant₂, user₃, assistant₃]
+```
+
+每条切片独立标注，标签随轮次递进（如 t1=bug-fixing, t2=+code-explanation, t3=+performance-analysis），支持按标签筛选高价值训练轮次。
 
 ## Quick Start
 
 ```bash
-# Label 20 random samples
+# Label 20 random ShareGPT samples
 python3 labeling/pipeline.py --limit 20 --shuffle
 
-# Full dataset (108 samples, ~15 min)
+# Label Pangu format data
+python3 labeling/pipeline.py --input labeling/data/pangu_test_samples.jsonl
+
+# Full dataset, high concurrency
 python3 labeling/pipeline.py --concurrency 50
 
-# Export review CSV from a run
+# View dashboard (auto-generated in run dir)
+open labeling/data/runs/<run_dir>/dashboard.html
+
+# Export review CSV
 python3 labeling/tools/export_review.py \
   --input labeling/data/runs/<run_dir>/labeled.json \
   --monitor labeling/data/runs/<run_dir>/monitor.jsonl \
-  --output labeling/data/runs/<run_dir>/review.csv
+  --output review.csv
 
-# Analyze unmapped tags for pool iteration
+# Analyze unmapped tags
 python3 labeling/tools/analyze_unmapped.py labeling/data/runs/<run_dir>/labeled.json
+
+# Regenerate dashboard from existing run
+python3 labeling/tools/visualize_labels.py labeling/data/runs/<run_dir> --open
 ```
 
 ## Pipeline CLI Options
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--input` | `labeling/data/raw_samples.json` | Input ShareGPT JSON |
+| `--input` | `labeling/data/raw_samples.json` | Input file (JSON array or JSONL) |
 | `--model` | `deepseek-v3.2` | Model ID (must be available via LiteLLM) |
 | `--concurrency` | `30` | Max parallel LLM requests |
 | `--limit` | `0` (all) | Process only first N samples |
@@ -135,9 +176,10 @@ Each run creates a timestamped directory under `data/runs/`:
 ```
 data/runs/20260225_155440_deepseek-v3.2/
   labeled.json      # Full samples with .labels and .labeling_monitor
-  labeled.jsonl     # One sample per line (same data, streaming-friendly)
+  labeled.jsonl     # One sample per line (streaming-friendly)
   stats.json        # Aggregate metrics, distributions, confidence stats
   monitor.jsonl     # Per-sample trace (calls, tokens, latency, issues)
+  dashboard.html    # Interactive statistics dashboard (auto-generated)
 ```
 
 ## Production Tuning

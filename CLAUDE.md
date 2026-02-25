@@ -1,103 +1,68 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ## Project Overview
 
-SFT (Supervised Fine-Tuning) Capability Taxonomy — a structured tag system for labeling code-generation training data. Enables coverage analysis, data filtering, and annotation quality control.
+SFT Capability Taxonomy + Auto-Labeling Pipeline for code-generation training data. Two main subsystems:
 
-**Current version: v3.1 — 9 categories, 221 tags, evaluation score 8.3/10**
-
-## Project Structure
-
-```
-taxonomy.yaml                  # Category schema (9 categories, select modes, descriptions)
-taxonomy/tags/*.yaml           # Tag definitions (one file per category)
-scripts/
-  validate_taxonomy.py         # Validate tag schema, uniqueness, orthogonality
-  generate_tags_data.py        # Generate visualization data from YAML → JSON + HTML embed
-  compute_iaa.py               # Inter-Annotator Agreement (Fleiss' κ) computation
-  test_iaa.py                  # Tests for kappa implementation
-  extract_libraries.py         # Library auto-extraction from import statements
-labeling/                      # Auto-labeling pipeline (see labeling/README.md)
-  config.py                    # Production settings (API, model, concurrency, thresholds)
-  pipeline.py                  # 2-call concurrent labeling pipeline
-  prompts.py                   # Call 1 & Call 2 prompt definitions + tag pools
-  preprocessing.py             # Structural signal extraction
-  export_review.py             # Labeled JSON → review CSV
-  compare_models.py            # Multi-model comparison
-  collect_gold_set.py          # Gold set conversation generator
-  data/                        # Gold set & labeling outputs
-data/iaa/                      # IAA pilot test materials (50 samples, templates, examples)
-docs/
-  annotation_guidelines.md     # Annotation rules, boundary cases (v1.1)
-  iaa_evaluation_plan.md       # IAA evaluation methodology
-  taxonomy_evaluation_report_v3.md  # Comprehensive v3 evaluation
-visualization/
-  tag-visualization.html       # Standalone interactive browser (data embedded)
-  tags_data.json               # JSON export of all tags
-tag-manager/                   # SvelteKit web app for tag CRUD (not actively used)
-```
-
-## Taxonomy Categories
-
-| Category | Tags | Select | Key |
-|----------|------|--------|-----|
-| Language | 75 | multi | Programming languages + markup/config |
-| Domain | 38 | multi | Application domains (web, ML, devops...) |
-| Concept | 25 | multi | Umbrella programming concepts with alias sub-concepts |
-| Task | 21 | multi | Work types (bug-fixing, feature-implementation...) |
-| Constraint | 20 | multi | Non-functional requirements (thread-safe, scalable...) |
-| Agentic | 23 | multi | Tool Actions (12) + Behavioral Patterns (11) |
-| Context | 10 | single | Code scope (snippet → repository) |
-| Difficulty | 4 | single | beginner / intermediate / advanced / expert |
-| Intent | 5 | single | learn / build / debug / review / decide |
+1. **Taxonomy** — 9-category tag system (v3.1, 221 tags) for structured annotation
+2. **Labeling Pipeline** — concurrent 2-call LLM pipeline that auto-labels conversations
 
 ## Key Commands
 
 ```bash
-# Taxonomy
-python3 scripts/validate_taxonomy.py          # Validate (expect 0 errors, 1 warning for 'make' alias)
-python3 scripts/generate_tags_data.py --stats  # Regenerate visualization data
-python3 scripts/test_iaa.py                    # Run kappa tests (7 tests, all should pass)
-python3 scripts/compute_iaa.py A1.yaml A2.yaml A3.yaml --report-dir out/  # Compute IAA
+# Taxonomy validation & visualization
+python3 scripts/validate_taxonomy.py              # Expect 0 errors, 1 warning ('make' alias)
+python3 scripts/generate_tags_data.py --stats      # Regenerate visualization data → HTML embed
+python3 scripts/test_iaa.py                        # 7 kappa tests, all should pass
 
-# Labeling pipeline
-python3 labeling/pipeline.py --limit 20 --shuffle   # Label 20 random samples
-python3 labeling/export_review.py --input labeling/data/labeled_output.json --output labeling/data/review.csv
+# Labeling pipeline (requires LITELLM_BASE and LITELLM_KEY env vars)
+python3 labeling/pipeline.py --limit 20 --shuffle                    # Label 20 random samples
+python3 labeling/pipeline.py --input labeling/data/pangu_test_samples.jsonl  # Label Pangu format data
+python3 labeling/pipeline.py --concurrency 50                        # Full dataset, high concurrency
+
+# Labeling tools
+python3 labeling/tools/export_review.py --input <run_dir>/labeled.json --monitor <run_dir>/monitor.jsonl --output review.csv
+python3 labeling/tools/analyze_unmapped.py <run_dir>/labeled.json    # Unmapped tag analysis
+python3 labeling/tools/visualize_labels.py <run_dir> --open          # Open dashboard in browser
 ```
 
-## Development Conventions
+## Architecture
 
-- Tag files: `taxonomy/tags/<category>.yaml` — each tag has `id`, `name`, `category`, `description`, `aliases`
+### Taxonomy (`taxonomy.yaml` + `taxonomy/tags/*.yaml`)
+
+9 dimensions: Intent (single), Difficulty (single), Context (single), Language (multi), Domain (multi), Concept (multi), Task (multi), Agentic (multi), Constraint (multi).
+
+Tag definitions live in `taxonomy/tags/<category>.yaml`. IDs are kebab-case. Concept/Agentic tags have a `subcategory` field. After modifying tags, run `validate_taxonomy.py` then `generate_tags_data.py --stats`.
+
+### Labeling Pipeline (`labeling/`)
+
+```
+Input (ShareGPT JSON or Pangu JSONL)
+  → Auto-detect format + normalize (preprocessing.py)
+  → Slice true multi-turn into per-reply samples (pyramid expansion)
+  → Call 1 (LLM): Intent, Language, Domain, Task, Difficulty
+  → Call 2 (LLM): Concept, Agentic, Constraint, Context (receives Call 1 results)
+  → Validation + optional arbitration (confidence < 0.65)
+  → Output: run directory with labeled.json, labeled.jsonl, stats.json, monitor.jsonl, dashboard.html
+```
+
+Key design decisions:
+- **Two input formats**: ShareGPT (`conversations: [{from, value}]`) and Pangu (`data: [{role, content}]` with `[unused*]` training tokens). Auto-detected by `preprocessing.py`.
+- **Multi-turn slicing**: True multi-turn → N per-reply samples (pyramid expansion). Pseudo multi-turn preserved as-is. Each slice gets independent labels.
+- **Run directories**: Output goes to `labeling/data/runs/<timestamp>_<model>/` with dashboard auto-generated.
+- **Config via env vars**: `LITELLM_BASE` and `LITELLM_KEY` must be set. See `labeling/config.py` for all settings.
+- **Tag pools**: Defined in `labeling/prompts.py` as `TAG_POOLS` dict. Pipeline validates all labels against these pools.
+
+### Visualization (`visualization/`)
+
+`tag-visualization.html` is standalone — data is embedded inline by `generate_tags_data.py` which replaces the `let tagsData = ...` block.
+
+## Conventions
+
 - Tag IDs: kebab-case (`machine-learning`, `code-review-task`)
-- Concept/Agentic tags have `subcategory` field for grouping
-- After modifying tags, run `validate_taxonomy.py` then `generate_tags_data.py --stats` to update visualization
-- The HTML visualization embeds data inline — `generate_tags_data.py` replaces the `let tagsData = ...` block automatically
-- Annotation guidelines version should stay in sync with taxonomy version
-
-## Version History
-
-| Version | Tags | Score | Key Changes |
-|---------|------|-------|-------------|
-| v1 | 198 | 7.2 | Initial 7-category design |
-| v2 | 252 | 7.3 | +Library, expanded Concept/Domain |
-| v3 | 224 | 8.3 | -Library, Concept 106→25, +Difficulty/Intent, annotation guidelines |
-| v3.1 | 221 | 8.3 | Domain 41→38 (merge mlops/observability/SRE), Language eval (no change) |
-
-## Current Status & Next Steps
-
-**Completed:**
-- [x] 9-category orthogonal taxonomy design
-- [x] 221 tag definitions with aliases
-- [x] Annotation guidelines (100+ boundary cases)
-- [x] IAA tooling (Fleiss' κ) + 50 sample queries
-- [x] Validation framework (0 errors)
-- [x] Interactive visualization (responsive HTML)
-- [x] v3 evaluation report
-- [x] Domain long-tail cleanup
-- [x] Language long-tail evaluation (no changes needed)
-- [x] Output Format dimension evaluation (decided not to add — redundant with Intent × Task)
-
-**Next steps:**
-- [ ] IAA pilot test execution (3 annotators, 50 samples) — tooling ready, needs human annotators
-- [ ] Library auto-extraction integration into labeling pipeline
-- [ ] Production annotation pipeline scaling (full dataset beyond gold set)
+- Annotation guidelines version stays in sync with taxonomy version
+- `labeling/data/runs/` is gitignored — run outputs are ephemeral
+- `labeling/data/baselines/` contains frozen reference results (deepseek v4 + sonnet v4)
+- Production model: `deepseek-v3.2` (best pool compliance, cheapest). Gold set: `claude-sonnet-4-6` or stronger.
