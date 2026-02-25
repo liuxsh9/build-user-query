@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR = Path(__file__).parent.parent / "data"
 LABELED_FILE = DATA_DIR / "labeled_deepseek_v4.json"
 STATS_FILE = DATA_DIR / "stats_deepseek_v4.json"
 REPORT_FILE = DATA_DIR / "labeling_report.md"

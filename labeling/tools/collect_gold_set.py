@@ -17,13 +17,13 @@ from datetime import datetime
 
 import httpx
 
-OUTPUT_DIR = Path(__file__).parent / "data"
+OUTPUT_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_FILE = OUTPUT_DIR / "raw_samples.json"
 
 # Import API settings from config
 import sys
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from config import LITELLM_BASE, LITELLM_KEY, DEFAULT_MODEL, DEFAULT_CONCURRENCY
 
 BASE_URL = LITELLM_BASE
