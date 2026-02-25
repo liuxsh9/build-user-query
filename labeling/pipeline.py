@@ -563,6 +563,14 @@ async def run_pipeline(args):
         for tag, count in list(stats["unmapped_tags"].items())[:10]:
             print(f"  {tag}: {count}")
 
+    # Generate dashboard
+    try:
+        from tools.visualize_labels import generate_dashboard
+        dashboard_path = generate_dashboard(run_dir)
+        print(f"\nDashboard generated: {dashboard_path}")
+    except Exception as e:
+        print(f"\nDashboard generation skipped: {e}")
+
     print(f"\nRun dir: {run_dir}")
     print(f"Output:  {output_path}")
     print(f"JSONL:   {jsonl_path}")
