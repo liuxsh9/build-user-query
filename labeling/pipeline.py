@@ -403,24 +403,17 @@ def compute_stats(all_monitors, all_labels):
 
 async def run_pipeline(args):
     input_path = Path(args.input)
-    output_path = Path(args.output)
 
-    # Derive stats/monitor paths from output path if not specified
-    if args.stats:
-        stats_path = Path(args.stats)
-    else:
-        stem = output_path.stem.replace("labeled_", "stats_").replace("labeled", "stats")
-        if stem == output_path.stem:
-            stem = "labeling_stats"
-        stats_path = output_path.parent / f"{stem}.json"
+    # Create run directory: labeling/data/runs/<timestamp>_<model>/
+    run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    model_short = args.model.replace("/", "-")
+    run_dir = DATA_DIR / "runs" / f"{run_ts}_{model_short}"
+    run_dir.mkdir(parents=True, exist_ok=True)
 
-    if args.monitor:
-        monitor_path = Path(args.monitor)
-    else:
-        stem = output_path.stem.replace("labeled_", "monitor_").replace("labeled", "monitor")
-        if stem == output_path.stem:
-            stem = "labeling_monitor"
-        monitor_path = output_path.parent / f"{stem}.jsonl"
+    output_path = run_dir / "labeled.json"
+    jsonl_path = run_dir / "labeled.jsonl"
+    stats_path = run_dir / "stats.json"
+    monitor_path = run_dir / "monitor.jsonl"
 
     with open(input_path, "r", encoding="utf-8") as f:
         samples = json.load(f)
@@ -439,6 +432,7 @@ async def run_pipeline(args):
     print(f"{'='*80}")
     print(f"Input:       {input_path} ({total} samples)")
     print(f"Model:       {args.model}")
+    print(f"Run dir:     {run_dir}")
     print(f"Concurrency: {concurrency}")
     print(f"Arbitration: {'disabled' if args.no_arbitration else f'enabled (threshold={CONFIDENCE_THRESHOLD})'}")
     print(f"Started:     {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -499,12 +493,10 @@ async def run_pipeline(args):
             }
 
     # Save labeled JSON
-    output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(samples, f, ensure_ascii=False, indent=2)
 
     # Save labeled JSONL (one sample per line, original structure + labels)
-    jsonl_path = output_path.with_suffix(".jsonl")
     with open(jsonl_path, "w", encoding="utf-8") as f:
         for sample in samples:
             f.write(json.dumps(sample, ensure_ascii=False) + "\n")
@@ -523,6 +515,7 @@ async def run_pipeline(args):
     stats["total_elapsed_seconds"] = round(total_elapsed, 1)
     stats["timestamp"] = datetime.now().isoformat()
     stats["input_file"] = str(input_path)
+    stats["run_dir"] = str(run_dir)
 
     with open(stats_path, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
@@ -555,7 +548,8 @@ async def run_pipeline(args):
         for tag, count in list(stats["unmapped_tags"].items())[:10]:
             print(f"  {tag}: {count}")
 
-    print(f"\nOutput:  {output_path}")
+    print(f"\nRun dir: {run_dir}")
+    print(f"Output:  {output_path}")
     print(f"JSONL:   {jsonl_path}")
     print(f"Stats:   {stats_path}")
     print(f"Monitor: {monitor_path}")
@@ -564,9 +558,6 @@ async def run_pipeline(args):
 def main():
     parser = argparse.ArgumentParser(description="SFT Auto-Labeling Pipeline (Concurrent)")
     parser.add_argument("--input", type=str, default=str(DEFAULT_INPUT))
-    parser.add_argument("--output", type=str, default=str(DEFAULT_OUTPUT))
-    parser.add_argument("--stats", type=str, default="")
-    parser.add_argument("--monitor", type=str, default="")
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL)
     parser.add_argument("--concurrency", type=int, default=DEFAULT_CONCURRENCY)
     parser.add_argument("--limit", type=int, default=0)
