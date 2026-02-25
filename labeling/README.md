@@ -133,7 +133,7 @@ Pangu 是内部 SFT 训练数据格式，包含特殊训练标记。Pipeline 自
 ## Quick Start
 
 ```bash
-# Label 20 random ShareGPT samples
+# Label 20 random ShareGPT samples (single file)
 python3 labeling/pipeline.py --limit 20 --shuffle
 
 # Label Pangu format data
@@ -141,6 +141,12 @@ python3 labeling/pipeline.py --input labeling/data/pangu_test_samples.jsonl
 
 # Full dataset, high concurrency
 python3 labeling/pipeline.py --concurrency 50
+
+# Label an entire directory (recursive, all json/jsonl)
+python3 labeling/pipeline.py --input /data/train/ --limit 5
+
+# Resume after interruption (reads checkpoint, skips completed files)
+python3 labeling/pipeline.py --resume labeling/data/runs/<run_dir>/
 
 # View dashboard (auto-generated in run dir)
 open labeling/data/runs/<run_dir>/dashboard.html
@@ -162,14 +168,17 @@ python3 labeling/tools/visualize_labels.py labeling/data/runs/<run_dir> --open
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--input` | `labeling/data/raw_samples.json` | Input file (JSON array or JSONL) |
+| `--input` | `labeling/data/raw_samples.json` | Input file or directory (JSON/JSONL, recursive for dirs) |
+| `--resume` | — | Resume from existing run directory (reads checkpoint.json) |
 | `--model` | `deepseek-v3.2` | Model ID (must be available via LiteLLM) |
 | `--concurrency` | `30` | Max parallel LLM requests |
-| `--limit` | `0` (all) | Process only first N samples |
+| `--limit` | `0` (all) | Process only first N samples per file |
 | `--shuffle` | off | Randomly shuffle before slicing |
 | `--no-arbitration` | off | Skip arbitration pass |
 
 ## Output
+
+### Single-file mode
 
 Each run creates a timestamped directory under `data/runs/`:
 
@@ -181,6 +190,38 @@ data/runs/20260225_155440_deepseek-v3.2/
   monitor.jsonl     # Per-sample trace (calls, tokens, latency, issues)
   dashboard.html    # Interactive statistics dashboard (auto-generated)
 ```
+
+### Directory mode
+
+When `--input` is a directory, output mirrors the input structure. Each input file gets its own subdirectory with a full set of outputs, plus global summary files at the root:
+
+```
+Input:
+  /data/train/
+    math/algebra.jsonl
+    math/geometry.jsonl
+    code/python.json
+
+Output:
+  data/runs/20260225_200000_deepseek-v3.2/
+    checkpoint.json        # File-level progress (for --resume)
+    summary_stats.json     # Merged stats across all files
+    dashboard.html         # Global dashboard
+    math/
+      algebra/             # One subdirectory per input file
+        labeled.json
+        labeled.jsonl
+        stats.json
+        monitor.jsonl
+        dashboard.html
+      geometry/
+        ...
+    code/
+      python/
+        ...
+```
+
+Files are processed serially (to avoid memory explosion), samples within each file run concurrently. The `checkpoint.json` tracks completed/failed files so `--resume` can skip already-finished work.
 
 ## Production Tuning
 
