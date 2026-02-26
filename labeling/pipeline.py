@@ -397,7 +397,7 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
 
                 # Call 1
                 msgs1 = build_call1_messages(conversations_json, signals_str)
-                call1_result, _, usage1 = await async_llm_call(http_client, msgs1, model)
+                call1_result, call1_raw, usage1 = await async_llm_call(http_client, msgs1, model)
                 monitor["llm_calls"] += 1
                 monitor["total_prompt_tokens"] += usage1["prompt_tokens"]
                 monitor["total_completion_tokens"] += usage1["completion_tokens"]
@@ -405,6 +405,7 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
                 if call1_result is None:
                     monitor["status"] = "call1_failed"
                     monitor["error"] = usage1.get("error", "unknown")
+                    monitor["error_response"] = call1_raw[:500] if call1_raw else ""
                     if sample_attempt < SAMPLE_MAX_RETRIES:
                         continue
                     return sample_idx, None, monitor
@@ -415,7 +416,7 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
                 # Call 2 (depends on Call 1)
                 call1_context = {d: call1_cleaned[d] for d in ["intent", "language", "domain", "task", "difficulty"] if d in call1_cleaned}
                 msgs2 = build_call2_messages(conversations_json, signals_str, call1_context)
-                call2_result, _, usage2 = await async_llm_call(http_client, msgs2, model)
+                call2_result, call2_raw, usage2 = await async_llm_call(http_client, msgs2, model)
                 monitor["llm_calls"] += 1
                 monitor["total_prompt_tokens"] += usage2["prompt_tokens"]
                 monitor["total_completion_tokens"] += usage2["completion_tokens"]
@@ -423,6 +424,7 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
                 if call2_result is None:
                     monitor["status"] = "call2_failed"
                     monitor["error"] = usage2.get("error", "unknown")
+                    monitor["error_response"] = call2_raw[:500] if call2_raw else ""
                     if sample_attempt < SAMPLE_MAX_RETRIES:
                         continue
                     # Final attempt: return partial results from Call 1
@@ -693,7 +695,35 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
 
     success = stats["success"]
     total_tokens = stats["total_tokens"]
+    failed_count = total - success
     print(f"  ✓ {success}/{total} success, {file_elapsed:.1f}s, {total_tokens:,} tokens")
+
+    # Print failure details for debugging
+    if failed_count > 0:
+        failed_monitors = [m for m in all_monitors if m and m["status"] != "success"]
+        # Group by error type
+        error_groups = {}
+        for m in failed_monitors:
+            err_type = m["status"]
+            error_groups.setdefault(err_type, []).append(m)
+        print(f"  ✗ {failed_count} failed:")
+        for err_type, monitors in sorted(error_groups.items()):
+            print(f"    [{err_type}] ×{len(monitors)}")
+            for m in monitors[:3]:  # show up to 3 per type
+                sid = m.get("sample_id", "?")
+                err = m.get("error", "")
+                resp = m.get("error_response", "")
+                attempts = m.get("sample_attempt", 0) + 1
+                detail = err[:120]
+                if resp and resp != err:
+                    detail += f" | response: {resp[:80]}"
+                print(f"      {sid} (attempt {attempts}): {detail}")
+            if len(monitors) > 3:
+                print(f"      ... and {len(monitors) - 3} more")
+        # Count timeouts (samples with no monitor entry)
+        timeout_count = sum(1 for m in all_monitors if m is None)
+        if timeout_count > 0:
+            print(f"    [timeout] ×{timeout_count} (exceeded {SAMPLE_TIMEOUT}s)")
 
     return stats
 
