@@ -191,6 +191,111 @@ def normalize_sample(sample):
 
 
 # ─────────────────────────────────────────────────────────
+# Conversation truncation for labeling
+# ─────────────────────────────────────────────────────────
+
+_TRUNCATION_MARKER = "\n\n[... content truncated for labeling ...]\n\n"
+
+
+def _truncate_text(text, max_chars, keep_head_ratio=0.3):
+    """Truncate a single text block, keeping head + tail with a marker in between."""
+    if len(text) <= max_chars:
+        return text
+    head_chars = int(max_chars * keep_head_ratio)
+    tail_chars = max_chars - head_chars - len(_TRUNCATION_MARKER)
+    if tail_chars < 200:
+        tail_chars = 200
+        head_chars = max_chars - tail_chars - len(_TRUNCATION_MARKER)
+    return text[:head_chars] + _TRUNCATION_MARKER + text[-tail_chars:]
+
+
+def truncate_conversations_for_labeling(conversations, max_total_chars=400000):
+    """Truncate conversations to fit within model context for labeling.
+
+    Strategy:
+    - Always preserve the first human turn (task context) and the last
+      assistant turn (final response) in full (up to per-turn limit).
+    - For multi-turn: if total exceeds budget, drop middle turns first,
+      then truncate remaining turns if still over budget.
+    - For single/pseudo multi-turn: truncate long query/response individually.
+    - Per-turn cap: no single turn exceeds 1/3 of budget.
+
+    Returns (truncated_conversations, was_truncated).
+    """
+    total_chars = sum(len(t.get("value", "")) for t in conversations)
+    if total_chars <= max_total_chars:
+        return conversations, False
+
+    per_turn_cap = max_total_chars // 3
+    n = len(conversations)
+
+    # --- Single turn or two turns (query + response) ---
+    if n <= 2:
+        result = []
+        for t in conversations:
+            val = t.get("value", "")
+            if len(val) > per_turn_cap:
+                val = _truncate_text(val, per_turn_cap)
+            result.append({**t, "value": val})
+        return result, True
+
+    # --- Multi-turn: keep first human + last assistant, budget the rest ---
+    # Identify key turns
+    first_human_idx = next((i for i, t in enumerate(conversations) if t["from"] == "human"), 0)
+    last_gpt_idx = next((i for i in range(n - 1, -1, -1) if conversations[i]["from"] == "gpt"), n - 1)
+
+    # Phase 1: cap every turn individually
+    capped = []
+    for t in conversations:
+        val = t.get("value", "")
+        if len(val) > per_turn_cap:
+            val = _truncate_text(val, per_turn_cap)
+        capped.append({**t, "value": val})
+
+    # Check if capping alone is enough
+    total_after_cap = sum(len(t["value"]) for t in capped)
+    if total_after_cap <= max_total_chars:
+        return capped, True
+
+    # Phase 2: keep first human, last few turns (context window), drop middle
+    # Budget: first_human gets 20%, last turns get 80%
+    first_budget = int(max_total_chars * 0.2)
+    last_budget = max_total_chars - first_budget - len(_TRUNCATION_MARKER) * 2
+
+    # First human turn
+    first_turn = dict(capped[first_human_idx])
+    if len(first_turn["value"]) > first_budget:
+        first_turn["value"] = _truncate_text(first_turn["value"], first_budget)
+
+    # Collect turns from the end until we fill the last_budget
+    tail_turns = []
+    tail_chars = 0
+    for i in range(n - 1, first_human_idx, -1):
+        turn_chars = len(capped[i]["value"])
+        if tail_chars + turn_chars > last_budget:
+            # Truncate this turn to fit remaining budget
+            remaining = last_budget - tail_chars
+            if remaining > 200:
+                truncated_turn = dict(capped[i])
+                truncated_turn["value"] = _truncate_text(capped[i]["value"], remaining)
+                tail_turns.append(truncated_turn)
+            break
+        tail_turns.append(capped[i])
+        tail_chars += turn_chars
+
+    tail_turns.reverse()
+
+    # Build result: first turn + marker + tail turns
+    result = [first_turn]
+    # Add a marker turn to indicate truncation
+    if tail_turns and tail_turns[0] is not capped[first_human_idx + 1]:
+        result.append({"from": "system", "value": f"[... {n - 1 - len(tail_turns) - 1} middle turns omitted for labeling ...]"})
+    result.extend(tail_turns)
+
+    return result, True
+
+
+# ─────────────────────────────────────────────────────────
 # Language detection patterns
 # ─────────────────────────────────────────────────────────
 

@@ -37,12 +37,12 @@ from prompts import (
     CALL1_SYSTEM, CALL1_FEWSHOT, CALL2_SYSTEM, CALL2_FEWSHOT,
     TAG_POOLS, SINGLE_SELECT, MULTI_SELECT
 )
-from preprocessing import preprocess, format_signals_for_prompt, normalize_and_slice
+from preprocessing import preprocess, format_signals_for_prompt, normalize_and_slice, truncate_conversations_for_labeling
 from config import (
     LITELLM_BASE, LITELLM_KEY, CONFIDENCE_THRESHOLD, CONSISTENCY_RULES,
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
     DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, SAMPLE_MAX_RETRIES,
-    REQUEST_TIMEOUT, SAMPLE_TIMEOUT,
+    REQUEST_TIMEOUT, SAMPLE_TIMEOUT, MAX_CONVERSATION_CHARS,
     DIR_PIPELINE_WATERMARK, DIR_PIPELINE_MAX_FILES,
 )
 
@@ -257,6 +257,10 @@ async def async_llm_call(http_client, messages, model, temperature=0.1, max_toke
                 if attempt < max_retries:
                     await asyncio.sleep(wait)
                     continue
+            if resp.status_code == 400:
+                # Client error (context_length_exceeded, invalid request) — not retryable
+                error_text = resp.text[:300]
+                return None, f"HTTP 400: {error_text}", {"prompt_tokens": 0, "completion_tokens": 0, "error": f"HTTP 400: {error_text}", "non_retryable": True}
             resp.raise_for_status()
             data = resp.json()
 
@@ -422,6 +426,11 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
     """Label a single sample with sample-level retry on failure."""
     start = time.time()
 
+    # Truncate oversized conversations before sending to LLM
+    conversations = sample.get("conversations", [])
+    truncated_convs, was_truncated = truncate_conversations_for_labeling(
+        conversations, max_total_chars=MAX_CONVERSATION_CHARS)
+
     for sample_attempt in range(SAMPLE_MAX_RETRIES + 1):
         if sample_attempt > 0:
             # Back off before retry with jitter, outside semaphore so we don't block others
@@ -444,10 +453,13 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
             }
 
             try:
-                # Preprocess
+                # Preprocess (uses original conversations for signal extraction)
                 signals = preprocess(sample)
                 signals_str = format_signals_for_prompt(signals)
-                conversations_json = json.dumps(sample["conversations"], ensure_ascii=False)
+                # Use truncated conversations for LLM prompt
+                conversations_json = json.dumps(truncated_convs, ensure_ascii=False)
+                if was_truncated:
+                    monitor["truncated"] = True
 
                 # Call 1
                 msgs1 = build_call1_messages(conversations_json, signals_str)
@@ -460,6 +472,8 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
                     monitor["status"] = "call1_failed"
                     monitor["error"] = usage1.get("error", "unknown")
                     monitor["error_response"] = call1_raw[:500] if call1_raw else ""
+                    if usage1.get("non_retryable"):
+                        return sample_idx, None, monitor
                     if sample_attempt < SAMPLE_MAX_RETRIES:
                         continue
                     return sample_idx, None, monitor
@@ -479,6 +493,12 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
                     monitor["status"] = "call2_failed"
                     monitor["error"] = usage2.get("error", "unknown")
                     monitor["error_response"] = call2_raw[:500] if call2_raw else ""
+                    if usage2.get("non_retryable"):
+                        # Return partial results from Call 1
+                        labels = {d: call1_cleaned.get(d) for d in ["intent", "language", "domain", "task", "difficulty"]}
+                        labels["confidence"] = call1_cleaned.get("confidence", {})
+                        labels["unmapped"] = call1_cleaned.get("unmapped", [])
+                        return sample_idx, labels, monitor
                     if sample_attempt < SAMPLE_MAX_RETRIES:
                         continue
                     # Final attempt: return partial results from Call 1
