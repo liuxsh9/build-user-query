@@ -36,7 +36,8 @@ from preprocessing import preprocess, format_signals_for_prompt, normalize_and_s
 from config import (
     LITELLM_BASE, LITELLM_KEY, CONFIDENCE_THRESHOLD, CONSISTENCY_RULES,
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
-    DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, SAMPLE_MAX_RETRIES, REQUEST_TIMEOUT,
+    DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, SAMPLE_MAX_RETRIES,
+    REQUEST_TIMEOUT, SAMPLE_TIMEOUT,
 )
 
 
@@ -607,7 +608,14 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     done_count = 0
     file_start = time.time()
     for coro in asyncio.as_completed(tasks):
-        sample_idx, labels, monitor = await coro
+        try:
+            sample_idx, labels, monitor = await asyncio.wait_for(coro, timeout=SAMPLE_TIMEOUT)
+        except asyncio.TimeoutError:
+            # Sample timed out — find which one by elimination
+            done_count += 1
+            print(f"  [{done_count:4d}/{total}] ???                  | TIMEOUT ({SAMPLE_TIMEOUT}s)")
+            continue
+
         all_labels[sample_idx] = labels
         all_monitors[sample_idx] = monitor
         done_count += 1

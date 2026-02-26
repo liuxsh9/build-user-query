@@ -26,6 +26,7 @@ MAX_RETRIES = 3
 SAMPLE_MAX_RETRIES = 2             # sample-level retry on call failure
 REQUEST_TIMEOUT = 60           # seconds per LLM call (gpt-4o-mini is fast)
 HTTP_CLIENT_TIMEOUT = 60       # httpx client timeout
+SAMPLE_TIMEOUT = 300           # seconds total per sample (including all retries)
 
 # ─── Model Tiers ────────────────────────────────────────
 MODELS = {
