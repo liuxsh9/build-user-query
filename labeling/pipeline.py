@@ -439,6 +439,20 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
             await asyncio.sleep(base_wait + random.uniform(0, base_wait))
 
         async with sem:
+            # Check deadline AFTER acquiring semaphore (not while queuing)
+            elapsed = time.time() - start
+            if elapsed > SAMPLE_TIMEOUT:
+                return sample_idx, None, {
+                    "sample_id": sample.get("id", f"sample-{sample_idx}"),
+                    "index": sample_idx, "llm_calls": 0,
+                    "total_prompt_tokens": 0, "total_completion_tokens": 0,
+                    "validation_issues": [], "consistency_warnings": [],
+                    "low_confidence_dims": [], "arbitrated": False,
+                    "sample_attempt": sample_attempt,
+                    "status": "timeout",
+                    "error": f"exceeded {SAMPLE_TIMEOUT}s (including queue wait)",
+                    "elapsed_seconds": round(elapsed, 1),
+                }
             monitor = {
                 "sample_id": sample.get("id", f"sample-{sample_idx}"),
                 "index": sample_idx,
@@ -895,17 +909,7 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     fail_count = 0
     file_start = time.time()
     for coro in asyncio.as_completed(tasks):
-        try:
-            sample_idx, labels, monitor = await asyncio.wait_for(coro, timeout=SAMPLE_TIMEOUT)
-        except asyncio.TimeoutError:
-            done_count += 1
-            fail_count += 1
-            if progress and sample_task is not None:
-                info = f"✓{ok_count}" + (f" ✗{fail_count}" if fail_count else "")
-                progress.update(sample_task, advance=1, info=info)
-            else:
-                print(f"  [{done_count:4d}/{total}] ???                  | TIMEOUT ({SAMPLE_TIMEOUT}s)")
-            continue
+        sample_idx, labels, monitor = await coro
 
         all_labels[sample_idx] = labels
         all_monitors[sample_idx] = monitor
@@ -1094,13 +1098,10 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
     if not pending_files:
         return skipped_stats
 
-    # --- Helper to wrap label_one with file/sample tracking + timeout ---
+    # --- Helper to wrap label_one with file/sample tracking ---
     async def _tagged_label(coro, file_idx, sample_idx):
-        try:
-            _, labels, monitor = await asyncio.wait_for(coro, timeout=SAMPLE_TIMEOUT)
-            return file_idx, sample_idx, labels, monitor
-        except asyncio.TimeoutError:
-            return file_idx, sample_idx, None, None
+        _, labels, monitor = await coro
+        return file_idx, sample_idx, labels, monitor
 
     # --- Load a file into a FileCollector and submit its tasks ---
     def load_and_submit(file_entry, pending_futures):
