@@ -620,9 +620,9 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     pprint = progress.console.print if progress else print
     pprint(f"  ({n_raw} conversations → {total} samples)")
 
-    # Set up progress bar task
+    # Set up progress bar task — reset timer for this file
     if progress and sample_task is not None:
-        progress.update(sample_task, total=total, completed=0, visible=True)
+        progress.reset(sample_task, total=total, completed=0, visible=True, info="starting...")
 
     # Pre-allocate result slots
     all_labels = [None] * total
