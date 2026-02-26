@@ -883,10 +883,13 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     all_labels = [None] * total
     all_monitors = [None] * total
 
+    # Submit tasks in shuffled order to avoid convoy effect from pyramid slicing
+    submit_order = list(range(len(samples)))
+    random.shuffle(submit_order)
     tasks = []
-    for idx, sample in enumerate(samples):
+    for idx in submit_order:
         tasks.append(label_one(
-            http_client, sample, model, idx, total, sem,
+            http_client, samples[idx], model, idx, total, sem,
             enable_arbitration=enable_arbitration
         ))
 
@@ -1116,10 +1119,13 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
             current_total = progress.tasks[sample_task].total or 0
             progress.update(sample_task, total=current_total + len(samples), visible=True)
 
-        # Submit all tasks
-        for idx, sample in enumerate(samples):
+        # Submit all tasks (shuffled order to avoid convoy effect from
+        # pyramid slicing — small slices cluster at the start, large at the end)
+        submit_order = list(range(len(samples)))
+        random.shuffle(submit_order)
+        for idx in submit_order:
             coro = label_one(
-                http_client, sample, model, idx, len(samples), sem,
+                http_client, samples[idx], model, idx, len(samples), sem,
                 enable_arbitration=enable_arbitration,
             )
             fut = asyncio.ensure_future(_tagged_label(coro, orig_idx, idx))
