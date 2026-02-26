@@ -180,7 +180,7 @@ def resolve_run_dir(args, input_path):
 # ─────────────────────────────────────────────────────────
 
 async def async_llm_call(http_client, messages, model, temperature=0.1, max_tokens=1000, max_retries=MAX_RETRIES):
-    """Async LLM call with retry. Returns (parsed_json, raw_content, usage)."""
+    """Async LLM call with retry + jitter. Returns (parsed_json, raw_content, usage)."""
     url = f"{LITELLM_BASE}/chat/completions"
     headers = {"Authorization": f"Bearer {LITELLM_KEY}", "Content-Type": "application/json"}
     payload = {
@@ -195,8 +195,9 @@ async def async_llm_call(http_client, messages, model, temperature=0.1, max_toke
         try:
             resp = await http_client.post(url, json=payload, headers=headers, timeout=REQUEST_TIMEOUT)
             if resp.status_code in (429, 502, 503):
-                # Rate limited or server error — back off
-                wait = min(2 ** attempt * 3 + 2, 60)
+                # Rate limited or server error — exponential backoff with jitter
+                base_wait = min(2 ** attempt * 3 + 2, 60)
+                wait = base_wait + random.uniform(0, base_wait * 0.5)
                 last_error = f"HTTP {resp.status_code}: {resp.text[:200]}"
                 if attempt < max_retries:
                     await asyncio.sleep(wait)
@@ -233,13 +234,14 @@ async def async_llm_call(http_client, messages, model, temperature=0.1, max_toke
         except (json.JSONDecodeError, KeyError) as e:
             last_error = f"ParseError: {e}"
             if attempt < max_retries:
-                await asyncio.sleep(1)
+                await asyncio.sleep(2 + random.uniform(0, 2))
                 continue
             return None, content if 'content' in dir() else "", {"prompt_tokens": 0, "completion_tokens": 0, "error": last_error}
         except Exception as e:
             last_error = f"{type(e).__name__}: {e}"
             if attempt < max_retries:
-                wait = min(2 ** attempt * 3 + 2, 60)
+                base_wait = min(2 ** attempt * 3 + 2, 60)
+                wait = base_wait + random.uniform(0, base_wait * 0.5)
                 await asyncio.sleep(wait)
                 continue
             return None, str(e), {"prompt_tokens": 0, "completion_tokens": 0, "error": last_error}
@@ -367,8 +369,9 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
 
     for sample_attempt in range(SAMPLE_MAX_RETRIES + 1):
         if sample_attempt > 0:
-            # Back off before retry, outside semaphore so we don't block others
-            await asyncio.sleep(2 ** sample_attempt * 2)
+            # Back off before retry with jitter, outside semaphore so we don't block others
+            base_wait = 2 ** sample_attempt * 2
+            await asyncio.sleep(base_wait + random.uniform(0, base_wait))
 
         async with sem:
             monitor = {
@@ -967,7 +970,8 @@ def main():
                         help="Resume from an existing run directory (reads checkpoint.json)")
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL)
     parser.add_argument("--concurrency", type=int, default=DEFAULT_CONCURRENCY)
-    parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--limit", type=int, default=0,
+                        help="Max samples per file (0 = all). In directory mode, applies to each file independently")
     parser.add_argument("--shuffle", action="store_true", help="Randomly shuffle samples before slicing")
     parser.add_argument("--no-arbitration", action="store_true")
     args = parser.parse_args()
