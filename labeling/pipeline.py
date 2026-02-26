@@ -24,6 +24,7 @@ import random
 import sys
 from pathlib import Path
 from datetime import datetime
+from dataclasses import dataclass, field
 
 import httpx
 from rich.progress import (
@@ -587,25 +588,42 @@ def compute_stats(all_monitors, all_labels):
     }
 
 
-async def run_one_file(input_path, output_dir, http_client, sem, model,
-                       enable_arbitration=True, limit=0, shuffle=False,
-                       file_prefix=None, progress=None, sample_task=None):
-    """Label a single file. Writes outputs to output_dir. Returns stats dict.
+# ─────────────────────────────────────────────────────────
+# Streaming I/O + cross-file helpers
+# ─────────────────────────────────────────────────────────
 
-    file_prefix: if set, output files are named e.g. labeled_<prefix>.json
-                 instead of labeled.json (avoids name collisions in batch mode).
+def iter_samples_from_file(input_path, limit=0, shuffle=False):
+    """Load and normalize samples from a file with minimal memory overhead.
+
+    JSONL: line-by-line read + normalize_and_slice (memory = 1 raw line at a time).
+    JSON:  json.load then del raw (can't avoid full load, but releases raw ASAP).
+
+    Returns: (samples_list, n_raw)
     """
-    # Load input
-    with open(input_path, "r", encoding="utf-8") as f:
-        if str(input_path).endswith(".jsonl"):
-            raw_samples = [json.loads(line) for line in f if line.strip()]
-        else:
-            raw_samples = json.load(f)
-
-    # Normalize and slice
+    input_path = Path(input_path)
     samples = []
-    for s in raw_samples:
-        samples.extend(normalize_and_slice(s))
+    n_raw = 0
+
+    if str(input_path).endswith(".jsonl"):
+        with open(input_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                n_raw += 1
+                raw = json.loads(line)
+                samples.extend(normalize_and_slice(raw))
+                del raw
+    else:
+        with open(input_path, "r", encoding="utf-8") as f:
+            raw_samples = json.load(f)
+        if not isinstance(raw_samples, list):
+            raw_samples = [raw_samples]
+        n_raw = len(raw_samples)
+        for s in raw_samples:
+            samples.extend(normalize_and_slice(s))
+        del raw_samples
+
     for i, s in enumerate(samples):
         if not s.get("id"):
             s["id"] = f"sample-{i:04d}"
@@ -615,8 +633,153 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     if limit > 0:
         samples = samples[:limit]
 
+    return samples, n_raw
+
+
+@dataclass
+class FileCollector:
+    """Track per-file labeling results for cross-file pipeline."""
+    file_idx: int
+    abs_path: Path
+    rel_path: Path          # relative path within input dir
+    output_dir: Path
+    prefix: str             # file stem for output naming
+    total: int
+    samples: list
+    done: int = 0
+    ok: int = 0
+    fail: int = 0
+    labels: list = field(default_factory=list)
+    monitors: list = field(default_factory=list)
+    completed: bool = False
+
+    def __post_init__(self):
+        # Pre-allocate result slots
+        self.labels = [None] * self.total
+        self.monitors = [None] * self.total
+
+
+def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
+    """Write all outputs for a completed file and release memory.
+
+    Writes labeled.json/jsonl, monitor.jsonl, stats.json, dashboard.
+    Updates checkpoint. Deletes heavy data from collector to free memory.
+    Returns the stats dict.
+    """
+    samples = collector.samples
+    all_labels = collector.labels
+    all_monitors = collector.monitors
+    output_dir = collector.output_dir
+    prefix = collector.prefix
+    total = collector.total
+
+    # Attach labels to samples
+    for idx, sample in enumerate(samples):
+        sample["labels"] = all_labels[idx]
+        if all_monitors[idx]:
+            sample["labeling_monitor"] = {
+                "llm_calls": all_monitors[idx]["llm_calls"],
+                "arbitrated": all_monitors[idx]["arbitrated"],
+                "validation_issues": all_monitors[idx]["validation_issues"],
+                "consistency_warnings": all_monitors[idx]["consistency_warnings"],
+            }
+
+    # Write outputs
+    output_dir.mkdir(parents=True, exist_ok=True)
+    suffix = f"_{prefix}" if prefix else ""
+
+    labeled_json = f"labeled{suffix}.json"
+    labeled_jsonl = f"labeled{suffix}.jsonl"
+    monitor_file = f"monitor{suffix}.jsonl"
+    stats_file = f"stats{suffix}.json"
+    dashboard_file = f"dashboard{suffix}.html"
+
+    with open(output_dir / labeled_json, "w", encoding="utf-8") as f:
+        json.dump(samples, f, ensure_ascii=False, indent=2)
+
+    with open(output_dir / labeled_jsonl, "w", encoding="utf-8") as f:
+        for sample in samples:
+            f.write(json.dumps(sample, ensure_ascii=False) + "\n")
+
+    with open(output_dir / monitor_file, "w", encoding="utf-8") as f:
+        for m in all_monitors:
+            if m:
+                f.write(json.dumps(m, ensure_ascii=False) + "\n")
+
+    # Compute and write stats
+    valid_monitors = [m for m in all_monitors if m is not None]
+    stats = compute_stats(valid_monitors, all_labels)
+    stats["input_file"] = str(collector.abs_path)
+
+    with open(output_dir / stats_file, "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+
+    # Per-file dashboard
+    try:
+        from tools.visualize_labels import generate_dashboard
+        generate_dashboard(output_dir, labeled_file=labeled_json,
+                           stats_file=stats_file, output_file=dashboard_file)
+    except Exception:
+        pass
+
+    success = stats["success"]
+    total_tokens = stats["total_tokens"]
+    pprint(f"  ✓ {success}/{total} success, {total_tokens:,} tokens")
+
+    # Print failure details — batch into single print to avoid progress bar flicker
+    failed_count = total - success
+    if failed_count > 0:
+        lines = []
+        failed_monitors = [m for m in all_monitors if m and m["status"] != "success"]
+        error_groups = {}
+        for m in failed_monitors:
+            err_type = m["status"]
+            error_groups.setdefault(err_type, []).append(m)
+        lines.append(f"  ✗ {failed_count} failed:")
+        for err_type, monitors in sorted(error_groups.items()):
+            lines.append(f"    [{err_type}] ×{len(monitors)}")
+            for m in monitors[:3]:
+                sid = m.get("sample_id", "?")
+                err = m.get("error", "")
+                resp = m.get("error_response", "")
+                attempts = m.get("sample_attempt", 0) + 1
+                detail = err[:120]
+                if resp and resp != err:
+                    detail += f" | response: {resp[:80]}"
+                lines.append(f"      {sid} (attempt {attempts}): {detail}")
+            if len(monitors) > 3:
+                lines.append(f"      ... and {len(monitors) - 3} more")
+        timeout_count = sum(1 for m in all_monitors if m is None)
+        if timeout_count > 0:
+            lines.append(f"    [timeout] ×{timeout_count} (exceeded {SAMPLE_TIMEOUT}s)")
+        pprint("\n".join(lines))
+
+    # Update checkpoint
+    if checkpoint_path:
+        rel_str = str(collector.rel_path)
+        update_checkpoint(checkpoint_path, rel_str, success=True)
+
+    # Release memory
+    collector.samples = None
+    collector.labels = None
+    collector.monitors = None
+    collector.completed = True
+
+    return stats
+
+
+async def run_one_file(input_path, output_dir, http_client, sem, model,
+                       enable_arbitration=True, limit=0, shuffle=False,
+                       file_prefix=None, progress=None, sample_task=None):
+    """Label a single file. Writes outputs to output_dir. Returns stats dict.
+
+    file_prefix: if set, output files are named e.g. labeled_<prefix>.json
+                 instead of labeled.json (avoids name collisions in batch mode).
+    """
+    # Load input — streaming for JSONL
+    samples, n_raw = iter_samples_from_file(input_path, limit=limit, shuffle=shuffle)
+
     total = len(samples)
-    n_raw = len(raw_samples)
     pprint = progress.console.print if progress else print
     pprint(f"  ({n_raw} conversations → {total} samples)")
 
@@ -741,17 +904,18 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     failed_count = total - success
     pprint(f"  ✓ {success}/{total} success, {file_elapsed:.1f}s, {total_tokens:,} tokens")
 
-    # Print failure details for debugging
+    # Print failure details for debugging — batch into single print to avoid progress bar flicker
     if failed_count > 0:
+        lines = []
         failed_monitors = [m for m in all_monitors if m and m["status"] != "success"]
         # Group by error type
         error_groups = {}
         for m in failed_monitors:
             err_type = m["status"]
             error_groups.setdefault(err_type, []).append(m)
-        pprint(f"  ✗ {failed_count} failed:")
+        lines.append(f"  ✗ {failed_count} failed:")
         for err_type, monitors in sorted(error_groups.items()):
-            pprint(f"    [{err_type}] ×{len(monitors)}")
+            lines.append(f"    [{err_type}] ×{len(monitors)}")
             for m in monitors[:3]:  # show up to 3 per type
                 sid = m.get("sample_id", "?")
                 err = m.get("error", "")
@@ -760,15 +924,179 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
                 detail = err[:120]
                 if resp and resp != err:
                     detail += f" | response: {resp[:80]}"
-                pprint(f"      {sid} (attempt {attempts}): {detail}")
+                lines.append(f"      {sid} (attempt {attempts}): {detail}")
             if len(monitors) > 3:
-                pprint(f"      ... and {len(monitors) - 3} more")
+                lines.append(f"      ... and {len(monitors) - 3} more")
         # Count timeouts (samples with no monitor entry)
         timeout_count = sum(1 for m in all_monitors if m is None)
         if timeout_count > 0:
-            pprint(f"    [timeout] ×{timeout_count} (exceeded {SAMPLE_TIMEOUT}s)")
+            lines.append(f"    [timeout] ×{timeout_count} (exceeded {SAMPLE_TIMEOUT}s)")
+        pprint("\n".join(lines))
 
     return stats
+
+
+async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
+                                 checkpoint_path, completed_set=None,
+                                 progress=None, file_task=None, sample_task=None,
+                                 http_client=None, sem=None, enable_arbitration=True):
+    """Cross-file pipeline with active window for memory-bounded concurrency.
+
+    Instead of processing files serially, maintains a sliding window of active
+    files whose samples are all submitted to the shared semaphore concurrently.
+    When a file completes, its output is flushed and memory released, then the
+    next file is loaded into the window.
+
+    Returns list of per-file stats dicts.
+    """
+    ACTIVE_WINDOW = 3
+    completed_set = completed_set or set()
+    pprint = progress.console.print if progress else print
+
+    # Separate already-completed files (for resume) from pending ones
+    pending_files = []
+    skipped_stats = []
+    for i, (abs_path, rel_path) in enumerate(dir_files):
+        rel_str = str(rel_path)
+        if rel_str in completed_set:
+            pprint(f"[File {i+1:3d}/{len(dir_files)}] {rel_str} — SKIPPED (completed)")
+            # Load existing stats for summary
+            file_out_dir = run_dir / rel_path.with_suffix("")
+            prefix = rel_path.stem
+            existing_stats = file_out_dir / f"stats_{prefix}.json"
+            if existing_stats.exists():
+                with open(existing_stats, "r", encoding="utf-8") as f:
+                    skipped_stats.append(json.load(f))
+            if progress and file_task is not None:
+                progress.update(file_task, advance=1)
+        else:
+            pending_files.append((i, abs_path, rel_path))
+
+    if not pending_files:
+        return skipped_stats
+
+    # --- Helper to wrap label_one with file/sample tracking + timeout ---
+    async def _tagged_label(coro, file_idx, sample_idx):
+        try:
+            _, labels, monitor = await asyncio.wait_for(coro, timeout=SAMPLE_TIMEOUT)
+            return file_idx, sample_idx, labels, monitor
+        except asyncio.TimeoutError:
+            return file_idx, sample_idx, None, None
+
+    # --- Load a file into a FileCollector and submit its tasks ---
+    def load_and_submit(file_entry, pending_futures):
+        orig_idx, abs_path, rel_path = file_entry
+        rel_str = str(rel_path)
+        file_out_dir = run_dir / rel_path.with_suffix("")
+        prefix = rel_path.stem
+
+        pprint(f"[File {orig_idx+1:3d}/{len(dir_files)}] {rel_str}")
+        samples, n_raw = iter_samples_from_file(
+            abs_path, limit=args.limit, shuffle=args.shuffle)
+        pprint(f"  ({n_raw} conversations → {len(samples)} samples)")
+
+        collector = FileCollector(
+            file_idx=orig_idx,
+            abs_path=abs_path,
+            rel_path=rel_path,
+            output_dir=file_out_dir,
+            prefix=prefix,
+            total=len(samples),
+            samples=samples,
+        )
+
+        # Update samples progress bar total
+        if progress and sample_task is not None:
+            current_total = progress.tasks[sample_task].total or 0
+            progress.update(sample_task, total=current_total + len(samples), visible=True)
+
+        # Submit all tasks
+        for idx, sample in enumerate(samples):
+            coro = label_one(
+                http_client, sample, model, idx, len(samples), sem,
+                enable_arbitration=enable_arbitration,
+            )
+            fut = asyncio.ensure_future(_tagged_label(coro, orig_idx, idx))
+            pending_futures.add(fut)
+
+        return collector
+
+    # --- Main loop: sliding window ---
+    collectors = {}  # file_idx -> FileCollector
+    pending_futures = set()
+    all_file_stats = list(skipped_stats)
+    file_queue = list(pending_files)  # files waiting to be loaded
+    next_to_load = 0
+
+    # Initial window
+    initial_count = min(ACTIVE_WINDOW, len(file_queue))
+    if progress and sample_task is not None:
+        progress.update(sample_task, total=0, completed=0, visible=True, info="starting...")
+
+    for _ in range(initial_count):
+        entry = file_queue[next_to_load]
+        next_to_load += 1
+        c = load_and_submit(entry, pending_futures)
+        collectors[c.file_idx] = c
+
+    if progress and file_task is not None:
+        active_names = [str(c.rel_path) for c in collectors.values() if not c.completed]
+        progress.update(file_task, info=", ".join(active_names)[:60])
+
+    # Process results as they complete
+    while pending_futures:
+        done, pending_futures = await asyncio.wait(
+            pending_futures, return_when=asyncio.FIRST_COMPLETED)
+
+        for fut in done:
+            file_idx, sample_idx, labels, monitor = fut.result()
+            c = collectors[file_idx]
+
+            if sample_idx >= 0 and sample_idx < c.total:
+                c.labels[sample_idx] = labels
+                c.monitors[sample_idx] = monitor
+
+            c.done += 1
+            if labels:
+                c.ok += 1
+            else:
+                c.fail += 1
+
+            # Update samples progress bar
+            if progress and sample_task is not None:
+                info = f"✓{c.ok}" + (f" ✗{c.fail}" if c.fail else "") + f" [{c.rel_path.name}]"
+                progress.update(sample_task, advance=1, info=info)
+
+            # Check if this file is fully done
+            if c.done >= c.total and not c.completed:
+                stats = flush_file_output(c, run_dir, checkpoint_path, pprint=pprint)
+                all_file_stats.append(stats)
+
+                if progress and file_task is not None:
+                    progress.update(file_task, advance=1)
+
+                # Load next file if available
+                if next_to_load < len(file_queue):
+                    entry = file_queue[next_to_load]
+                    next_to_load += 1
+                    new_c = load_and_submit(entry, pending_futures)
+                    collectors[new_c.file_idx] = new_c
+
+                # Update file progress info
+                if progress and file_task is not None:
+                    active_names = [str(cc.rel_path) for cc in collectors.values()
+                                    if not cc.completed]
+                    progress.update(file_task, info=", ".join(active_names)[:60] if active_names else "done")
+
+    # Handle any files with 0 samples (edge case)
+    for c in collectors.values():
+        if not c.completed and c.total == 0:
+            stats = flush_file_output(c, run_dir, checkpoint_path, pprint=pprint)
+            all_file_stats.append(stats)
+            if progress and file_task is not None:
+                progress.update(file_task, advance=1)
+
+    return all_file_stats
 
 
 def print_summary(stats, run_dir, is_batch=False):
@@ -809,6 +1137,39 @@ def print_summary(stats, run_dir, is_batch=False):
     print(f"\nRun dir: {run_dir}")
 
 
+def _write_global_summary(all_file_stats, run_dir, input_path, model, concurrency, batch_start):
+    """Write global summary stats + dashboard for a batch run."""
+    batch_elapsed = time.time() - batch_start
+    summary = merge_stats(all_file_stats) if all_file_stats else {
+        "total_samples": 0, "success": 0, "failed": 0, "success_rate": 0,
+        "total_llm_calls": 0, "total_tokens": 0, "arbitrated_count": 0,
+        "unmapped_unique_count": 0, "tag_distributions": {}, "unmapped_tags": {},
+        "files_processed": 0,
+    }
+    summary["model"] = model
+    summary["concurrency"] = concurrency
+    summary["total_elapsed_seconds"] = round(batch_elapsed, 1)
+    summary["timestamp"] = datetime.now().isoformat()
+    summary["input_path"] = str(input_path)
+    summary["run_dir"] = str(run_dir)
+
+    with open(run_dir / "summary_stats.json", "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+
+    input_name = input_path.name
+    global_dashboard = f"dashboard_{input_name}.html"
+    try:
+        from tools.visualize_labels import generate_dashboard
+        generate_dashboard(run_dir, labeled_file=None,
+                           stats_file="summary_stats.json",
+                           output_file=global_dashboard)
+        print(f"\nGlobal dashboard generated: {run_dir / global_dashboard}")
+    except Exception as e:
+        print(f"\nGlobal dashboard generation skipped: {e}")
+
+    print_summary(summary, run_dir, is_batch=True)
+
+
 async def run_pipeline(args):
     # ── Resume mode ──────────────────────────────────────
     if args.resume:
@@ -837,7 +1198,6 @@ async def run_pipeline(args):
             model = args.model
 
         files = discover_input_files(input_path)
-        # Filter to directory-mode files only (those with rel_path)
         dir_files = [(a, r) for a, r in files if r is not None]
         if not dir_files:
             print("Error: --resume only works with directory-mode runs")
@@ -855,7 +1215,6 @@ async def run_pipeline(args):
         print(f"Concurrency: {concurrency}")
         print(f"{'='*80}\n")
 
-        all_file_stats = []
         batch_start = time.time()
 
         async with httpx.AsyncClient(
@@ -870,62 +1229,17 @@ async def run_pipeline(args):
             n = len(dir_files)
             with create_progress() as progress:
                 file_task = progress.add_task("Files", total=n, info="")
-                sample_task = progress.add_task("Samples", total=None, visible=False, info="starting...")
-                for i, (abs_path, rel_path) in enumerate(dir_files):
-                    rel_str = str(rel_path)
-                    if rel_str in completed:
-                        progress.console.print(f"[File {i+1:3d}/{n}] {rel_str} — SKIPPED (completed)")
-                        # Load existing stats for summary
-                        file_out_dir = run_dir / rel_path.with_suffix("")
-                        prefix = rel_path.stem
-                        existing_stats = file_out_dir / f"stats_{prefix}.json"
-                        if existing_stats.exists():
-                            with open(existing_stats, "r", encoding="utf-8") as f:
-                                all_file_stats.append(json.load(f))
-                        progress.update(file_task, advance=1)
-                        continue
-
-                    file_out_dir = run_dir / rel_path.with_suffix("")
-                    prefix = rel_path.stem
-                    progress.update(file_task, info=rel_str)
-                    progress.console.print(f"[File {i+1:3d}/{n}] {rel_str}")
-                    try:
-                        stats = await run_one_file(
-                            abs_path, file_out_dir, http_client, sem, model,
-                            enable_arbitration=not args.no_arbitration,
-                            limit=args.limit, shuffle=args.shuffle,
-                            file_prefix=prefix,
-                            progress=progress, sample_task=sample_task,
-                        )
-                        all_file_stats.append(stats)
-                        update_checkpoint(checkpoint_path, rel_str, success=True)
-                    except Exception as e:
-                        progress.console.print(f"  ✗ FAILED: {e}")
-                        update_checkpoint(checkpoint_path, rel_str, success=False, error_msg=str(e)[:200])
-                    progress.update(file_task, advance=1)
-                    progress.update(sample_task, visible=False)
+                sample_task = progress.add_task("Samples", total=0, visible=False, info="starting...")
+                all_file_stats = await run_directory_pipeline(
+                    dir_files, run_dir, args, model, concurrency,
+                    checkpoint_path, completed_set=completed,
+                    progress=progress, file_task=file_task, sample_task=sample_task,
+                    http_client=http_client, sem=sem,
+                    enable_arbitration=not args.no_arbitration,
+                )
 
         # Write global summary
-        if all_file_stats:
-            summary = merge_stats(all_file_stats)
-            summary["model"] = model
-            summary["concurrency"] = concurrency
-            summary["total_elapsed_seconds"] = round(time.time() - batch_start, 1)
-            summary["timestamp"] = datetime.now().isoformat()
-            summary["input_path"] = str(input_path)
-            summary["run_dir"] = str(run_dir)
-            with open(run_dir / "summary_stats.json", "w", encoding="utf-8") as f:
-                json.dump(summary, f, ensure_ascii=False, indent=2)
-            input_name = input_path.name
-            global_dashboard = f"dashboard_{input_name}.html"
-            try:
-                from tools.visualize_labels import generate_dashboard
-                generate_dashboard(run_dir, labeled_file=None,
-                                   stats_file="summary_stats.json",
-                                   output_file=global_dashboard)
-            except Exception as e:
-                print(f"  Global dashboard generation skipped: {e}")
-            print_summary(summary, run_dir, is_batch=True)
+        _write_global_summary(all_file_stats, run_dir, input_path, model, concurrency, batch_start)
         return
 
     # ── Normal mode ──────────────────────────────────────
@@ -951,15 +1265,14 @@ async def run_pipeline(args):
     print(f"{'='*80}\n")
 
     if is_directory:
-        # ── Directory mode: file-serial, sample-concurrent ──
+        # ── Directory mode: cross-file pipeline ──
         dir_files = [(a, r) for a, r in files if r is not None]
         if not dir_files:
             print("No .json/.jsonl files found in directory")
             sys.exit(1)
 
         checkpoint_path = run_dir / "checkpoint.json"
-        ckpt = create_checkpoint(checkpoint_path, dir_files)
-        all_file_stats = []
+        create_checkpoint(checkpoint_path, dir_files)
         batch_start = time.time()
 
         async with httpx.AsyncClient(
@@ -974,62 +1287,16 @@ async def run_pipeline(args):
             n = len(dir_files)
             with create_progress() as progress:
                 file_task = progress.add_task("Files", total=n, info="")
-                sample_task = progress.add_task("Samples", total=None, visible=False, info="starting...")
-                for i, (abs_path, rel_path) in enumerate(dir_files):
-                    rel_str = str(rel_path)
-                    file_out_dir = run_dir / rel_path.with_suffix("")
-                    prefix = rel_path.stem
-                    progress.update(file_task, info=rel_str)
-                    progress.console.print(f"[File {i+1:3d}/{n}] {rel_str}")
-                    try:
-                        stats = await run_one_file(
-                            abs_path, file_out_dir, http_client, sem, args.model,
-                            enable_arbitration=not args.no_arbitration,
-                            limit=args.limit, shuffle=args.shuffle,
-                            file_prefix=prefix,
-                            progress=progress, sample_task=sample_task,
-                        )
-                        all_file_stats.append(stats)
-                        update_checkpoint(checkpoint_path, rel_str, success=True)
-                    except Exception as e:
-                        progress.console.print(f"  ✗ FAILED: {e}")
-                        update_checkpoint(checkpoint_path, rel_str, success=False, error_msg=str(e)[:200])
-                    progress.update(file_task, advance=1)
-                    # Reset sample bar for next file
-                    progress.update(sample_task, visible=False)
+                sample_task = progress.add_task("Samples", total=0, visible=False, info="starting...")
+                all_file_stats = await run_directory_pipeline(
+                    dir_files, run_dir, args, args.model, concurrency,
+                    checkpoint_path,
+                    progress=progress, file_task=file_task, sample_task=sample_task,
+                    http_client=http_client, sem=sem,
+                    enable_arbitration=not args.no_arbitration,
+                )
 
-        # Write global summary
-        batch_elapsed = time.time() - batch_start
-        summary = merge_stats(all_file_stats) if all_file_stats else {
-            "total_samples": 0, "success": 0, "failed": 0, "success_rate": 0,
-            "total_llm_calls": 0, "total_tokens": 0, "arbitrated_count": 0,
-            "unmapped_unique_count": 0, "tag_distributions": {}, "unmapped_tags": {},
-            "files_processed": 0,
-        }
-        summary["model"] = args.model
-        summary["concurrency"] = concurrency
-        summary["total_elapsed_seconds"] = round(batch_elapsed, 1)
-        summary["timestamp"] = datetime.now().isoformat()
-        summary["input_path"] = str(input_path)
-        summary["run_dir"] = str(run_dir)
-
-        with open(run_dir / "summary_stats.json", "w", encoding="utf-8") as f:
-            json.dump(summary, f, ensure_ascii=False, indent=2)
-
-        # Global dashboard — stats-only mode (no labeled.json at root)
-        # Name includes input folder for clarity
-        input_name = input_path.name
-        global_dashboard = f"dashboard_{input_name}.html"
-        try:
-            from tools.visualize_labels import generate_dashboard
-            generate_dashboard(run_dir, labeled_file=None,
-                               stats_file="summary_stats.json",
-                               output_file=global_dashboard)
-            print(f"\nGlobal dashboard generated: {run_dir / global_dashboard}")
-        except Exception as e:
-            print(f"\nGlobal dashboard generation skipped: {e}")
-
-        print_summary(summary, run_dir, is_batch=True)
+        _write_global_summary(all_file_stats, run_dir, input_path, args.model, concurrency, batch_start)
 
     else:
         # ── Single-file mode: backward compatible ────────
