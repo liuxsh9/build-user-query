@@ -150,6 +150,31 @@ def merge_stats(all_file_stats):
     return merged
 
 
+def resolve_run_dir(args, input_path):
+    """Determine the run output directory based on --output flag.
+
+    Three modes:
+      - None (default): sibling of input, auto-named <timestamp>_<model>/
+      - "runs": legacy behavior, DATA_DIR/runs/<timestamp>_<model>/
+      - explicit path: use as-is (absolute or relative to cwd)
+    """
+    run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    model_short = args.model.replace("/", "-")
+    auto_name = f"{run_ts}_{model_short}"
+
+    if args.output is None:
+        # Default: sibling of input
+        parent = input_path.parent
+        return parent / auto_name
+
+    if args.output == "runs":
+        # Legacy: labeling/data/runs/
+        return DATA_DIR / "runs" / auto_name
+
+    # Explicit path
+    return Path(args.output).resolve()
+
+
 # ─────────────────────────────────────────────────────────
 # Async LLM calls
 # ─────────────────────────────────────────────────────────
@@ -813,10 +838,8 @@ async def run_pipeline(args):
     files = discover_input_files(input_path)
     is_directory = input_path.is_dir()
 
-    # Create run directory
-    run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    model_short = args.model.replace("/", "-")
-    run_dir = DATA_DIR / "runs" / f"{run_ts}_{model_short}"
+    # Determine output directory
+    run_dir = resolve_run_dir(args, input_path)
     run_dir.mkdir(parents=True, exist_ok=True)
 
     concurrency = args.concurrency
@@ -938,6 +961,8 @@ async def run_pipeline(args):
 def main():
     parser = argparse.ArgumentParser(description="SFT Auto-Labeling Pipeline (Concurrent)")
     parser.add_argument("--input", type=str, default=str(DEFAULT_INPUT))
+    parser.add_argument("--output", type=str, default=None,
+                        help="Output directory: omit for sibling of input, 'runs' for labeling/data/runs/, or an explicit path")
     parser.add_argument("--resume", type=str, default=None,
                         help="Resume from an existing run directory (reads checkpoint.json)")
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL)
