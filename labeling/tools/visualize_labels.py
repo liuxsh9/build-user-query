@@ -89,7 +89,7 @@ def compute_viz_data(samples, stats):
     }
 
     return {
-        "total": len(samples),
+        "total": stats.get("total_samples", len(samples)) or len(samples),
         "distributions": distributions,
         "confidence_stats": stats.get("confidence_stats", {}),
         "conf_matrix": conf_matrix,
