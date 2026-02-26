@@ -694,6 +694,7 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
     monitor_file = f"monitor{suffix}.jsonl"
     stats_file = f"stats{suffix}.json"
     dashboard_file = f"dashboard{suffix}.html"
+    failed_samples_file = f"failed_samples{suffix}.jsonl"
 
     with open(output_dir / labeled_json, "w", encoding="utf-8") as f:
         json.dump(samples, f, ensure_ascii=False, indent=2)
@@ -707,10 +708,33 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
             if m:
                 f.write(json.dumps(m, ensure_ascii=False) + "\n")
 
-    # Compute and write stats
-    valid_monitors = [m for m in all_monitors if m is not None]
-    stats = compute_stats(valid_monitors, all_labels)
-    stats["input_file"] = str(collector.abs_path)
+    # Write failed samples (original, without labels) for easy retry
+    failed_indices = [i for i, l in enumerate(all_labels) if l is None]
+    if failed_indices:
+        with open(output_dir / failed_samples_file, "w", encoding="utf-8") as f:
+            for i in failed_indices:
+                s = dict(samples[i])
+                s.pop("labels", None)
+                s.pop("labeling_monitor", None)
+                f.write(json.dumps(s, ensure_ascii=False) + "\n")
+
+    # Append to global failure log at run_dir root
+    failure_records = []
+    for i in failed_indices:
+        m = all_monitors[i]
+        record = {
+            "sample_id": samples[i].get("id", f"sample-{i}"),
+            "source_file": str(collector.abs_path),
+            "status": m["status"] if m else "timeout",
+            "error": (m.get("error", "") if m else f"exceeded {SAMPLE_TIMEOUT}s"),
+            "error_response": (m.get("error_response", "")[:200] if m else ""),
+            "attempts": (m.get("sample_attempt", 0) + 1 if m else 0),
+        }
+        failure_records.append(record)
+    if failure_records:
+        with open(run_dir / "failures.jsonl", "a", encoding="utf-8") as f:
+            for r in failure_records:
+                f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
     with open(output_dir / stats_file, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
@@ -870,6 +894,7 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     monitor_file = f"monitor{suffix}.jsonl"
     stats_file = f"stats{suffix}.json"
     dashboard_file = f"dashboard{suffix}.html"
+    failed_samples_file = f"failed_samples{suffix}.jsonl"
 
     with open(output_dir / labeled_json, "w", encoding="utf-8") as f:
         json.dump(samples, f, ensure_ascii=False, indent=2)
@@ -882,6 +907,31 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
         for m in all_monitors:
             if m:
                 f.write(json.dumps(m, ensure_ascii=False) + "\n")
+
+    # Write failed samples (original, without labels) for easy retry
+    failed_indices = [i for i, l in enumerate(all_labels) if l is None]
+    if failed_indices:
+        with open(output_dir / failed_samples_file, "w", encoding="utf-8") as f:
+            for i in failed_indices:
+                s = dict(samples[i])
+                s.pop("labels", None)
+                s.pop("labeling_monitor", None)
+                f.write(json.dumps(s, ensure_ascii=False) + "\n")
+
+    # Write failure log
+    if failed_indices:
+        with open(output_dir / "failures.jsonl", "w", encoding="utf-8") as f:
+            for i in failed_indices:
+                m = all_monitors[i]
+                record = {
+                    "sample_id": samples[i].get("id", f"sample-{i}"),
+                    "source_file": str(input_path),
+                    "status": m["status"] if m else "timeout",
+                    "error": (m.get("error", "") if m else f"exceeded {SAMPLE_TIMEOUT}s"),
+                    "error_response": (m.get("error_response", "")[:200] if m else ""),
+                    "attempts": (m.get("sample_attempt", 0) + 1 if m else 0),
+                }
+                f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
     # Compute and write stats
     valid_monitors = [m for m in all_monitors if m is not None]
