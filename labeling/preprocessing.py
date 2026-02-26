@@ -23,7 +23,8 @@ import re
 import json
 
 from config import (
-    MAX_CONVERSATION_CHARS, TRUNCATION_HEAD_RATIO, TRUNCATION_PER_TURN_RATIO,
+    MAX_CONVERSATION_CHARS, TRUNCATION_HEAD_RATIO,
+    TRUNCATION_LAST_RESPONSE_RATIO, TRUNCATION_PER_TURN_RATIO,
 )
 
 
@@ -205,24 +206,27 @@ def _truncate_text(text, max_chars, keep_head_ratio=0.3):
     """Truncate a single text block, keeping head + tail with a marker in between."""
     if len(text) <= max_chars:
         return text
+    marker_len = len(_TRUNCATION_MARKER)
     head_chars = int(max_chars * keep_head_ratio)
-    tail_chars = max_chars - head_chars - len(_TRUNCATION_MARKER)
+    tail_chars = max_chars - head_chars - marker_len
     if tail_chars < 200:
         tail_chars = 200
-        head_chars = max_chars - tail_chars - len(_TRUNCATION_MARKER)
+        head_chars = max_chars - tail_chars - marker_len
+    if head_chars < 100:
+        head_chars = 100
     return text[:head_chars] + _TRUNCATION_MARKER + text[-tail_chars:]
 
 
 def truncate_conversations_for_labeling(conversations, max_total_chars=None):
     """Truncate conversations to fit within model context for labeling.
 
-    Strategy:
-    - Always preserve the first human turn (task context) and the last
-      assistant turn (final response) in full (up to per-turn limit).
-    - For multi-turn: if total exceeds budget, drop middle turns first,
-      then truncate remaining turns if still over budget.
-    - For single/pseudo multi-turn: truncate long query/response individually.
-    - Per-turn cap: no single turn exceeds TRUNCATION_PER_TURN_RATIO of budget.
+    Budget allocation (configurable in config.py):
+    - First human turn (task context): TRUNCATION_HEAD_RATIO of budget
+    - Last gpt turn (labeling target): TRUNCATION_LAST_RESPONSE_RATIO of budget
+    - Remaining turns: share the rest, filled from the end backward
+
+    For ≤2 turns: split budget proportionally between query and response,
+    giving the response slightly more room.
 
     Returns (truncated_conversations, was_truncated).
     """
@@ -233,71 +237,88 @@ def truncate_conversations_for_labeling(conversations, max_total_chars=None):
     if total_chars <= max_total_chars:
         return conversations, False
 
-    per_turn_cap = int(max_total_chars * TRUNCATION_PER_TURN_RATIO)
     n = len(conversations)
 
     # --- Single turn or two turns (query + response) ---
     if n <= 2:
+        # Give response 60% of budget, query 40%
+        if n == 1:
+            val = _truncate_text(conversations[0].get("value", ""), max_total_chars)
+            return [{**conversations[0], "value": val}], True
+        query_budget = int(max_total_chars * 0.4)
+        response_budget = max_total_chars - query_budget
         result = []
-        for t in conversations:
+        for i, t in enumerate(conversations):
+            budget = response_budget if t["from"] == "gpt" else query_budget
             val = t.get("value", "")
-            if len(val) > per_turn_cap:
-                val = _truncate_text(val, per_turn_cap)
+            if len(val) > budget:
+                val = _truncate_text(val, budget)
             result.append({**t, "value": val})
         return result, True
 
-    # --- Multi-turn: keep first human + last assistant, budget the rest ---
+    # --- Multi-turn ---
     # Identify key turns
     first_human_idx = next((i for i, t in enumerate(conversations) if t["from"] == "human"), 0)
     last_gpt_idx = next((i for i in range(n - 1, -1, -1) if conversations[i]["from"] == "gpt"), n - 1)
 
-    # Phase 1: cap every turn individually
-    capped = []
-    for t in conversations:
-        val = t.get("value", "")
+    # Reserve budgets for key turns
+    first_budget = int(max_total_chars * TRUNCATION_HEAD_RATIO)
+    last_resp_budget = int(max_total_chars * TRUNCATION_LAST_RESPONSE_RATIO)
+    middle_budget = max_total_chars - first_budget - last_resp_budget
+
+    # 1. Truncate first human turn
+    first_turn = dict(conversations[first_human_idx])
+    first_val = first_turn.get("value", "")
+    if len(first_val) > first_budget:
+        first_val = _truncate_text(first_val, first_budget)
+    first_turn["value"] = first_val
+
+    # 2. Truncate last gpt turn
+    last_turn = dict(conversations[last_gpt_idx])
+    last_val = last_turn.get("value", "")
+    if len(last_val) > last_resp_budget:
+        last_val = _truncate_text(last_val, last_resp_budget)
+    last_turn["value"] = last_val
+
+    # 3. Fill middle from the end backward (excluding first_human and last_gpt)
+    #    This preserves the most recent context leading up to the last response.
+    middle_indices = [i for i in range(n) if i != first_human_idx and i != last_gpt_idx]
+    per_turn_cap = int(max_total_chars * TRUNCATION_PER_TURN_RATIO)
+
+    tail_turns = []  # (original_index, turn_dict)
+    tail_chars = 0
+    for i in reversed(middle_indices):
+        val = conversations[i].get("value", "")
+        # Cap individual turn
         if len(val) > per_turn_cap:
             val = _truncate_text(val, per_turn_cap)
-        capped.append({**t, "value": val})
-
-    # Check if capping alone is enough
-    total_after_cap = sum(len(t["value"]) for t in capped)
-    if total_after_cap <= max_total_chars:
-        return capped, True
-
-    # Phase 2: keep first human, last few turns (context window), drop middle
-    # Budget: first_human gets TRUNCATION_HEAD_RATIO, last turns get the rest
-    first_budget = int(max_total_chars * TRUNCATION_HEAD_RATIO)
-    last_budget = max_total_chars - first_budget - len(_TRUNCATION_MARKER) * 2
-
-    # First human turn
-    first_turn = dict(capped[first_human_idx])
-    if len(first_turn["value"]) > first_budget:
-        first_turn["value"] = _truncate_text(first_turn["value"], first_budget)
-
-    # Collect turns from the end until we fill the last_budget
-    tail_turns = []
-    tail_chars = 0
-    for i in range(n - 1, first_human_idx, -1):
-        turn_chars = len(capped[i]["value"])
-        if tail_chars + turn_chars > last_budget:
-            # Truncate this turn to fit remaining budget
-            remaining = last_budget - tail_chars
-            if remaining > 200:
-                truncated_turn = dict(capped[i])
-                truncated_turn["value"] = _truncate_text(capped[i]["value"], remaining)
-                tail_turns.append(truncated_turn)
+        if tail_chars + len(val) > middle_budget:
+            # Try to fit a truncated version
+            remaining = middle_budget - tail_chars
+            if remaining > 500:
+                val = _truncate_text(conversations[i].get("value", ""), remaining)
+                tail_turns.append((i, {**conversations[i], "value": val}))
             break
-        tail_turns.append(capped[i])
-        tail_chars += turn_chars
+        tail_turns.append((i, {**conversations[i], "value": val}))
+        tail_chars += len(val)
 
     tail_turns.reverse()
 
-    # Build result: first turn + marker + tail turns
+    # 4. Assemble: first_human + [omission marker] + kept middle turns + last_gpt
     result = [first_turn]
-    # Add a marker turn to indicate truncation
-    if tail_turns and tail_turns[0] is not capped[first_human_idx + 1]:
-        result.append({"from": "system", "value": f"[... {n - 1 - len(tail_turns) - 1} middle turns omitted for labeling ...]"})
-    result.extend(tail_turns)
+
+    kept_indices = {i for i, _ in tail_turns}
+    # Count omitted turns between first_human and the earliest kept middle turn
+    omitted = len(middle_indices) - len(tail_turns)
+    if omitted > 0:
+        result.append({"from": "system", "value": f"[... {omitted} middle turns omitted for labeling ...]"})
+
+    for _, turn in tail_turns:
+        result.append(turn)
+
+    # Ensure last_gpt is at the end (it might already be in tail_turns if last_gpt_idx was in middle)
+    if not tail_turns or tail_turns[-1][0] != last_gpt_idx:
+        result.append(last_turn)
 
     return result, True
 
