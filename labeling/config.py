@@ -19,13 +19,13 @@ LITELLM_BASE = os.environ.get("LITELLM_BASE", "http://localhost:4000/v1")
 LITELLM_KEY = os.environ.get("LITELLM_KEY", "")
 
 # ─── Pipeline Defaults ──────────────────────────────────
-DEFAULT_MODEL = "deepseek-v3.2"
-DEFAULT_CONCURRENCY = 30
+DEFAULT_MODEL = "gpt-4o-mini"
+DEFAULT_CONCURRENCY = 50
 CONFIDENCE_THRESHOLD = 0.65
 MAX_RETRIES = 3
 SAMPLE_MAX_RETRIES = 2             # sample-level retry on call failure
-REQUEST_TIMEOUT = 180          # seconds per LLM call
-HTTP_CLIENT_TIMEOUT = 120      # httpx client timeout
+REQUEST_TIMEOUT = 60           # seconds per LLM call (gpt-4o-mini is fast)
+HTTP_CLIENT_TIMEOUT = 60       # httpx client timeout
 
 # ─── Model Tiers ────────────────────────────────────────
 MODELS = {
@@ -43,15 +43,16 @@ MODELS = {
     ],
     "light": [
         "gpt-4o-mini",
-        "deepseek-v3.1",
         "qwen3-30b-a3b-instruct-2507",
         "gemini-3-flash-preview",
-        "glm-4.7-flash",
+        "deepseek-v3.1",
+        "glm-4.7-flashx",
     ],
 }
 
 PIPELINE_DEFAULTS = {
-    "production_labeling": "deepseek-v3.2",
+    "production_labeling": "gpt-4o-mini",          # 8x faster, 100% success, cheap
+    "production_labeling_alt": "deepseek-v3.2",    # quality fallback (0 unmapped)
     "gold_set_annotation": "claude-sonnet-4-6",
     "arbitration": "claude-opus-4-5-20251101-thinking",
 }
