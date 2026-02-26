@@ -249,8 +249,8 @@ async def async_llm_call(http_client, messages, model, temperature=0.1, max_toke
     for attempt in range(max_retries + 1):
         try:
             resp = await http_client.post(url, json=payload, headers=headers, timeout=REQUEST_TIMEOUT)
-            if resp.status_code in (403, 429, 502, 503):
-                # Rate limited or server error — exponential backoff with jitter
+            if resp.status_code in (403, 429, 502, 503, 504):
+                # Rate limited or server/gateway error — exponential backoff with jitter
                 base_wait = min(2 ** attempt * 3 + 2, 60)
                 wait = base_wait + random.uniform(0, base_wait * 0.5)
                 last_error = f"HTTP {resp.status_code}: {resp.text[:200]}"
