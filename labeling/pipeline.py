@@ -143,6 +143,7 @@ def merge_stats(all_file_stats):
         "total_elapsed_seconds": 0,
         "tag_distributions": {},
         "confidence_stats": {},
+        "cross_matrix": {},
         "unmapped_tags": {},
         "files_processed": len(all_file_stats),
     }
@@ -161,12 +162,40 @@ def merge_stats(all_file_stats):
         # Merge unmapped
         for tag, count in st.get("unmapped_tags", {}).items():
             merged["unmapped_tags"][tag] = merged["unmapped_tags"].get(tag, 0) + count
+        # Merge confidence_stats (weighted by count for proper averaging)
+        for dim, cs in st.get("confidence_stats", {}).items():
+            if dim not in merged["confidence_stats"]:
+                merged["confidence_stats"][dim] = {"sum": 0, "count": 0, "min": cs.get("min", 1), "max": cs.get("max", 0), "below_threshold": 0}
+            entry = merged["confidence_stats"][dim]
+            n = cs.get("count", 0)
+            if n == 0:
+                continue
+            entry["sum"] += cs["mean"] * n
+            entry["count"] += n
+            entry["min"] = min(entry["min"], cs.get("min", 1))
+            entry["max"] = max(entry["max"], cs.get("max", 0))
+            entry["below_threshold"] += cs.get("below_threshold", 0)
+        # Merge cross_matrix (intent × difficulty)
+        for key, count in st.get("cross_matrix", {}).items():
+            merged["cross_matrix"][key] = merged["cross_matrix"].get(key, 0) + count
 
     # Sort distributions and unmapped
     for dim in merged["tag_distributions"]:
         merged["tag_distributions"][dim] = dict(sorted(merged["tag_distributions"][dim].items(), key=lambda x: -x[1]))
     merged["unmapped_tags"] = dict(sorted(merged["unmapped_tags"].items(), key=lambda x: -x[1]))
     merged["unmapped_unique_count"] = len(merged["unmapped_tags"])
+
+    # Finalize confidence_stats: convert accumulated sum/count to mean
+    for dim, entry in merged["confidence_stats"].items():
+        n = entry.get("count", 0)
+        if n > 0:
+            merged["confidence_stats"][dim] = {
+                "mean": round(entry["sum"] / n, 3),
+                "min": round(entry["min"], 3),
+                "max": round(entry["max"], 3),
+                "below_threshold": entry["below_threshold"],
+                "count": n,
+            }
 
     total = merged["total_samples"]
     merged["success_rate"] = round(merged["success"] / max(total, 1), 4)
@@ -562,7 +591,18 @@ def compute_stats(all_monitors, all_labels):
                 "min": round(min(scores), 3),
                 "max": round(max(scores), 3),
                 "below_threshold": sum(1 for s in scores if s < CONFIDENCE_THRESHOLD),
+                "count": len(scores),
             }
+
+    # Intent × Difficulty cross matrix
+    cross = {}
+    for labels in all_labels:
+        if labels is None:
+            continue
+        intent = labels.get("intent", "?")
+        diff = labels.get("difficulty", "?")
+        key = f"{intent}|{diff}"
+        cross[key] = cross.get(key, 0) + 1
 
     return {
         "total_samples": total,
@@ -586,6 +626,7 @@ def compute_stats(all_monitors, all_labels):
              for d in set(lc["dim"] for m in all_monitors for lc in m.get("low_confidence_dims", []))}.items(),
             key=lambda x: -x[1])),
         "tag_distributions": distributions,
+        "cross_matrix": cross,
     }
 
 
@@ -735,6 +776,11 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
         with open(run_dir / "failures.jsonl", "a", encoding="utf-8") as f:
             for r in failure_records:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+    # Compute and write stats
+    valid_monitors = [m for m in all_monitors if m is not None]
+    stats = compute_stats(valid_monitors, all_labels)
+    stats["input_file"] = str(collector.abs_path)
 
     with open(output_dir / stats_file, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)

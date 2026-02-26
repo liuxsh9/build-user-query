@@ -80,6 +80,14 @@ def compute_viz_data(samples, stats):
         diff = labels.get("difficulty", "?")
         cross[(intent, diff)] += 1
 
+    # Fall back to stats cross_matrix when samples are empty (global dashboard)
+    if not cross and stats.get("cross_matrix"):
+        cross_data = stats["cross_matrix"]
+        for key, count in cross_data.items():
+            parts = key.split("|", 1)
+            if len(parts) == 2:
+                cross[tuple(parts)] = count
+
     intents = sorted({k[0] for k in cross})
     diffs = ["beginner", "intermediate", "advanced", "expert"]
     cross_matrix = {
