@@ -20,10 +20,10 @@ LITELLM_KEY = os.environ.get("LITELLM_KEY", "")
 
 # ─── Pipeline Defaults ──────────────────────────────────
 DEFAULT_MODEL = "gpt-4o-mini"
-DEFAULT_CONCURRENCY = 50
+DEFAULT_CONCURRENCY = 100
 CONFIDENCE_THRESHOLD = 0.65
 MAX_RETRIES = 3
-SAMPLE_MAX_RETRIES = 2             # sample-level retry on call failure
+SAMPLE_MAX_RETRIES = 3             # sample-level retry on call failure
 REQUEST_TIMEOUT = 60           # seconds per LLM call (gpt-4o-mini is fast)
 HTTP_CLIENT_TIMEOUT = 60       # httpx client timeout
 SAMPLE_TIMEOUT = 300           # seconds total per sample (including all retries)
