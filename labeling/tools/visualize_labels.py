@@ -23,11 +23,25 @@ DIMENSIONS = ["intent", "difficulty", "language", "domain", "concept",
               "task", "agentic", "constraint", "context"]
 
 
-def load_run(run_dir: Path):
-    with open(run_dir / "labeled.json", encoding="utf-8") as f:
-        samples = json.load(f)
-    stats_path = run_dir / "stats.json"
-    stats = json.load(open(stats_path, encoding="utf-8")) if stats_path.exists() else {}
+def load_run(run_dir: Path, labeled_file="labeled.json", stats_file="stats.json"):
+    """Load samples and stats from a run directory.
+
+    If labeled_file is None or doesn't exist, returns empty samples list
+    (stats-only mode for global dashboards).
+    """
+    samples = []
+    if labeled_file:
+        labeled_path = run_dir / labeled_file
+        if labeled_path.exists():
+            with open(labeled_path, encoding="utf-8") as f:
+                samples = json.load(f)
+
+    stats = {}
+    stats_path = run_dir / stats_file
+    if stats_path.exists():
+        with open(stats_path, encoding="utf-8") as f:
+            stats = json.load(f)
+
     return samples, stats
 
 
@@ -261,11 +275,14 @@ render();
 </html>"""
 
 
-def generate_dashboard(run_dir: Path) -> Path:
-    samples, stats = load_run(run_dir)
+def generate_dashboard(run_dir: Path, labeled_file="labeled.json",
+                       stats_file="stats.json", output_file="dashboard.html") -> Path:
+    """Generate dashboard HTML. Supports stats-only mode (no labeled.json)."""
+    run_dir = Path(run_dir)
+    samples, stats = load_run(run_dir, labeled_file=labeled_file, stats_file=stats_file)
     viz_data = compute_viz_data(samples, stats)
     html = HTML_TEMPLATE.replace("__DATA_PLACEHOLDER__", json.dumps(viz_data, ensure_ascii=False))
-    out = run_dir / "dashboard.html"
+    out = run_dir / output_file
     out.write_text(html, encoding="utf-8")
     return out
 

@@ -534,8 +534,13 @@ def compute_stats(all_monitors, all_labels):
 
 
 async def run_one_file(input_path, output_dir, http_client, sem, model,
-                       enable_arbitration=True, limit=0, shuffle=False):
-    """Label a single file. Writes outputs to output_dir. Returns stats dict."""
+                       enable_arbitration=True, limit=0, shuffle=False,
+                       file_prefix=None):
+    """Label a single file. Writes outputs to output_dir. Returns stats dict.
+
+    file_prefix: if set, output files are named e.g. labeled_<prefix>.json
+                 instead of labeled.json (avoids name collisions in batch mode).
+    """
     # Load input
     with open(input_path, "r", encoding="utf-8") as f:
         if str(input_path).endswith(".jsonl"):
@@ -613,15 +618,22 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
 
     # Write outputs
     output_dir.mkdir(parents=True, exist_ok=True)
+    suffix = f"_{file_prefix}" if file_prefix else ""
 
-    with open(output_dir / "labeled.json", "w", encoding="utf-8") as f:
+    labeled_json = f"labeled{suffix}.json"
+    labeled_jsonl = f"labeled{suffix}.jsonl"
+    monitor_file = f"monitor{suffix}.jsonl"
+    stats_file = f"stats{suffix}.json"
+    dashboard_file = f"dashboard{suffix}.html"
+
+    with open(output_dir / labeled_json, "w", encoding="utf-8") as f:
         json.dump(samples, f, ensure_ascii=False, indent=2)
 
-    with open(output_dir / "labeled.jsonl", "w", encoding="utf-8") as f:
+    with open(output_dir / labeled_jsonl, "w", encoding="utf-8") as f:
         for sample in samples:
             f.write(json.dumps(sample, ensure_ascii=False) + "\n")
 
-    with open(output_dir / "monitor.jsonl", "w", encoding="utf-8") as f:
+    with open(output_dir / monitor_file, "w", encoding="utf-8") as f:
         for m in all_monitors:
             if m:
                 f.write(json.dumps(m, ensure_ascii=False) + "\n")
@@ -632,13 +644,14 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     stats["total_elapsed_seconds"] = round(file_elapsed, 1)
     stats["input_file"] = str(input_path)
 
-    with open(output_dir / "stats.json", "w", encoding="utf-8") as f:
+    with open(output_dir / stats_file, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
 
     # Per-file dashboard
     try:
         from tools.visualize_labels import generate_dashboard
-        generate_dashboard(output_dir)
+        generate_dashboard(output_dir, labeled_file=labeled_json,
+                           stats_file=stats_file, output_file=dashboard_file)
     except Exception:
         pass
 
@@ -752,19 +765,22 @@ async def run_pipeline(args):
                     print(f"[File {i+1:3d}/{n}] {rel_str} — SKIPPED (completed)")
                     # Load existing stats for summary
                     file_out_dir = run_dir / rel_path.with_suffix("")
-                    existing_stats = file_out_dir / "stats.json"
+                    prefix = rel_path.stem
+                    existing_stats = file_out_dir / f"stats_{prefix}.json"
                     if existing_stats.exists():
                         with open(existing_stats, "r", encoding="utf-8") as f:
                             all_file_stats.append(json.load(f))
                     continue
 
                 file_out_dir = run_dir / rel_path.with_suffix("")
+                prefix = rel_path.stem
                 print(f"[File {i+1:3d}/{n}] {rel_str}")
                 try:
                     stats = await run_one_file(
                         abs_path, file_out_dir, http_client, sem, model,
                         enable_arbitration=not args.no_arbitration,
                         limit=args.limit, shuffle=args.shuffle,
+                        file_prefix=prefix,
                     )
                     all_file_stats.append(stats)
                     update_checkpoint(checkpoint_path, rel_str, success=True)
@@ -785,13 +801,10 @@ async def run_pipeline(args):
                 json.dump(summary, f, ensure_ascii=False, indent=2)
             try:
                 from tools.visualize_labels import generate_dashboard
-                generate_dashboard(run_dir, stats_file="summary_stats.json")
-            except Exception:
-                try:
-                    from tools.visualize_labels import generate_dashboard
-                    generate_dashboard(run_dir)
-                except Exception:
-                    pass
+                generate_dashboard(run_dir, labeled_file=None,
+                                   stats_file="summary_stats.json")
+            except Exception as e:
+                print(f"  Global dashboard generation skipped: {e}")
             print_summary(summary, run_dir, is_batch=True)
         return
 
@@ -844,12 +857,14 @@ async def run_pipeline(args):
             for i, (abs_path, rel_path) in enumerate(dir_files):
                 rel_str = str(rel_path)
                 file_out_dir = run_dir / rel_path.with_suffix("")
+                prefix = rel_path.stem
                 print(f"[File {i+1:3d}/{n}] {rel_str}")
                 try:
                     stats = await run_one_file(
                         abs_path, file_out_dir, http_client, sem, args.model,
                         enable_arbitration=not args.no_arbitration,
                         limit=args.limit, shuffle=args.shuffle,
+                        file_prefix=prefix,
                     )
                     all_file_stats.append(stats)
                     update_checkpoint(checkpoint_path, rel_str, success=True)
@@ -875,19 +890,12 @@ async def run_pipeline(args):
         with open(run_dir / "summary_stats.json", "w", encoding="utf-8") as f:
             json.dump(summary, f, ensure_ascii=False, indent=2)
 
-        # Global dashboard — try with summary_stats, fall back to default
+        # Global dashboard — stats-only mode (no labeled.json at root)
         try:
             from tools.visualize_labels import generate_dashboard
-            generate_dashboard(run_dir, stats_file="summary_stats.json")
+            generate_dashboard(run_dir, labeled_file=None,
+                               stats_file="summary_stats.json")
             print(f"\nGlobal dashboard generated: {run_dir / 'dashboard.html'}")
-        except TypeError:
-            # generate_dashboard doesn't accept stats_file kwarg — use default
-            try:
-                from tools.visualize_labels import generate_dashboard
-                generate_dashboard(run_dir)
-                print(f"\nGlobal dashboard generated: {run_dir / 'dashboard.html'}")
-            except Exception as e:
-                print(f"\nGlobal dashboard generation skipped: {e}")
         except Exception as e:
             print(f"\nGlobal dashboard generation skipped: {e}")
 
