@@ -439,20 +439,6 @@ async def label_one(http_client, sample, model, sample_idx, total, sem, enable_a
             await asyncio.sleep(base_wait + random.uniform(0, base_wait))
 
         async with sem:
-            # Check deadline AFTER acquiring semaphore (not while queuing)
-            elapsed = time.time() - start
-            if elapsed > SAMPLE_TIMEOUT:
-                return sample_idx, None, {
-                    "sample_id": sample.get("id", f"sample-{sample_idx}"),
-                    "index": sample_idx, "llm_calls": 0,
-                    "total_prompt_tokens": 0, "total_completion_tokens": 0,
-                    "validation_issues": [], "consistency_warnings": [],
-                    "low_confidence_dims": [], "arbitrated": False,
-                    "sample_attempt": sample_attempt,
-                    "status": "timeout",
-                    "error": f"exceeded {SAMPLE_TIMEOUT}s (including queue wait)",
-                    "elapsed_seconds": round(elapsed, 1),
-                }
             monitor = {
                 "sample_id": sample.get("id", f"sample-{sample_idx}"),
                 "index": sample_idx,

@@ -29,10 +29,10 @@ HTTP_CLIENT_TIMEOUT = 60       # httpx client timeout
 SAMPLE_TIMEOUT = 300           # seconds total per sample (including all retries)
 
 # ─── Conversation Truncation ──────────────────────────
-MAX_CONVERSATION_CHARS = 120000  # total budget (~32K tokens); truncate if exceeded
-TRUNCATION_HEAD_RATIO = 0.15     # fraction of budget for first human turn (task context)
-TRUNCATION_LAST_RESPONSE_RATIO = 0.25  # fraction of budget for last gpt turn (labeling target)
-TRUNCATION_PER_TURN_RATIO = 0.33 # max fraction of budget for any single turn
+MAX_CONVERSATION_CHARS = 20000   # total budget (~5K tokens); aggressive for fast labeling
+TRUNCATION_HEAD_RATIO = 0.30     # fraction of budget for first human turn (task context)
+TRUNCATION_LAST_RESPONSE_RATIO = 0.40  # fraction of budget for last gpt turn (labeling target)
+TRUNCATION_PER_TURN_RATIO = 0.30 # max fraction of budget for any single turn
 
 # ─── Directory Pipeline ────────────────────────────────
 DIR_PIPELINE_WATERMARK = 2.0   # load next file when in-flight < concurrency * watermark
