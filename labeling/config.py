@@ -27,7 +27,11 @@ SAMPLE_MAX_RETRIES = 3             # sample-level retry on call failure
 REQUEST_TIMEOUT = 60           # seconds per LLM call (gpt-4o-mini is fast)
 HTTP_CLIENT_TIMEOUT = 60       # httpx client timeout
 SAMPLE_TIMEOUT = 300           # seconds total per sample (including all retries)
-MAX_CONVERSATION_CHARS = 400000  # ~100K tokens; skip labeling if conversation exceeds this
+
+# ─── Conversation Truncation ──────────────────────────
+MAX_CONVERSATION_CHARS = 400000  # total budget (~100K tokens); truncate if exceeded
+TRUNCATION_HEAD_RATIO = 0.2      # fraction of budget for first turn (task context)
+TRUNCATION_PER_TURN_RATIO = 0.33 # max fraction of budget for any single turn
 
 # ─── Directory Pipeline ────────────────────────────────
 DIR_PIPELINE_WATERMARK = 2.0   # load next file when in-flight < concurrency * watermark

@@ -22,6 +22,10 @@ Signals extracted:
 import re
 import json
 
+from config import (
+    MAX_CONVERSATION_CHARS, TRUNCATION_HEAD_RATIO, TRUNCATION_PER_TURN_RATIO,
+)
+
 
 # ─────────────────────────────────────────────────────────
 # Format normalization
@@ -209,7 +213,7 @@ def _truncate_text(text, max_chars, keep_head_ratio=0.3):
     return text[:head_chars] + _TRUNCATION_MARKER + text[-tail_chars:]
 
 
-def truncate_conversations_for_labeling(conversations, max_total_chars=400000):
+def truncate_conversations_for_labeling(conversations, max_total_chars=None):
     """Truncate conversations to fit within model context for labeling.
 
     Strategy:
@@ -218,15 +222,18 @@ def truncate_conversations_for_labeling(conversations, max_total_chars=400000):
     - For multi-turn: if total exceeds budget, drop middle turns first,
       then truncate remaining turns if still over budget.
     - For single/pseudo multi-turn: truncate long query/response individually.
-    - Per-turn cap: no single turn exceeds 1/3 of budget.
+    - Per-turn cap: no single turn exceeds TRUNCATION_PER_TURN_RATIO of budget.
 
     Returns (truncated_conversations, was_truncated).
     """
+    if max_total_chars is None:
+        max_total_chars = MAX_CONVERSATION_CHARS
+
     total_chars = sum(len(t.get("value", "")) for t in conversations)
     if total_chars <= max_total_chars:
         return conversations, False
 
-    per_turn_cap = max_total_chars // 3
+    per_turn_cap = int(max_total_chars * TRUNCATION_PER_TURN_RATIO)
     n = len(conversations)
 
     # --- Single turn or two turns (query + response) ---
@@ -258,8 +265,8 @@ def truncate_conversations_for_labeling(conversations, max_total_chars=400000):
         return capped, True
 
     # Phase 2: keep first human, last few turns (context window), drop middle
-    # Budget: first_human gets 20%, last turns get 80%
-    first_budget = int(max_total_chars * 0.2)
+    # Budget: first_human gets TRUNCATION_HEAD_RATIO, last turns get the rest
+    first_budget = int(max_total_chars * TRUNCATION_HEAD_RATIO)
     last_budget = max_total_chars - first_budget - len(_TRUNCATION_MARKER) * 2
 
     # First human turn
