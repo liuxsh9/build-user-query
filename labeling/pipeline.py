@@ -37,7 +37,7 @@ from prompts import (
     CALL1_SYSTEM, CALL1_FEWSHOT, CALL2_SYSTEM, CALL2_FEWSHOT,
     TAG_POOLS, SINGLE_SELECT, MULTI_SELECT
 )
-from preprocessing import preprocess, format_signals_for_prompt, normalize_and_slice, truncate_conversations_for_labeling
+from preprocessing import preprocess, format_signals_for_prompt, normalize_and_slice, truncate_conversations_for_labeling, apply_sparse_sampling
 from config import (
     LITELLM_BASE, LITELLM_KEY, CONFIDENCE_THRESHOLD, CONSISTENCY_RULES,
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
@@ -142,6 +142,7 @@ def merge_stats(all_file_stats):
         "validation_issue_count": 0, "consistency_warning_count": 0,
         "unmapped_unique_count": 0,
         "total_elapsed_seconds": 0,
+        "sparse_labeled": 0, "sparse_inherited": 0,
         "tag_distributions": {},
         "confidence_stats": {},
         "cross_matrix": {},
@@ -151,7 +152,8 @@ def merge_stats(all_file_stats):
     for st in all_file_stats:
         for k in ("total_samples", "success", "failed", "total_llm_calls",
                    "total_prompt_tokens", "total_completion_tokens", "total_tokens",
-                   "arbitrated_count", "validation_issue_count", "consistency_warning_count"):
+                   "arbitrated_count", "validation_issue_count", "consistency_warning_count",
+                   "sparse_labeled", "sparse_inherited"):
             merged[k] += st.get(k, 0)
         merged["total_elapsed_seconds"] += st.get("total_elapsed_seconds", 0)
         # Merge tag distributions
@@ -709,6 +711,8 @@ class FileCollector:
     prefix: str             # file stem for output naming
     total: int
     samples: list
+    label_count: int = 0    # actual LLM labels (sparse)
+    inherit_map: dict = field(default_factory=dict)
     done: int = 0
     ok: int = 0
     fail: int = 0
@@ -735,6 +739,14 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
     output_dir = collector.output_dir
     prefix = collector.prefix
     total = collector.total
+
+    # Inherit labels for sparse-sampled slices
+    for unlabeled_idx, source_idx in collector.inherit_map.items():
+        if all_labels[source_idx] is not None:
+            inherited = dict(all_labels[source_idx])
+            inherited["inherited"] = True
+            inherited["inherited_from"] = samples[source_idx].get("id")
+            all_labels[unlabeled_idx] = inherited
 
     # Attach labels to samples
     for idx, sample in enumerate(samples):
@@ -771,7 +783,9 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
                 f.write(json.dumps(m, ensure_ascii=False) + "\n")
 
     # Write failed samples (original, without labels) for easy retry
-    failed_indices = [i for i, l in enumerate(all_labels) if l is None]
+    # Inherited samples have no monitor — they are not failures
+    inherited_indices = set(collector.inherit_map.keys())
+    failed_indices = [i for i, l in enumerate(all_labels) if l is None and i not in inherited_indices]
     if failed_indices:
         with open(output_dir / failed_samples_file, "w", encoding="utf-8") as f:
             for i in failed_indices:
@@ -802,6 +816,16 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
     valid_monitors = [m for m in all_monitors if m is not None]
     stats = compute_stats(valid_monitors, all_labels)
     stats["input_file"] = str(collector.abs_path)
+    sparse_inherited = len(collector.inherit_map)
+    if sparse_inherited > 0:
+        stats["sparse_labeled"] = collector.label_count
+        stats["sparse_inherited"] = sparse_inherited
+        # Adjust totals: inherited samples count as success
+        stats["total_samples"] = total
+        inherited_ok = sum(1 for i in inherited_indices if all_labels[i] is not None)
+        stats["success"] += inherited_ok
+        stats["failed"] = stats["total_samples"] - stats["success"]
+        stats["success_rate"] = round(stats["success"] / max(total, 1), 4)
 
     with open(output_dir / stats_file, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
@@ -819,10 +843,10 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
     pprint(f"  ✓ {success}/{total} success, {total_tokens:,} tokens")
 
     # Print failure details — batch into single print to avoid progress bar flicker
-    failed_count = total - success
+    failed_count = len(failed_indices)
     if failed_count > 0:
         lines = []
-        failed_monitors = [m for m in all_monitors if m and m["status"] != "success"]
+        failed_monitors = [all_monitors[i] for i in failed_indices if all_monitors[i] and all_monitors[i]["status"] != "success"]
         error_groups = {}
         for m in failed_monitors:
             err_type = m["status"]
@@ -841,7 +865,7 @@ def flush_file_output(collector, run_dir, checkpoint_path, pprint=print):
                 lines.append(f"      {sid} (attempt {attempts}): {detail}")
             if len(monitors) > 3:
                 lines.append(f"      ... and {len(monitors) - 3} more")
-        timeout_count = sum(1 for m in all_monitors if m is None)
+        timeout_count = sum(1 for i, m in enumerate(all_monitors) if m is None and i not in inherited_indices)
         if timeout_count > 0:
             lines.append(f"    [timeout] ×{timeout_count} (exceeded {SAMPLE_TIMEOUT}s)")
         pprint("\n".join(lines))
@@ -873,18 +897,26 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
 
     total = len(samples)
     pprint = progress.console.print if progress else print
-    pprint(f"  ({n_raw} conversations → {total} samples)")
 
-    # Set up progress bar task — reset timer for this file
+    # Sparse sampling: only label a subset of multi-turn slices
+    label_indices, inherit_map = apply_sparse_sampling(samples)
+    label_count = len(label_indices)
+    sparse_inherited = len(inherit_map)
+    if sparse_inherited > 0:
+        pprint(f"  ({n_raw} conversations → {total} samples, sparse: {label_count} labeled + {sparse_inherited} inherited)")
+    else:
+        pprint(f"  ({n_raw} conversations → {total} samples)")
+
+    # Set up progress bar task — reset timer for this file (track actual labels, not total)
     if progress and sample_task is not None:
-        progress.reset(sample_task, total=total, completed=0, visible=True, info="starting...")
+        progress.reset(sample_task, total=label_count, completed=0, visible=True, info="starting...")
 
     # Pre-allocate result slots
     all_labels = [None] * total
     all_monitors = [None] * total
 
-    # Submit tasks in shuffled order to avoid convoy effect from pyramid slicing
-    submit_order = list(range(len(samples)))
+    # Submit tasks in shuffled order — only for indices that need labeling
+    submit_order = list(label_indices)
     random.shuffle(submit_order)
     tasks = []
     for idx in submit_order:
@@ -934,6 +966,14 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
 
     file_elapsed = time.time() - file_start
 
+    # Inherit labels for sparse-sampled slices
+    for unlabeled_idx, source_idx in inherit_map.items():
+        if all_labels[source_idx] is not None:
+            inherited = dict(all_labels[source_idx])
+            inherited["inherited"] = True
+            inherited["inherited_from"] = samples[source_idx].get("id")
+            all_labels[unlabeled_idx] = inherited
+
     # Attach labels to samples
     for idx, sample in enumerate(samples):
         sample["labels"] = all_labels[idx]
@@ -969,7 +1009,9 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
                 f.write(json.dumps(m, ensure_ascii=False) + "\n")
 
     # Write failed samples (original, without labels) for easy retry
-    failed_indices = [i for i, l in enumerate(all_labels) if l is None]
+    # Inherited samples have no monitor — they are not failures
+    inherited_indices = set(inherit_map.keys())
+    failed_indices = [i for i, l in enumerate(all_labels) if l is None and i not in inherited_indices]
     if failed_indices:
         with open(output_dir / failed_samples_file, "w", encoding="utf-8") as f:
             for i in failed_indices:
@@ -998,6 +1040,15 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
     stats = compute_stats(valid_monitors, all_labels)
     stats["total_elapsed_seconds"] = round(file_elapsed, 1)
     stats["input_file"] = str(input_path)
+    if sparse_inherited > 0:
+        stats["sparse_labeled"] = label_count
+        stats["sparse_inherited"] = sparse_inherited
+        # Adjust totals: inherited samples count as success
+        stats["total_samples"] = total
+        inherited_ok = sum(1 for i in inherited_indices if all_labels[i] is not None)
+        stats["success"] += inherited_ok
+        stats["failed"] = stats["total_samples"] - stats["success"]
+        stats["success_rate"] = round(stats["success"] / max(total, 1), 4)
 
     with open(output_dir / stats_file, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
@@ -1012,13 +1063,13 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
 
     success = stats["success"]
     total_tokens = stats["total_tokens"]
-    failed_count = total - success
     pprint(f"  ✓ {success}/{total} success, {file_elapsed:.1f}s, {total_tokens:,} tokens")
 
     # Print failure details for debugging — batch into single print to avoid progress bar flicker
+    failed_count = len(failed_indices)
     if failed_count > 0:
         lines = []
-        failed_monitors = [m for m in all_monitors if m and m["status"] != "success"]
+        failed_monitors = [all_monitors[i] for i in failed_indices if all_monitors[i] and all_monitors[i]["status"] != "success"]
         # Group by error type
         error_groups = {}
         for m in failed_monitors:
@@ -1039,7 +1090,7 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
             if len(monitors) > 3:
                 lines.append(f"      ... and {len(monitors) - 3} more")
         # Count timeouts (samples with no monitor entry)
-        timeout_count = sum(1 for m in all_monitors if m is None)
+        timeout_count = sum(1 for i, m in enumerate(all_monitors) if m is None and i not in inherited_indices)
         if timeout_count > 0:
             lines.append(f"    [timeout] ×{timeout_count} (exceeded {SAMPLE_TIMEOUT}s)")
         pprint("\n".join(lines))
@@ -1102,7 +1153,15 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
         pprint(f"[File {orig_idx+1:3d}/{len(dir_files)}] {rel_str}")
         samples, n_raw = iter_samples_from_file(
             abs_path, limit=args.limit, shuffle=args.shuffle)
-        pprint(f"  ({n_raw} conversations → {len(samples)} samples)")
+
+        # Sparse sampling
+        label_indices, inherit_map = apply_sparse_sampling(samples)
+        label_count = len(label_indices)
+        sparse_inherited = len(inherit_map)
+        if sparse_inherited > 0:
+            pprint(f"  ({n_raw} conversations → {len(samples)} samples, sparse: {label_count} labeled + {sparse_inherited} inherited)")
+        else:
+            pprint(f"  ({n_raw} conversations → {len(samples)} samples)")
 
         collector = FileCollector(
             file_idx=orig_idx,
@@ -1112,16 +1171,17 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
             prefix=prefix,
             total=len(samples),
             samples=samples,
+            label_count=label_count,
+            inherit_map=inherit_map,
         )
 
-        # Update samples progress bar total
+        # Update samples progress bar total (use label_count, not total samples)
         if progress and sample_task is not None:
             current_total = progress.tasks[sample_task].total or 0
-            progress.update(sample_task, total=current_total + len(samples), visible=True)
+            progress.update(sample_task, total=current_total + label_count, visible=True)
 
-        # Submit all tasks (shuffled order to avoid convoy effect from
-        # pyramid slicing — small slices cluster at the start, large at the end)
-        submit_order = list(range(len(samples)))
+        # Submit only label_indices (shuffled to avoid convoy effect)
+        submit_order = list(label_indices)
         random.shuffle(submit_order)
         for idx in submit_order:
             coro = label_one(
@@ -1187,8 +1247,8 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
                 info = f"✓{c.ok}" + (f" ✗{c.fail}" if c.fail else "") + f" [{c.rel_path.name}]"
                 progress.update(sample_task, advance=1, info=info)
 
-            # Check if this file is fully done
-            if c.done >= c.total and not c.completed:
+            # Check if this file is fully done (compare against label_count, not total)
+            if c.done >= c.label_count and not c.completed:
                 stats = flush_file_output(c, run_dir, checkpoint_path, pprint=pprint)
                 all_file_stats.append(stats)
 
@@ -1203,9 +1263,9 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
                             if not cc.completed]
             progress.update(file_task, info=", ".join(active_names)[:60] if active_names else "done")
 
-    # Handle any files with 0 samples (edge case)
+    # Handle any files with 0 labels to submit (edge case: 0 samples or all inherited)
     for c in collectors.values():
-        if not c.completed and c.total == 0:
+        if not c.completed and c.label_count == 0:
             stats = flush_file_output(c, run_dir, checkpoint_path, pprint=pprint)
             all_file_stats.append(stats)
             if progress and file_task is not None:
@@ -1228,6 +1288,11 @@ def print_summary(stats, run_dir, is_batch=False):
     print(f"Tokens:      {stats['total_tokens']:,}")
     print(f"Arbitrated:  {stats['arbitrated_count']} ({stats.get('arbitrated_rate', 0)*100:.1f}%)")
     print(f"Unmapped:    {stats.get('unmapped_unique_count', 0)} unique out-of-pool tags")
+    sparse_labeled = stats.get('sparse_labeled', 0)
+    sparse_inherited = stats.get('sparse_inherited', 0)
+    if sparse_inherited > 0:
+        saving = round(sparse_inherited / (sparse_labeled + sparse_inherited) * 100)
+        print(f"Sparse:      {sparse_labeled} labeled + {sparse_inherited} inherited ({saving}% saved)")
     total_samples = stats.get('total_samples', 0)
     if elapsed > 0 and total_samples > 0:
         print(f"Throughput:  {total_samples / elapsed:.1f} samples/sec")

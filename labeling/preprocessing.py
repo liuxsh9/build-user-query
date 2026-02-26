@@ -623,6 +623,99 @@ def detect_keywords(text):
     return hits
 
 
+def generate_sparse_schedule(n):
+    """Front-dense, back-sparse sampling schedule for pyramid slices.
+
+    n <= 12: label all (return [0..n-1])
+    n > 12: first 10 all labeled, then gap grows ~1.2x, last always labeled
+    """
+    if n <= 12:
+        return list(range(n))
+
+    schedule = list(range(10))  # first 10 always labeled
+    pos = 10
+    gap = 2.0
+    while pos < n - 1:
+        schedule.append(pos)
+        gap *= 1.2
+        pos = min(pos + max(int(gap), 2), n - 1)
+
+    # Always include the last slice
+    if schedule[-1] != n - 1:
+        schedule.append(n - 1)
+
+    return schedule
+
+
+def apply_sparse_sampling(samples):
+    """Apply sparse sampling to multi-turn pyramid slices.
+
+    Single-turn samples (no source_id or total_turns=1) are always labeled.
+    Multi-turn slices are grouped by source_id, sorted by turn_index,
+    and sampled via generate_sparse_schedule.
+
+    Returns:
+        label_indices: set[int] — global indices that need actual LLM labeling
+        inherit_map: dict[int, int] — {unlabeled_idx: source_idx} for inheritance
+
+    Inheritance strategy: look forward (inherit from next labeled slice).
+    Reason: slice_i is a prefix of slice_j (j>i), so j's labels are more complete.
+    Last unlabeled slice with no successor inherits backward.
+    """
+    label_indices = set()
+    inherit_map = {}
+
+    # Group by source_id; track global index
+    groups = {}  # source_id -> [(global_idx, turn_index)]
+    for i, s in enumerate(samples):
+        meta = s.get("metadata", {})
+        source_id = meta.get("source_id")
+        total_turns = meta.get("total_turns", 1)
+
+        if not source_id or total_turns <= 1:
+            # Single-turn: always label
+            label_indices.add(i)
+        else:
+            turn_idx = meta.get("turn_index", 1)
+            groups.setdefault(source_id, []).append((i, turn_idx))
+
+    # For each multi-turn group, apply sparse schedule
+    for source_id, members in groups.items():
+        # Sort by turn_index
+        members.sort(key=lambda x: x[1])
+        n = len(members)
+        schedule = generate_sparse_schedule(n)
+        schedule_set = set(schedule)
+
+        # Mark labeled indices
+        labeled_positions = []
+        for pos_in_group, (global_idx, _) in enumerate(members):
+            if pos_in_group in schedule_set:
+                label_indices.add(global_idx)
+                labeled_positions.append(pos_in_group)
+
+        # Build inherit_map: unlabeled → nearest labeled (forward first, backward fallback)
+        for pos_in_group, (global_idx, _) in enumerate(members):
+            if pos_in_group in schedule_set:
+                continue
+            # Find next labeled position (forward)
+            source_pos = None
+            for lp in labeled_positions:
+                if lp > pos_in_group:
+                    source_pos = lp
+                    break
+            # Fallback: previous labeled position (backward)
+            if source_pos is None:
+                for lp in reversed(labeled_positions):
+                    if lp < pos_in_group:
+                        source_pos = lp
+                        break
+            if source_pos is not None:
+                inherit_map[global_idx] = members[source_pos][0]
+
+    return label_indices, inherit_map
+
+
 def preprocess(sample):
     """
     Full preprocessing pipeline for one SFT sample.
