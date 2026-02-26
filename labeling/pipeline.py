@@ -43,6 +43,7 @@ from config import (
     DEFAULT_INPUT, DEFAULT_OUTPUT, DATA_DIR,
     DEFAULT_MODEL, DEFAULT_CONCURRENCY, MAX_RETRIES, SAMPLE_MAX_RETRIES,
     REQUEST_TIMEOUT, SAMPLE_TIMEOUT,
+    DIR_PIPELINE_WATERMARK, DIR_PIPELINE_MAX_FILES,
 )
 
 
@@ -940,16 +941,17 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
                                  checkpoint_path, completed_set=None,
                                  progress=None, file_task=None, sample_task=None,
                                  http_client=None, sem=None, enable_arbitration=True):
-    """Cross-file pipeline with active window for memory-bounded concurrency.
+    """Cross-file pipeline with watermark-based file loading.
 
-    Instead of processing files serially, maintains a sliding window of active
-    files whose samples are all submitted to the shared semaphore concurrently.
-    When a file completes, its output is flushed and memory released, then the
-    next file is loaded into the window.
+    Instead of processing files serially, loads new files whenever in-flight
+    task count drops below a watermark (concurrency * DIR_PIPELINE_WATERMARK).
+    This keeps the semaphore saturated even when some files have long-tail
+    samples in retry/backoff. Memory is bounded by DIR_PIPELINE_MAX_FILES.
 
     Returns list of per-file stats dicts.
     """
-    ACTIVE_WINDOW = 3
+    watermark = int(concurrency * DIR_PIPELINE_WATERMARK)
+    max_active = DIR_PIPELINE_MAX_FILES
     completed_set = completed_set or set()
     pprint = progress.console.print if progress else print
 
@@ -1021,23 +1023,31 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
 
         return collector
 
-    # --- Main loop: sliding window ---
+    # --- Try to load more files if below watermark and within memory limit ---
+    def maybe_load_more(pending_futures, collectors, file_queue, next_to_load):
+        active_count = sum(1 for c in collectors.values() if not c.completed)
+        while (next_to_load < len(file_queue)
+               and len(pending_futures) < watermark
+               and active_count < max_active):
+            entry = file_queue[next_to_load]
+            next_to_load += 1
+            new_c = load_and_submit(entry, pending_futures)
+            collectors[new_c.file_idx] = new_c
+            active_count += 1
+        return next_to_load
+
+    # --- Main loop: watermark-driven ---
     collectors = {}  # file_idx -> FileCollector
     pending_futures = set()
     all_file_stats = list(skipped_stats)
-    file_queue = list(pending_files)  # files waiting to be loaded
+    file_queue = list(pending_files)
     next_to_load = 0
 
-    # Initial window
-    initial_count = min(ACTIVE_WINDOW, len(file_queue))
     if progress and sample_task is not None:
         progress.update(sample_task, total=0, completed=0, visible=True, info="starting...")
 
-    for _ in range(initial_count):
-        entry = file_queue[next_to_load]
-        next_to_load += 1
-        c = load_and_submit(entry, pending_futures)
-        collectors[c.file_idx] = c
+    # Initial load
+    next_to_load = maybe_load_more(pending_futures, collectors, file_queue, next_to_load)
 
     if progress and file_task is not None:
         active_names = [str(c.rel_path) for c in collectors.values() if not c.completed]
@@ -1052,7 +1062,7 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
             file_idx, sample_idx, labels, monitor = fut.result()
             c = collectors[file_idx]
 
-            if sample_idx >= 0 and sample_idx < c.total:
+            if 0 <= sample_idx < c.total:
                 c.labels[sample_idx] = labels
                 c.monitors[sample_idx] = monitor
 
@@ -1075,18 +1085,13 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
                 if progress and file_task is not None:
                     progress.update(file_task, advance=1)
 
-                # Load next file if available
-                if next_to_load < len(file_queue):
-                    entry = file_queue[next_to_load]
-                    next_to_load += 1
-                    new_c = load_and_submit(entry, pending_futures)
-                    collectors[new_c.file_idx] = new_c
+        # After processing batch of completions, check if we should load more files
+        next_to_load = maybe_load_more(pending_futures, collectors, file_queue, next_to_load)
 
-                # Update file progress info
-                if progress and file_task is not None:
-                    active_names = [str(cc.rel_path) for cc in collectors.values()
-                                    if not cc.completed]
-                    progress.update(file_task, info=", ".join(active_names)[:60] if active_names else "done")
+        if progress and file_task is not None:
+            active_names = [str(cc.rel_path) for cc in collectors.values()
+                            if not cc.completed]
+            progress.update(file_task, info=", ".join(active_names)[:60] if active_names else "done")
 
     # Handle any files with 0 samples (edge case)
     for c in collectors.values():

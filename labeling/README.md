@@ -68,6 +68,8 @@ export LITELLM_KEY="sk-your-key"
 | `CONFIDENCE_THRESHOLD` | `0.65` | Below this triggers arbitration |
 | `MAX_RETRIES` | `3` | LLM call retry count |
 | `REQUEST_TIMEOUT` | `180` | Per-request timeout (seconds) |
+| `DIR_PIPELINE_WATERMARK` | `2.0` | Load next file when in-flight tasks < concurrency × watermark |
+| `DIR_PIPELINE_MAX_FILES` | `5` | Max files loaded in memory simultaneously |
 
 ### Model Tiers
 
@@ -221,7 +223,7 @@ Output:
         ...
 ```
 
-Files are processed serially (to avoid memory explosion), samples within each file run concurrently. The `checkpoint.json` tracks completed/failed files so `--resume` can skip already-finished work.
+Files are processed via a cross-file pipeline: multiple files' samples compete for the shared concurrency semaphore simultaneously. New files are loaded when in-flight tasks drop below a watermark (`concurrency × DIR_PIPELINE_WATERMARK`), bounded by `DIR_PIPELINE_MAX_FILES` to limit memory. Completed files are flushed and released immediately. The `checkpoint.json` tracks completed/failed files so `--resume` can skip already-finished work.
 
 ## Production Tuning
 

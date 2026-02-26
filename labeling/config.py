@@ -28,6 +28,10 @@ REQUEST_TIMEOUT = 60           # seconds per LLM call (gpt-4o-mini is fast)
 HTTP_CLIENT_TIMEOUT = 60       # httpx client timeout
 SAMPLE_TIMEOUT = 300           # seconds total per sample (including all retries)
 
+# ─── Directory Pipeline ────────────────────────────────
+DIR_PIPELINE_WATERMARK = 2.0   # load next file when in-flight < concurrency * watermark
+DIR_PIPELINE_MAX_FILES = 5     # max files loaded in memory simultaneously
+
 # ─── Model Tiers ────────────────────────────────────────
 MODELS = {
     "strong": [
