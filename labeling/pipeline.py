@@ -713,6 +713,7 @@ class FileCollector:
     samples: list
     label_count: int = 0    # actual LLM labels (sparse)
     inherit_map: dict = field(default_factory=dict)
+    sparse_info: str = ""   # progress bar context string
     done: int = 0
     ok: int = 0
     fail: int = 0
@@ -908,8 +909,9 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
         pprint(f"  ({n_raw} conversations → {total} samples)")
 
     # Set up progress bar task — reset timer for this file (track actual labels, not total)
+    sparse_info = f" ({total} total, {round(sparse_inherited/total*100)}% sparse)" if sparse_inherited > 0 else ""
     if progress and sample_task is not None:
-        progress.reset(sample_task, total=label_count, completed=0, visible=True, info="starting...")
+        progress.reset(sample_task, total=label_count, completed=0, visible=True, info="starting..." + sparse_info)
 
     # Pre-allocate result slots
     all_labels = [None] * total
@@ -942,7 +944,7 @@ async def run_one_file(input_path, output_dir, http_client, sem, model,
             fail_count += 1
 
         if progress and sample_task is not None:
-            info = f"✓{ok_count}" + (f" ✗{fail_count}" if fail_count else "")
+            info = f"✓{ok_count}" + (f" ✗{fail_count}" if fail_count else "") + sparse_info
             progress.update(sample_task, advance=1, info=info)
         else:
             # Fallback: per-sample print (no progress bar)
@@ -1173,6 +1175,7 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
             samples=samples,
             label_count=label_count,
             inherit_map=inherit_map,
+            sparse_info=f" ({len(samples)} total, {round(sparse_inherited/len(samples)*100)}% sparse)" if sparse_inherited > 0 else "",
         )
 
         # Update samples progress bar total (use label_count, not total samples)
@@ -1244,7 +1247,7 @@ async def run_directory_pipeline(dir_files, run_dir, args, model, concurrency,
 
             # Update samples progress bar
             if progress and sample_task is not None:
-                info = f"✓{c.ok}" + (f" ✗{c.fail}" if c.fail else "") + f" [{c.rel_path.name}]"
+                info = f"✓{c.ok}" + (f" ✗{c.fail}" if c.fail else "") + f" [{c.rel_path.name}]" + c.sparse_info
                 progress.update(sample_task, advance=1, info=info)
 
             # Check if this file is fully done (compare against label_count, not total)
